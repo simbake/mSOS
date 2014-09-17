@@ -1,0 +1,236 @@
+FusionMaps XT  - http://www.fusioncharts.com/products/suite/fusionmaps-xt/
+==============================================================================
+Current Version: FusionMaps XT (v3.3.1) (Released on 4th April, 2013)
+==============================================================================
+
+Version History
+
+FusionMaps XT(v3.3.1) (4th April, 2013):
+----------------------------------------
+
+Improved:
+
+* Improved legend interactivity in JavaScript maps.
+* Better label management for marker labels in Flash Maps.
+
+Fix:
+
+* Minor fix in rendering of tooltip and hover event related issues in JavaScript Maps.
+* Minor fix in the functioning of scale attribute when radius is provided within <shape> element of JavaScript Maps.
+* JavaScript functions as links for entities are no longer invoked twice when entity labels having connector lines are clicked.
+* Corrected entity id for 'Cuyuni-Mazaruni' (GY.CU) region of Guyana map and 'Central' (ZM.CE) province of Zambia map.
+* Fixed runtime errors in VML browsers when shadow is enabled in JavaScript Maps.
+* Minor fix in markers when shape type is 'arc' in JavaScript Maps.
+* Inner radius of 'arc' shape is fixed within <marker> element in JavaScript Maps.
+* 'manageLabelOverflow' attribute now works properly when set along with 'baseFontSize', in JavaScript maps.
+
+
+
+
+
+FusionMaps XT(v3.3.0) (30th January, 2013):
+-------------------------
+
+New Features:
+
+* 430 new maps added.
+* Four new additional packs.
+* New attributes to configure marker cosmetics in Flash map:
+    - markerFillColor
+    - markerFillAlpha
+    - markerFillRatio
+    - markerFillAngle
+    - markerBorderAlpha
+* Support for radius and shapeId attributes in marker definition node in Flash maps.
+* Markers can now be auto-scaled when a Flash map is resized setting autoScaleMarkers='1'.
+* Exported JavaScript maps can now be saved to a server (using PHP and JAVA).
+
+Improved:
+
+* displayValue and maxValue attributes are now calculated from <colorRange> element when single color gradient is used in Flash Maps.
+* Added support to customize export related context-menu items of JavaScript maps.
+
+Fix:
+
+* Minor fix in space management for legend in Flash maps.
+* Flash maps now displays entity names properly in Apple Mac.
+* Entity labels are now click-able to allow drill-down in Flash maps.
+* Minor fix related to the position of Gradient-Legend pointer in Flash charts.
+* exportChart() can now be invoked multiple times in JavaScript maps.
+* Fix related to disparity between Flash maps and JavaScript maps with respect to their boundaries.
+* Flash World with Countries map no more returns "Null" as the DOMId through FC_Rendered event.
+
+
+
+FusionMaps XT(v3.2.0) SR1 (16th November, 2012):
+-------------------------
+
+New Features:
+
+* Ability to turn off url-decoding of links using the unescapeLinks attribute in JavaScript maps.
+
+Improved:
+
+* Kosovo added in World with Countries, Europe and Europe (With islands) maps.
+* South Sudan added in World with Countries and Africa maps.
+* Faroe Islands updated as a part of Denmark in Europe map.
+* Correction of entity definitions for numerous maps.
+
+Fix:
+
+* jQuery 1.8 compatibility issues.
+* Exporting issues related to JavaScript LinkedCharts.
+* Mixed content browser warning on Internet Explorer when using maps within secured (https) pages.
+* Minor fix related to legend interactivity in JavaScript maps.
+* Minor fix related to loading of chart or map SWF files while using LinkeCharts feature.
+* Links are no longer invoked when mouse is dragged onto map from foreign elements.
+* Flash LinkedCharts overlay button does not disappear anymore while exporting.
+* Bold and Italics styles can now be applied to tool tips.
+* JavaScript maps now export the current state of the maps.
+
+
+
+FusionMaps XT(v3.2.0) (30th July, 2012):
+---------------------------
+New Features:
+
+* Automatic rendering of JavaScript maps on devices (like iPad and iPhone) where Flash player is not supported.
+* Use of FusionCharts JavaScript Class (FusionCharts.js) to render and manage maps.
+* Support for JSON data format.
+* Support for LinkedCharts, a smart drill-down feature introduced in FusionMaps XT.
+* Color-range based interactive legends that allow selective showing/hiding of map entities.
+* Interactive gradient legend to show/hide entities.
+* Advanced print management for Flash Maps in non-Internet Explorer browsers.
+* Additional options for efficient event handling using JavaScript.
+* Introduced click, roll-over and roll-out events for Markers and Connectors.
+* Introduced click event for Legend items.	
+* Support for dynamic update of map properties using JavaScript.
+* Dynamic resizing of maps when parent containers resize.
+* Image can now be used to fill the map background in different modes with custom alignments.
+* Ability to control number formatting for Indian and East Asian thousand/lac separation formats.
+* Support for recursive number scaling to display the map data better.
+* jQuery plugin to render and manage maps using jQuery syntax.
+* 2 new maps added in the Core Map Pack: 
+    - World with Antarctica (FCMap_WorldWithAntarctica.swf)
+	- World 8 Regions with Antarctica (FCMap_World8WithAntarctica.swf)
+	
+Improved:
+
+* FCMap_Netherland.swf is renamed to FCMap_Netherlands.swf.
+* FCMap_NorthIreland.swf is renamed to FCMap_NorthernIreland.swf.
+* "China-2" map has been renamed to "China (With Direct-controlled municipalities and Special administrative regions)". 
+* Recreated maps of Scotland (FCMap_Scotland.swf) and Poland Counties (FCMap_PolandCounties.swf).
+* Option to show and hide individual label of entity (along with label connector line - if any).
+* Option to set hover color for individual entity.
+* Option to hide or show tool tip for individual entity and connector.
+* Option to set a map title and sub-title using caption and subCaption attributes.
+* Option to position map title using captionPosition attribute.
+* Option to set a different cosmetic (color and alpha) for the entities with no value.
+* Option to set hover color for individual entity.
+* Option to disable hover color for individual entity.
+* Option to hide common entity border using showBorder = '0'.
+* exportdataready event returns more number of properties as event argument.
+* Set default polygon shape to circle when sides are less than 3.
+* Correction of entity long names for numerous maps as listed here.
+
+Fix:
+
+* Maximum value of all the Color Ranges is now included in the highest Color Range.
+* Individual entity label cannot be shown when all labels are hidden from the <map> element using showLabels='0'.
+* Entity Definition does not change short name or long name when same internalId and newId is provided.
+
+
+Deprecated:
+
+* Use of FusionMaps.js as the JavaScript Wrapper class to render map.
+  Use FusionCharts JavaScript Class (FusionCharts.js and supportive JavaScript modules) instead.
+  
+* Use of FusionMapsExportComponent.js is deprecated. Use FusionChartsExportComponent.js instead.
+* Use of FusionMaps.asp, FusionMaps.php, FusionMaps.dll (or the sources FusionMaps.cs, FusionMaps.vb) are depreacted.
+  Use FusionCharts.asp, FusionCharts.php, FusionCharts.dll (or the sources FusionCharts.cs, FusionCharts.vb).
+* Use of various XML and JavaScript APIs as listed in Contents/UpgradingXT.html page.
+
+For detailed information on how to use the newly introduced features of this release, please read Contents/UpgradingXT.html.
+
+
+
+v3.1.0 (10th April, 2009):
+---------------------------
+New Features:
+
+* Ability to export maps as PNG/JPG/PDF at client side or server side. We've also devised a batch export mechanism at client side, which allows you to export all the maps in a page as a single image/PDF using one-click.
+* Ability to copy data from map as CSV using context menu, or JavaScript function.
+* Personalization of map - you can now add your logos over the map, and also add an "About your company" to map's context menu and link it to your URL.
+* 1 new map in core pack (Europe with islands); 69 new maps in Americas & India / Europe Pack, including Brazil (States), Portugal (Districts), Austria (States) & Caribbean Islands (Islands).
+
+Improved:
+* More control over chart using JavaScript - many new APIs and events exposed by map.
+
+Fix:
+* Entity IDs/ Physical entities bug fixes in many maps.
+
+
+v3.0.6 (21st April, 2008):
+---------------------------
+Improved:
+
+* Added another option to specify JavaScript links that works in IE 6/7.
+
+Fix:
+
+* Bug in showLabels attribute.
+* Bug in California and West Virginia map.
+
+
+v3.0.5 (10th April, 2008):
+---------------------------
+New Features:
+
+* Ability to save maps as images and to invoke this functionality from JavaScript.
+* Ability to print maps from JavaScript.
+* Option to remove "Print Map" context menu item.
+* Option to show/hide entity label for individual entities.
+* Ability to handle the rollOver/rollOut event for entities in JavaScript/flash code.
+* Option to show entity long names as part of labels.
+* Map Specification Sheet Generator in JavaScript or as a Windows application. Generate CSV files for entity ids and names directly from map.
+* 125 maps in core suite. 2 additional packs (Europe & Americas/India) containing 170 additional maps that can be downloaded as part of your existing license.
+* ASP.NET code samples in both VB.NET and C# with new Master Page and Update Panel examples.
+
+Improved:
+
+* FusionMaps JavaScript Class v1.3 with support for maps within FORMs and transparent mode.
+
+Fix:
+
+* Flash Player 9.0.115 problem where links were not being invoked when map was loaded in Flash movie.
+* Security fix that restricts XSS attacks. FusionMaps now loads data from only relative URLs. Absolute URLs are not allowed.
+
+
+v3.0.4 (20th June, 2007):
+---------------------------
+Renamed product to FusionMaps (from PowerMaps)
+
+New Features:
+
+* Following 5 maps added: Europe (UK divided into countries), Central America with Caribbean, North America without Central America division, Asia-3, Malta.
+* Added option for Marker Connectors. Marker Connectors allow you to connect any two markers using a line and a label. The cosmetic properties of the label and line can be configured from XML.
+* Added pre-built Marker XMLs indicating important cities for most of the maps in suite. You can now directly use these XMLs to show important cities in your region.
+* New code samples (ASP, PHP) and documentation on how to use FusionMaps with database.
+* Website, map gallery & dashboard samples.
+* Font properties can now be customized for each entity on the map.
+* Added option to disable hover for entities that do not have a value.
+* Added option to add a caption to legend.
+
+
+Fix:
+
+* Legend empty marker issue. Now, the legend marker will consistently show as filled rectangle across all platforms.
+* Label placement position, when x-scale and y-scale of map was simultaneously animated.
+* Tool tip position issue when map is loaded into nested movie clips inside other Flash movie.
+* Minor changes in World-8 Map, Virginia Map & North America Map tracing.
+
+
+=========================================================================
+
+For information on previous versions, please visit http://www.fusioncharts.com/products/suite/fusionmaps/fusionmaps-version-history.html
+

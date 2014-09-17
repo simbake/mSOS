@@ -1,0 +1,245 @@
+﻿<map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' >
+   <data>
+      <entity id='NA' value='6921900' link='newchart:FCMap_NorthAmerica.swf-xml-NorthAmerica' />
+      <entity id='SA' value='3087120' link='newchart:FCMap_SouthAmerica.swf-xml-SouthAmerica' />
+      <entity id='AS' value='2434120' link='newchart:FCMap_Asia.swf-xml-Asia' />
+      <entity id='EU' value='5093230' link='newchart:FCMap_Europe.swf-xml-Europe' />
+      <entity id='AF' value='1032900' link='newchart:FCMap_Africa.swf-xml-Africa' />
+      <entity id='AU' value='3461230' link='newchart:FCMap_Australia.swf-xml-Australia' />
+   </data>
+   <linkeddata id='Australia'>
+      <map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' >
+         <data>
+            <entity id='WA'  value='200050' />
+            <entity id='NT'  value='1509800' />
+            <entity id='QU'  value='8034800' />
+            <entity id='SA'  value='123000' />
+            <entity id='SW'  value='548000' />
+            <entity id='VI'  value='182000' />
+            <entity id='TA'  value='94900' />
+         </data>
+      </map>
+   </linkeddata>
+   <linkeddata id='NorthAmerica'>
+      <map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' >
+         <data>
+            <entity id='001' value='210000' />
+            <entity id='002' value='130000' />
+            <entity id='003' value='180000' />
+            <entity id='004' value='150000' />
+            <entity id='005' value='289823' />
+            <entity id='006' value='120979' />
+            <entity id='007' value='120000' />
+            <entity id='008' value='234232' />
+            <entity id='009' value='100000' />
+            <entity id='010' value='120000' />
+            <entity id='011' value='820000' />
+            <entity id='012' value='450000' />
+            <entity id='013' value='570000' />
+            <entity id='014' value='110000' />
+            <entity id='015' value='100000' />
+            <entity id='016' value='430000' />
+            <entity id='017' value='180000' />
+            <entity id='018' value='150000' />
+            <entity id='019' value='80000' />
+            <entity id='020' value='450000' />
+            <entity id='021' value='660000' />
+            <entity id='022' value='800000' />
+            <entity id='023' value='100000' />
+            <entity id='024' value='20000' />
+            <entity id='025' value='46866' />
+            <entity id='026' value='300000' />
+         </data>
+      </map>
+   </linkeddata>
+   <linkeddata id='SouthAmerica'>
+      <map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' >
+         <data>
+            <entity id='001'  value='200000' />
+            <entity id='002'  value='120000' />
+            <entity id='003'  value='300000' />
+            <entity id='004'  value='400000' />
+            <entity id='005'  value='320000' />
+            <entity id='006'  value='98690' />
+            <entity id='007'  value='402000' />
+            <entity id='008'  value='70000' />
+            <entity id='009'  value='30000' />
+            <entity id='010'  value='55000' />
+            <entity id='011'  value='520000' />
+            <entity id='012'  value='251000' />
+            <entity id='013'  value='125000' />
+            <entity id='014'  value='85000s' />
+            <entity id='015'  value='40000' />
+            <entity id='016'  value='70430' />
+         </data>
+      </map>
+   </linkeddata>
+   <linkeddata id='Asia'>
+      <map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' >
+         <data>
+            <entity id='001'  value='42000' />
+            <entity id='002'  value='31000' />
+            <entity id='003'  value='12000' />
+            <entity id='005'  value='31000' />
+            <entity id='006'  value='25000' />
+            <entity id='007'  value='82200' />
+            <entity id='008'  value='125000' />
+            <entity id='009'  value='305000' />
+            <entity id='010'  value='421597' />
+            <entity id='012'  value='122160' />
+            <entity id='013'  value='22000' />
+            <entity id='014'  value='27060' />
+            <entity id='015'  value='34000' />
+            <entity id='016'  value='32000' />
+            <entity id='019'  value='40000' />
+            <entity id='021'  value='31000' />
+            <entity id='022'  value='15000' />
+            <entity id='023'  value='18000' />
+            <entity id='025'  value='50000' />
+            <entity id='026'  value='30000' />
+            <entity id='028'  value='21000' />
+            <entity id='030'  value='25000' />
+            <entity id='031'  value='31000' />
+            <entity id='033'  value='14000' />
+            <entity id='034'  value='21000' />
+            <entity id='036'  value='22000' />
+            <entity id='038'  value='25000' />
+            <entity id='039'  value='20000' />
+            <entity id='041'  value='18000' />
+            <entity id='042'  value='19000' />
+            <entity id='044'  value='30000' />
+            <entity id='046'  value='40000' />
+            <entity id='047'  value='22000' />
+            <entity id='049'  value='50000' />
+            <entity id='050'  value='33000' />
+            <entity id='051'  value='21000' />
+            <entity id='052'  value='45669' />
+            <entity id='053'  value='44736' />
+            <entity id='054'  value='43822' />
+            <entity id='055'  value='42927' />
+            <entity id='056'  value='42050' />
+            <entity id='057'  value='41191' />
+            <entity id='058'  value='40349' />
+            <entity id='059'  value='39525' />
+            <entity id='060'  value='38717' />
+            <entity id='061'  value='37926' />
+            <entity id='062'  value='37151' />
+            <entity id='063'  value='36392' />
+            <entity id='064'  value='35648' />
+         </data>
+      </map>
+   </linkeddata>
+   <linkeddata id='Europe'>
+      <map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' >
+         <data>
+            <entity id='001'  value='150000' />
+            <entity id='002'  value='160000' />
+            <entity id='003'  value='120000' />
+            <entity id='004'  value='45000' />
+            <entity id='005'  value='42000' />
+            <entity id='006'  value='80000' />
+            <entity id='007'  value='250000' />
+            <entity id='008'  value='320000' />
+            <entity id='009'  value='152000' />
+            <entity id='010'  value='210000' />
+            <entity id='011'  value='320000' />
+            <entity id='012'  value='100000' />
+            <entity id='013'  value='120000' />
+            <entity id='014'  value='80000' />
+            <entity id='015'  value='70000' />
+            <entity id='016'  value='40000' />
+            <entity id='017'  value='100000' />
+            <entity id='018'  value='42000' />
+            <entity id='019'  value='55000' />
+            <entity id='020'  value='22000' />
+            <entity id='021'  value='33000' />
+            <entity id='022'  value='11000' />
+            <entity id='023'  value='50000' />
+            <entity id='024'  value='32000' />
+            <entity id='025'  value='37230' />
+            <entity id='026'  value='40000' />
+            <entity id='027'  value='80000' />
+            <entity id='028'  value='41000' />
+            <entity id='029'  value='28000' />
+            <entity id='030'  value='110000' />
+            <entity id='031'  value='120000' />
+            <entity id='032'  value='200000' />
+            <entity id='033'  value='100000' />
+            <entity id='034'  value='89000' />
+            <entity id='035'  value='51000' />
+            <entity id='036'  value='41000' />
+            <entity id='037'  value='32000' />
+            <entity id='038'  value='80000' />
+            <entity id='039'  value='110000' />
+            <entity id='040'  value='42000' />
+            <entity id='041'  value='50000' />
+            <entity id='042'  value='265000' />
+            <entity id='043'  value='422000' />
+            <entity id='044'  value='342000' />
+            <entity id='045'  value='120000' />
+            <entity id='046'  value='89000' />
+         </data>
+      </map>
+   </linkeddata>
+   <linkeddata id='Africa'>
+      <map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' >
+         <data>
+            <entity id='001'  value='10000' />
+            <entity id='002'  value='23000' />
+            <entity id='003'  value='12000' />
+            <entity id='004'  value='8000' />
+            <entity id='005'  value='5000' />
+            <entity id='006'  value='11000' />
+            <entity id='007'  value='12000' />
+            <entity id='008'  value='13000' />
+            <entity id='009'  value='14000' />
+            <entity id='010'  value='12000' />
+            <entity id='011'  value='19000' />
+            <entity id='012'  value='11000' />
+            <entity id='013'  value='2000' />
+            <entity id='014'  value='3000' />
+            <entity id='015'  value='4000' />
+            <entity id='016'  value='5000' />
+            <entity id='017'  value='8000' />
+            <entity id='018'  value='1200' />
+            <entity id='019'  value='6000' />
+            <entity id='020'  value='43000' />
+            <entity id='021'  value='32000' />
+            <entity id='022'  value='14000' />
+            <entity id='023'  value='16000' />
+            <entity id='024'  value='19000' />
+            <entity id='025'  value='18000' />
+            <entity id='026'  value='19000' />
+            <entity id='027'  value='21000' />
+            <entity id='028'  value='20000' />
+            <entity id='029'  value='40000' />
+            <entity id='030'  value='21000' />
+            <entity id='032'  value='32000' />
+            <entity id='033'  value='12000' />
+            <entity id='034'  value='43000' />
+            <entity id='035'  value='71000' />
+            <entity id='036'  value='10000' />
+            <entity id='038'  value='41000' />
+            <entity id='040'  value='4980' />
+            <entity id='041'  value='12000' />
+            <entity id='042'  value='8560' />
+            <entity id='043'  value='22000' />
+            <entity id='044'  value='51000' />
+            <entity id='045'  value='32000' />
+            <entity id='046'  value='45000' />
+            <entity id='047'  value='25000' />
+            <entity id='048'  value='23000' />
+            <entity id='049'  value='21000' />
+            <entity id='051'  value='11000' />
+            <entity id='052'  value='18000' />
+            <entity id='053'  value='13000' />
+            <entity id='054'  value='30000' />
+            <entity id='055'  value='8000' />
+            <entity id='056'  value='14000' />
+            <entity id='057'  value='12160' />
+            <entity id='058'  value='18000' />
+            <entity id='059'  value='13000' />
+         </data>
+      </map>
+   </linkeddata>
+</map>

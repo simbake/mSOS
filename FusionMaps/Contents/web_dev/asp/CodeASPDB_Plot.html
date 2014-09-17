@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with ASP - Data to be plotted</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with ASP", "Plotting from database", "Data to be plotted" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Data to be plotted </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Plotting data to achieve Goal 1 </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Here we want to display the percentage of population for each states of US. For this we need to perform following computations: </td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><strong>Calculate the total population of state </strong></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">A state is divided in various counties. In the database strcuture page we have discussed how we divided each county in different groups and subgroups. So to get the total population of a state we need to sum up the values for all the subgroups for the state. Programmatically a state can be identified with <span class="codeInline">Internal_Id</span>.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><strong>Calculate total US population </strong></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Total US population can be calculated by adding populations of all the states. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><strong>Find out the percentage </strong></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Now, for each state, we have to divide state population by total US population and multiply the result with 100. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Plotting data to achieve Goal 2 </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Here we want to display the percentages of population of each state that belong to various groups - Business, Service and Unemployed. This can be achieved through following computations. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><strong>Calculate total population of the state </strong></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">This can be done by simply adding the population under all the subgroups of the state. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><strong>Calculate number of people for each Group </strong></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">To get this value, we have to find out the group wise total population for all the counties of a state, e.g. to find out total number of people doing business in CA, we need to sum up the number of heads for all the subgroups of Business category in CA. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><strong>Employment percentage </strong></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">To show the percentage of population for each group we have to divide number of people in a group by the total population of the state and then multiply the result with 100. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Now we have to perform the same method for all the groups of to get state-wise record. And the same thing is to be followed for all the states to get employment data of all the states.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Database Structure|CodeASPDB_Structure.html","US Population Map|CodeASPDB_USMap.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="ASP.NET (C#)" >
+  <key name="Using with ASP.NET (C#) - Data to be plotted" >
+    <topic name="Using with ASP.NET (C#) - Data to be plotted" url="../../../web_dev/asp_cs/CodeASPCSDB_Plot.html" />
+  </key>
+  <key name="Using with ASP.NET (C#) - Database Structure" >
+    <topic name="Using with ASP.NET (C#) - Database Structure" url="../../../web_dev/asp_cs/CodeASPCSDB_Structure.html" />
+  </key>
+  <key name="Using with ASP.NET (C#) - Drill-down Map" >
+    <topic name="Using with ASP.NET (C#) - Drill-down Map" url="../../../web_dev/asp_cs/CodeASPCSDB_DrillMap.html" />
+  </key>
+  <key name="Using with ASP.NET (C#) - Goal" >
+    <topic name="Using with ASP.NET (C#) - Goal" url="../../../web_dev/asp_cs/CodeASPCSDB_Goal.html" />
+  </key>
+  <key name="Using with ASP.NET (C#) - US Population Map" >
+    <topic name="Using with ASP.NET (C#) - US Population Map" url="../../../web_dev/asp_cs/CodeASPCSDB_USMap.html" />
+  </key>
+  <key name="Using with ASP.NET (C#) - Using Data from Form" >
+    <topic name="Using with ASP.NET (C#) - Using Data from Form" url="../../../web_dev/asp_cs/CodeASPCSForm.html" />
+  </key>
+  <key name="Using with ASP.NET (C#) - Using Data String Method" >
+    <topic name="Using with ASP.NET (C#) - Using Data String Method" url="../../../web_dev/asp_cs/CodeASPCSDXML.html" />
+  </key>
+  <key name="Using with ASP.NET (C#) - Using Data URL Method" >
+    <topic name="Using with ASP.NET (C#) - Using Data URL Method" url="../../../web_dev/asp_cs/CodeASPCSDURL.html" />
+  </key>
+</key>
+<key name="ASP.NET (VB.NET)" >
+  <key name="Using with ASP.NET (VB.NET) - Data to be plotted" >
+    <topic name="Using with ASP.NET (VB.NET) - Data to be plotted" url="../../../web_dev/asp_vb/CodeASPVBDB_Plot.html" />
+  </key>
+  <key name="Using with ASP.NET (VB.NET) - Database Structure" >
+    <topic name="Using with ASP.NET (VB.NET) - Database Structure" url="../../../web_dev/asp_vb/CodeASPVBDB_Structure.html" />
+  </key>
+  <key name="Using with ASP.NET (VB.NET) - Drill-down Map" >
+    <topic name="Using with ASP.NET (VB.NET) - Drill-down Map" url="../../../web_dev/asp_vb/CodeASPVBDB_DrillMap.html" />
+  </key>
+  <key name="Using with ASP.NET (VB.NET) - Goal" >
+    <topic name="Using with ASP.NET (VB.NET) - Goal" url="../../../web_dev/asp_vb/CodeASPVBDB_Goal.html" />
+  </key>
+  <key name="Using with ASP.NET (VB.NET) - US Population Map" >
+    <topic name="Using with ASP.NET (VB.NET) - US Population Map" url="../../../web_dev/asp_vb/CodeASPVBDB_USMap.html" />
+  </key>
+  <key name="Using with ASP.NET (VB.NET) - Using Data from Form" >
+    <topic name="Using with ASP.NET (VB.NET) - Using Data from Form" url="../../../web_dev/asp_vb/CodeASPVBForm.html" />
+  </key>
+  <key name="Using with ASP.NET (VB.NET) - Using data String Method" >
+    <topic name="Using with ASP.NET (VB.NET) - Using data String Method" url="../../../web_dev/asp_vb/CodeASPVBDXML.html" />
+  </key>
+  <key name="Using with ASP.NET (VB.NET) - Using Data URL Method" >
+    <topic name="Using with ASP.NET (VB.NET) - Using Data URL Method" url="../../../web_dev/asp_vb/CodeASPVBDURL.html" />
+  </key>
+</key>
+<key name="background" >
+  <key name="Setting backgrounds for maps" >
+    <topic name="Setting backgrounds for maps" url="../../../advanced/ChartBG.html" />
+  </key>
+  <key name="Upgrading to FusionMaps XT  from FusionMaps v3.1 or 3.0.x" >
+    <topic name="Upgrading to FusionMaps XT  from FusionMaps v3.1 or 3.0.x" url="../../../introduction/UpgradingXT.html" />
+  </key>
+</key>
+<key name="Classic ASP" >
+  <key name="Using with ASP - Data to be plotted" >
+    <topic name="Using with ASP - Data to be plotted" url="../../../web_dev/asp/CodeASPDB_Plot.html" />
+  </key>
+  <key name="Using with ASP - Database Structure" >
+    <topic name="Using with ASP - Database Structure" url="../../../web_dev/asp/CodeASPDB_Structure.html" />
+  </key>
+  <key name="Using with ASP - Drill-down Map" >
+    <topic name="Using with ASP - Drill-down Map" url="../../../web_dev/asp/CodeASPDB_DrillMap.html" />
+  </key>
+  <key name="Using with ASP - Goal" >
+    <topic name="Using with ASP - Goal" url="../../../web_dev/asp/CodeASPDB_Goal.html" />
+  </key>
+  <key name="Using with ASP - US Population Map" >
+    <topic name="Using with ASP - US Population Map" url="../../../web_dev/asp/CodeASPDB_USMap.html" />
+  </key>
+  <key name="Using with ASP - Using Data from Form" >
+    <topic name="Using with ASP - Using Data from Form" url="../../../web_dev/asp/CodeASPForm.html" />
+  </key>
+  <key name="Using with ASP - Using Data String Method" >
+    <topic name="Using with ASP - Using Data String Method" url="../../../web_dev/asp/CodeASPDXML.html" />
+  </key>
+  <key name="Using with ASP - Using Data URL Method" >
+    <topic name="Using with ASP - Using Data URL Method" url="../../../web_dev/asp/CodeASPDURL.html" />
+  </key>
+</key>
+<key name="currency" >
+  <key name="Using Currency Symbols on Map" >
+    <topic name="Using Currency Symbols on Map" url="../../../advanced/special_chars/SpCharAll.html" />
+  </key>
+</key>
+<key name="custom labels" >
+  <key name="Showing Custom Labels and tool tips for entities" >
+    <topic name="Showing Custom Labels and tool tips for entities" url="../../../how_to_use/CustomLabels.html" />
+  </key>
+</key>
+<key name="Data String" >
+  <key name="Advanced Troubleshooting" >
+    <topic name="Advanced Troubleshooting" url="../../../Debug/Advanced.html" />
+  </key>
+  <key name="Basic Troubleshooting" >
+    <topic name="Basic Troubleshooting" url="../../../Debug/Basic.html" />
+  </key>
+  <key name="Creating LinkedCharts" >
+    <topic name="Creating LinkedCharts" url="../../../FirstMap/LinkedCharts.html" />
+  </key>
+  <key name="Data String Method" >
+    <topic name="Data String Method" url="../../../how_fm_work/DataXMLExp.html" />
+  </key>
+  <key name="Debug Mode (Window)" >
+    <topic name="Debug Mode (Window)" url="../../../Debug/Window.html" />
+  </key>
+  <key name="FusionCharts jQuery plugin overview" >
+    <topic name="FusionCharts jQuery plugin overview" url="../../../jQuery/overview.html" />
+  </key>
+  <key name="How FusionMaps works" >
+    <topic name="How FusionMaps works" url="../../../how_fm_work/HowFCWorks.html" />
+  </key>
+</key>
+<key name="Data URL" >
+  <key name="Advanced Troubleshooting" >
+    <topic name="Advanced Troubleshooting" url="../../../Debug/Advanced.html" />
+  </key>
+  <key name="Basic Troubleshooting" >
+    <topic name="Basic Troubleshooting" url="../../../Debug/Basic.html" />
+  </key>
+  <key name="Creating LinkedCharts" >
+    <topic name="Creating LinkedCharts" url="../../../FirstMap/LinkedCharts.html" />
+  </key>
+  <key name="Data Url Method" >
+    <topic name="Data Url Method" url="../../../how_fm_work/DataURL.html" />
+  </key>
+  <key name="Debug Mode (Window)" >
+    <topic name="Debug Mode (Window)" url="../../../Debug/Window.html" />
+  </key>
+  <key name="FusionCharts jQuery plugin overview" >
+    <topic name="FusionCharts jQuery plugin overview" url="../../../jQuery/overview.html" />
+  </key>
+  <key name="How FusionMaps works" >
+    <topic name="How FusionMaps works" url="../../../how_fm_work/HowFCWorks.html" />
+  </key>
+</key>
+<key name="Database" >
+  <key name="Creating Database driven Maps" >
+    <topic name="Creating Database driven Maps" url="../../../FirstMap/database_maps.html" />
+  </key>
+</key>
+<key name="debug" >
+  <key name="Advanced Troubleshooting" >
+    <topic name="Advanced Troubleshooting" url="../../../Debug/Advanced.html" />
+  </key>
+  <key name="Basic Troubleshooting" >
+    <topic name="Basic Troubleshooting" url="../../../Debug/Basic.html" />
+  </key>
+  <key name="Debug Mode (Window)" >
+    <topic name="Debug Mode (Window)" url="../../../Debug/Window.html" />
+  </key>
+  <key name="Debugging using JavaScript" >
+    <topic name="Debugging using JavaScript" url="../../../Debug/JS.html" />
+  </key>
+</key>
+<key name="Drill down" >
+  <key name="Creating Drill-Down Maps" >
+    <topic name="Creating Drill-Down Maps" url="../../../DrillDown/Simple.html" />
+  </key>
+  <key name="Drill down - Full Map as a hotspot" >
+    <topic name="Drill down - Full Map as a hotspot" url="../../../DrillDown/ClickURL.html" />
+  </key>
+  <key name="Drill down - FusionCharts Link format" >
+    <topic name="Drill down - FusionCharts Link format" url="../../../DrillDown/LinkFormat.html" />
+  </key>
+  <key name="Drill down - Linking to Frames" >
+    <topic name="Drill down - Linking to Frames" url="../../../DrillDown/Frames.html" />
+  </key>
+  <key name="Drill down - Opening links in pop-up windows" >
+    <topic name="Drill down - Opening links in pop-up windows" url="../../../DrillDown/PopUps.html" />
+  </key>
+  <key name="Drill down - Using JavaScript functions as links" >
+    <topic name="Drill down - Using JavaScript functions as links" url="../../../DrillDown/JavaScript.html" />
+  </key>
+</key>
+<key name="events" >
+  <key name="FusionCharts JavaScript API - Events" >
+    <topic name="FusionCharts JavaScript API - Events" url="../../../javascript/API/events.html" />
+  </key>
+  <key name="Listening to events" >
+    <topic name="Listening to events" url="../../../javascript/js_event_overview.html" />
+  </key>
+</key>
+
+</indexdata>

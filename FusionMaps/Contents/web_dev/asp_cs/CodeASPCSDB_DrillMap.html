@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with ASP.NET (C#) - Drill-down Map</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with ASP.NET (C#)", "Plotting from database", "Drill-down map" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Drill-down Map</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">Each entity of the main US map on click drills down to <span class="codeInline">StateDetails.aspx</span> page passing its Internal id and map SWF file name to it. In this section we will see the code in <span class="codeInline">StateDetails.aspx </span>and how the page handle these requests and renders map.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">Before moving further with the process of plotting data from database, we recommend  to go through  <a href="CodeASPCSDXML.html">Using Data String Method</a> and <a href="CodeASPCSDURL.html">Using Data URL Method</a> to know the basics about FusionMaps  XT generation procedure. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="highlightBlock">The code discussed here is present in <span class="codeInline">Download Package &gt; Code &gt; CS_NET &gt; DrillDown  </span> folder. </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The code of <span class="codeInline">StateDetails.aspx</span>  file is as follows: </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="codeBlock code_container"><p>&lt;%@ Page Language=&quot;C#&quot; AutoEventWireup=&quot;false&quot; CodeFile=&quot;StateDetails.aspx.cs&quot; Inherits=&quot;DrillStateDetails&quot; %&gt;<br />
+        &lt;html&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;head&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;title&gt;FusionMaps  XT- Database Example&lt;/title&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; &lt;script language=&quot;Javascript&quot; src=&quot;../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;<br />
+&nbsp; &nbsp; &lt;/head&gt;<br />
+&nbsp; &nbsp; &lt;body&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form id='form1' name='form1' method='post' runat=&quot;server&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;% <span class="codeComment">// Get state map</span> %&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp; &lt;asp:Literal ID=&quot;StateDetailsMap&quot; runat=&quot;server&quot; /&gt;</strong><br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br />
+&nbsp; &nbsp; &lt;/body&gt;<br />
+&lt;/html&gt;
+        </p>        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">In the above code, we first include <span class="codeInline">FusionCharts.js</span> file to enable us embed the map using   JavaScript. The drilled down State map loads in Literal StateDetailsMap through the following code behind script   (<span class="codeInline">StateDetails.aspx.cs</span>):</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="codeBlock code_container"><p>using System;<br />
+        using System.Data;<br />
+        using System.Configuration;<br />
+        using System.Collections;<br />
+        using System.Web;<br />
+        using System.Web.Security;<br />
+        using System.Web.UI;<br />
+        using System.Web.UI.WebControls;<br />
+        using System.Web.UI.WebControls.WebParts;<br />
+        using System.Web.UI.HtmlControls;<br />
+        using InfoSoftGlobal;</p>
+          <p>public partial class DrillStateDetails : System.Web.UI.Page<br />
+            {</p>
+          <p> &nbsp;&nbsp; protected void Page_Load(object sender, EventArgs e)<br />
+            &nbsp;&nbsp; {<br />
+            <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; // Define DataURL<br />
+            &nbsp;&nbsp; &nbsp;&nbsp;</span>string dataURL = &quot;DataGen.aspx?op=GetStateDetails&amp;Internal_Id=&quot; + Request[&quot;Internal_Id&quot;];</p>
+          <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; // Create the Map with data contained in dataURL <br />
+          &nbsp;&nbsp; &nbsp;&nbsp; // and embed the map rendered as HTML into Literal - StateDetailsMap<br />
+          &nbsp;&nbsp; &nbsp;&nbsp; // We use FusionCharts class of InfoSoftGlobal namespace (FusionCharts.dll in BIN folder)<br />
+          &nbsp;&nbsp; &nbsp;&nbsp; // RenderChart() generates the necessary HTML needed to render the map</span><br />
+            &nbsp;&nbsp; &nbsp;&nbsp; string mapHTML= FusionCharts.RenderChart(&quot;../Maps/&quot; + Request[&quot;map&quot;], dataURL, &quot;&quot;, &quot;mapid&quot;, &quot;600&quot;, &quot;400&quot;, false, false);<br />
+            <br />
+            <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; //embed the map rendered as HTML into Literal - StateDetailsMap<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; StateDetailsMap.Text = mapHTML;<br />
+            <br />
+            &nbsp;&nbsp; }<br />
+            }</p>          </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><p>In the above code we do the following : </p>
+        <ul>
+          <li>We create a Data URL to fetch map XML from <span class="codeInline">DataGen.aspx (whose code behind page is DataGen.aspx.vb)</span>. </li>
+          <li>We call <span class="codeInline">RenderChart()</span> function from <span class="codeInline">FusionCharts class</span> of <span class="codeInline">InfosoftGlobal </span>assembly which renders map of USA after passing the Data URL to it. </li>
+        </ul></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The file <span class="codeInline">DataGen.aspx</span> is passed a querystring - <span class="codeInline">?op=GetStateDetails</span>. As we have discussed in the previous page that depending on the value of <span class="codeInline">op </span>the code calls related subroutines using <span class="codeInline">select case</span> statement. Hence, when op's value is <span class="codeInline">GetStateDetails</span> it calls <span class="codeInline">GetStateDetails</span>() subroutine which in turn builds and returns the  map XML as Data URL.</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">Let's now go thorough the code of <span class="codeInline">GetStateDetails</span>() function in <span class="codeInline">DataGen.aspx.cs</span>.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p>using System;<br />
+      using System.Configuration;<br />
+      using System.Collections;<br />
+      using System.Web;<br />
+      using System.Web.Security;<br />
+      using System.Web.UI;<br />
+      using System.Web.UI.WebControls;<br />
+      using System.Web.UI.WebControls.WebParts;<br />
+      using System.Web.UI.HtmlControls;<br />
+      using System.Text;<br />
+      <span class="codeComment">//   contains the connection parameters to connect to database. </span><strong><br />
+      using DataConnection;</strong><br />
+      <br />
+    ...</p>      
+        <p>public void GetStateDetails()<br />
+      {</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; // Variables to store XML Data and sum of data<br />
+        &nbsp;&nbsp; // strXML will be used to store the entire XML document generated </span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>StringBuilder strXML = new StringBuilder();<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>double sumdata;</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; //Variable to store SQL Query </span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>string strQuery;</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; // Generate the map element</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;map borderColor='FFFFFF' fillAlpha='80' hoverColor='FFFFFF' showBevel='0' legendBorderColor='F1f1f1' legendPosition='bottom'&gt;&quot;);</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; //Define color ranges</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;colorRange&gt;&quot;);<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='0' maxValue='93' displayValue='0% to 93%' color='D64646' /&gt;&quot;);<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='93' maxValue='94' displayValue='93% to 94%' color='F6BD0F' /&gt;&quot;);<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='94' maxValue='95' displayValue='94% to 95%' color='8BBA00' /&gt;&quot;);<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='95' maxValue='100' displayValue='95% or above' color='AFD8F8' /&gt;&quot;);<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;/colorRange&gt;&quot;);<br />
+          <br />
+          <span class="codeComment">&nbsp;&nbsp; //Start the &lt;data&gt; element</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;data&gt;&quot;);</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; // Fetch entity records</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strQuery = &quot;select a.Internal_Id,a.entity_id,sum(data) as datap from fcmap_distribution a group by a.Internal_Id,a.entity_id having a.Internal_Id='&quot; + Request[&quot;Internal_Id&quot;] + &quot;'&quot;;<br />
+          <br />
+          <span class="codeComment">&nbsp;&nbsp; </span>          DbConn Rs = new DbConn(strQuery);<br />
+  <br />
+          <span class="codeComment">&nbsp;&nbsp; // Set sumdata to Zero</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>sumdata = 0;</p>
+      <p> <span class="codeComment">&nbsp;&nbsp; // If we've records to iterate, proceed </span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>if (Rs.ReadData.HasRows == true)<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>{<br />
+          <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; // Read data reader till end</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>while (Rs.ReadData.Read())<br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>{<br />
+          <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // We create custom tool text for each entity. <br />
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </span><span class="codeInline">string tooltext = &quot;&quot;;</span></p>
+        <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // Total counter</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>double totEmp = 0;</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>double StateValue, TotalStateValue, StatePer;<br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>StateValue = 0; TotalStateValue = 0; StatePer = 0;</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; //Get details for the region</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>strQuery = &quot;select a.Internal_Id,a.entity_id,b.group_name,sum(data) as datap from fcmap_distribution a, fcmap_group_master b where b.group_id=a.group_id  group by a.Internal_Id ,a.entity_id, b.group_name having a.Internal_Id='&quot; + Rs.ReadData[&quot;Internal_Id&quot;].ToString() + &quot;' and entity_id='&quot; + Rs.ReadData[&quot;entity_id&quot;].ToString() + &quot;'&quot;;<br />
+          <br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>          DbConn Rs1 = new DbConn(strQuery);<br />
+  <br />
+  <br />
+          <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; //Read data till end</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>while (Rs1.ReadData.Read())<br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>{<br />
+          <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // Calculate value</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>StateValue = Convert.ToDouble(Rs1.ReadData[&quot;datap&quot;]);<br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>TotalStateValue = Convert.ToDouble(Rs.ReadData[&quot;datap&quot;]);<br />
+          <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // Get percentage of employment</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>StatePer = Math.Round((StateValue / TotalStateValue) * 100, 2);<br />
+          <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // Add to tooltext</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>tooltext += Rs1.ReadData[&quot;group_name&quot;].ToString() + &quot;:&quot; + StatePer + &quot;% \n&quot;;</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // If it's not unemployed group</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>if (Rs1.ReadData[&quot;group_name&quot;].ToString() != &quot;Unemployed&quot;)<br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>{<br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>          <span class="codeComment">//calculate total employed</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>totEmp += StatePer;<br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>}</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>}<br />
+          <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; //close data reader</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>Rs1.ReadData.Close();</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // Generate &lt;entity id=&quot;..&quot; value=&quot;..&quot; /&gt; <br />
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // Also append link to Charts.aspx passing all required information (from querystring) and the database<br />
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; // We also add our custom tooltext</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>string LinkURL = &quot;Charts.aspx?&quot; + Request.ServerVariables[&quot;QUERY_STRING&quot;] + &quot;&amp;entity_id=&quot; + Rs.ReadData[&quot;entity_id&quot;].ToString();<br />
+          <br />
+      <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>      strXML.AppendFormat(&quot;&lt;entity id='{0}' value='{1}' link='{2}' tooltext='{3}' /&gt;&quot;, Rs.ReadData[&quot;entity_id&quot;].ToString(), totEmp, LinkURL, tooltext);</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment">&nbsp;&nbsp; </span>}<br />
+          <span class="codeComment">&nbsp;&nbsp; </span>}<br />
+          <span class="codeComment">&nbsp;&nbsp; <br />
+&nbsp;&nbsp;          //close data reader</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>Rs.ReadData.Close();</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; // Finally, close &lt;data&gt; element</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;/data&gt;&quot;);</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; //Add style </span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;styles&gt;&lt;definition&gt;&lt;style type='animation' name='animX' param='_xscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animY' param='_yscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animAlpha' param='_alpha' start='0' duration='1' /&gt;&lt;style type='shadow' name='myShadow' color='FFFFFF' distance='1' /&gt;&lt;/definition&gt;&quot;);<br />
+          strXML.Append(&quot;&lt;application&gt;&lt;apply toObject='PLOT' styles='animX,animY' /&gt;&lt;apply toObject='LABELS' styles='myShadow,animAlpha' /&gt;&lt;/application&gt;&lt;/styles&gt;&quot;);<br />
+          <span class="codeComment"><br />
+&nbsp;&nbsp;          // Close map element</span><br />
+      <span class="codeComment">&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;/map&gt;&quot;);</p>
+        <p> <br />
+          <span class="codeComment">&nbsp;&nbsp; // Set Proper output content-type</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>Response.ContentType = &quot;text/xml&quot;;<br />
+          <span class="codeComment">&nbsp;&nbsp; // Just write out the XML data<br />
+          &nbsp;&nbsp; // NOTE THAT THIS PAGE DOESN'T CONTAIN ANY HTML TAG, WHATSOEVER</span><br />
+          <span class="codeComment">&nbsp;&nbsp; </span>Response.Write(strXML.ToString());</p>
+        <p> }</p>    </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">Let's discuss the process flow of this function in details: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Like the previous page, we initialize database connection. </li>
+      <li>We also create a variable - <span class="codeInline">strXML</span> to store map XML.</li>
+      <li>Next, we initialize root map element and add color range settings in XML.</li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">&quot;select a.Internal_Id,a.entity_id,sum(data) as datap from fcmap_distribution a group by a.Internal_Id,a.entity_id having a.Internal_Id='&quot; + Request[&quot;Internal_Id&quot;] + &quot;'&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>Now we iterate through each entity/county of the map/state and get details like percentage of employment in Business, in Service and percentage&nbsp;Unemployed population. </li>
+      <li>To achieve this, we create another data reader <span class="codeInline">Rs1</span> using the following SQL: </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">&quot;select a.Internal_Id,a.entity_id,b.group_name,sum(data) as datap from fcmap_distribution a, fcmap_group_master b where b.group_id=a.group_id  group by a.Internal_Id ,a.entity_id, b.group_name having a.Internal_Id='&quot; + Rs.ReadData[&quot;Internal_Id&quot;].ToString() + &quot;' and entity_id='&quot; + Rs.ReadData[&quot;entity_id&quot;].ToString() + &quot;'&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>Here, <span class="codeInline">Rs1</span> stores records each having total of each group - Business, Service and Unemployed - in each record. So iterating through each, we calculate percentage of employment of each group and total employed population. This we did using the following calculation: </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p><span class="codeComment">//Read data till end</span><br />
+      while (Rs1.ReadData.Read())<br />
+      {<br />
+        <span class="codeComment">&nbsp;&nbsp; // Calculate value</span><br />
+        <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span>StateValue = Convert.ToDouble(Rs1.ReadData[&quot;datap&quot;]);<br />
+        <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span>TotalStateValue = Convert.ToDouble(Rs.ReadData[&quot;datap&quot;]);<br />
+        <span class="codeComment">&nbsp;&nbsp; // Get percentage of employment</span><br />
+        <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span>StatePer = Math.Round((StateValue / TotalStateValue) * 100, 2);<br />
+        <span class="codeComment">&nbsp;&nbsp; // Add to tooltext</span><br />
+        <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span>tooltext += Rs1.ReadData[&quot;group_name&quot;].ToString() + &quot;:&quot; + StatePer + &quot;% \n&quot;;</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; // If it's not unemployed group</span><br />
+            <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span>if (Rs1.ReadData[&quot;group_name&quot;].ToString() != &quot;Unemployed&quot;)<br />
+            <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span>{<br />
+            <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span><span class="codeComment">&nbsp;&nbsp; </span> <span class="codeComment">//calculate total employed</span><br />
+            <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span><span class="codeComment">&nbsp;&nbsp; </span>totEmp += StatePer;<br />
+            <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> </span>}</p>
+        <p>}<br />
+            <span class="codeComment"><br />
+          //close data reader</span><br />
+          Rs1.ReadData.Close();</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>The above code also shows that we also  generate custom tool-text for each entity to show Percentage of population in Business, Service and Percentage of Unemployed population for each district/entity of that state's map. We create a variable - <span class="codeInline">tooltext </span>and accumulate group name and corresponding percentage of each group in it. </li>
+      <li>Moreover we also keep a total of employment percentage in <span class="codeInline">totEmp </span>variable. This we did by skipping &quot;Unemployed&quot; group. </li>
+    </ul></td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="textBold">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Providing map data </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Let's now discuss how to provide data to each entity of the map. In the above outer iteration through each entity we also add our code to add <span class="codeInline">&lt;entity&gt;</span> element. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeComment">// We also add our custom tooltext</span><br />
+      string LinkURL = &quot;Charts.aspx?&quot; + Request.ServerVariables[&quot;QUERY_STRING&quot;] + &quot;&amp;entity_id=&quot; + Rs.ReadData[&quot;entity_id&quot;].ToString();<br />
+      <br />
+      strXML.AppendFormat(&quot;&lt;entity id='{0}' value='{1}' link='{2}' tooltext='{3}' /&gt;&quot;, Rs.ReadData[&quot;entity_id&quot;].ToString(), totEmp, LinkURL, tooltext);</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>As entity id we use the &quot;<span class="codeInline">entity_id</span>&quot; field from the first data reader -<span class="codeInline">Rs</span>.</li>
+      <li>We give total employed percent stored in <span class="codeInline">totEmp </span>as value attribute of each entity.</li>
+      <li>We set <span class="codeInline">tooltext </span>attribute from <span class="codeInline">tooltext </span>variable. </li>
+      <li>We also create  links that drill-down to another page showing details of the clicked district/entity in maps.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Thus, we create entity data. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Finally we apply style like <span class="codeInline">XScale, YScale, alpha</span> &amp; <span class="codeInline">shadow</span> styles to the map using <span class="codeInline">&lt;styles&gt;</span> element and </li>
+      <li>And we return the XML as Data URL to <span class="codeInline">RenderChart()</span> function of <span class="codeInline">StateDetails.aspx.cs</span>.</li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="codeBlock code_container"><span class="codeComment">// Set Proper output content-type</span><br />
+Response.ContentType = &quot;text/xml&quot;;<br />
+<span class="codeComment">// Just write out the XML data<br />
+// NOTE THAT THIS PAGE DOESN'T CONTAIN ANY HTML TAG, WHATSOEVER</span><br />
+Response.Write(strXML.ToString());</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">The above mentioned <span class="codeInline">RenderChart()</span> function renders the map retrieving the XML. Its acquires the SWF file requesting the querystring - <span class="codeInline">Request(&quot;map&quot;)</span>. Finally, the rendered map is set to the literal control StateDetailsMap. </td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"> <span class="codeComment">// RenderChart() generates the necessary HTML needed to render the map         <br />
+      </span>string mapHTML= FusionCharts.RenderChart(&quot;../Maps/&quot; + Request[&quot;map&quot;], dataURL, &quot;&quot;, &quot;mapid&quot;, &quot;600&quot;, &quot;400&quot;, false, false);         <br />
+      <br />
+      <span class="codeComment">//embed the map rendered as HTML into Literal - StateDetailsMap         <br />
+      </span>StateDetailsMap.Text = mapHTML;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Here is the snapshot of the detailed county map:</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><img src="../../Images/CodeASPDB2.jpg" width="447" height="531" class="imageBorder" /></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("US Population Map|CodeASPCSDB_USMap.html","");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

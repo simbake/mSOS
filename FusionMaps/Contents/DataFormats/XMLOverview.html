@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>FusionMaps XT and XML &gt; Overview</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT Data Formats", "XML Overview" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">FusionMaps XT and XML</td>
+
+  </tr>
+  <tr> 
+    <td class="text"><p>FusionMaps XT uses XML (eXtensible Markup Language) to 
+        create and manipulate maps. XML is a simple and structured language 
+        that is easy to read and understand. In case you're not aware of XML as 
+        yet, here are a few basics things to know about an XML document:</p>
+      <ul>
+        <li> An XML document is a simple text file consisting of tags and data 
+          associated with them.</li>
+        <li>You can make up your own tags like <span class="codeInline">&lt;mytag&gt;&lt;/mytag&gt;</span><span class="text"> 
+          to store data</span>.</li>
+        <li>Every opening tag requires a matching closing tag like <span class="codeInline">&lt;name&gt;</span> 
+          requires <span class="codeInline">&lt;/name&gt;</span>. For example,<span class="codeInline"> 
+          &lt;name&gt;John Doe&lt;/name&gt;</span><span class="codetext">. </span>If 
+          an element has no content, the opening and closing tags may be combined 
+          into a single &quot;shortcut&quot; tag such as <span class="codeInline">&lt;name/&gt;</span><span class="codetext">.</span>        </li>
+        <li>XML tags are case-sensitive. So <span class="codeInline">&lt;name&gt;</span> 
+          should be closed with<span class="codetext"> </span><span class="codeInline">&lt;/name&gt;</span> 
+          and not <span class="codeInline">&lt;/Name&gt;</span> or<span class="codetext"> 
+          </span><span class="codeInline">&lt;/NAME&gt;</span><span class="codetext"> 
+          </span>or any other variant of the same.</li>
+        <li>You can define attributes for a tag to render more details. For example,<span class="codetext"> 
+          </span><span class="codeInline">&lt;name isPetName='true'&gt;John Doe&lt;/name&gt;</span>. 
+          Here <span class="codeInline">isPetName</span> is an attribute of the 
+          <span class="codetext">name</span> element. In FusionMaps XT, we've 
+          four types of attributes: 
+          <ul>
+            <li><strong>Boolean</strong> - Attributes which can take a 0 or 1 
+              value. Like<span class="codeInline"> &lt;map showLabels='1' &gt;</span></li>
+            <li><strong>Number</strong> - Attributes which take a numeric value. 
+              Like <span class="codeInline">&lt;map bgAlpha='70' &gt;</span></li>
+            <li><strong>String</strong> - Attributes which take a string value. 
+              Like <span class="codeInline">&lt;map baseFont='Verdana' &gt;</span></li>
+            <li><strong>Hex Color Code</strong> - Attributes that take a hex color 
+              code (without #). Like <span class="codeInline">&lt;map bgColor='FFFFDD' 
+              &gt;</span></li>
+          </ul>
+        </li>
+        <li>Special characters like ' (quote), &quot; (double quote), % (percentage) 
+          etc are to be replaced by the XML converts. Like, the character &quot; 
+          (double quote) in a string constant must be denoted as <span class="codetext">&amp;quot;. 
+          </span></li>
+      </ul>
+      <p>A  map is controlled by a single XML,  that is, you 
+        use a single XML to provide the data and define the cosmetic as well as functional properties for the 
+        map. There are a lot of properties that you can define for each map 
+        type . </p>
+      <p>However, it is not necessary to define all the attributes for a given 
+        map. For example, if you do not want to change the default setting of 
+        the background (color, alpha, etc.), you do not need to define any attribute 
+        for the background - the default values will be assumed. Thus, each map 
+        can be generated using minimal attributes without concern for every finer 
+        detail. As you become more proficient in the map attributes, you could 
+        use it to create complex maps with a wide range of features and an informative 
+        appearance.</p>
+      <p class="highlightBlock">FusionMaps XT has a specific XML structure for each map. The XML structure for each map is detailed in respective map's &quot;Map XML Sheet&quot; page.</p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Markers - XML Structure|../markers/MarkerXML.html","JSON Overview|JSONOverview.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

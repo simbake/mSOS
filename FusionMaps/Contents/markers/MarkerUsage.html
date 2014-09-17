@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Markers usage</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|../how_to_use/BasicUsage.html", "Markers usage" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Markers usage </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we'll see how to define markers for our World Map to create the 3 office location example, as shown below. Basically, we'll create the following three markers at required locations:</p>
+      <ul>
+        <li>Head Office</li>
+        <li>Sales, &amp; </li>
+        <li>Production Center</li>
+        </ul>      
+      <p><img src="Images/MarkerWorldMap.jpg" width="600" height="325" class="imageBorder" /></p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header">Steps required to define and apply markers</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The following steps are required to define and apply markers to any map in FusionMaps XT pack:</p>
+      <ol>
+        <li>Define the markers using the Visual Map Builder</li>
+        <li>Apply (use) them on the map, either using the Visual Map Builder or using XML (if you're generating dynamic data-driven maps).</li>
+        <li>Configure the cosmetic properties of each of those markers.</li>
+        <li>Or, if you wish to define custom shapes or load external images, define custom marker shapes.</li>
+      </ol>
+      <p>In this section, we'll cover points 1,2,3 &amp; 4. So, let's first get started with visually defining the markers. </p>      </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header">Defining &amp; Applying the Markers </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>To define the markers, you'll need to run <a href="../../Tools/GUI/FusionMapsGUI.html" target="_blank">Visual Map Builder</a>. So, launch <span class="codeInline">FusionMapsGUI.html</span> from <span class="codeInline">Download Package &gt; Tools &gt; GUI</span> folder. You'll get a screen asking you to select a map from the drop down list. Select the required map from the down list - World Map in this case. The World Map will now load in the GUI and you should be able to see the other GUI tabs. </p>      </td>
+  </tr>
+  
+  <tr>
+    <td class="highlightBlock">If you do not see the drop-down populated with list of maps, you need to make sure that JavaScript is enabled for your browser. The <strong>Visual Map Builder</strong> relies completely on JavaScript to help you build and configure the maps. Please refer to your browser documentation on how to enable JavaScript. <br />
+    <br />
+    If the World Map or the tabs do not load, or you get a JavaScript error, you need to make sure that  Flash Player permissions have been properly set to enable JavaScript to access the map. To know how to configure the Flash Player Global Security Settings, please read <a href="../../Tools/FlashPlayerSecuritySetup/index.html" target="_blank">this</a>.</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+       <p>Now, in the GUI, switch to <em>Markers</em> Tab. You'll see a red rectangle around your map area. This rectangle represents the area within which you can define markers. It should look as under: </p>
+       <p class="code_container"><strong>Important Note</strong>: As of now, Visual Map Builder  requires Flash player and Flash maps to define markers. In absence  of Flash Player in your computer or device, Visual Map Builder will not be able to define markers.</p>
+       <p><img src="Images/MarkerRectangle.jpg" width="600" height="340" /></p>
+    
+       <p>To define our first marker &quot;Head Office&quot;, click on the appropriate location in North America. You'll see a pop-up window asking for more information as shown below: </p>
+       <p><img src="Images/MarkerWin.jpg" width="460" height="284" /></p>
+    <p>Here, you need to enter the following information:</p>
+      <ul>
+        <li><strong>Id </strong>- Each marker needs to have a unique ID (alpha numeric), by which it will be   identified on the map. </li>
+        <li><strong>Marker Label </strong>- This label will show up beside the respective marker. </li>
+        <li><strong>Label Position </strong>- Where the label should appear with respect to marker? Possible options are top, left, bottom, right &amp; center. </li>
+        <li><strong>Whether to show this marker on map or not? </strong>If you check this box, this <span class="codeInline">&lt;marker&gt;</span> will be shown on the map by default. </li>
+      </ul>
+    <p>Feed in the required information and click on <em>Create</em> button. That completes the creation of our first marker.</p>
+    <p>When you now scroll down in the <em>Markers</em> Tab, you'll see that this marker has been added to our list of markers, as shown below:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/MarkerList.gif" width="600" height="102" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, the new marker now appears in the list. Here, you can modify the marker's label, label position and whether to show on map. Additionally, you can also choose one of the four possible default shape for this marker - circle, arc, triangle or diamond. Or, if you need to delete this marker for some reason, you can do this by clicking the delete button.</p>
+      <p class="highlightBlock">FusionMaps XT also allows you to define custom shapes or use image icons for each marker. We'll see how to do that in <a href="MarkerShapes.html">next</a> section. </p>
+      <p>Now, if you're curious to see this marker before defining any other markers, just switch to Preview tab, and you'll see that the new marker is now present on the map with the required label. Easy - isn't it? </p>
+    <p>Similarly, define the other markers on the map by clicking at the required locations and adding the labels and positions, till you have all your markers on the map. Once the definition is done, we now need to get the XML data for these markers back. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header">Getting the XML Data </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>To get the XML data for the defined markers, just switch to XML Output tab and scroll down till you reach the third text-area with title as &quot;<span class="codeInline">Marker XML (Definition &amp; Application)</span>&quot;. This text area contains the XML representation of all the markers that you've defined on this map, as shown below: </p>
+       <p><img src="Images/MarkerXML.gif" width="600" height="274" class="imageBorder" /></p>
+    <p>As you can see above, the GUI has generated both the <span class="codeInline">&lt;definition&gt;</span> and <span class="codeInline">&lt;application&gt;</span> code for our defined markers. You can now directly copy this and use it in your applications.</p>
+    <p>Or, if you just want the definitions of the markers (without application, so that you can apply dynamically from your code), you can use the code from fourth text area in this tab - titled &quot;<span class="codeInline">Marker XML Definition Only</span>&quot;. This text area contains only the definitions of the markers. To apply any marker, you'll need to manually place them under <span class="codeInline">&lt;application&gt;</span>  element with proper ID matching. </p>
+    <p class="highlightBlock">To make your lives easier, we've created marker definitions for important cities in the most of the maps and provided them as XM0L/JSON to you. You can re-use the definitions from those XML/JSON files present in <span class="codeInline">Download Package &gt; MarkerData</span> folder. </p>
+    <p>Before we move to defining custom shapes for markers, let's now study the XML code generated for markers. Using the XML code, you can render a lot more functionalities than possible in this GUI. </p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Markers - Overview|MarkerOv.html","Markers - Custom shapes and icons|MarkerShapes.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

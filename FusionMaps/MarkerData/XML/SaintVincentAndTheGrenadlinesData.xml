@@ -1,0 +1,19 @@
+<map> 
+	<markers>
+	   <shapes>
+	       <shape id='myCustomShape' type='circle' fillColor='FFFFFF,333333' fillPattern='radial' showBorder='0' radius='4'/>
+		   <shape id='newCustomShape' type='circle' fillColor='FFFFFF,000099' fillPattern='radial' showBorder='0' radius='3'/>
+		</shapes>   
+		<definition>
+			<marker id='KI' x='161.36' y='155.28' label='Kingstown' labelPos='left'  />
+			<marker id='01' x='153.4' y='75.73' label='Chateaubelair' labelPos='left' />
+			<marker id='02' x='225' y='81.42' label='Georgetown'  />
+
+		</definition>
+		<application>
+			<marker id='KI' shapeId='myCustomShape'  />
+			<marker id='01' shapeId='newCustomShape'  />
+			<marker id='02' shapeId='newCustomShape'  />
+		</application>
+	</markers>
+</map>

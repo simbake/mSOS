@@ -1,0 +1,23 @@
+<map animation="0" showShadow="0" showBevel="0" showLabels="1"  fillColor="F1f1f1" borderColor="CCCCCC" baseFont="Verdana" baseFontSize="10" legendPosition="bottom" useHoverColor="1" showToolTip="0" showMarkerToolTip="1"  >
+ <data>
+  <entity id="NA"  font="Arial" fontsize="20" fontColor="0372AB" fontBold="1"/>
+  <entity id="SA"  font="Verdana" fontSize="16" fontColor="990000" fontBold="1"/>
+  <entity id="EU"  font="Arial" fontsize="14" fontColor="660066" fontBold="1"/>
+  <entity id="AS"  font="Arial" fontsize="20" fontColor="0372AB" fontBold="1"/>
+  <entity id="AF"  font="Verdana" fontSize="16" fontColor="990000" fontBold="1"/> 
+  <entity id="AU"  font="Arial" fontsize="14" fontColor="660066" fontBold="1"/>
+ </data>
+ 
+ <styles> 
+  <definition>
+   <style name="TTipFont" type="font" isHTML="1"  color="FFFFFF" bgColor="666666" size="11"/>
+   <style name="HTMLFont" type="font" color="333333" borderColor="CCCCCC" bgColor="FFFFFF"/>
+   <style name="myShadow" type="Shadow" distance="1"/>
+  </definition>
+  <application>
+   <apply toObject="MARKERS" styles="myShadow" /> 
+   <apply toObject="MARKERLABELS" styles="HTMLFont,myShadow" />
+   <apply toObject="TOOLTIP" styles="TTipFont" />
+  </application>
+ </styles>
+</map>

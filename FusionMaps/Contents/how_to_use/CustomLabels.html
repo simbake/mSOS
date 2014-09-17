@@ -1,0 +1,135 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Showing Custom Labels and tool tips for entities</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|BasicUsage.html", "Custom labels &amp; Tool-tips" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td><span class="pageHeader">Showing Custom Labels and tool tips for entities</span></td>
+  </tr>
+  <tr> 
+    <td><p class="text">You can show custom labels and tool tips for any entity 
+        on the map. To do so, just add the following to <span class="codeInline">XML:</span></p></td>
+  </tr>
+  <tr> 
+    <td> <pre class="prettyprint code_container"> &lt;map borderColor='005879' fillColor='D7F4FF' 
+        numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+        &nbsp;&nbsp;&nbsp;&lt;data&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA' value='515' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA' value='373' <strong>displayValue='C/S America: 373 M' toolText='Central and South America: 373 Million (Including External</strong> <strong>Islands)'</strong>/&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS' value='3875' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU' value='727' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF' value='885' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU' value='32' /&gt;
+        &nbsp;&nbsp;&nbsp;&lt;/data&gt; 
+        &lt;/map&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td><p class="text">Here, we've added out custom display value (label) and 
+        tool text for South America Entity. When you view the map, you'll get 
+        the following output:</p>
+       <p class="text"><img src="Images/WorldMap6.gif" width="424" height="345" class="imageBorder" /></p>
+    </td>
+  </tr>
+  
+  
+  <tr> 
+    <td class="header">Hiding an entity's name </td>
+  </tr>
+  <tr>
+    <td class="text">
+       <p>To hide an entity's name just set its <span class="codeInline">displayValue</span> as a blank space. Example: </p>
+      </td>
+  </tr>
+  <tr>
+    <td><pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+&nbsp;&nbsp;&nbsp;&lt;data&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA' value='515' <strong>displayValue=' '</strong>/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA' value='373' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS' value='3875' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU' value='727' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF' value='885' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU' value='32' /&gt;
+&nbsp;&nbsp;&nbsp;&lt;/data&gt; 
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr>
+    <td class="text">
+       <p>In the above example, we've hidden the label of North America by setting its <span class="codeInline">displayValue</span> attrbute to a blank space. When you view this map, you'll get the following results: </p>
+      </td>
+  </tr>
+  <tr>
+    <td class="text"><img src="Images/WorldMapNoLabel.jpg" alt="" width="600" height="313" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td class="text">
+       <p>Note that North America is without any label now, though the tool tip will still function over it. </p>
+      </td>
+  </tr>
+  
+  <tr>
+    <td class="header">Showing full labels and hiding the values</td>
+  </tr>
+  <tr>
+    <td>
+       <p class="text">To show full labels and hide the values on the map, use:<br />
+            <br />
+            <span class="codeInline">&lt;map &hellip; <strong>useSNameInLabels='0' 
+         includeValueInLabels='0'</strong> &hellip; &gt;</span></p>
+      </td>
+  </tr>
+  <tr>
+    <td><img src="Images/WorldMap3.gif" width="400" height="230" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td><p class="text">Now that we've played enough with the configuration options of the map, let's shift to the one of the most important aspects of FusionMaps XT - defining range based data and colors for better visual interpretation. </p>
+        </td>
+  </tr>
+ 
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Visual Map Builder|GUI.html","Defining range based data|ColorRange.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

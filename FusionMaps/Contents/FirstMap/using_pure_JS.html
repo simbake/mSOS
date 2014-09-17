@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../../Maps/FusionCharts.js" ></script>
+	<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Creating JavaScript (HTML5) maps</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Creating JavaScript maps" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+<tr>
+		<td class="pageHeader">Creating JavaScript (HTML5) maps </td>
+     
+  </tr>
+    <tr>
+    <td class="text">
+       <p>Starting FusionMaps XT, you can create JavaScript based maps (sometimes also referred to as HTML5 or Canvas maps). This feature allows you to create maps in Web browsers where Flash Player is not supported or not installed or is disabled, for example, in iPhone/iPad. FusionCharts internally  uses a modified version of <span title="version 2.1.0">Rapha&euml;l library</span> to generate JavaScript based maps. This feature works seamlessly with the current implementation mode of FusionMaps XT, which means you do not have to write any additional code to implement this. FusionCharts JavaScript Class automatically detects devices where Flash is not supported and renders JavaScript based maps instead. You can also ignore Flash and only use JavaScript to create maps.</p>
+       <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder.</p>
+       <p>First, let's look at the default code, which enables rendering of both Flash and JavaScript based maps - with JavaScript rendering  coming into effect, only when Flash Player is not available.</p>
+
+      <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      <strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);</strong>      
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+      <p>See it <a href="../../Code/MyFirstMap/MyFirstMap.html" target="_blank">live</a> in your iPad or iPhone or any browser where Flash Player is not supported. </p>
+     <div class="highlightBlock">Note : Many browsers restrict JavaScript from accessing local file system owing   to security reasons. The JavaScript maps, when running locally, will not be able to access data provided as a URL. If you run the files from a server, it will run   absolutely fine, though. When running locally, however, if you provide   the data as string (using the <a href="../how_fm_work/DataXMLExp.html">Data String method</a>), it works fine. <br />
+      <span class="msg_handler_slider"><a href="#">Click here to see the code using the Data String method</a> &raquo; </span>
+	  <div class="msg_body">
+	  <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      <strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+		    &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+
+      myMap.<strong>setXMLData(&quot;&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='Mill.' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt; &quot; +
+     &quot;&lt;data&gt; &quot; +
+   <strong>    </strong>  &quot;&lt;entity id='NA' value='515' /&gt; &quot; +
+ <strong>    </strong>    &quot;&lt;entity id='SA' value='373'/&gt; &quot; +
+    <strong>    </strong> &quot;&lt;entity id='AS' value='3875' /&gt; &quot; +
+    <strong>    </strong> &quot;&lt;entity id='EU' value='727' /&gt; &quot; +<strong>    </strong>
+<strong>    </strong>     &quot;&lt;entity id='AF' value='885' /&gt; &quot; +
+     <strong>    </strong>&quot;&lt;entity id='AU' value='32' /&gt; &quot; +
+         &quot;&lt;/data&gt; &quot; +
+      &quot;&lt;/map&gt;&quot;);</strong>
+
+      myMap.render(&quot;mapContainer&quot;);</strong>      
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+      <p>See it <a href="../../Code/MyFirstMap/MyFirstMapDataStr.html" target="_blank">live</a> in your iPad or iPhone or any browser where Flash Player is not supported. </p>
+</div>
+</div> </td>
+    </tr>
+    
+    <tr>
+       <td class="text"><p>As you can see, the code has not changed a bit from our first sample - <span class="codeInline">FirstMap.html</span> This is exactly our point! If you open this page in your iPad or iPhone or any browser where Flash Player is not supported, you will see that the maps have been rendered using JavaScript. FusionCharts JavaScript framework automatically does this for you. </p></td>
+    </tr>
+    <tr>
+           <td valign="top" align="left" style="position:relative;" height="400">
+    <div class="ipadcontainer" style="position:absolute; width:500px; height:388px; display:inline-block; background:url('../introduction/images/iPad.jpg') no-repeat left bottom; ">
+    	<div id="ipadChartLive" style="position:absolute; top:57px; left:26px; right:26px; bottom:28px;"></div>
+    </div>
+    <div class="iphonecontainer" style="position:absolute; left:520px; width:300px; height:388px; display:inline-block;background:url('../introduction/images/iphone.jpg') no-repeat left bottom;"> 
+    <div id="iphoneChartLive" style="position:absolute; top:272px; left:59px; right:52px; bottom:36px;"></div>
+    </div>
+</td>
+
+    </tr>
+    
+    <tr>
+      <td height="15"></td>
+    </tr>
+    <tr>
+      <td height="15" class="highlightBlock"><a name="force" id="force"></a>
+         <strong>JavaScript notes:</strong> For rendering JavaScript maps, FusionMaps XT make use of <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js</span>, <span class="codeInline">jquery.min.js</span> and the map definition file <span class="codeInline">FusionCharts.HC.world.js</span> (in case you are creating a world map). These files are present in the <span class="codeInline">Maps</span> folder of the Download Pack. It is <strong>very important</strong> that you keep these files in the same folder as <span class="codeInline">FusionCharts.js</span>. You do not need to load these files explicitly in HTML. <span class="codeInline">FusionCharts.js</span> automatically takes care of the loading. </td>
+    </tr>
+    <tr><td height="15"></td></tr>
+    
+    <tr>
+       <td class="header">Explicitly render JavaScript only maps</td>
+    </tr>
+	<tr>
+	<td>
+	<p>
+          Starting FusionMaps XT, you can specify the JavaScript map alias (as listed in the <a href="../introduction/MapsList.html" >List of Maps </a> page) instead of the map SWF  filename to create a pure JavaScript map. The code snippet below demonstrates how this is achieved: <br />
+<br />
+
+      <pre class="code_container prettyprint" >&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;<strong>Maps/FusionCharts.js</strong>&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    <strong>&lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;</strong> 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+	 
+      var myMap = new FusionCharts( <strong>&quot;World&quot;</strong>, &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;); 
+    // --&gt; 
+    &lt;/script&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+		<p>See it <a href="../../Code/MyFirstMap/MyFirstMap-force-js.html" target="_blank">live</a>!</p>
+		<p>In the above code, instead of <span class="codeInline">FCMap_World.swf</span> we have specified <span class="codeInline">World</span>, the JavaScript map <a href="../introduction/MapsList.html">alias</a>. Based on the JavaScript map alias provided, FusionCharts JavaScript Class renders the respective JavaScript map.</p>
+		<p>You can also specify JavaScript map alias while using the <a href="../javascript/js_create_chart.html#normal_objparam">Object as Constructor parameter</a> through the <span class="codeInline">type</span> property as shown below:</p>
+		<pre class="code_container prettyprint"> var myMap = new FusionCharts( { 
+<strong>	type: 'World',   </strong>
+	width: '750',    
+	height: '400',   
+	debugMode : false 
+});</pre>
+</p>
+	</td></tr>
+    <tr>
+      <td class="text">
+          <p>You may also opt to render JavaScript maps  using the <span class="codeInline">SWF</span> file name along with its path. For this, you  just have to add a line of code as shown below: 
+		  <pre class="prettyprint lang-js code_container">FusionCharts.setCurrentRenderer('javascript').</pre>
+		  <p> This code will ask FusionMaps XT renderer to skip Flash rendering and create <span class="prettyprint lang-html">pure JavaScript</span> based maps. </p>
+          <p>The modified code will look like the following:</p>
+
+<pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;<strong>Maps/FusionCharts.js</strong>&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    <strong>&lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;</strong> 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      <strong>FusionCharts.setCurrentRenderer('javascript');</strong>
+
+      var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+		    &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+<p>
+  See it <a href="../../Code/MyFirstMap/MyFirstMap-force-js.html" target="_blank">live</a>!</p>
+<div class="highlightBlock">Note: Many browsers restrict JavaScript from accessing local file system owing   to security reasons. The JavaScript maps, when running locally, will not be able to access data provided as a URL. If you run the files from a server, it will run   absolutely fine, though. When running locally, however, if you provide   the data as string (using the <a href="../how_fm_work/DataXMLExp.html">Data String method</a>), it works fine. <br />
+      <span class="msg_handler_slider"><a href="#">Click here to see the code using the Data String method</a> &raquo; </span>
+	  <div class="msg_body">
+	  <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+	
+	  <strong>FusionCharts.setCurrentRenderer('javascript');</strong>
+
+      <strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+		    &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+
+      myMap.<strong>setXMLData(&quot;&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='Mill.' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt; &quot; +
+     &quot;&lt;data&gt; &quot; +
+     &quot;&lt;entity id='NA' value='515' /&gt; &quot; +
+     &quot;&lt;entity id='SA' value='373'/&gt; &quot; +
+     &quot;&lt;entity id='AS' value='3875' /&gt; &quot; +
+     &quot;&lt;entity id='EU' value='727' /&gt; &quot; +
+     &quot;&lt;entity id='AF' value='885' /&gt; &quot; +
+     &quot;&lt;entity id='AU' value='32' /&gt; &quot; +
+     &quot;&lt;/data&gt; &quot; +
+&lt;/map&gt;&quot;);</strong>
+
+      myMap.render(&quot;mapContainer&quot;);</strong>      
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+      <p>See it <a href="../../Code/MyFirstMap/MyFirstMapDataStr-js.html" target="_blank">live</a> in your iPad or iPhone or any browser where Flash Player is not supported. </p>
+</div>
+</div>
+</td>
+    </tr>
+    
+    <tr>
+       <td class="text">
+          <p>When you open this page, you will see that even in regular browsers, the map comes in pure JavaScript form as shown below.</p>
+          <p><img src="Images/pure_js.jpg" width="701" height="399" class="imageBorder" />          </p>
+          
+      </td>
+    </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating your First Map|first_chart.html","Using JSON as data source |JSON_data.html");
+</script>
+<!-- footer links ends -->
+
+<script  type="text/javascript">
+	
+	$(document).ready(function() {
+	  		
+			var dataXML = "<map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9' showLabels='0'>\n\
+     <data>\n\
+        <entity id='NA' value='515' />\n\
+        <entity id='SA' value='373'/>\n\
+        <entity id='AS' value='3875' />\n\
+        <entity id='EU' value='727' />\n\
+        <entity id='AF' value='885' />\n\
+        <entity id='AU' value='32' />\n\
+     </data>\n\
+</map>";
+
+			var dataXML2 = "<map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'>\n\
+     <data>\n\
+        <entity id='NA' value='515' />\n\
+        <entity id='SA' value='373'/>\n\
+        <entity id='AS' value='3875' />\n\
+        <entity id='EU' value='727' />\n\
+        <entity id='AF' value='885' />\n\
+        <entity id='AU' value='32' />\n\
+     </data>\n\
+</map>";
+			
+			FusionCharts.setCurrentRenderer("javascript");
+
+			var pyramid1 = FusionCharts.render({
+				type: 'world',
+				renderAt: 'iphoneChartLive',
+				width: '100%',
+				height: '100%',
+				dataFormat: 'xml',
+				
+				dataSource: dataXML });
+		
+
+		
+			var salesLine = new FusionCharts('world', 'chart-2','100%','100%','0', '1');
+			salesLine.setXMLData(dataXML2);
+			salesLine.render('ipadChartLive');
+	});
+	
+
+
+</script>
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

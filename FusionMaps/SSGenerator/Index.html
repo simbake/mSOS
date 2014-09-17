@@ -1,0 +1,161 @@
+﻿<html>
+<head>
+<title>FusionMaps XT Specification Sheet Extractor</title>
+<script language="javascript" type="text/javascript" src="../Maps/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="../Maps/FusionCharts.js"></script>
+<script language="javascript" type="text/javascript" src="Resources/mapllist-core.js"></script>
+<script language="javascript" type="text/javascript" src="Resources/FusionMapsSS.js"></script>
+<script language="javascript" type="text/javascript">
+var isAuto=false;
+var index1;
+var maps;
+maps=new FusionMapsSS();
+function FC_Rendered(domId){
+	
+	maps.getReferenceToMap();
+	maps.showSSFull('ssDiv');
+}
+
+function changeMap(index){
+	//This method is called when the user changes the map in drop down.
+	//Check if this index actually belongs to a map
+	if (maps.mapList[index].isMap==true){
+		maps.loadMap(index);
+	}
+}	
+</script>
+<style type="text/css">
+<!--
+
+.list { 
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:11px;
+color:#515151;
+border:none;
+background:url(Resources/listbar.gif) repeat-y top left;
+background-attachment:scroll;
+line-height:34px;
+padding:0px 0px 0px 25px;
+height:365px;
+width:292px;
+}
+.listTitle{
+font-family:"Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+font-size:18px;
+color:#515151;
+font-weight:normal;
+
+}
+
+body {
+margin:0px;
+scrollbar-base-color: #E9E9E9;
+scrollbar-arrow-color: #666666;
+scrollbar-3dlight-color: #D6D6D6;
+scrollbar-darkshadow-color: #D6D6D6;
+scrollbar-face-color: #E9E9E9;
+scrollbar-highlight-color: #E9E9E9;
+scrollbar-shadow-color: #E9E9E9;
+scrollbar-track-color: #FFFFFF;
+
+}
+.title {
+font-family:"Century Gothic","Trebuchet MS","Arial";
+font-size:30px;
+color:#BD0000;
+
+}
+.mapTitle {
+font-family:"Century Gothic","Trebuchet MS","Arial";
+font-size:24px;
+color:#4F5056;}
+.howto {font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size:11px;
+color:#4F5056;}
+.mapTD {font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+color:#9F9F9F;
+background:#F5F5F5;
+border:1px dotted #f1f1f1;
+padding:20px;
+height:335px;
+}
+.mapTDOff {font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+color:#9F9F9F;
+background:#FFFFFF;
+border:none;
+padding:10px;
+}
+A {
+Color:#8F8F8F;}
+-->
+</style>
+</head>
+<body>
+<table width="1000" border="0" cellpadding="0">
+  <tr>
+    <td width="25">&nbsp;</td>
+    <td width="600">&nbsp;</td>
+    <td width="350">&nbsp;</td>
+    <td width="25">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="border-bottom:1px dotted #cccccc;">&nbsp;</td>
+    <td style="border-bottom:1px dotted #cccccc;border-right:1px dotted #cccccc;"><span class="title">FusionMaps XT ID Generator </span></td>
+    <td style="border-bottom:1px dotted #cccccc;">&nbsp;</td>
+    <td style="border-bottom:1px dotted #cccccc;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+     <td style="border-right:1px dotted #cccccc;" valign="top"><table width="600" border="0" cellpadding="0" align="center" style="padding:0px;">
+       <tr>
+         <td><div id='mapNameDiv' class="mapTitle">Select Map for which to want to generate IDs...</div></td>
+       </tr>
+       <tr>
+         <td><span class="howto">Please select a map from the drop down below to get the specification sheet data in CSV format. Copy  from the right panel and paste into a text file and save as CSV.<br />
+         </span></td>
+       </tr>
+       <tr>
+         <td id="mapTD" class="mapTD" valign="top" ><div id='mapdiv' >
+           <p ><b>Troubleshooting Information</b><br />
+             If the GUI doesn't work and gives JavaScript errors (or fails silently), you need to check for the following:
+           </p><ul>
+                    <li>Make sure that your browser is JavaScript enabled.
+                    </li><li>Make sure that you have Flash Player 8 (or above) installed for this browser.
+                    </li><li>Make sure that Flash Player settings is configured to enable JavaScript interaction. To configure the Flash Player Settings, you need to go to <a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html"><u>the Settings Manager at Adobe's website</u></a>. There, add this folder (from which you're running this file) as a secure location (Always Allow).
+                    </li><li>Or, if you do not want to change the JavaScript settings, you can run this page from a web server (either local or remote). In that case, the permissions do not need to be changed. 
+              </li></ul>
+         </div></td>
+       </tr>
+     </table></td>
+     <td height="300"><div id='ssDiv' style='width:350px;height:399px; overflow:hidden;'></div></td>
+    <td >&nbsp;</td>
+  </tr>
+  <tr>
+    <td  style="border-top:1px dotted #cccccc;">&nbsp;</td>
+    <td  style="border-top:1px dotted #cccccc;border-right:1px dotted #cccccc;" valign="top">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="left" valign="middle" height="46"><div id='mapSelectorIDIV'></div></td>
+         
+        </tr>
+      </table>
+    </td>
+    <td style="border-top:1px dotted #cccccc;">&nbsp;</td>
+    <td style="border-top:1px dotted #cccccc;"></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<script language="javascript" type="text/javascript">
+maps.renderMapSelectionBox('mapSelectorIDIV');
+</script>
+
+</body>
+</html>

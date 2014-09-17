@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<title>FusionCharts JavaScript API - Events </title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "FusionMaps XT and JavaScript|../js_overview.html", "API reference|overview.html", "Events" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">FusionCharts JavaScript API - Events </td>
+
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+	<p class="highlightBlock"> FusionMaps XT uses FusionCharts JavaScript Class that takes care of all the products of FusionCharts Suite XT including FusionMaps XT.</p>
+      <p>FusionCharts JavaScript Class API provides a number of events. Events are categorized into two broad groups - Simple Events and Advanced events. </p>
+      <p>Each event provides arguments to the event-listeners. In simple event, most of the events (except for the <span class="codeInline">FC_Exported</span> and <span class="codeInline">FC_Resized</span> events) provide <span class="codeInline">DOMId</span> of the source map that raised the event.&nbsp; In advanced model, two event parameters are passed to the event listener function. The first parameter, <span class="codeInline">eventObject</span>, is structurally common for all events. The second parameter, <span class="codeInline">argumentsObject </span>contains event specific properties. Details of <span class="codeInline">eventObject</span> are given as follows: </p>
+      <div class=""><a name="eventparams" id="eventparams"></a>
+				   <strong>Event parameters in advanced model </strong>
+				   <p>Each event sends  parameters to event listener functions. In advanced event model, two event argument Objects are sent to event listener. The properties contained by the arguments are as follows:</p>
+				   <ul>
+				      <li>The first argument is <span class="codeInline">eventObject </span>which provides details of the event. It is an object which  provides three properties : 
+				         <ul>
+				            <li>			            <span class="codeInline">eventId</span>: An unique id given to the event </li>
+				            <li><span class="codeInline">eventType</span>: A string containing the name or the event type, for example,  &quot;rendered&quot;, etc. </li>
+				            <li><span class="codeInline">sender</span>: A FusionCharts JavaScript Object reference to the map which has raised that event</li>
+				         </ul>
+				      </li>
+		            <li>The second argument  <span class="codeInline">argumentsObject</span> is an object which contains details of the particular event fired. As per the type of the event the properties of <span class="codeInline">parameter </span>objects varies.		            </li>
+	         </ul>
+		         
+      </div>
+	</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>The list shown below contains names of events of both Simple and Advanced events. Moreover, details of <span class="codeInline">argumentsObject </span>for each event are listed in the table below. </p>
+      </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+      <table cellspacing="0" cellpadding="0" class="table" width="100%">
+        
+        <tr>
+          <td class="header" valign="top" width="11%">Name (Advanced model) </td>
+          <td class="header" valign="top" width="11%">Name ( Simple  model)  </td>
+          <td class="header" valign="top" width="38%">What is it and when is it raised?</td>
+          <td class="header" valign="top" width="40%">Event parameters</td>
+        </tr>
+        
+        <tr class="trLightBlueBg">
+          <td colspan="4" valign="top" class="codeInline"><strong>Events raised by FusionCharts.printManager </strong></td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="printmanager" id="printmanager"></a><a name="managedprint" id="managedprint"></a><a name="printreadystatechange" id="printreadystatechange"></a>PrintReadyStateChange</td>
+          <td class="text-light" valign="top">not available </td>
+          <td class="text" valign="top">This event is raised to notify the status of the Print Manager.<br />
+             <br />
+             It is raised twice. First, when the Print Manager starts processing all maps. It is raised again when all the maps are ready for managed print.</td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+             <br />
+             <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+             <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+             <br />
+             <ul>
+                <li><span class="codeInline">ready</span>: (Boolean) Whether  Print Manager has made the all the maps present in a page ready for managed print</li>
+             </ul>
+             <ul>
+               <li><span class="codeInline">bypass</span>:(Boolean) 
+               Whether Print Manager has been bypassed due to error, incompatibility, etc</li>
+             </ul>
+          </td>
+        </tr>
+         <tr class="trLightBlueBg">
+          <td colspan="4" valign="top" class="codeInline"><strong>Events raised by FusionCharts Global static class</strong></td>
+        </tr>
+        <tr class="trLightBlueBg">
+           <td class="codeInline" valign="top"><a name="initialize" id="initialize"></a>Initialized</td>
+           <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+           <td class="text" valign="top">This event is raised when an instance of FusionCharts JavaScript class is initialized. This happens prior to data loading and chart creation events. </td>
+           <td class="text" valign="top">The event arguments provided in the advanced model are :<br />
+              <br />
+              <span class="codeInline">eventObject</span> : This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+              <br />
+              <span class="codeInline">argumentsObject</span> : This is passed as a blank object.<br />
+              <br />
+</td>
+        </tr>
+       <tr>
+          <td class="codeInline" valign="top"><a name="disposed" id="disposed"></a>Disposed</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised after a chart is removed and cleaned from memory. Technically, it is raised just   after a chart is disposed or deleted using <a href="methods.html#dispose">dispose()</a> by user or by JavaScript internally.</td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are :<br />
+              <br />
+              <span class="codeInline">eventObject</span> : This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+              <br />
+              <span class="codeInline">argumentsObject</span> : This is passed as a blank object.</td>
+        </tr>
+         <tr class="trLightBlueBg">
+           <td class="codeInline" valign="top"><a name="error" id="error"></a>Error</td>
+           <td class="codeInline" valign="top">FC_Error</td>
+           <td class="text" valign="top">This event is raised when error occurs in JavaScript implementation.</td>
+           <td class="text" valign="top">The event arguments provided by <span class="codeInline">FC_Error</span> function (simple event model) is <span class="codeInline">same </span>event arguments passed to event listener in advanced model as described below: <br />
+              <br />
+              <strong>The event arguments provided in the advanced model are :</strong><br />
+<br />
+<span class="codeInline">eventObject</span> : This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+<br />
+<span class="codeInline">argumentsObject</span> : This object contains properties listed below: <br />
+<span class="codeInline"><br />
+</span>
+<ul>
+   <li><span class="codeInline">id</span> :&nbsp; Unique ID of the error </li>
+</ul>
+<ul>
+  <li><span class="codeInline">nature</span> : Nature of the error. The value can be one of these - 'TypeException', 'ValueRangeException', 'NotImplementedException', 'ParameterException', 'RuntimeException', DesignTimeError'</li>
+   <li><span class="codeInline">source</span> :&nbsp; This gives a hint at the  function, object etc. where the error is raised </li>
+   <li><span class="codeInline">message</span> : Error message </li>
+</ul>
+           </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="warning" id="warning"></a>Warning</td>
+          <td class="codeInline" valign="top">FC_Warning</td>
+          <td class="text" valign="top">This event is raised when there are minor errors or warnings while implementing the chart. </td>
+          <td class="text" valign="top">The event arguments provided by <span class="codeInline">FC_Warning</span> function (simple event model) is <span class="codeInline">same </span>event arguments passed to event listener in advanced model as described below: <br />
+            <br />
+            <strong>The event arguments provided in the advanced model are :</strong><br />
+             <br />
+             <span class="codeInline">eventObject</span> : This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+             <span class="codeInline">argumentsObject</span> : This object contains properties listed below: <br />
+             <br />
+             <ul>
+                <li><span class="codeInline">id</span> :&nbsp; Unique ID of the error </li>
+             </ul>
+             <ul>
+               <li><span class="codeInline">nature</span> : Nature of the error. The value can be one of these - 'TypeException', 'ValueRangeException', 'NotImplementedException', 'ParameterException', 'RuntimeException', DesignTimeError'</li>
+               <li><span class="codeInline">source</span> :&nbsp; This gives a hint at the  function, object etc. where the error is raised </li>
+               <li><span class="codeInline">message</span> : Error message</li>
+             </ul>
+          </td>
+        </tr>
+		<tr class="trLightBlueBg">
+          <td colspan="4" valign="top" class="codeInline">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td colspan="4" valign="top" class="codeInline">&nbsp;</td>
+        </tr>
+        <tr class="trLightBlueBg">
+          <td colspan="4" valign="top" class="codeInline"><strong>Events raised by FusionCharts JavaScript instance</strong></td>
+        </tr>
+        
+        <tr>
+          <td class="codeInline" valign="top"><a name="dataloadrequested" id="dataloadrequested"></a>DataLoadRequested</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised when map data is requested from a URL. This is fired only when data source is a URL. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+              <br />
+              <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+              <br />
+              <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+              <br />
+              <ul>
+                <li><span class="codeInline">dataFormat</span>: Type of Data format. Its can be either <span class="codeInline">xml </span>or <span class="codeInline">json</span></li>
+                <li><span class="codeInline">source</span>: Nature of data load request. Presently it's value is &quot;XmlHttpRequest&quot;</li>
+              </ul>
+            <ul>
+              <li><span class="codeInline">url</span>: URL of the data source </li>
+              <li><span class="codeInline">cancelDataloadRequest()</span>: function which can be called to cancel a data load (if required) </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="dataloadrequestcancelled" id="dataloadrequestcancelled"></a>DataLoadRequestCancelled</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">
+            
+              This event is raised when data load process is cancelled by calling <span class="codeInline">cancelDataloadRequest() </span>function in <span class="codeInline">DataLoadRequested </span>event-listener.
+            
+              <br />
+              <br />
+          In cases where data source is a local path, this event is automatically raised. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are :<br />
+            <br />
+            <span class="codeInline">eventObject</span> : This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+            <br />
+            <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+            <br />
+            <ul>
+              <li><span class="codeInline">dataFormat</span>: Type of Data format. It can be either <span class="codeInline">xml </span>or <span class="codeInline">json</span></li>
+              <li><span class="codeInline">source</span> : Nature of data load request. Presently its value is &quot;XmlHttprequest&quot;</li>
+            </ul>
+            <ul>
+              <li><span class="codeInline">url</span>: URL of the data source </li>
+              <li><span class="codeInline">xmlHttpRequestObject</span>: The object which has fetched data </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="dataloadrequestcompleted" id="dataloadrequestcompleted"></a>DataLoadRequestCompleted</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised before map data is loaded. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+              <br />
+              <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+              <br />
+              <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+              <br />
+              <ul>
+                <li><span class="codeInline">data</span>: Map data as XML or JSON string </li>
+                <li><span class="codeInline">dataFormat</span>: Type of Data format. Its can be either <span class="codeInline">xml </span>or <span class="codeInline">json</span></li>
+                <li><span class="codeInline">source</span>: Nature of data load request. Presently its value is &quot;XmlHttprequest&quot;</li>
+              </ul>
+              <ul>
+                <li><span class="codeInline">url</span>: URL of the data source </li>
+                <li><span class="codeInline">xmlHttpRequestObject</span>: The object which has fetched data </li>
+                <li><span class="codeInline">cancelDataLoad()</span>: function which can be called to cancel a data load (if required)</li>
+              </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="dataloadcancelled" id="dataloadcancelled"></a>DataLoadCancelled</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised when map data loading is cancelled. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+              <br />
+              <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+              <br />
+              <span class="codeInline">argumentsObject</span>: This object contains properties listed below:
+<ul>
+                <li><span class="codeInline">dataFormat</span>: Type of Data format. It can be either <span class="codeInline">xml </span>or <span class="codeInline">json</span></li>
+                <li><span class="codeInline">source</span>: Nature of data load request. Presently its value is &quot;XmlHttprequest&quot;</li>
+            </ul>
+            <ul>
+              <li><span class="codeInline">url</span>: URL of the data source </li>
+              <li><span class="codeInline">xmlHttpRequestObject</span>: The object which has fetched data</li>
+            </ul>
+          </td>
+        </tr>
+
+       <tr>
+          <td class="codeInline" valign="top"><a name="beforedataupdate" id="beforedataupdate"></a>BeforeDataUpdate</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised before data is loaded into FusionCharts JavaScript Class and is ready to be passed to the map. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+            <br />
+            <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+            <br />
+            <span class="codeInline">argumentsObject</span>: This object contains properties listed below:
+<ul>
+              <li><span class="codeInline">dataFormat</span>: Type of Data format. It can be either <span class="codeInline">xml </span>or <span class="codeInline">json</span></li>
+              <li><span class="codeInline">dataSource</span>: URL of the data source </li>
+			     <li><span class="codeInline">chartData</span>: The original data sent by user </li>
+			     <li><span class="codeInline">dataError</span>: Error object if any error occurred </li>			  
+              <li><span class="codeInline">cancelDataUpdate()</span>: The function which can be called to cancel a data update (if required)</li>
+            </ul>
+          </td>
+        </tr>
+ 
+
+        <tr>
+          <td class="codeInline" valign="top"><a name="dataupdated" id="dataupdated"></a>DataUpdated</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised when data is loaded into FusionCharts JavaScript Class and is ready to be passed to the map. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+            <br />
+            <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+            <br />
+            <span class="codeInline">argumentsObject</span>: This object contains properties listed below:
+<ul>
+              <li><span class="codeInline">dataFormat</span>: Type of Data format. It can be either <span class="codeInline">xml </span>or <span class="codeInline">json</span></li>
+              <li><span class="codeInline">dataSource</span>: URL of the data source </li>
+			     <li><span class="codeInline">underlyingDataSource</span>: The original data sent by user </li>			  
+            </ul>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="codeInline" valign="top"><a name="loaded" id="loaded"></a>Loaded</td>
+          <td class="codeInline" valign="top">FC_Loaded</td>
+          <td class="text" valign="top"> This event is raised when the map  has finished downloading itself in the user's browser. You can use this to hide any loader components that you might have on your page. </td>
+          <td class="text" valign="top">The event argument provided by  <span class="codeInline">FC_Loaded</span> function (simple event model) is <span class="codeInline">DOMId</span> of the map raising the event. <br />
+             <br />
+             <strong>The event arguments provided in the advanced model are:</strong><br />
+             <br />
+             <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType, </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+          <span class="codeInline">argumentsObject</span>: This is passed as a blank object.</td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="dataloaded" id="dataloaded"></a>DataLoaded</td>
+          <td class="codeInline" valign="top">FC_DataLoaded</td>
+          <td class="text" valign="top">This event is raised when the map has finished loading data. It can be used to further process data in any other components in your page. </td>
+          <td class="text" valign="top">The event argument provided by the <span class="codeInline">FC_DataLoaded</span> function (simple event model) is <span class="codeInline">DOMId</span> of the map raising the event. <br />
+             <br />
+             <strong>The event arguments provided in the advanced model are:<br />
+            </strong><br />
+<span class="codeInline">eventObject</span> : This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+<br />
+<span class="codeInline">argumentsObject</span> : This is passed as a blank object.</td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="rendered" id="rendered"></a>Rendered</td>
+          <td class="codeInline" valign="top">FC_Rendered</td>
+          <td class="text" valign="top">This event is raised when the map has finished rendering. This call is made only once per loaded map SWF  (even if new data is supplied to it).&nbsp; It can be used to invoke any further JavaScript methods on map, or to change the data of map. </td>
+          <td class="text" valign="top">The event argument provided by the <span class="codeInline">FC_Rendered</span> function (simple event model) is <span class="codeInline">DOMId</span> of the map raising the event. <br />
+             <br />
+             <strong>The event arguments provided in the advanced model are :</strong><br />
+<br />
+<span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+<br />
+<span class="codeInline">argumentsObject</span>: This is passed as a blank object.</td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="drawcomplete" id="drawcomplete"></a>DrawComplete</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised every time FusionCharts completes drawing a map. This is also raised on each resize or map reload. Even when you interact with the map, say you slice a Pie, this event will be fired.</td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+             <br />
+             <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+             <span class="codeInline">argumentsObject</span>: This object contains properties listed below:
+<ul>
+               <li><span class="codeInline">drawCount</span>: Number specifying the number of times the map is redrawn </li>
+            </ul>
+             <ul>
+               <li><span class="codeInline">height</span>: Current height of the map </li>
+                <li><span class="codeInline">width</span>: Current width of the map</li>
+             </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="resized" id="resized"></a>Resized</td>
+          <td class="codeInline" valign="top">FC_Resized</td>
+          <td class="text" valign="top">This event is raised when map resizes. </td>
+          <td class="text" valign="top">The event arguments provided by <span class="codeInline">FC_Resized</span> function (simple event model) are as follows: <br />
+             <br />
+             <ul>
+             <li><span class="codeInline">DOMId</span>: Id of the map raising this event</li>
+                   <li><span class="codeInline">width</span>: Width of the map after resize</li>
+                   <li><span class="codeInline">height</span>: Height of the map after resize</li>
+                   <li><span class="codeInline">prevWidth</span>: Original width of the map before resize </li>
+                   <li><span class="codeInline">prevHeight</span>: Original height of the map before resize </li>
+            </ul>
+                <br />
+             <br />
+             <strong>The event arguments provided in the advanced model are :</strong><br />
+   <br />
+   <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+   <br />
+   <span class="codeInline">argumentsObject</span> : This object contains properties listed below: <br />
+   <br />
+   <ul>
+      <li><span class="codeInline">width</span>: Width of the map after resize</li>
+      <li><span class="codeInline">height</span>: Height of the map after resize</li>
+      <li><span class="codeInline">prevWidth</span>: Original width of the map before resize </li>
+      <li><span class="codeInline">prevHeight</span>: Original height of the map before resize </li>
+      </ul>
+          </td></tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="exported" id="exported"></a>Exported</td>
+          <td class="codeInline" valign="top">FC_Exported</td>
+          <td class="text" valign="top">This event is raised when the map has finished export as server-side save or client-side download. This is used to know whether the export is successful. It also provides the path (web path for server side save and local path for client side download) where the exported file has been saved. 
+            <p class="highlightBlock">
+             This event is not raised when Download action is performed. </p>
+          </td>
+          <td class="text" valign="top">The event argument provided by <span class="codeInline">FC_Exported </span>function (simple event model) is an Object containing the following properties: <br />
+             <br />
+             <ul>
+             <li><span class="codeInline">DOMId</span>: Id of the map that has been exported</li>
+                   <li><span class="codeInline">statusCode</span>: Indicated the success status of the export process. In case of failure the value is passed as 0. On success, 1 is provided</li>
+                   <li> <span class="codeInline">statusMessage</span>: Success or failure message</li>
+                   <li><span class="codeInline">fileName</span>: The name and path of the file where the exported file has been saved </li>
+                   <li> <span class="codeInline">width</span>: The width of the map</li>
+                   <li> <span class="codeInline">height</span>: The height of the map </li>
+                   <li><span class="codeInline">notice</span>: A consolidated string which contains export related notices and warnings. This is applicable only for server side export<br />
+               </li>
+            </ul>
+                <p><strong>The event arguments provided in the advanced model are:</strong><br />
+                   <br />
+                   <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                   <br />
+                   <span class="codeInline">argumentsObject</span>: This object contains properties listed below: </p>
+                <ul>
+                   <li><span class="codeInline">DOMId</span>: Id of the map that has been exported</li>
+                </ul>
+                <ul><li><span class="codeInline">statusCode</span>: Indicated the success status of the export process. In case of failure the value is passed as 0. On success, 1 is provided</li>
+      <li> <span class="codeInline">statusMessage</span>: Success or failure message</li>
+      <li><span class="codeInline">fileName</span>: The name and path of the file where the exported file has been saved </li>
+      <li> <span class="codeInline">width</span>: The width of the map </li>
+      <li> <span class="codeInline">height</span>: The height of the map </li>
+      <li><span class="codeInline">notice</span>: A consolidated string which contains export related notices and warnings. This is applicable only for server side export</li>
+      </ul>
+          </td></tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="batchexported" id="batchexported"></a>BatchExported</td>
+          <td class="codeInline" valign="top">FC_BatchExported</td>
+          <td class="text" valign="top">This event is raised after <a href="../../ExportingImage/Batch/ECBatchOverview.html">Batch Export is performed using Client Side Export handler</a>. </td>
+          <td class="text" valign="top">The event argument provided by <span class="codeInline">FC_BatchExported </span>function (simple event model) is an Object containing the following properties: <br />
+            <br />
+            <ul>
+              <li><span class="codeInline">DOMId</span>: Id of the map that has been exported</li>
+              <li><span class="codeInline">statusCode</span>: Indicated the success status of the export process. In case of failure the value is passed as 0. On success, 1 is provided</li>
+              <li> <span class="codeInline">statusMessage</span>: Success or failure message</li>
+              <li><span class="codeInline">fileName</span>: The name and path of the file where the exported file has been saved </li>
+              <li> <span class="codeInline">width</span>: The width of the map</li>
+              <li> <span class="codeInline">height</span>: The height of the map<br />
+              </li>
+            </ul>
+            <p><strong>The event arguments provided in the advanced model are:</strong><br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: </p>
+            <ul>
+              <li><span class="codeInline">DOMId</span>: Id of the map that has been exported</li>
+            </ul>
+            <ul>
+              <li><span class="codeInline">statusCode</span>: Indicated the success status of the export process. In case of failure the value is passed as 0. On success, 1 is provided</li>
+              <li> <span class="codeInline">statusMessage</span>: Success or failure message</li>
+              <li><span class="codeInline">fileName</span>: The name and path of the file where the exported file has been saved </li>
+              <li> <span class="codeInline">width</span>: The width of the map</li>
+              <li> <span class="codeInline">height</span>: The height of the map </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="beforedispose" id="beforedispose"></a>BeforeDispose</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised before a map is going to be removed and cleaned from memory. Technically, It is raised just   before a map is to be disposed or deleted using <span class="codeInline"><a href="methods.html#dispose">dispose</a>()</span> by user or by JavaScript internally. This event is, in most cases, followed by a <span class="codeInline">Disposed</span> event.<br />
+            <br />
+          </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+              <br />
+              <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+              <br />
+              <span class="codeInline">argumentsObject</span>: This is passed as a blank object.</td>
+        </tr>
+        
+        
+        <tr>
+          <td class="codeInline" valign="top"><a name="beforelinkeditemopen" id="beforelinkeditemopen"></a><a name="linkedcharts" id="linkedcharts"></a>BeforeLinkedItemOpen</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised before a <em>LinkedChart</em> is opened. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+             <br />
+             <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+             <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+             <br />
+             <ul>
+                <li><span class="codeInline">level</span>: Level (as number) of the <em>LinkedChart</em></li>
+             </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="linkeditemopened" id="linkeditemopened"></a>LinkedItemOpened</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised after a <em>LinkedChart</em> is opened. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+             <br />
+             <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+             <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+             <br />
+             <ul>
+                <li><span class="codeInline">level</span>: Level (as number) of the <em>LinkedChart</em></li>
+                <li><span class="codeInline">item</span>: The JavaScript object instance of the LinkedChart that is opened </li>
+             </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="beforelinkeditemclose" id="beforelinkeditemclose"></a>BeforeLinkedItemClose</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised before a <em>LinkedChart</em> is closed. </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+             <br />
+             <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+             <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+             <br />
+             <ul>
+                <li><span class="codeInline">level</span>: Level (as number) of the <em>LinkedChart</em></li>
+             </ul>
+             <ul><li><span class="codeInline">item</span>: The JavaScript object instance of the LinkedChart that is opened</li>
+             </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="codeInline" valign="top"><a name="linkeditemclosed" id="linkeditemclosed"></a>LinkedItemClosed</td>
+          <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+          <td class="text" valign="top">This event is raised after a <em>LinkedChart</em> is closed.  </td>
+          <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+             <br />
+             <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+             <br />
+            <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+             <br />
+             <ul>
+               <li><span class="codeInline">level</span>: Level (as number) of the <em>LinkedChart</em></li>
+             </ul>
+          </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="fc_event" id="dataloaderror10"></a>FC_Event</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top"> This is a generic event listener. Currently, it is raised during roll over and roll out on entities. 
+                
+            <p class="highlightBlock">To enable this event in Flash maps, set <span class="codeInline">exposeHoverEvent </span>attribute to <span class="codeInline">1</span> in <span class="codeInline">&lt;map&gt;</span> element&nbsp;of the XML (or in <span class="codeInline">map</span> Object of the JSON)            </p>
+            </td>
+            <td class="text" valign="top">The event argument provided by <span class="codeInline">FC_Event </span>function (simple event model) are: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline">DOMId</span>: Id of the map.</li>
+                    <li><span class="codeInline">eventType</span>: Type of event as string. Currently, it can be either &quot;rollOver&quot; or &quot;rollOut&quot;.</li>
+                    <li><span class="codeInline">argumentsObject</span>: Object containing the following properties of the entity:<ul>
+                       <li><span class="codeInline">id</span>: Entity Id</li>
+                       <li><span class="codeInline">sName</span>: Short name of entity</li>
+                       <li> <span class="codeInline">lName</span>: Long  name of entity </li>
+                       <li><span class="codeInline">value</span>: value of the entity</li>
+                    </ul></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="EntityRollover" id="dataloaderror9"></a>EntityRollover</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when mouse hovers over entities. </td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">id</span>: ID of the entity. In general it&nbsp;is the internal ID specified in the Maps Specification Sheet of the respective map. However, if <a href="../../how_to_use/CustomID.html">custom ID is defined</a>, it provide the custom ID. </li>
+                    <li><span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">originalId</span>: When <a href="../../how_to_use/CustomID.html">custom ID is defined</a> for an entity, it provide the original internal ID of the map, as per Map Specification Sheet of the respective map.</li>
+                    <li><span class="codeInline">value</span>:&nbsp; Value of entity.</li>
+                    <li> <span class="codeInline">label</span>: Long name&nbsp;of entity.</li>
+                    <li><span class="codeInline">shortLabel</span>: Short name&nbsp;of entity.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="EntityRollout" id="dataloaderror8"></a>EntityRollout</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when mouse rolls out of  entities. </td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">id</span>: ID of the entity. In general it&nbsp;is the internal ID specified in the Maps Specification Sheet of the respective map. However, if <a href="../../how_to_use/CustomID.html">custom ID is defined</a>, it provide the custom ID. </li>
+                    <li><span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">originalId</span>: When <a href="../../how_to_use/CustomID.html">custom ID is defined</a> for an entity, it provide the original internal ID of the map, as per Map Specification Sheet of the respective map.</li>
+                    <li><span class="codeInline">value</span>:&nbsp; Value of entity.</li>
+                    <li> <span class="codeInline">label</span>: Long name&nbsp;of entity.</li>
+                    <li><span class="codeInline">shortLabel</span>: Short name&nbsp;of entity.</li></ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><span class="header"><a name="LegendItemClicked" id="methods"></a></span>LegendItemClicked</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when any of the legend items are clicked. </td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline">minRange</span>: Minimum  value of the color range represented by the legend item.</li>
+                    <li><span class="codeInline">maxRange</span>: Maximum value of the color range represented by the legend item.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="MarkerClicked" id="dataloaderror7"></a>MarkerClicked</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when a marker is clicked.</td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <ul>
+                    <li><span class="codeInline">id</span>: ID of the marker</li>
+                    <li><span class="codeInline">label</span>: Marker label</li>
+                    <li><span class="codeInline">x</span> and <span class="codeInline">y</span>: The original x and y positions of the marker. This x and y positions are the values set through&nbsp;the marker definition in XML/JSON data. </li>
+                    <li><span class="codeInline">scaledX</span> and <span class="codeInline">scaledY</span>: Scaled x and y positions of the marker. These scaled values proportionate to the scaled dimension of the map. <br />
+                        <p class="highlightBlock"> Each map is created using a specific width and height. These dimensions are specified as original dimensions in the Map Specification Sheet of the respective map. Marker's x and y positions are defined in the XML/JSON with respect to the original dimensions of the map. However, a map's dimensions are scaled based on the map size set while rendering the map. Accordingly,&nbsp;the x and y positions of the markers also get scaled. </p>
+                    </li>
+                    <li><span class="codeInline">chartX</span> and <span class="codeInline">chartY</span>: The x and y positions of the marker with respect to the top-left corner of the map canvas (that is, 0,0 position).</li>
+                </ul>
+                <p></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="MarkerRollover" id="dataloaderror6"></a>MarkerRollover</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when mouse hovers over a marker.</td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <ul>
+                    <li><span class="codeInline">id</span>: ID of the marker</li>
+                    <li><span class="codeInline">label</span>: Marker label</li>
+                    <li><span class="codeInline">x</span> and <span class="codeInline">y</span>: The original x and y positions of the marker. This x and y positions are the values set through&nbsp;the marker definition in XML/JSON data. </li>
+                    <li><span class="codeInline">scaledX</span> and <span class="codeInline">scaledY</span>: Scaled x and y positions of the marker. These scaled values proportionate to the scaled dimension of the map. <br />
+                        <p class="highlightBlock"> Each map is created using a specific width and height. These dimensions are specified as original dimensions in the Map Specification Sheet of the respective map. Marker's x and y positions are defined in the XML/JSON with respect to the original dimensions of the map. However, a map's dimensions are scaled based on the map size set while rendering the map. Accordingly,&nbsp;the x and y positions of the markers also get scaled. </p>
+                    </li>
+                    <li><span class="codeInline">chartX</span> and <span class="codeInline">chartY</span>: The x and y positions of the marker with respect to the top-left corner of the map canvas (that is, 0,0 position).</li>
+                </ul>
+                <p></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="MarkerRollout" id="dataloaderror5"></a>MarkerRollout</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when mouse leaves a marker. </td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <ul>
+                    <li><span class="codeInline">id</span>: ID of the marker</li>
+                    <li><span class="codeInline">label</span>: Marker label</li>
+                    <li><span class="codeInline">x</span> and <span class="codeInline">y</span>: The original x and y positions of the marker. This x and y positions are the values set through&nbsp;the marker definition in XML/JSON data. </li>
+                    <li><span class="codeInline">scaledX</span> and <span class="codeInline">scaledY</span>: Scaled x and y positions of the marker. These scaled values proportionate to the scaled dimension of the map. <br />
+                        <p class="highlightBlock"> Each map is created using a specific width and height. These dimensions are specified as original dimensions in the Map Specification Sheet of the respective map. Marker's x and y positions are defined in the XML/JSON with respect to the original dimensions of the map. However, a map's dimensions are scaled based on the map size set while rendering the map. Accordingly,&nbsp;the x and y positions of the markers also get scaled. </p>
+                    </li>
+                    <li><span class="codeInline">chartX</span> and <span class="codeInline">chartY</span>: The x and y positions of the marker with respect to the top-left corner of the map canvas (that is, 0,0 position).</li>
+                </ul>
+                <p></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="ConnectorClicked" id="dataloaderror4"></a>ConnectorClicked</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when marker connectors are clicked.</td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline">fromMarkerId</span>:&nbsp;ID of the marker from where the connector line starts.</li>
+                    <li><span class="codeInline">toMarkerId</span>: ID of the marker where the connector line ends.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="ConnectorRollover" id="dataloaderror3"></a>ConnectorRollover</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when mouse hovers over marker connectors. </td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline">fromMarkerId</span>:&nbsp;ID of the marker from where the connector line starts.</li>
+                    <li><span class="codeInline">toMarkerId</span>: ID of the marker where the connector line ends.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="ConnectorRollout" id="dataloaderror2"></a>ConnectorRollout</td>
+            <td class="codeInline" valign="top"><span class="text-light">not available </span></td>
+            <td class="text" valign="top">This event is raised when mouse leaves marker connectors.</td>
+            <td class="text" valign="top">The event arguments provided in the advanced model are:<br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline">fromMarkerId</span>:&nbsp;ID of the marker from where the connector line starts.</li>
+                    <li><span class="codeInline">toMarkerId</span>: ID of the marker where the connector line ends.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="DataLoadError" id="dataloaderror"></a>DataLoadError</td>
+            <td class="codeInline" valign="top">FC_DataLoadError</td>
+            <td class="text" valign="top">This event is raised when there was an error in loading data from the specified Url. It can be used to show an error message to user, or to take a corrective measure.</td>
+            <td class="text" valign="top">The event argument provided by <span class="codeInline">FC_DataLoadError</span> function (simple event model) is <span class="codeInline">DOMId</span> of the map raising the event. <br />
+                <br />
+                <strong>The event arguments provided in the advanced model are:</strong><br />
+                <br />
+                <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+                <br />
+                <span class="codeInline">argumentsObject</span>: This object contains properties listed below: <br />
+                <br />
+                <ul>
+                    <li><span class="codeInline">error</span>: 
+                        JavaScript error object which describes the underlying error which has raised this event</li>
+                    </ul>
+                <ul>
+                    <li><span class="codeInline">httpStatus</span>: A number which 
+                        Denotes the HTTP status number when the error was raised.For example, the status will be 404 for URL not found.&quot;</li>
+                    <li><span class="codeInline">source</span>: Denotes who raised the error. It is generally undefined when SWF raises this event, but is otherwise equal to &quot;XmlHttpRequest&quot; in case the error was raised due to AJAX request</li>
+                    <li><span class="codeInline">xmlHttprequestObject</span>: The httpRequest object associated with this data transaction</li>
+                    </ul>
+                </td>
+        </tr>
+        <tr>
+            <td class="codeInline" valign="top"><a name="dataxmlinvalid" id="dataxmlinvalid"></a>DataXMLInvalid</td>
+            <td class="codeInline" valign="top">FC_DataXMLInvalid</td>
+            <td class="text" valign="top">This event is raised when the XML data loaded by map is invalid. It can be used to show an error message to user, or to take a corrective measure.</td>
+            <td class="text" valign="top">The event argument provided by <span class="codeInline">FC_DataXMLInvalid</span> function (simple event model) is <span class="codeInline">DOMId</span> of the map raising the event. <br />
+                <br />
+                <strong>The event arguments provided in the advanced model are:</strong><br />
+    <br />
+    <span class="codeInline">eventObject</span>: This object contains <span class="codeInline">eventId</span>, <span class="codeInline">eventType </span>and <span class="codeInline">sender </span>properties. <br />
+    <br />
+    <span class="codeInline">argumentsObject</span>: This is passed as a blank object.</td>
+        </tr>
+        
+       
+        <tr>
+          <td colspan="4" valign="top" class="text">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+  <td height="25">
+  </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Functions|methods.html","FusionMaps XT and jQuery|../../jQuery/overview.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

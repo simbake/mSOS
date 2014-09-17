@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>JavaScript Mapping capabilities </title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css"/>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../Maps/jquery.min.js" ></script>
+<script type="text/javascript" src="../../Maps/FusionCharts.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Introduction", "Introducing JavaScript maps" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Introducing JavaScript maps</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>Starting FusionMaps XT, you can now render maps on devices where Flash player is not supported (like in iPhone/iPad), is not installed or is disabled.  For this, FusionMaps  XT uses the built-in JavaScript rendering capabilities. The maps, rendered by this module, purely use JavaScript and do not need Flash Player at all. </p>
+        <p>FusionMaps  XT gives you the option of either using automatic fallback, wherein the maps figure out the best mode of rendering (either Flash or JavaScript, based on availability of Flash Player), or lets you configure whether to render maps exclusively using JavaScript. </p>
+        <p>If you are already using FusionMaps XT and wish to add JavaScript fallback, you just need to replace the old SWF files with the new ones and copy all the JavaScript files from the Maps folder of the Download Pack of FusionMaps XT - without changing a single line of code. </p>
+        <p>In case you wish to render JavaScript maps only, irrespective of whether Flash Player is installed or not, all you  need to do is add a single line of code to your existing implementation. This has been covered in <a href="../FirstMap/using_pure_JS.html">forthcoming sections</a>. Meanwhile, let's get a small overview of FusionMaps  XT JavaScript  capabilities. </p>
+   </td><td>  </td></tr>
+  <tr>
+    <td valign="top" class="header"><a name="how"></a>How it works?</td>
+  </tr>
+  <tr><em></em>
+    <td valign="top" class="text">
+      <p>FusionMaps XT features a completely new  JavaScript class -  FusionCharts JavaScript Class. It  caters to all the products of FusionCharts Suite XT that includes FusionMaps XT. FusionCharts JavaScript Class (in FusionMaps XT pack)  consists of the following :</p>
+      <ul>
+          <li><strong>Core Libraries</strong>: <span class="codeInline">FusionCharts.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js</span> and <span class="codeInline">jquery.min.js</span>. These four files are  present in <span class="codeInline">Download Pack &gt; Maps</span> folder. </li>
+          <li><strong>Map files</strong>: Each map is defined in a single JavaScript file, For example, the map file for World is <span class="codeInline">FusionCharts.HC.world.js</span>. All the JavaScript map files are present in<span class="codeInline"> Download Pack &gt; Maps</span> folder. </li>
+          </ul>
+      <p>You will only need to include <span class="codeInline">FusionCharts.js</span> in your web page (do not forget to copy  the rest of the files to your web application). The rest of the JavaScript files will be automatically loaded on-demand by <span class="codeInline">FusionCharts.js</span>. </p>
+<p> FusionCharts JavaScript Class determines whether Flash player is not available in a device. It automatically switches the rendering mode to JavaScript when Flash Player is unavailable. You can also <a href="../FirstMap/using_pure_JS.html#force">force FusionCharts JavaScript Class to always render JavaScript maps</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" style="position:relative;" height="400">
+    <div class="ipadcontainer" style="position:absolute; width:500px; height:388px; display:inline-block; background:url('images/iPad.jpg') no-repeat left bottom; ">
+    	<div id="ipadChartLive" style="position:absolute; top:57px; left:26px; right:26px; bottom:28px;"></div>
+    </div>
+    <div class="iphonecontainer" style="position:absolute; left:520px; width:300px; height:388px; display:inline-block;background:url('images/iphone.jpg') no-repeat left bottom;"> 
+    <div id="iphoneChartLive" style="position:absolute; top:272px; left:59px; right:52px; bottom:36px;"></div>
+    </div>
+</td>
+  </tr>
+  <tr>
+      <td height="15"></td>
+  </tr>
+  <!-- TODO
+  <tr>
+      <td valign="top" class="header"><a name="limitations"></a>How JavaScript maps are different from the Flash counterparts?</td>
+  </tr>
+   <tr>
+      <td valign="top" class="text">
+         <p>FusionMaps XT in its JavaScript flavor essentially tries to provide a uniform visualization experience on desktop and mobile platforms by rendering FusionMaps XT using advanced HTML5 capabilities of devices that does not support Flash. However, due to the inherent difference between the technologies and differences in various browsers causes minor disparity between the Flash and JavaScript variants of the maps.</p>
+         <p>Listed below are the differences between the JavaScript flavor and the Flash counterparts:</p>
+</td>
+  </tr>
+-->   <tr>
+      <td valign="top" class="text">
+      </td>
+   </tr>
+ </table>
+
+<script  type="text/javascript">
+	
+	$(document).ready(function() {
+	  		
+				FusionCharts.setCurrentRenderer("javascript");
+
+			var pyramid1 = FusionCharts.render({
+				type: 'world',
+				renderAt: 'iphoneChartLive',
+				width: '100%',
+				height: '100%',
+				dataFormat: 'xml',
+				
+				dataSource: '<map showlabels="0" showtooltip="1" showshadow="0" showbevel="0" basefontsize="8" showCanvasBorder="0" bgalpha="70,70" bgcolor="547A95,B1D0DF" canvasbgcolor="547A95,B1D0DF" fillColor="2C90D0,096CAC" hoverColor="aadefe,ffffff" toolTipBgColor="FFFFFF" toolTipBorderColor="1C80C0" baseFontColor="000000" borderAlpha="0" canvasBorderColor="547A95" canvasBorderAlpha="100" mapLeftMaring="0" mapRightMargin="0" mapTopMargin="1" mapBottomMargin="1"/>'
+			});
+					
+           	 var dataXML2 = '<map exportEnabled="1" showExportDataMenuItem="1" showPrintMenuItem="1" borderColor="FFFFFF" baseFontSize="9" baseFontColor="222222" numberPrefix="$" showLabels="1" legendPosition="Bottom" includeValueInLabels="1" hoverColor="cddd22,9a9900" showCanvasBorder="0">\n\
+			 		<colorRange>\n\
+						<color minvalue="1000" maxvalue="4000" displayvalue="Poor" color="FF0000,BB0000" />\n\
+						<color minvalue="4000" maxvalue="8000" displayvalue="Average" color="FFCC33,DDAA11" />\n\
+						<color minvalue="8000" maxvalue="10000" displayvalue="Good" color="069F06,047b04" />\n\
+				</colorRange>\n\
+					<data>\n\
+							<entity id="AS" value="3000" />\n\
+							<entity id="AF" value="4000" />\n\
+							<entity id="AU" value="3000" />\n\
+							<entity id="SA" value="8000" />\n\
+							<entity id="NA" value="9000" />\n\
+							<entity id="EU" value="5000" />\n\
+					</data>\n\
+			</map>';
+		
+
+		
+			var salesLine = new FusionCharts('world', 'chart-2','100%','100%','0', '1');
+			salesLine.setXMLData(dataXML2);
+			salesLine.render('ipadChartLive');
+	});
+	
+
+
+</script>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("List of Maps|MapsList.html","Version History|WhatsNew.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

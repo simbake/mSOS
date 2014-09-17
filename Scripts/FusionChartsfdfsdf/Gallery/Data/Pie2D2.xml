@@ -1,0 +1,5 @@
+<chart palette='2' showBorder='0' bgColor='FFFFFF'>
+  <set label="order|approval" value="1" isSliced="1" /> 
+  <set label="approval|dispatch" value="4" isSliced="0" /> 
+  <set label="dispatch|deliver" value="40" /> 
+</chart>

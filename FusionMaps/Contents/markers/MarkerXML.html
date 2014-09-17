@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Markers XML structure</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|../how_to_use/BasicUsage.html", "Markers XML structure" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Markers XML structure </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>As you've already seen in the previous example, the XML data document containing markers for the map looks as under: </p>    </td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="prettyprint code_container">&lt;map animation='0' showLabels='0' showMarkerLabels='1' fillColor='F1f1f1' borderColor='CCCCCC' baseFont='Verdana' baseFontSize='11' baseFontColor='333333' markerBorderColor='333333' markerBgColor='CCCCFF' markerRadius='7' legendPosition='bottom' useHoverColor='0' showToolTip='0' showMarkerToolTip='1'  &gt;
+      &nbsp;&nbsp;&nbsp;&lt;data&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA'  /&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA'  /&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU'  /&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS'  /&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF'  /&gt;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU'  /&gt;
+      &nbsp;&nbsp;&nbsp;&lt;/data&gt;
+      &nbsp;&nbsp;<strong>&nbsp;&lt;markers&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;definition&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='HO' x='140.09' y='165.19' label='Head Office'  /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='PF' x='533.37' y='182.25' label='Production Center'  /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SA' x='447.04' y='106.57' label='Sales'  /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/definition&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;application&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='HO' shapeId='circle'  /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='PF' shapeId='arc'  /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SA' shapeId='triangle'  /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/application&gt;
+        &nbsp;&nbsp;&nbsp;&lt;/markers&gt;</strong>
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>All data pertinent to markers are defined within the <span class="codeInline">&lt;markers&gt;</span> element under<span class="codeInline"> &lt;map&gt;</span> element. </p>      </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header">Attributes for &lt;map&gt; element pertinent to markers </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can define the following attributes for &lt;map&gt; element that will help you control the markers:</p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text" align="left"><table width="98%" align="left" class="table" cellpadding="4">
+      <tr class="trVeryLightYellowBg">
+        <td width="25%" class="textBold"><span class="textbold"> Attribute Name </span> </td>
+        <td width="15%" class="textBold"><span class="textbold"> Type </span> </td>
+        <td width="15%" class="trVeryLightYellowBg"><span class="textBold"> Range </span> </td>
+        <td width='45%' class="trVeryLightYellowBg"><span class="textBold"> Description </span> </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline"> markerFont </td>
+        <td valign="top" class="text"> String </td>
+        <td valign="top" class="text"> Font Name</td>
+        <td valign='top' class="text"> This attribute sets the 
+          font face for all the defined marker labels.  You can over-ride this using STYLES.</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline"> markerFontSize </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text"> 0-72 </td>
+        <td valign='top' class="text"> This attribute sets the font size for all the defined marker labels on the map.  You can over-ride this using STYLES.</td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline"> markerFontColor </td>
+        <td valign="top" class="text"> Color </td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text"> This attribute sets the font color for all the defined marker labels on the map. You can over-ride this using STYLES. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline"> showMarkerToolTip </td>
+        <td valign="top" class="text"> Boolean </td>
+        <td valign="top" class="text"> 0/1</td>
+        <td valign='top' class="text"> Whether to show tool tips for the defined markers? </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline"> showMarkerLabels</td>
+        <td valign="top" class="text"> Boolean </td>
+        <td valign="top" class="text">0/1</td>
+        <td valign='top' class="text"> You can opt to show/hide label for all the markers on the map using this attribute. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline"> markerLabelPadding </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text"> Pixels</td>
+        <td valign='top' class="text"> This attribute lets you set a global label padding between the marker icon and its label. You can later over-ride the label padding for each individual marker too. </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline"> markerBgColor </td>
+        <td valign="top" class="text"> Color </td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text"> This attribute lets you set a common background color for all the defined markers on the map. You can later over-ride individual marker colors by using SHAPE definitions. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline"> markerBorderColor</td>
+        <td valign="top" class="text"> Color </td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text">This attribute lets you set a common border color for all the defined markers on the map. You can later over-ride individual marker border colors by using SHAPE definitions. </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline"> markerRadius</td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text">Pixels</td>
+        <td valign='top' class="text">This attribute lets you set a common radius for all the defined markers on the map. You can later over-ride individual marker border colors by using SHAPE definitions. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">autoScaleMarkers
+		<div class="version-info">Since v3.2 SR-2</div>
+		</td>
+        <td valign="top" class="text"> Boolean </td>
+        <td valign="top" class="text">0/1</td>
+        <td valign='top' class="text">This attribute lets you to scale the markers automatically with respect to the map dimensions. By default, this attribute is set to 0. </td>
+      </tr>
+	  <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">markerFillColor
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Color </td>
+        <td valign="top" class="text">0/1</td>
+        <td valign='top' class="text">Using this attribute, you can specify the fill color for the marker    shape (hex code without #). If you specify a comma separated list of    hex codes (without #), FusionMaps XT will use those colors to form a    gradient. </td>
+      </tr>
+	  <tr>
+        <td valign="top" class="codeInline">markerFillAlpha
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text">0-100</td>
+        <td valign='top' class="text">Used to specify the fill alpha. In case of gradients, you'll need to specify a comma separated list of alpha. </td>
+      </tr>
+	  <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">markerFillRatio
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">0-100</td>
+        <td valign='top' class="text">If you're using gradient fills for the marker, this attribute lets you    set the ratio (on a scale of 0-100) for the gradient component colors. </td>
+      </tr>
+	  <tr>
+        <td valign="top" class="codeInline">markerFillAngle
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text">0-360</td>
+        <td valign='top' class="text">If you're using gradient fills for the marker, this attribute lets you set the angle for the gradient. </td>
+      </tr>
+	  <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">markerBorderAlpha
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text">0-100</td>
+        <td valign='top' class="text">Border alpha for the marker shape. </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Marker Definition </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To define a marker, you need to create <span class="codeInline">&lt;marker&gt;</span> element under <span class="codeInline">&lt;definition&gt;</span> element.</p>
+      <p class="highlightBlock"> Note that just defining a marker does  NOT show it on the map. Defining a marker is like creating a list of markers for the map, from which you can selectively choose and later show (in <span class="codeInline">&lt;application&gt;</span> element). </p>
+      <p>Each <span class="codeInline">&lt;marker&gt;</span> element under <span class="codeInline">&lt;definition&gt;</span> element can have the following attributes:</p>
+      <ul>
+        <li><strong>x</strong> - Relative X-position of the marker. This should be set by the Visual Map Builder. </li>
+        <li><strong>y</strong> - Relative Y-position of the marker. This should be set by the Visual Map Builder. </li>
+        <li><strong>id </strong>- Unique Id for the marker (alphanumeric). Each marker needs to be allotted a unique ID, by which it can be referenced in <span class="codeInline">&lt;application&gt;</span> element. ID of each marker can contain only alphabets and numbers. Special characters are not allowed. </li>
+        <li><strong>label</strong> - Label that you want to display for the marker. This label will be shown along side the marker on the map (unless you've otherwise opted not to). </li>
+        <li><strong>labelPos</strong> - Where the label for this marker should appear, w.r.t. marker position - left, right, center, top or bottom? You can later over-ride the label position for individual markers, while applying them. </li>
+        <li><strong>shapeId</strong> - Using this attribute, you can set the shape that this marker will assume on the map. FusionMaps XT offers 4 default shapes - circle, arc, triangle or diamond. You can also define your custom shapes and then refer to thos. The value of this attribute is overriden by the value of the <span class="codeInline">shapeId</span> attribute in <span class="codeInline">&lt;shape&gt;</span> element. </li>
+		<li><strong>radius</strong> - In case of arc, circle or polygon, this attribute lets you set the radius of the same. The value of this attribute is overriden by the value of the <span class="codeInline">radius</span> attribute in <span class="codeInline">&lt;shape&gt;</span> element. </li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Marker Application </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To show a marker on the map, you need to place a <span class="codeInline">&lt;marker&gt;</span> element under<span class="codeInline"> &lt;application&gt;</span> element and match the proper ID from marker definitions. </p>
+    <p>For example, in our office location demo, we first define the markers with unique IDs under <span class="codeInline">&lt;definition&gt;</span> element. Thereafter, we use the same ID from definition to apply markers. You need to make sure that in <span class="codeInline">&lt;application&gt;</span>, you use only those marker IDs, which have previously been defined in <span class="codeInline">&lt;definition&gt;</span>.
+    </p>
+    <p>Each <span class="codeInline">&lt;marker&gt;</span> element under <span class="codeInline">&lt;application&gt;</span> element can have the following attributes:</p>
+    <ul>
+      <li><strong>id </strong>- ID that matches the marker application to its definition. If you specify an ID which has not been defined previously, you'll see an error in the debug window.  </li>
+      <li><strong>shapeId</strong> - Using this attribute, you can set the shape that this marker will assume on the map. FusionMaps XT offers 4 default shapes - circle, arc, triangle or diamond. You can also define your custom shapes and then refer to those (as explained in next section).  </li>
+      <li><strong>label </strong>- You can over-ride the labels for each marker during its application. This label will over-ride the label specified during definition. </li>
+      <li><strong>labelPos </strong>- Like label, you can also over-ride the label position for each marker during its application.  </li>
+      <li><strong>toolText </strong>- If you need to provide custom tool text for a marker, you can do so using this attribute.</li>
+      <li><strong>link </strong>- If you need your marker to link to other pages, when clicked, define the link here. The link can open in same window, new window, pop-up, frames or as JavaScript functions etc. Please see &quot;Drill Down Maps&quot; section for more information on link format.</li>
+      <li><strong>scale </strong>- If you're using the same shape (shapeId) to represent multiple markers on the map, you can have them differ in size using this attribute. This attributes set the scaling of a particular marker. Valid values are floating numbers between 0 and 5. </li>
+      </ul>
+    <p class="highlightBlock">To make your lives easier, we've created marker definitions for important cities in the most of the maps and provided them as XML/JSON to you. You can re-use the definitions from those XML/JSON files present in <span class="codeInline">Download Package &gt; MarkerData</span> folder. </p>
+    <p>That covers all the properties for the definition and application of markers, barring custom shapes. Let's see custom shapes next. </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Markers - Connectors|MarkerConnectors.html","FusionMaps XT Data formats  - XML Overview|../DataFormats/XMLOverview.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Data Url Method </title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "How FusionMaps XT works?|HowFCWorks.html", "Data URL Method" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Data URL Method </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>Using this method, you need to provide the URL of map's data-source  (XML/JSON). The map sends a request for  data to the specified URL, reads it, parses it and then renders the maps accordingly. This method can be used to render a new map or update an existing map. The image below (followed by the listed steps) illustrate the process involved in a generic Data URL Method:</p>
+       <p><img src="Images/dataURLMethod.jpg" /></p> 
+     
+      <ol>
+        <li>First, you set the URL of the XML or JSON data as the map's data-source. This URL points to a static XML/JSON file or to a server-side script that outputs dynamic XML/JSON data</li>
+        <li>FusionCharts JavaScript Class or the map &nbsp;sends a request for XML or JSON data document to the specified URL</li>
+        <li>At this URL, your <span class="msg_handler"><a>server-side script</a> &raquo; </span><span class="veryLightYellowBg msg_body">like ASP, ASP.NET C#, ASP.NET VB.NET, PHP, J2EE, Ruby on Rails, ColdFusion etc.</span> absorbs the request for XML data</li>
+        <li>The server-side script then interacts with  database</li>
+        <li>The server-side script retrieves  data from database in native objects like Recordsets, Data Readers etc.</li>
+        <li>The server-side script then generates map data (XML or JSON) using simple string concatenation or using XML/JSON objects        </li>
+        <li>The XML/JSON data  is relayed to the output stream</li>
+        <li>FusionCharts JavaScript Class or the map  now accepts this data, parses it and finally renders the map </li>
+      </ol>
+      <p>Effectively, in this process you need the following to build a map:</p>
+      <ol>
+        <li><strong>Map Container page </strong> - The page that contains the  code  required to embed the map. The map code contains the URL to the XML/JSON Data.</li>
+        <li><strong>Map SWF file</strong> - SWF file for the map that you wish to render. Each map in FusionMaps XT is a separate SWF file. For example, if you want to create a world map, you'll need the <span class="codeInline">FCMap_World.swf</span> file.</li>
+        <li><strong>FusionCharts Javascript Class files</strong> - These files help in rendering JavaScript (HTML5)  maps. The required files are - <span class="codeInline">FusionCharts.js</span>,<span class="codeInline"> FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js</span>, <span class="codeInline">jquery.min.js</span> and the map definition file <span class="codeInline">FusionCharts.HC.world.js</span> (if you want to create a world map). Similarly, you'll need the map definition file <span class="codeInline">FusionCharts.HC.asia.js</span> if you want to create the Asia map. </li>
+        <li><strong>Data  Provider page </strong>- The server-side page that will provide XML/JSON data to maps. This page outputs ONLY in XML or JSON format with no HTML tags. </li>
+    </ol></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td></tr>
+ 
+  <tr>
+    <td class="header">Sample Usage of Data URL method using FusionCharts JavaScript Class</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td></tr>
+ 
+  <tr>
+    <td valign="top" class="text">
+      <pre class="prettyprint code_container">&lt;div id=&quot;map1div&quot;&gt;
+&nbsp;&nbsp;&nbsp;This text is replaced by the map.
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;var map1 = new FusionCharts(&quot;FCMap_World.swf&quot;, &quot;MapId1&quot;, &quot;600&quot;, &quot;400&quot;, &quot;0&quot;, &quot;1&quot;);<strong>
+&nbsp;&nbsp;&nbsp;map1.setXMLUrl(&quot;Data.aspx&quot;);</strong>
+&nbsp;&nbsp;&nbsp;map1.render(&quot;map1div&quot;);
+&lt;/script&gt;</pre>
+      <p class="highlightBlock">FusionCharts JavaScript Class provides other functions to achieve the same : <a href="../javascript/API/methods.html#setjsonurl">setJSONUrl</a>, <a href="../javascript/API/methods.html#setchartdataurl">setChartDataUrl</a>, <a href="../javascript/API/methods.html#setchartdata">setChartData</a>, <a href="../javascript/API/methods.html#setdataurl">setDataURL</a> (deprecated) </p>    </td>
+  </tr>
+    <tr>
+  <td valign="top" class="header"><a name="serversidescripts"></a>Using various server-side scripts</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>To ease embedding of maps in your web pages, FusionMaps XT provides wrapper classes (FusionCharts wrapper classes) ready for various server-side scripts like Classic ASP, ASP.NET C#, ASP.NET VB.NET, PHP, J2EE, Ruby on Rails and ColdFusion. </p>
+           <p class="highlightBlock">FusionCharts wrapper classes are present in the FusionCharts XT pack. If you do not have the licensed pack of FusionCharts XT, you can directly <a href="http://www.fusioncharts.com/download" target="_blank">download the trial version of FusionCharts XT</a> and get the fully functional wrapper classes from the pack. The wrapper classes are present in the <span class="codeInline">Code</span> folder of FusionCharts XT Download Pack.</p>
+		   <p>Here, we provide highlights of code snippets that are used in each technology to embed FusionMaps XT using Data URL method. </p>  
+		   <p><strong>Using Classic ASP</strong></p>
+  <pre class="prettyprint code_container">Call renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data/Data.asp&quot;, &quot;&quot;, &quot;myFirst&quot;, 600, 300, false, false)</pre>
+  
+  <p>Read <a href="../web_dev/asp_cs/CodeASPCSDURL.html" >more</a>. </p>     
+  <p><strong>Using ASP.NET C# </strong></p>
+  
+  <pre class="prettyprint code_container">FusionCharts.RenderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data/Data.aspx&quot;, &quot;&quot;, &quot;myFirst&quot;, &quot;600&quot;, &quot;300&quot;, false, false);</pre>
+  
+        <p>Read <a href="../web_dev/asp_cs/CodeASPCSDURL.html">more</a>.</p>     
+		<p><strong>Using ASP.NET VB</strong></p>
+		<pre class="prettyprint code_container">FusionCharts.RenderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data/Data.aspx&quot;, &quot;&quot;, &quot;myFirst&quot;, &quot;600&quot;, &quot;300&quot;, False, False)</pre>
+		
+        <p>Read <a href="../web_dev/asp_vb/CodeASPVBDURL.html">more</a>.</p>
+		<p><strong>Using PHP</strong></p>
+  <pre class="prettyprint code_container">renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data/Data.php&quot;, &quot;&quot;, &quot;myFirst&quot;, 600, 300, false, false);</pre>
+  
+        <p>Read <a href="../web_dev/php/CodePHPDURL.html">more</a>.</p>
+		<p><strong>Using J2EE</strong></p>
+  <pre class="prettyprint code_container">&lt;jsp:include page=&quot;../Includes/FusionChartsRenderer.jsp&quot; flush=&quot;true&quot;&gt;
+	&lt;jsp:param name=&quot;mapSWF&quot; value=&quot;../Maps/FCMap_World.swf&quot; /&gt;
+	&lt;jsp:param name=&quot;strURL&quot; value=&quot;Data/Data.jsp&quot; /&gt;
+	&lt;jsp:param name=&quot;strXML&quot; value=&quot;&quot; /&gt;
+	&lt;jsp:param name=&quot;mapId&quot; value=&quot;myFirst&quot; /&gt;
+	&lt;jsp:param name=&quot;chartWidth&quot; value=&quot;600&quot; /&gt;
+	&lt;jsp:param name=&quot;chartHeight&quot; value=&quot;300&quot; /&gt;
+	&lt;jsp:param name=&quot;debugMode&quot; value=&quot;false&quot; /&gt;
+	&lt;jsp:param name=&quot;registerWithJS&quot; value=&quot;false&quot; /&gt;
+&lt;/jsp:include&gt;</pre>
+
+    <p>Read <a href="http://docs.fusioncharts.com/charts/?Code/J2EE/JSP_BasicExample.html" target="_blank">more</a>.</p>
+	<p><strong>Using ColdFusion</strong></p>
+	<pre class="prettyprint code_container">&lt;cfoutput&gt;#renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data/Data.cfm&quot;, &quot;&quot;, &quot;myFirst&quot;, 600, 300, false, false)#&lt;/cfoutput&gt;</pre>
+	
+        <p>Read <a href="http://docs.fusioncharts.com/charts/?guide-for-web-developers/coldfusion/CFM_BasicExample.html" target="_blank">more</a>.</p>     
+		<p><strong>Using Ruby on Rails</strong></p>
+  <pre class="prettyprint code_container">render_chart '/Maps/FCMap_World.swf', 'Data.builder', '', 'configuredChart', 600, 300, false, false</pre> 
+      <p>Read <a href="http://docs.fusioncharts.com/charts/?Code/ROR/Ruby_basicexample.html" target="_blank">more</a>.</p>     </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("How FusionMaps XT works?|HowFCWorks.html","Data String Method|DataXMLExp.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

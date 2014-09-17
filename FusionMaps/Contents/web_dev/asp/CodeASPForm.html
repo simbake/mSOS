@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with ASP - Using Data from Form</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with ASP", "Using data from Form" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Data from Form</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">In this section, we will see how to generate a map using data collected from Form. </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>For the sake of demo, let us take the example of a fictional company that wants to plot the world-wide sales report for a particular day on a map. </p>
+    <p>The example first loads a page that has a form to accept data for all the continents. Here, we have put some default data which can be modified as per user's wish.  This data will be submitted  to another ASP page. This page will acquire the data   and plot it on the map. For the sake of simplicity, we will not do any   processing or checking on this data. However, your real life applications might process data   before presenting it on the map. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="highlightBlock">Before proceeding further, we recommend to go through the section <a href="../../how_fm_work/HowFCWorks.html">How  FusionMaps  XT Works?</a> for a better insight. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">The code examples contained in this page are present in   <span class="codeInline">Download Package &gt; Code &gt; ASP &gt; FormBased</span> folder. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Building the Form </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The form is contained in the<span class="codeInline"> Default.asp</span> page. Shown below is a snapshot: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="../../Images/CodeASPForm1.jpg" width="474" height="377" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">This is a very simple form which submits to <span class="codeInline">FormSubmit.asp</span>. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Requesting the data and Creating the Map </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The work of requesting the data from submitted form and creating the map is   done in <span class="codeInline">FormSubmit.asp</span>, present in the same folder. It   contains the following code: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">&lt;%@ Language=VBScript %&gt;<br />
+      &lt;%<br />
+      <span class="codeComment">'We've included ../Includes/FusionCharts.asp, which contains functions<br />
+      'to help us easily embed the maps.</span><br />
+      %&gt;<br />
+  &lt;!-- #INCLUDE FILE=&quot;../Includes/FusionCharts.asp&quot; --&gt;<br />
+  &lt;HTML&gt;<br />
+  &lt;HEAD&gt;<br />
+  &lt;TITLE&gt;	FusionMaps XT ASP Sample- Form Based Data Example	&lt;/TITLE&gt;<br />
+  &lt;%<br />
+      <span class="codeComment">'We've included FusionCharts.js which helps in <br />
+      'easy map rendering.</span><br />
+      %&gt;<br />
+  &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;<br />&lt;/HEAD&gt;<br />
+  <br />
+&lt;BODY&gt;<br />
+<br />
+&lt;% <br />
+        <span class="codeComment">'this page accepts data from submitted by default.asp<br />
+        'it sets the values for the world map</span><br />
+  <br />
+      <span class="codeComment">'We first request the data from the Form Default.asp and store in an array<br />
+      </span>
+        dim dataArray(8,2)
+      <p> <span class="codeComment">'Storing data from form in array </span><br />
+        dataArray(1,1)=&quot;01&quot;<br /> 
+        dataArray(1,2)=int(request(&quot;AS&quot;))<br />
+        dataArray(2,1)=&quot;02&quot;<br /> 
+        dataArray(2,2)=int(request(&quot;EU&quot;))<br />
+        dataArray(3,1)=&quot;03&quot;<br />
+        dataArray(3,2)=int(request(&quot;AF&quot;))<br />
+        dataArray(4,1)=&quot;04&quot;<br />
+        dataArray(4,2)=int(request(&quot;NA&quot;))<br />
+        dataArray(5,1)=&quot;05&quot;<br />
+        dataArray(5,2)=int(request(&quot;SA&quot;))<br />
+        dataArray(6,1)=&quot;06&quot;<br />
+        dataArray(6,2)=int(request(&quot;CA&quot;))<br />
+        dataArray(7,1)=&quot;07&quot;<br />
+        dataArray(7,2)=int(request(&quot;OC&quot;))<br />
+        dataArray(8,1)=&quot;08&quot;<br />
+        dataArray(8,2)=int(request(&quot;ME&quot;))
+  <br />
+  <br />
+        <span class="codeComment"><br />
+        'Now that we've the data in an array, we need to convert this into XML.<br />
+        'The simplest method to convert data into XML is using string concatenation. <br /></span>
+        Dim strXML<br />
+        <br />
+        <span class="codeComment">'Initialize &lt;map&gt; element</span><br />
+  <br />
+        strXML = &quot;&lt;map includeValueInLabels='1' borderColor='FFFFFF' connectorColor='000000' fillAlpha='70' fillColor ='efeaef' hoverColor='cfefdd' showBevel='0' numberPrefix='$'&gt;&quot;
+  <br />
+  <br />
+        <span class="codeComment">'You can always define &lt;colorRange&gt; here to get color categories. We omit it here.<br />
+        <br />
+        'opening data element</span><br />
+        strXML = strXML &amp; &quot;&lt;data&gt;&quot;
+  <br />
+  <br />
+        <span class="codeComment">'Retrieving data from array  to assign to each entity</span><br />
+        for i=1 to ubound(dataArray)<br />
+        strXML = strXML &amp; &quot;&lt;entity id='&quot; &amp; <strong>dataArray(i,1</strong>) &amp; &quot;' value='&quot; &amp; <strong>dataArray(i,2</strong>) &amp; &quot;' /&gt;&quot;<br />
+        next<br />
+  <br />
+        <span class="codeComment">'closing data element</span><br />
+        strXML = strXML &amp; &quot;&lt;/data&gt;&quot;<br />
+  <br />
+        <span class="codeComment">'closing map element</span><br />
+        strXML  = strXML &amp; &quot;&lt;/map&gt;&quot; <br />
+  <br />
+        <span class="codeComment">'Create the Maps with data from strXML</span><br />
+        Call renderChart(&quot;../../Maps/FCMap_World8.swf&quot;, &quot;&quot;, strXML, &quot;firstMap&quot;, 750, 460,0,0)<br />
+  <br />
+        %&gt;
+  <br />
+  &lt;/CENTER&gt;<br />
+  &lt;/BODY&gt;<br />
+  &lt;/HTML&gt;</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Steps involved in this code </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">As you can see in the above code, we're doing the following:</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Including <span class="codeInline">FusionCharts.asp</span> and <span class="codeInline">FusionCharts.js</span> files that help to embed map easily. </li>
+      <li>Requesting data from the submitted form and storing it in local array - <span class="codeInline">dataArray</span>. </li>
+      <li>Creating an XML data document using string concatenation and storing it in <span class="codeInline">strXML</span> variable by iterating through <span class="codeInline">dataArray</span>. </li>
+      <li>Rendering the map using <span class="codeInline">renderChart()</span> function and passing <span class="codeInline">strXML</span> as the <span class="codeInline">Data String</span> for the map. </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Below is the snapshot of the map that we get here. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="../../Images/CodeASPForm2.jpg" width="724" height="419" class="imageBorder" /></td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Data URL Method|CodeASPDURL.html","Plotting data from Database - Goal|CodeASPDB_Goal.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

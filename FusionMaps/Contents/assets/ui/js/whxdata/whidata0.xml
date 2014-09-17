@@ -1,0 +1,323 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="&lt;application&gt;" >
+  <key name="Animation Style Type Parameters" >
+    <topic name="Animation Style Type Parameters" url="../../../Styles/Animation.html" />
+  </key>
+  <key name="Bevel Style Type" >
+    <topic name="Bevel Style Type" url="../../../Styles/Bevel.html" />
+  </key>
+  <key name="Blur Style Type" >
+    <topic name="Blur Style Type" url="../../../Styles/Blur.html" />
+  </key>
+  <key name="Font Style Type Parameters" >
+    <topic name="Font Style Type Parameters" url="../../../Styles/Font.html" />
+  </key>
+  <key name="FusionMaps &amp; Styles" >
+    <topic name="FusionMaps &amp; Styles" url="../../../Styles/Styles.html" />
+  </key>
+  <key name="Glow Style Type" >
+    <topic name="Glow Style Type" url="../../../Styles/Glow.html" />
+  </key>
+  <key name="How to Use Styles" >
+    <topic name="How to Use Styles" url="../../../Styles/HowToUse.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Marker XML overview" >
+    <topic name="Marker XML overview" url="../../../markers/MarkerXMLOverview.html" />
+  </key>
+  <key name="Markers custom shapes &amp; image icons" >
+    <topic name="Markers custom shapes &amp; image icons" url="../../../markers/MarkerShapes.html" />
+  </key>
+  <key name="Markers usage" >
+    <topic name="Markers usage" url="../../../markers/MarkerUsage.html" />
+  </key>
+  <key name="Markers XML structure" >
+    <topic name="Markers XML structure" url="../../../markers/MarkerXML.html" />
+  </key>
+  <key name="Shadow Style Type" >
+    <topic name="Shadow Style Type" url="../../../Styles/Shadow.html" />
+  </key>
+</key>
+<key name="&lt;apply&gt;" >
+  <key name="Animation Style Type Parameters" >
+    <topic name="Animation Style Type Parameters" url="../../../Styles/Animation.html" />
+  </key>
+  <key name="Bevel Style Type" >
+    <topic name="Bevel Style Type" url="../../../Styles/Bevel.html" />
+  </key>
+  <key name="Blur Style Type" >
+    <topic name="Blur Style Type" url="../../../Styles/Blur.html" />
+  </key>
+  <key name="Font Style Type Parameters" >
+    <topic name="Font Style Type Parameters" url="../../../Styles/Font.html" />
+  </key>
+  <key name="FusionMaps &amp; Styles" >
+    <topic name="FusionMaps &amp; Styles" url="../../../Styles/Styles.html" />
+  </key>
+  <key name="Glow Style Type" >
+    <topic name="Glow Style Type" url="../../../Styles/Glow.html" />
+  </key>
+  <key name="How to Use Styles" >
+    <topic name="How to Use Styles" url="../../../Styles/HowToUse.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Shadow Style Type" >
+    <topic name="Shadow Style Type" url="../../../Styles/Shadow.html" />
+  </key>
+</key>
+<key name="&lt;color&gt;" >
+  <key name="Gradient legend" >
+    <topic name="Gradient legend" url="../../../how_to_use/gradientlegend.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Using Color Range to define data range and colors" >
+    <topic name="Using Color Range to define data range and colors" url="../../../how_to_use/ColorRange.html" />
+  </key>
+</key>
+<key name="&lt;colorRange&gt;" >
+  <key name="Gradient legend" >
+    <topic name="Gradient legend" url="../../../how_to_use/gradientlegend.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Using Color Range to define data range and colors" >
+    <topic name="Using Color Range to define data range and colors" url="../../../how_to_use/ColorRange.html" />
+  </key>
+</key>
+<key name="&lt;connector&gt;" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Marker XML overview" >
+    <topic name="Marker XML overview" url="../../../markers/MarkerXMLOverview.html" />
+  </key>
+  <key name="Markers connectors" >
+    <topic name="Markers connectors" url="../../../markers/MarkerConnectors.html" />
+  </key>
+  <key name="Markers XML structure" >
+    <topic name="Markers XML structure" url="../../../markers/MarkerXML.html" />
+  </key>
+</key>
+<key name="&lt;connectors&gt;" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Marker XML overview" >
+    <topic name="Marker XML overview" url="../../../markers/MarkerXMLOverview.html" />
+  </key>
+  <key name="Markers connectors" >
+    <topic name="Markers connectors" url="../../../markers/MarkerConnectors.html" />
+  </key>
+  <key name="Markers XML structure" >
+    <topic name="Markers XML structure" url="../../../markers/MarkerXML.html" />
+  </key>
+</key>
+<key name="&lt;data&gt;" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+</key>
+<key name="&lt;definition&gt;" >
+  <key name="Animation Style Type Parameters" >
+    <topic name="Animation Style Type Parameters" url="../../../Styles/Animation.html" />
+  </key>
+  <key name="Bevel Style Type" >
+    <topic name="Bevel Style Type" url="../../../Styles/Bevel.html" />
+  </key>
+  <key name="Blur Style Type" >
+    <topic name="Blur Style Type" url="../../../Styles/Blur.html" />
+  </key>
+  <key name="Font Style Type Parameters" >
+    <topic name="Font Style Type Parameters" url="../../../Styles/Font.html" />
+  </key>
+  <key name="FusionMaps &amp; Styles" >
+    <topic name="FusionMaps &amp; Styles" url="../../../Styles/Styles.html" />
+  </key>
+  <key name="Glow Style Type" >
+    <topic name="Glow Style Type" url="../../../Styles/Glow.html" />
+  </key>
+  <key name="How to Use Styles" >
+    <topic name="How to Use Styles" url="../../../Styles/HowToUse.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Marker XML overview" >
+    <topic name="Marker XML overview" url="../../../markers/MarkerXMLOverview.html" />
+  </key>
+  <key name="Markers" >
+    <topic name="Markers" url="../../../markers/MarkerOv.html" />
+  </key>
+  <key name="Markers connectors" >
+    <topic name="Markers connectors" url="../../../markers/MarkerConnectors.html" />
+  </key>
+  <key name="Markers custom shapes &amp; image icons" >
+    <topic name="Markers custom shapes &amp; image icons" url="../../../markers/MarkerShapes.html" />
+  </key>
+  <key name="Markers usage" >
+    <topic name="Markers usage" url="../../../markers/MarkerUsage.html" />
+  </key>
+  <key name="Markers XML structure" >
+    <topic name="Markers XML structure" url="../../../markers/MarkerXML.html" />
+  </key>
+  <key name="Shadow Style Type" >
+    <topic name="Shadow Style Type" url="../../../Styles/Shadow.html" />
+  </key>
+</key>
+<key name="&lt;entity&gt;" >
+  <key name="Customizing Entity Internal Id_ Short Name and Long Name" >
+    <topic name="Customizing Entity Internal Id, Short Name and Long Name" url="../../../how_to_use/CustomID.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Showing Custom Labels and tool tips for entities" >
+    <topic name="Showing Custom Labels and tool tips for entities" url="../../../how_to_use/CustomLabels.html" />
+  </key>
+</key>
+<key name="&lt;entitydef&gt;" >
+  <key name="Customizing Entity Internal Id_ Short Name and Long Name" >
+    <topic name="Customizing Entity Internal Id, Short Name and Long Name" url="../../../how_to_use/CustomID.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Showing Custom Labels and tool tips for entities" >
+    <topic name="Showing Custom Labels and tool tips for entities" url="../../../how_to_use/CustomLabels.html" />
+  </key>
+</key>
+<key name="&lt;map&gt; element" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+</key>
+<key name="&lt;marker&gt;" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Marker XML overview" >
+    <topic name="Marker XML overview" url="../../../markers/MarkerXMLOverview.html" />
+  </key>
+  <key name="Markers" >
+    <topic name="Markers" url="../../../markers/MarkerOv.html" />
+  </key>
+  <key name="Markers connectors" >
+    <topic name="Markers connectors" url="../../../markers/MarkerConnectors.html" />
+  </key>
+  <key name="Markers custom shapes &amp; image icons" >
+    <topic name="Markers custom shapes &amp; image icons" url="../../../markers/MarkerShapes.html" />
+  </key>
+  <key name="Markers usage" >
+    <topic name="Markers usage" url="../../../markers/MarkerUsage.html" />
+  </key>
+  <key name="Markers XML structure" >
+    <topic name="Markers XML structure" url="../../../markers/MarkerXML.html" />
+  </key>
+</key>
+<key name="&lt;markers&gt;" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Marker XML overview" >
+    <topic name="Marker XML overview" url="../../../markers/MarkerXMLOverview.html" />
+  </key>
+  <key name="Markers" >
+    <topic name="Markers" url="../../../markers/MarkerOv.html" />
+  </key>
+  <key name="Markers custom shapes &amp; image icons" >
+    <topic name="Markers custom shapes &amp; image icons" url="../../../markers/MarkerShapes.html" />
+  </key>
+  <key name="Markers usage" >
+    <topic name="Markers usage" url="../../../markers/MarkerUsage.html" />
+  </key>
+  <key name="Markers XML structure" >
+    <topic name="Markers XML structure" url="../../../markers/MarkerXML.html" />
+  </key>
+</key>
+<key name="&lt;shape&gt;" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Marker XML overview" >
+    <topic name="Marker XML overview" url="../../../markers/MarkerXMLOverview.html" />
+  </key>
+  <key name="Markers custom shapes &amp; image icons" >
+    <topic name="Markers custom shapes &amp; image icons" url="../../../markers/MarkerShapes.html" />
+  </key>
+  <key name="Markers XML structure" >
+    <topic name="Markers XML structure" url="../../../markers/MarkerXML.html" />
+  </key>
+</key>
+<key name="&lt;shapes&gt;" >
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Markers custom shapes &amp; image icons" >
+    <topic name="Markers custom shapes &amp; image icons" url="../../../markers/MarkerShapes.html" />
+  </key>
+</key>
+<key name="&lt;style&gt;" >
+  <key name="Animation Style Type Parameters" >
+    <topic name="Animation Style Type Parameters" url="../../../Styles/Animation.html" />
+  </key>
+  <key name="Bevel Style Type" >
+    <topic name="Bevel Style Type" url="../../../Styles/Bevel.html" />
+  </key>
+  <key name="Blur Style Type" >
+    <topic name="Blur Style Type" url="../../../Styles/Blur.html" />
+  </key>
+  <key name="Font Style Type Parameters" >
+    <topic name="Font Style Type Parameters" url="../../../Styles/Font.html" />
+  </key>
+  <key name="FusionMaps &amp; Styles" >
+    <topic name="FusionMaps &amp; Styles" url="../../../Styles/Styles.html" />
+  </key>
+  <key name="Glow Style Type" >
+    <topic name="Glow Style Type" url="../../../Styles/Glow.html" />
+  </key>
+  <key name="How to Use Styles" >
+    <topic name="How to Use Styles" url="../../../Styles/HowToUse.html" />
+  </key>
+  <key name="Shadow Style Type" >
+    <topic name="Shadow Style Type" url="../../../Styles/Shadow.html" />
+  </key>
+</key>
+<key name="&lt;styles&gt;" >
+  <key name="Animation Style Type Parameters" >
+    <topic name="Animation Style Type Parameters" url="../../../Styles/Animation.html" />
+  </key>
+  <key name="Bevel Style Type" >
+    <topic name="Bevel Style Type" url="../../../Styles/Bevel.html" />
+  </key>
+  <key name="Blur Style Type" >
+    <topic name="Blur Style Type" url="../../../Styles/Blur.html" />
+  </key>
+  <key name="Font Style Type Parameters" >
+    <topic name="Font Style Type Parameters" url="../../../Styles/Font.html" />
+  </key>
+  <key name="FusionMaps &amp; Styles" >
+    <topic name="FusionMaps &amp; Styles" url="../../../Styles/Styles.html" />
+  </key>
+  <key name="Glow Style Type" >
+    <topic name="Glow Style Type" url="../../../Styles/Glow.html" />
+  </key>
+  <key name="How to Use Styles" >
+    <topic name="How to Use Styles" url="../../../Styles/HowToUse.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Shadow Style Type" >
+    <topic name="Shadow Style Type" url="../../../Styles/Shadow.html" />
+  </key>
+</key>
+
+</indexdata>

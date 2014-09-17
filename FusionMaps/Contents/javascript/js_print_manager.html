@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<title>Managed Printing in Mozilla browsers </title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and JavaScript|js_overview.html",  "Managed print for Mozilla" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Managed Printing in Mozilla browsers </td>
+
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	<p class="highlightBlock"> Managed Printing is required only for Flash maps</p>
+      <p>FusionMaps  XT provides advanced print management for Flash maps using JavaScript for Mozilla/WebKit/Gecko based browsers like Firefox, Safari, etc.&nbsp;Even though displayed properly on screen, printed output had been not proper in these browsers. So long! FusionCharts JavaScript Class offers a separate Print Manger class to take care of this. The implementation of Print Manager is fairly simple. You  just need to add a single line of code in JavaScript which enables Print Manager for all maps present in a web page. Once enabled, all the maps present in a page are prepared to print correctly. Once the maps are ready, which can be tracked by listening to an event raised by the Print Manager, you can use browser's File &rarr; Print menu, JavaScript's native <span class="codeInline">window.print() </span>function or Print Manager's advanced function - <span class="codeInline">managedPrint()</span>. In any of these actions, the maps will come-up properly in the print media. </p>
+      <p>The Print Manager internally does the following to achieve this: </p>
+      <ul>
+        <li>Gathers all the image data of the present state of the map once a map is rendered</li>
+        <li>Converts the image data into an image using the canvas HTML object</li>
+        <li>Hides the canvas image below the map</li>
+        <li>Creates a parallel <span class="msg_handler"><a>CSS based print media layout</a> &raquo; </span><span class="msg_body veryLightYellowBg">using @media print</span>when print is invoked</li>
+        <li>Hides  the Flash based map in the print media layout  and displays the canvas image</li>
+        <li>Sends this layout with the canvas image  to the printer for print</li>
+      </ul>
+	  <p class="highlightBlock"><strong>Note:</strong> Print Manager works only in browsers that supports canvas object. </p>
+      <p>Let's now go through a sample code which will provide you with first-hand experience of what has been said above. </p>
+      <p class="highlightBlock">Please note that the Print Manager captures the initial view of the map when first loaded. Hence, the run-time changes made in the interactive maps do not get reflected on the printed image. Additionally, changes made to the maps using the <a href="API/methods.html#setchartattribute">setChartAttribute</a> function do not get reflected on the printed image. </p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+								<pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionCharts Print Manager&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;&lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+      <strong>FusionCharts.printManager.enabled(true);</strong>
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot;, );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+      FusionCharts.addEventListener ( 
+<strong>          FusionChartsEvents.PrintReadyStateChange , 
+</strong>          function (identifier, parameter) {
+            if(parameter.ready){ 
+               alert(&quot;Map is now ready for printing.&quot;);
+               document.getElementById('printButton').disabled = false;
+            }
+        });
+    // --&gt;&lt;/script&gt; 	   
+    &lt;input type=&quot;button&quot; onclick=&quot;<strong>FusionCharts.printManager.managedPrint()</strong>&quot;
+        value=&quot;Managed Print&quot; disabled=&quot;disabled&quot; id=&quot;printButton&quot; &gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+                               			</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>
+        
+      In the above code:</p>
+      <ul>
+        <li>We first enable FusionCharts Print Manager using <span class="codeInline">FusionCharts.printManager.enabled(true)</span></li>
+        <li>Next, we create a world map. We add a button which on click will call the <span class="codeInline">managedPrint()</span>function of <span class="codeInline">FusionCharts.printManager</span> class</li>
+        <li>Thereafter, we add a listener for the global event <span class="codeInline">PrintReadyStateChange </span>to the global object <span class="codeInline">FusionCharts</span></li>
+      </ul>
+      <p class="highlightBlock">Note that the <span class="codeInline">PrintReadyStateChange</span> event is a global event. Thus, this event cannot be listened from individual map instance. Hence, only <span class="codeInline">FusionCharts </span>static class can listen to this event.</p>
+      <ul>
+        <li>The <span class="codeInline">parameters</span> event argument contains a property <span class="codeInline">ready</span>. This returns <span class="codeInline">true </span>when the Print Manager is ready to print all maps in a page</li>
+        <li>Hence, in this event we show an  alert and also enable the button, which was disabled prior to this. </li>
+      </ul>
+      <p>Now, if you try printing from File &rarr; Print menu or using a button or function that call <span class="codeInline">window.print()</span>function. You can also click the &quot;Managed Print&quot; button to print the map. </p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="advanced" id="advanced"></a>Advanced Functions </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>The Print Manger class provides two more functions that helps in advanced configurations. The functions are described below:</p>
+      <ol>
+        <li><span class="codeInline">isReady()</span>: This function returns <span class="codeInline">true</span> or <span class="codeInline">false </span>based on the status of Print Manger. When the print manager is completely ready with all the equivalent canvas images of all the maps present in a page, it returns <span class="codeInline">true</span>. </li>
+        <li><span class="codeInline">configure()</span>: This function helps in configuring the Print Manager. It takes an Object as parameter. The object can have the following properties:
+<ul>
+     <li><span class="codeInline">enabled</span> : This is a Boolean property where you can explicitly define here whether to enable managed printing feature or not</li>
+     <li><span class="codeInline">invokeCSS</span>: This is a Boolean property which sets whether CSS based print media layout should be created for managed print or not.</li>
+     <li><span class="codeInline">message</span>: This property takes a string as message. While the print manager is still not ready with the converted images of the maps, this text message is placed instead of the map images. The default value is &quot;Map is being prepared for print.&quot;. </li>
+</ul>
+<p>Note that this function should be called before calling <span class="codeInline">FusionCharts.printManager.enabled( true );</span></p></li>
+      </ol>
+      <p class="highlightBlock">To see implementation code snippets using these advanced functions, please go through<strong> API Reference </strong>&gt; <a href="API/methods.html#printmanager">Functions</a> page.</p>
+      <p class="highlightBlock">Please note that the Print Manager takes a bit of time to prepare all the maps ready for printing. It depends on the size of the map as well as the processing power of the client side computer. If the print action is invoked while the Print Manager is not yet ready with the image, the map does not show up in the print media. However, if the function, <span class="codeInline">managedPrint(),</span> is called, it automatically waits for the all the maps to get ready before it proceeds to call the <span class="codeInline">window.print()</span> function. <br />
+      Hence, it is recommended to call <span class="codeInline">managedPrint()</span> function instead of the other 
+    actions.</p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using <i>LinkedCharts</i>|js_linkedcharts.html","Handling errors|js_errors.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

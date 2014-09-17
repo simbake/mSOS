@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Number Formatting - Using formatted input numbers</title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Advanced Topics", "Number Formatting|Basics.html", "Input Number Formatting" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td width="100%" class="pageHeader">Using formatted input numbers </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>In some countries, commas are used as decimal separators and dots as thousand   separators. But, if you directly specify such numbers in FusionMaps XT XML, it   will give an error while converting to number. FusionMaps XT introduces a   smart way to let you specify numbers in your own format in XML. </p>      
+      <p>Consider the XML/JSON below: </p></td>
+  </tr>
+ 
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="code_container prettyprint">&lt;map fillColor="D7F4FF" includeValueInLabels="1" baseFontSize="9" showBevel="0"  <strong>inThousandSeparator=&quot;.&quot; inDecimalSeparator=&quot;,&quot;&gt;</strong>
+ &lt;data&gt;
+  &lt;entity id="NA" value="515"/&gt;
+  &lt;entity id="SA" value="373"/&gt;
+  &lt;entity id="AS" value="3875"/&gt;
+  &lt;entity id="EU" value="727"/&gt;
+  &lt;entity id="AF" value="885"/&gt;
+  &lt;entity id="AU" value="32"/&gt;
+ &lt;/data&gt;
+&lt;/map&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+"map": {
+ "fillcolor": "D7F4FF",
+ "includevalueinlabels": "1",
+ "basefontsize": "9",
+ "showbevel": "0"
+ <strong>"inthousandseparator": ".",
+ "indecimalseparator": ","</strong>
+  },
+  "data": [
+    {"id": "NA", "value": "515"  },
+		{"id": "SA", "value": "373"  },
+		{"id": "AS", "value": "3875" },
+		{"id": "EU", "value": "727"  },
+		{"id": "AF", "value": "885"  },
+		{"id": "AU", "value": "32"   }
+  ]
+}</pre>
+</div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text">
+      <p>In this XML/JSON, we're providing the numbers in the non-standard convention -   i.e., we've used dot as the thousand separator and comma as the decimal   separator (as followed in some European countries). Now, to make sure that   FusionMaps XT reads these numbers in the right way, we convey our input decimal   and thousand separator characters as under:</p>
+      <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+<pre class="prettyprint code_container">&lt;map ... inThousandSeparator='.' inDecimalSeparator=',' ...&gt; </pre>
+       </div>
+<div id="tab4" class="tab_content">
+  <pre  id="pre-datajson"class="prettyprint code_container"> &quot;map&quot;:{
+      ...<br />&nbsp; &nbsp; &quot;inthousandseparator&quot;:&quot;.&quot;,<br />&nbsp; &nbsp; &quot;indecimalseparator&quot;:&quot;,&quot;
+      ...<br />&nbsp; }</pre>
+</div></div></div>
+      <p>This tells FusionMaps XT that it should treat dot in the input numbers as   thousands (instead of normal decimals) and comma as decimals. </p>
+      <p>When you now view this map, you'll get the following output: </p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><img src="../images/Number_Input.jpg" width="414" height="245" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">You can see that FusionMaps XT has interpreted the numbers properly and   automatically converted the numbers into the standard format. If you want to   output the numbers again in the non-conventional format, you can use the   following XML: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+	<pre class="code_container prettyprint">&lt;map fillColor="D7F4FF" includeValueInLabels="1" baseFontSize="9" showBevel="0" inThousandSeparator=&quot;.&quot; inDecimalSeparator=&quot;,&quot; <strong>thousandSeparator=&quot;.&quot; decimalSeparator=&quot;,&quot;</strong> formatNumberScale=&quot;0&quot;&gt;<br />  &lt;data&gt;
+  &lt;entity id="NA" value="515"/&gt;
+  &lt;entity id="SA" value="373"/&gt;
+  &lt;entity id="AS" value="3875"/&gt;
+  &lt;entity id="EU" value="727"/&gt;
+  &lt;entity id="AF" value="885"/&gt;
+  &lt;entity id="AU" value="32"/&gt;
+ &lt;/data&gt;
+ &lt;/map&gt;</pre>
+       </div>
+	<div id="tab6" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+ "map": {
+  "fillColor": "D7F4FF",
+  "includeValueInLabels": "1",
+  "baseFontSize": "9",
+  "showBevel": "0",
+  "inthousandseparator": ".",
+  "indecimalseparator": ",",
+  <strong>"thousandseparator": ".",
+  "decimalseparator": ",",</strong>
+  "formatnumberscale": "0"
+  },
+  "data": [
+    {&quot;id&quot;: &quot;NA&quot;, &quot;value&quot;: &quot;515&quot;  },
+		{&quot;id&quot;: &quot;SA&quot;, &quot;value&quot;: &quot;373&quot;  },
+		{&quot;id&quot;: &quot;AS&quot;, &quot;value&quot;: &quot;3875&quot; },
+		{&quot;id&quot;: &quot;EU&quot;, &quot;value&quot;: &quot;727&quot;  },
+		{&quot;id&quot;: &quot;AF&quot;, &quot;value&quot;: &quot;885&quot;  },
+		{&quot;id&quot;: &quot;AU&quot;, &quot;value&quot;: &quot;32&quot;   }
+  ]
+}</pre>
+	</div></div></div>
+  <div style="clear:both"></div>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">You will get the following map: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="../images/Number_Input_2.jpg" width="416" height="242" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Notice how . is used for thousand separator and , for decimal separator. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Recursive Number Scaling|RecNumScaling.html","Using Multi-lingual text|../special_chars/SpChar.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

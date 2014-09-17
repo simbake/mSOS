@@ -1,0 +1,15 @@
+<map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='0' labelSepChar=': ' baseFontSize='9'  exportEnabled='1' exportAtClient='1' exportHandler='fcExporter2' caption='World Population 1990-2000'>
+	<colorRange>
+		<color minValue='0' maxValue='500' displayValue='Sparsely Populated' color='A7E9BC' />
+		<color minValue='500' maxValue='1000' displayValue='Well Populated' color='FFFFCC' />
+		<color minValue='1000' maxValue='5000' displayValue='Densely Populated' color='FF9377' />
+	</colorRange>
+	<data>
+		<entity id='NA' value='498' />
+		<entity id='SA' value='369' />
+		<entity id='AS' value='3800' />
+		<entity id='EU' value='721' />
+		<entity id='AF' value='880' />
+		<entity id='AU' value='31' />
+	</data>		
+</map>

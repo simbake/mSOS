@@ -1,0 +1,24 @@
+<?php
+class Logi extends Doctrine_Record {
+	public function setTableDefinition() {
+		$this -> hasColumn('id', 'int',15);
+		$this -> hasColumn('user_id', 'int',15);
+		$this -> hasColumn('status', 'varchar',255);
+		$this -> hasColumn('t_login', 'datetime');
+		$this -> hasColumn('t_logout', 'datetime');			
+	}
+
+	public function setUp() {
+		$this -> setTableName('logi');
+		$this -> hasMany('user as logss', array('local' => 'user_id', 'foreign' => 'id'));
+	}
+
+	public static function getAll() {
+		$query = Doctrine_Query::create() -> select("*") -> from("logi")->orderBy('id desc');
+		$level = $query -> execute();
+		return $level;
+	}
+	
+	
+
+}

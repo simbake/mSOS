@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Export maps to image/PDF </title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Exporting maps to Image/PDF" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Export maps to image/PDF </td>
+
+  </tr>
+  <tr>
+    <td class="text">
+      <p>All maps in the FusionMaps  XT   pack can be configured to be exported as   an image (JPEG or PNG) or PDF. The export can be handled either at client-side or at server-side. Exported image or PDF can  be saved at client-side or stored on the server. </p>
+      <p>The image below shows how map export is initiated at client-side from the map's context menu. The initiation can also be done using  <a href="../ExportingImage/ECJavaScript.html">JavaScript API</a>s. By default, these menu items do not appear in the map. You'll need to configure the export options and handlers to make the map ready for exporting. In this section, we briefly explain all export options.</p>
+      <p><img src="../ExportingImage/Images/SAI_Overview.jpg" width="500" height="266" class="imageBorder" /></p>
+      <p>FusionMaps  XT, by itself, cannot directly export the maps as images. It  needs assistance either from server-side scripts, or other client side Flash  movies (in Flash Player 10). FusionMaps  XT  sends the  bitmap snapshot of its map to these objects, which in turn convert them into an image or PDF. These objects are  called <strong>FusionCharts Export Handlers</strong>.</p>
+      <p>The export handlers come in two flavors: Server-side Handlers &amp; Client-side Handler. </p>
+      <p class="header" style="padding: 3px;">Server-side Export Handlers</p>
+      <p>The  server-side export handlers help you export FusionMaps  XT  as images or PDFs  with the help of scripts that are placed on your servers. We provide  ready-to-use scripts for ASP.NET, PHP (uses GD and zlib library), Ruby  on Rails (uses RMagick and zlib) and Java. </p>
+      <p>These  scripts accept compressed bitmap data from FusionMaps   XT (over HTTP or  HTTPS) and convert the same into images/PDFs. Post conversion, you have  two options:</p>
+      <ul>
+        <li>Save the generated output (image or PDF) on the server&rsquo;s disk. This  allows you to use these images later for embedding in your  emails or reports.</li>
+        <li>Or, send it back to the browser so that your user can download it instantly. </li>
+      </ul>
+	  <p class="highlightBlock"><strong>Note:</strong> Starting FusionMaps XT v3.3.0 JavaScript maps can be exported and saved to a server disk. To do so, you need to configure your own server. The sever should support <a href="../ExportingImage/Server/ECServerSave.html#php">PHP</a> and JAVA (1.3 or above). Also, you need to place the <a href="../ExportingImage/Server/ECServerSave.html#php">FusionCharts PHP export handler</a> and <a href="http://xmlgraphics.apache.org/batik/tools/rasterizer.html" target="_blank">Apache Batik SVG Rasterizer library</a> in your server.</p>
+	  
+	  
+      <p class="header" style="padding: 3px;">Client-side Export Handlers</p>
+      <p>The client-side FusionCharts  Export Component, as the name suggests, helps you bypass all server  scripts and save the maps as images or PDFs at the client side.  You will typically use client-side export when your server does not support any of the technologies mentioned in server-side exporting or  you do not want to transfer data between your client and server (which  in turn will make the export process faster).</p>
+      <p>Client-side  exporting is done using FusionCharts Export Component SWF file (needs Flash Player 10) and FusionCharts Export Javascript class (<span class="codeInline">FusionChartsExportComponent.js</span>).</p>
+      <p>In both client and  server side exports, you can configure the output formats (PDF/JPEG/PNG)  that you wish to make available from your context menu along with the  cosmetics of the export dialog box itself. You can also make your own  custom export panels (with custom buttons, look and feel)   that are displayed along with  the map in a <span class="codeInline">&lt;div&gt;</span>, and then connect the same to the map's export  handlers.</p>
+      <p class="header" style="padding: 3px;">Client-side Batch Export</p>
+      <p>You can also use the client side Export handler to export <strong>ALL </strong>the maps present in a Web page upon a single click. This is called batch exporting. The exported files  for each map can then either be saved individually, or all the exported  maps can be saved as a single file:</p>
+      <p><img src="../ExportingImage/Images/ECBatchSetup1.jpg" width="605" height="325" class="imageBorder"/></p>  </td>
+  </tr>
+  <tr>
+    <td class="header"><a name="xml_setup" id="xml_setup"></a><a name="json_setup" id="json_setup"></a>Setting up map  for export </td>  
+  </tr>
+<tr>
+  <td class="text">
+    <p>To enable export feature of the map you need to add export settings in map data (XML/JSON). You need to set <span class="codeInline">exportEnabled</span> XML map attribute or JSON map property to 1. You also need to set whether to use client or server side export using <span class="codeInline">exportAtClient</span> attribute and finally set&nbsp; the <span class="codeInline">exportHandler</span>.</p>   </td>
+</tr>
+ <tr>
+    <td valign="top" class="header">How to setup map data for  export ? </td>
+ </tr>
+ <tr> 
+    <td valign="top" class="text">
+	 <br />
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tabexportxml">XML</a></li>
+       <li><a href="#tabexportjson">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tabexportxml" class="tab_content">
+       <pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9' <strong>exportEnabled='1' exportAtClient='0' exportHandler='index.php'</strong>&gt;<br />	&lt;data&gt;<br />		&lt;entity id='NA' value='515' /&gt;<br />		&lt;entity id='SA' value='373' /&gt;<br />		&lt;entity id='AS' value='3875' /&gt;<br />		&lt;entity id='EU' value='727' /&gt;<br />		&lt;entity id='AF' value='885' /&gt;<br />		&lt;entity id='AU' value='32' /&gt;<br />	&lt;/data&gt; <br />&lt;/map&gt;</pre>
+       </div>
+		<div id="tabexportjson" class="tab_content">
+	  <pre id="pre-datajson3" class="prettyprint code_container">{<br />  &quot;map&quot;: {<br />    &quot;bordercolor&quot;: &quot;005879&quot;,<br />    &quot;fillcolor&quot;: &quot;D7F4FF&quot;,<br />    &quot;numbersuffix&quot;: &quot; Mill.&quot;,<br />    &quot;includevalueinlabels&quot;: &quot;1&quot;,<br />    &quot;labelsepchar&quot;: &quot;: &quot;,<br />    &quot;basefontsize&quot;: &quot;9&quot;,<br />    <strong>&quot;exportenabled&quot;: &quot;1&quot;,<br />    &quot;exportatclient&quot;: &quot;0&quot;,<br />    &quot;exporthandler&quot;: &quot;index.php&quot;</strong><br />  },<br />  &quot;data&quot;: [<br />    { &quot;id&quot;: &quot;NA&quot;, &quot;value&quot;: &quot;515&quot;},<br />    { &quot;id&quot;: &quot;SA&quot;, &quot;value&quot;: &quot;373&quot;},<br />    { &quot;id&quot;: &quot;AS&quot;, &quot;value&quot;: &quot;3875&quot;},<br />    { &quot;id&quot;: &quot;EU&quot;, &quot;value&quot;: &quot;727&quot;},<br />    { &quot;id&quot;: &quot;AF&quot;, &quot;value&quot;: &quot;885&quot;},<br />    { &quot;id&quot;: &quot;AU&quot;, &quot;value&quot;: &quot;32&quot;}<br />  ]<br />}</pre>
+	</div>
+    </div></div><div style="clear:both;"></div>
+	 
+	 
+ </td>
+  </tr>
+  
+  
+  <tr>
+    <td class="text"><p>In this example, we're using the server-side Export Handler (<span class="codeInline">index.php</span>) to assist FusionMaps  XT  in export of map. </p>
+    </td>
+  </tr>
+  <tr>
+  <td class="header"><a name="features" id="features"></a>Features provided in export  </td>
+  </tr>
+  
+  <tr>
+     <td class="text">
+        <p>Export feature provides a wide range of export options to explore. You can:</p>
+        <ul>
+           <li>Save exported image/PDF to server-side location or have it downloaded </li>
+           <li>Configure and select export-formats (PDF/PNG/JPEG)</li>
+           <li>Configure the cosmetics of export progress dialog or Flash export handler </li>
+           <li>Initiate export from context menu or JavaScript automatically</li>
+           <li>Invoke post export events</li>
+           <li>Batch export all maps present in a page etc</li>
+        </ul>
+        <p>For more details on each export feature, please go through<strong> <a href="../ExportingImage/ECOverview.html">Exporting as Image/PDF</a></strong> section. </p>
+         <div class="highlightBlock" >
+           <p class="nomargin">Please note that there are a few limitations of exporting pure JavaScript maps as listed below:</p>
+           <ul>
+               <li>Pure client-side export is currently not supported</li>
+               <li>Client-Side export component currently does not have an equivalent JavaScript fallback</li>
+               <li>Server-side export feature requires a separate setup and implementation</li>
+               <li>Export of JavaScript charts is possible only using <a href="../ExportingImage/Server/ECServerSave.html#php">FusionCharts PHP export handler</a></li>
+           </ul>
+           <p  class="nomargin">When rendered using JavaScript (HTML5), there is only one mode of export - at server-side. By default, <a href="../ExportingImage/ECPureJS.html">JavaScript (HTML5) maps use FusionCharts server to get exported image</a>. However you can <a href="../ExportingImage/ECPureJS.html#ownserver">place the PHP and JAR files on your servers and then over-ride the URL</a>. </p>
+        </div>
+     </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating <i>LinkedCharts</i>|LinkedCharts.html","How FusionMaps XT work? |../how_fm_work/HowFCWorks.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

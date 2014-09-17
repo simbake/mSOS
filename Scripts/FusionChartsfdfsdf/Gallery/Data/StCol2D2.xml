@@ -1,0 +1,14 @@
+<chart palette='2' caption='Order TAT' shownames='1' showvalues='0'  showSum='1' decimals='0' useRoundEdges='1'>
+<categories>
+<category label='Duration(Days)' />
+</categories>
+<dataset seriesName='Order Date' color='AFD8F8' showValues='0'>
+	<set value='45000.65' />
+</dataset>
+<dataset seriesName='Approval Date' color='F6BD0F' showValues='0'>
+	<set value='45000.65' />
+</dataset>
+<dataset seriesName='Date Received' color='8BBA00' showValues='0'>
+<set value='45000.65' />
+</dataset>
+</chart>

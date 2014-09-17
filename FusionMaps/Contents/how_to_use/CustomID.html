@@ -1,0 +1,205 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Customizing Entity Internal Id, Short Name and Long Name</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script></head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|BasicUsage.html", "Defining custom IDs" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td><span class="pageHeader">Customizing Entity Internal Id, Short Name and Long Name</span></td>
+  </tr>
+  <tr> 
+    <td><p class="text">Now that you've tasted the basic features of the map, 
+        let's cover some advanced ground and see how to change internal ids, short 
+        names and full names of the entities for any map. Consider a situation, 
+        where you've the population data stored in your database as under:</p></td>
+  </tr>
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="295" valign="top" class="header"> <strong>ContinentID</strong></td>
+          <td width="295" valign="top" class="header"> <strong>Population</strong></td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">NAM </td>
+           <td width="295" valign="top" class="text">515</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">SAM</td>
+           <td width="295" valign="top" class="text">373</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">ASI</td>
+           <td width="295" valign="top" class="text">3875</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">EUR</td>
+           <td width="295" valign="top" class="text">727</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">AFR</td>
+           <td width="295" valign="top" class="text">885</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">AUS</td>
+           <td width="295" valign="top" class="text">32</td>
+        </tr>
+      </table>
+       </td>
+  </tr>
+ 
+  <tr> 
+    <td>
+      <p class="text">As you can see above, your database refers to each continent 
+        using a 3 letter ID where as, FusionMaps XT refers to each continent of the 
+        world map using a 2 letter Id. If you provide dynamic data to the map 
+        using these IDs, the map will refuse to identify the IDs for the entities. 
+        Also, checking and converting each of these continent IDs into two letter 
+        IDs (that match FusionMaps XT Id) at run-time can be a Herculean coding task 
+        and difficult to maintain (as you'll be required to do this conversion 
+        every time you use this World Map).</p>
+      <p class="text">FusionMaps XT introduces a simpler and efficient way to do so. 
+      You can, at once, re-define the IDs of all the entities of the map. Apart 
+      from re-defining identities, you can also re-define the short name and long 
+      name of each identity, which will later be visible on the map.<br />
+      To sum in a nutshell, FusionMaps XT provides an option to 
+        convey to the map that your <span class="codeInline">NAM </span>refers 
+        to the map's entity internally named as<span class="codeInline"> NA</span>. 
+        Similarly, <span class="codeInline">SAM </span>refers to<span class="codeInline"> 
+      SA</span> of the map and so on. The following XML data (<span class="codeInline">CustomID.xml</span>) illustrates the concept: </p>      </td>
+  </tr>
+  
+  <tr> 
+    <td><pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='Mill.' includeValueInLabels='1' labelSepChar=': 'baseFontSize='9'&gt;
+        &nbsp;&nbsp;&nbsp;<strong>&lt;entityDef&gt;</strong>
+        	<strong>&lt;entity internalId='NA' newId='</strong><strong>NAM</strong><strong>' sName='N.Am' lName='</strong><strong>N. America</strong><strong>'/&gt;</strong>
+        	<strong>&lt;entity internalId='SA' newId='SAM' sName='S.Am' lName='</strong><strong>S.America</strong><strong>'/&gt;</strong>
+        	<strong>&lt;entity internalId='EU' newId='EUR' /&gt;</strong>
+        	<strong>&lt;entity internalId='AS' newId='ASI' /&gt;</strong>
+        	<strong>&lt;entity internalId='AF' newId='AFR' /&gt;</strong>
+        	<strong>&lt;entity internalId='AU' newId='AUS' /&gt;</strong>
+          <strong>&lt;/entityDef&gt;</strong>
+        &nbsp;&nbsp;&lt;colorRange&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='0' maxValue='500' displayValue='Sparsely Populated' color='A7E9BC' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='500' maxValue='1000' displayValue='Well Populated' color='FFFFCC'/&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;color minValue='1000' maxValue='5000' displayValue='Densely Populated' color='FF9377' /&gt;
+        &nbsp;&nbsp;&lt;/colorRange&gt;
+        &nbsp; &lt;data&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity <strong>id='</strong><strong>NAM</strong><strong>'</strong> value='515' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity <strong>id='SAM'</strong> value='373' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity <strong>id='ASI'</strong> value='3875' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity <strong>id='EUR'</strong> value='727' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity <strong>id='AFR'</strong> value='885' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity <strong>id='AUS'</strong> value='32' /&gt;
+        &nbsp;&nbsp;&lt;/data&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td><p class="text">Here, see the <span class="codeInline">&lt;entityDef&gt;</span> 
+        element first. This is the element within which you can re-define the 
+        new IDs, short names and long names for each entity. Consider these lines:</p></td>
+  </tr>
+  <tr> 
+    <td><pre class="prettyprint code_container">&lt;entity internalId='NA' newId='NAM' sName='N.Am' lName='N. America'/&gt;
+&lt;entity internalId='SA' newId='SAM' sName='S.Am' lName='S. America'/&gt;</pre></td>
+  </tr>
+  
+  <tr> 
+    <td><p class="text">Here, we're telling the map to rename the existing ID 
+        of North America from<span class="codeInline"> NA</span> (internal default 
+        ID) to <span class="codeInline">NAM </span>and that of South America from 
+        <span class="codeInline">SA </span>(internal ID) to <span class="codeInline">SAM.</span> 
+        We do so because our database contains the ID of these continents as <span class="codeInline">NAM</span> 
+        and <span class="codeInline">SAM.</span> So, later when we dynamically 
+        provide data to the map, we do not need to consider ID mismatches at all. 
+        We simply output them as <span class="codeInline">NAM</span> and <span class="codeInline">SAM</span> 
+        in the <span class="codeInline">XML</span> data document, as it's now 
+        handled by the map. </p></td>
+  </tr>
+  
+  <tr> 
+    <td class="highlightBlock">Note: When defining new<span class="codeInline"> 
+        IDs</span> for different entities on the map, make sure that you're referring 
+        to the right original internal <span class="codeInline">ID</span>. Also, 
+        two entities cannot have same<span class="codeInline"> ID </span>&ndash; 
+        so you need to make sure that different values are chosen for different 
+        identities.</td>
+  </tr>
+  
+  <tr> 
+    <td><p class="text">Going back to the code above, you'll see that we're also 
+        changing the short name of North America from existing value of <span class="codeInline">NA</span> to <span class="codeInline">N.Am</span> (for 
+        demonstration purpose). Long name is being changed to <span class="codeInline">N. America</span>. You 
+        can specify any names that you wish as short name and long name. The names can include UTF-8 characters too. </p>      <p class="text">Now, when you're providing data, you need to make sure 
+        that you refer to each entity by its newly defined <span class="codeInline">ID</span> 
+        (i.e., <span class="codeInline">NAM</span> for North America, <span class="codeInline">SAM</span> 
+        for South America and so on). If you refer by the old ID, the map will not 
+        be able to find such an entity and it will raise an alert. </p></td>
+  </tr>
+  
+  <tr> 
+    <td><pre class="prettyprint code_container">&lt;entity id='NAM' value='515' /&gt;
+&lt;entity id='SAM' value='373' /&gt;
+&lt;entity id='ASI' value='3875' /&gt;
+&lt;entity id='EUR' value='727' /&gt;
+&lt;entity id='AFR' value='885' /&gt;
+&lt;entity id='AUS' value='32' /&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td><p class="text">If you see the map again, you'll get the following output:</p>
+       <p class="text"><img src="Images/WorldMap5.gif" width="600" height="345" class="imageBorder" /></p>
+    </td>
+  </tr>
+  
+  <tr> 
+    <td class="text">The abbreviated name of North America is now being shown 
+        as <span class="codeInline">"N.Am"</span> on the map and so is the case 
+        for South America. The rest of data isn't disturbed at all by the new 
+        IDs - everything in place!
+        <p class="text">This completes the basic usage guide of FusionMaps XT.</p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Gradient legend|gradientlegend.html","Markers - Overview|../markers/MarkerOv.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

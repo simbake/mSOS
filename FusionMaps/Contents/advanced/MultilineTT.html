@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Tooltip in multiple lines</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Advanced Topics", "Tooltip in multiple lines" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td width="100%" class="pageHeader">Putting tooltip in multiple lines </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">FusionMaps  XT allows you to put your tooltips in multiple lines with a little   manual tweaking. Consider the XML below:</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+	<pre class="prettyprint code_container">&lt;map&gt;
+ &lt;data&gt;
+  &lt;entity id="NA" value="515" tooltext=&quot;North America<strong class="darkYellowTr">{br}</strong>Population: 515<strong class="darkYellowTr">{br}</strong>Position:4&quot;/&gt;
+  &lt;entity id="SA" value="373" tooltext=&quot;South America<strong class="darkYellowTr">{br}</strong>Population: 373<strong class="darkYellowTr">{br}</strong>Position:5&quot;/&gt;
+  &lt;entity id="AS" value="3875" tooltext=&quot;Asia<strong class="darkYellowTr">{br}</strong>Population: 3875<strong class="darkYellowTr">{br}</strong>Position:1&quot;/&gt;
+  &lt;entity id="EU" value="727" tooltext=&quot;Europe<strong class="darkYellowTr">{br}</strong>Population: 727<strong class="darkYellowTr">{br}</strong>Position:3&quot;/&gt;
+  &lt;entity id="AF" value="885" tooltext=&quot;Africa<strong class="darkYellowTr">{br}</strong>Population: 885<strong class="darkYellowTr">{br}</strong>Position:2&quot;/&gt;
+  &lt;entity id="AU" value="32" tooltext=&quot;Australia<strong class="darkYellowTr">{br}</strong>Population: 32<strong class="darkYellowTr">{br}</strong>Position:6&quot;/&gt;
+ &lt;/data&gt;
+&lt;/map&gt;</pre>
+       </div>
+	<div id="tab2" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "map": {},
+  "data": [
+    {
+      "id": "NA",
+      "value": "515",
+      "tooltext": "North America<strong class="darkYellowTr">{br}</strong>Population:515<strong class="darkYellowTr">{br}</strong>Position:4"
+    },
+    {
+      "id": "SA",
+      "value": "373",
+      "tooltext": "South America<strong class="darkYellowTr">{br}</strong>Population:373<strong class="darkYellowTr">{br}</strong>Position:5"
+    },
+    {
+      "id": "AS",
+      "value": "3875",
+      "tooltext": "Asia<strong class="darkYellowTr">{br}</strong>Population:3875<strong class="darkYellowTr">{br}</strong>Position:1"
+    }
+	{
+      "id": "EU",
+      "value": "727",
+      "tooltext": "Europe<strong class="darkYellowTr">{br}</strong>Population:727<strong class="darkYellowTr">{br}</strong>Position:3"
+    }
+	{
+      "id": "AF",
+      "value": "885",
+      "tooltext": "Africa<strong class="darkYellowTr">{br}</strong>Population:885<strong class="darkYellowTr">{br}</strong>Position:2"
+    }
+	{
+      "id": "AU",
+      "value": "32",
+      "tooltext": "Australia<strong class="darkYellowTr">{br}</strong>Population:515<strong class="darkYellowTr">{br}</strong>Position:4"
+    }
+  ]
+}</pre>
+	</div>
+    </div></div>
+  <div style="clear:both"></div>
+	
+	</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+       <p>In the above XML/JSON, we're first setting 3 lines tooltip content for each <span class="codeInline">&lt;entity&gt;</span>. To separate each line we use the <strong class="codeInline">{br}</strong> pseudo code, which is equivalent to <span class="codeInline">&lt;BR&gt;</span> HTML tag in FusionMaps XT for tooltips.</p>
+       <p>When you now see the map, you'll get the following output:</p></td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><img src="images/MultilineTT.jpg" width="677" height="385" class="imageBorder" /></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+ <tr>
+    <td valign="top" class="header"><a name="labelbreak" id="labelbreak"></a>Applying HTML to labels </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Similarly, you can apply line breaks to your data labels also. Consider the XML/JSON below: </p></td>
+  </tr>
+  <tr>
+    <td valign="top">
+    <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+	   
+         <pre class="prettyprint code_container">&lt;map&gt;
+ &lt;data&gt;
+  &lt;entity id=&quot;NA&quot; value=&quot;515&quot; displayValue=&quot;North America<strong>{br}</strong>Population: 515<strong>{br}</strong>Position:4&quot;/&gt;
+  &lt;entity id=&quot;SA&quot; value=&quot;373&quot; displayValue=&quot;South America<strong>{br}</strong>Population: 373<strong>{br}</strong>Position:5&quot;/&gt;
+  &lt;entity id=&quot;AS&quot; value=&quot;3875&quot; displayValue=&quot;Asia<strong>{br}</strong>Population: 3875<strong>{br}</strong>Position:1&quot;/&gt;
+  &lt;entity id=&quot;EU&quot; value=&quot;727&quot; displayValue=&quot;Europe<strong>{br}</strong>Population: 727<strong>{br}</strong>Position:3&quot;/&gt;
+  &lt;entity id=&quot;AF&quot; value=&quot;885&quot; displayValue=&quot;Africa<strong>{br}</strong>Population: 885<strong>{br}</strong>Position:2&quot;/&gt;
+  &lt;entity id=&quot;AU&quot; value=&quot;32&quot; displayValue=&quot;Australia<strong>{br}</strong>Population: 32<strong>{br}</strong>Position:6&quot;/&gt;
+ &lt;/data&gt;
+&lt;/map&gt;</pre>
+       </div>
+<div id="tab4" class="tab_content" style="width:100%; height:337px; overflow:auto;">
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "map": {},
+  "data": [
+    {
+      "id": "NA",
+      "value": "515",
+      "displayValue": "North America<strong>{br}</strong>Population:515<strong>{br}</strong>Position:4"
+    },
+    {
+      "id": "SA",
+      "value": "373",
+      "displayValue": "South America<strong>{br}</strong>Population:373<strong>{br}</strong>Position:5"
+    },
+    {
+      "id": "AS",
+      "value": "3875",
+      "displayValue": "Asia<strong>{br}</strong>Population:3875<strong>{br}</strong>Position:1"
+    }
+	{
+      "id": "EU",
+      "value": "727",
+      "displayValue": "Europe<strong>{br}</strong>Population:727<strong>{br}</strong>Position:3"
+    }
+	{
+      "id": "AF",
+      "value": "885",
+      "displayValue": "Africa<strong>{br}</strong>Population:885<strong>{br}</strong>Position:2"
+    }
+	{
+      "id": "AU",
+      "value": "32",
+      "displayValue": "Australia<strong>{br}</strong>Population:515<strong>{br}</strong>Position:4"
+    }
+  ]
+}</pre>
+</div>
+    </div></div></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The above XML will now render the following map: </p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="images/LabelHTML.jpg" width="669" height="380" class="imageBorder" /></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Gradients|UsingGradients.html","Set backgrounds for map|ChartBG.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

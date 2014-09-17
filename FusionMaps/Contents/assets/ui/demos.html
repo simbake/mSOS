@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>FusionMaps XT Live Demos</title>
+        <script type="text/javascript">
+            window.__orphanarticle = false;
+            window.__doNotPutInCookie = true;
+	
+        </script>
+        <link href="css/landing-style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../Maps/FusionCharts.js"></script>
+        <script type="text/javascript" src="js/lib.js"></script>
+        <!--[if IE 6]>
+        <script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+          
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                setBgImages("download-pack-demos dt", 31);
+                setBgImages("online-demos dt", 31);
+                changeStructure ("download-pack-demos");
+                changeStructure ("online-demos");
+	
+                var dummyMap = new FusionCharts("../../../Maps/FCMap_World.swf", "dummyMapId", "1","1","0");
+				dummyMap.options.showLoadingMessage = false;
+                dummyMap.setXMLUrl("Data.xml");
+                dummyMap.render("miniChart");
+		
+		
+                showConditionalMessage( "Your borwser does not seem to have Flash Player support. All Flash samples will automatically render JavaScript maps instead.", isJSRenderer(dummyMap) );
+                showConditionalMessage( "Some of the demos here use JavaScript to interact with Flash maps. Since you are running FusionMaps XT from your local machine, you will need to allow this interaction to happen, as <a href='../../../Tools/FlashPlayerSecuritySetup/index.html' target='_blank'>explained here</a>. However, if you view the examples from a web server (even localhost), this is not required.", isLocal() && !isJSRenderer(dummyMap) );
+
+
+                dummyMap.addEventListener( "dataloadrequestcompleted", function(e,a) { 
+
+                    addConditionalMessage( "<br /><br /><strong>Note:</strong><br />You seem to be running the page from local file system. Your browser restricts JavaScript from accessing local file system owing to security reasons. Some demos which use data provided to maps as URL, will not work. These samples will run absolutely fine if run form a web server, though. When running locally, however, all samples with data provided as XML/JSON string or JSON Object will work fine.", a.data.length==0 && isLocal() && isJSRenderer(dummyMap) );
+			
+                    dummyMap.dispose();
+			
+                });
+                dummyMap.addEventListener( "rendered", function(e,a) { 		
+                    dummyMap.dispose();
+			
+                });
+
+		
+		
+	
+            })
+
+            var setBgImages = function (id, hight) {
+                $("#"+id).each(function(i){
+                    $(this).css({
+                        //"background-position": '0 -' + (i * hight).toString() + 'px'
+						"background-position": '0 0'
+						
+                    });
+                });
+            }
+
+            var changeStructure = function (id) {
+                var dtCont = [], ddCont = [], dtContTemp = [], ddContTemp = [];
+                $("#" + id).children().each ( function () {
+                    if ($(this).is("dt")) {
+                        dtCont.push($(this));
+                    }
+                    if ($(this).is("dd")) {
+                        ddCont.push( $(this) );
+                    }
+                })
+
+                for (var j in dtCont) {
+                    dtContTemp.push(dtCont[j]);
+                    ddContTemp.push(ddCont[j]);
+                    if ((j+1) % 3 == 0) {
+                        for (i in dtContTemp) {
+                            $("#" + id).append( dtContTemp[i] );
+                        }
+                        for (i in ddContTemp) {
+                            $("#" + id).append( ddContTemp[i] );
+                        }
+                        dtContTemp = [];
+                        ddContTemp = [];
+                    }
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- header -->
+            <div id="header">
+                <div class="back-to-home"><a href="../../../index.html">Back to home</a></div>
+
+                <div class="logo" title= "FusionMaps XT ">
+                    <a href="http://www.fusioncharts.com/products/suite/fusionmaps/" target="_blank">
+                    </a>
+                </div>
+
+                <h1 class="logo-text">Live Demos</h1>
+            </div>
+            <!-- content area -->
+            <div class="content-area">
+                <div id="content-area-inner-main">
+                    <h2 class="headline">FusionMaps XT is used in a wide variety of applications like dashboards, reports, polls and analytics. Check out the demos below to get inspired! </h2>
+                    <!--  demo in download pack block -->
+                    <div id="messageBox" style="margin-left:10px; margin-right:10px; display:none;"></div>
+                    <h3 class="headline"><span id="miniChart"></span>Demos available in this pack</h3>
+                    <div class="inner-middle-link-container">
+                        <div id="visible-block">
+                            <dl class="demo-inner-m-cl" id="download-pack-demos">
+
+                                <dt class="demo-inner-m-cl-1">Demos</dt>
+                                <dd class="demo-inner-m-cl-1">
+                                    <ul class="l-d-list">
+                                        <li><a href="../../../Code/demos/purejs/index.html" target="_blank">Pure JavaScript map</a></li>
+                                        <li><a href="../../../Code/demos/fullscreen/index.html" target="_blank">Map with dynamic re-sizing</a></li>
+                                        <li><a href="../../../Code/demos/europe/index.html" target="_blank">Annual revenue (Europe)</a></li>
+                                        <li><a href="../../../Code/demos/population/index.html" target="_blank">World Population</a></li>
+                                        <li><a href="../../../Code/demos/employment-distribution/index.html" target="_blank">Employment distribution</a></li>
+                                        <li><a href="../../../Code/demos/USPresidentialElection2012/index.html" target="_blank">Election results</a></li>
+                                       
+                                    </ul>
+                                </dd>
+
+
+                                <dt class="demo-inner-m-cl-2">Featured</dt>
+                                <dd class="demo-inner-m-cl-2">
+                                    <ul class="l-d-list">
+                                        <li><a href="../../../Code/demos/customer/index.html" target="_blank">Customer satisfaction (Gradient Legend)</a></li>
+                                        <li><a href="../../../Code/demos/office/index.html" target="_blank">Office locations (Image Markers)</a></li>
+                                        <li><a href="../../../Code/demos/hits/index.html" target="_blank">Hits by country (Marker Scale)</a></li>
+                                        <li rel="duplicate"><a href="../../../Code/demos/airline/index.html" target="_blank">Airline routes (Connectors)</a></li>
+                                        
+                                        <li><a href="../../../Tools/GUI/FusionMapsGUI.html" target="_blank">Visual Map Builder</a></li>
+                                        <li><a href="../../../Tools/MarkerViewer/index.html?view=map" target="_blank">Marker Viewer</a></li>
+                                    </ul>
+                                </dd>
+
+
+                                <dt class="demo-inner-m-cl-2">Cosmetics &amp; Containers</dt>
+                                <dd class="demo-inner-m-cl-2">
+                                    <ul class="l-d-list">
+                                 <li><a href="../../../Code/JavaScript/bgImageTryout/index.html" target="_blank">Background image customization</a> </li>
+                                        
+                                        <li><a href="../../../Code/JavaScript/Basics/UsingLinkedCharts/jqdialog.html" target="_blank">LinkedCharts in jQuery Dialog</a></li>
+                                        <li><a href="../../../Code/JavaScript/Basics/UsingLinkedCharts/jqprettyphoto.html" target="_blank">LinkedCharts in PrettyPhoto</a></li>
+                                        <li><a href="../../../Code/JavaScript/Basics/UsingLinkedCharts/highslide.html" target="_blank">LinkedCharts in Highslide</a></li>
+                                        <li><a href="../../../Code/JavaScript/Basics/UsingLinkedCharts/ExtJs.html" target="_blank"> LinkedCharts in ExtJS Window </a></li>
+                                         <li><a href="../../../Code/demos/fonts/index.html" target="_blank">Customized fonts</a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                    <!-- online demos block -->
+                   
+				 
+				    <h3 class="headline">Online demos</h3>
+                    <div class="inner-middle-link-container">
+                        <div id="online-block">
+                            <dl class="inner-m-cl" id="online-demos">
+                                
+                                
+                                 <dt class="inner-m-cl-1 inner-link-icon-online"><a href="http://www.fusioncharts.com/demos/business/#retail-dashboard" target="_blank">Retail Dashboard</a></dt>
+                                <dd class="inner-m-cl-1"><a href="http://www.fusioncharts.com/demos/business/#retail-dashboard" target="_blank">The dashboard makes extensive use of FusionCharts XT and FusionMaps XT to visualize a retail store which deals in a wide variety of merchandise. You can see all facets of the retail store right from the sales summary to the product planning in this dashboard</a></dd>
+                                
+                                
+
+                                
+                                <dt class="inner-m-cl-2 inner-link-icon-online"><a href="http://www.fusioncharts.com/demos/business/#fusionair-flight-selector" target="_blank">Flight Selector</a></dt>
+                                <dd class="inner-m-cl-2"><a href="http://www.fusioncharts.com/demos/business/#fusionair-flight-selector" target="_blank">FusionAir shows how flight selection can be made a step easier. Instead of selecting a from and to location for choosing your flight, you can simply click on the route you wish to fly. All the flights flying that route are displayed and you can book the flight that suits you the best.</a></dd>
+                                
+                                
+                                <dt class="inner-m-cl-2 inner-link-icon-online"><a href="http://www.fusioncharts.com/demos/business/#us-electoral-predict-the-winner" target="_blank">Election Predictions</a></dt>
+                                <dd class="inner-m-cl-2"><a href="http://www.fusioncharts.com/demos/business/#us-electoral-predict-the-winner" target="_blank">This dashboard lets you build your electoral poll and predict the winners of the US elections. You have to select a state and predict the winner for it. Based on what you select, the cumulative votes and the number of votes required to win the election are displayed for each representative.</a></dd>
+                                
+                                
+                                
+                                <dt class="inner-m-cl-1 inner-link-icon-online"><a href="http://www.fusioncharts.com/demos/business/#us-employment-and-business-distribution" target="_blank">Employment Distribution</a></dt>
+                                <dd class="inner-m-cl-1"><a href="http://www.fusioncharts.com/demos/business/#us-employment-and-business-distribution" target="_blank">This demo shows the employment levels across different states of US. You can drill into each state and see the breakdown of employment numbers for different domains like media, finance and telecom.</a></dd>
+                                
+                                                                    
+                                <dt class="inner-m-cl-2 inner-link-icon-online">
+                                	<a href="http://www.fusioncharts.com/demos/business/#airlines-dashboard" target="_blank">
+                                    	Airlines Dashboard
+                                  	</a>
+                                </dt>
+                                <dd class="inner-m-cl-2">
+                                	<a href="http://www.fusioncharts.com/demos/business/#airlines-dashboard" target="_blank">
+                                    	This dashboard visualizes the key metrics that the management of an airline company looks at every year. 
+                                    </a>
+                                 </dd>
+                                
+                                
+                               
+                            
+                                <dt class="inner-m-cl-2 inner-link-icon-online"><a href="http://www.fusioncharts.com/demos/business/#election-results-india-2009" target="_blank">Election Results</a></dt>
+                                <dd class="inner-m-cl-2"><a href="http://www.fusioncharts.com/demos/business/#election-results-india-2009" target="_blank">This demo shows the results of the 2009 parliamentary elections in India. For each state, you can also see the breakdown of votes among the parties that contested in the election.</a></dd>
+                                
+                                
+                                
+                            </dl>
+                        </div>
+                    </div>
+					
+                    <p>&nbsp;</p>
+                    <!-- lower middle block link holder -->
+                    <div class="clear"></div>
+
+                    <div class="underline-dull"></div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div id="footer">
+                <ul>
+                    <li><a href="../../../index.html">Home</a></li>
+                    <li class="pipe">|</li>
+                    <li><a href="howtoinstall.html">How to Install</a></li>
+                    <li class="pipe">|</li>
+                    <li><a href="../../index.html">Documentation</a></li>
+                    <li class="pipe">|</li>
+                    <li><a href="../../../Gallery/index.html">Map Gallery</a></li>
+                    <li class="pipe">|</li>
+                    <li><a href="support.html">Help &amp; Support</a></li>
+                    <li class="pipe">|</li>
+                    <li><a href="license.html">License &amp; Upgrade</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

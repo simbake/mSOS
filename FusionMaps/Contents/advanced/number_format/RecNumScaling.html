@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Number Formatting - Recursive Number Scaling</title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Advanced Topics", "Number Formatting|Basics.html", "Recursive Number Scaling" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td width="100%" class="pageHeader">Recursive Number Scaling </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>FusionMaps XT introduces the <strong>Recursive Number Scaling</strong> feature. Recursive number scaling comes into the picture when you have number scales defined for your map. It helps you display the map data better by breaking-up the predefined number scale into smaller sections. For example, in a map where  time  is being plotted, you can display 3.87 days as 3 days, 20 hours, 52 minutes and 25 seconds. </p>
+        <p>Let us jump to an example straightaway to understand this better. </p>
+        <p>Let us build a map which indicates the shipment time taken for various continents. Each shipment time can take time ranging from a  few days to a few months. And we have the data for each continent in hours itself.   Now, if we were to show all the data on the map in hours only, it will not   appear too legible. What we can do is build a scale indicating time and then specify   it to the map. This scale  will look something as under:</p>
+        <p>24 hours = 1 day<br />
+           7 days = 1   week<br />
+           4 weeks = 1 month<br />
+3 months = 1 quarter<br />
+        4 quarters = 1 year</p>
+        <p>We can define the same in our map using:</p>
+        <p class="code_container"><span class="codeInline">&lt;map defaultNumberScale='h' numberScaleValue='24,7,4,3,4'   numberScaleUnit='d,w,m,q,y'  ... &gt;</span> </p>
+        <!--<p>Please see the <a href="../AttDesc/Number_Scaling.html">Number Scaling</a> page for more details on how to build a number scale. Now let us consider the data below: </p>-->
+     </td>
+  </tr>
+  <tr>
+     <td>
+        <div class="container">
+           <ul class="tabs">
+              <li><a href="#tab1">XML</a></li>
+              <li><a href="#tab2">JSON</a></li>
+           </ul>
+           <div class="tab_container">
+              <div id="tab1" class="tab_content">
+                 <pre class="code_container prettyprint">&lt;map defaultNumberScale="h" numberScaleValue="24,7,4,3,4" numberScaleUnit="d,w,m,q,y" borderColor="005879" fillColor="D7F4FF" includeValueInLabels="1" baseFontSize="9" showBevel="0" &gt;
+  &lt;data&gt;
+    &lt;entity id="NA" value="515"/&gt;
+    &lt;entity id="SA" value="373"/&gt;
+    &lt;entity id="AS" value="3875"/&gt;
+    &lt;entity id="EU" value="727"/&gt;
+    &lt;entity id="AF" value="885"/&gt;
+    &lt;entity id="AU" value="32"/&gt;
+  &lt;/data&gt;
+&lt;/map&gt;   </pre>
+              </div>
+              <div id="tab2" class="tab_content">
+                 <pre id="pre-datajson" class="prettyprint code_container">{
+	"map": {
+		"defaultnumberscale": "h",
+		"numberscalevalue": "24,7,4,3,4",
+		"numberscaleunit": "d,w,m,q,y",
+		"bordercolor": "005879",
+		"fillcolor": "D7F4FF",
+		"includevalueinlabels": "1",
+		"basefontsize": "9",
+		"showbevel": "0"
+	},
+	"data": [
+		{"id": "NA", "value": "515"  },
+		{"id": "SA", "value": "373"  },
+		{"id": "AS", "value": "3875" },
+		{"id": "EU", "value": "727"  },
+		{"id": "AF", "value": "885"  },
+		{"id": "AU", "value": "32"   }
+	]
+}</pre>
+              </div>
+           </div>
+        </div>
+        <div style="clear:both"></div>
+     </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">The above XML/JSON when used for a Column map will give us this: </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text"><img src="../../introduction/images/scalehours.jpg" width="593" height="335" class="imageBorder" /></td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">You can see above how, owing to the number scale we defined, the values in hours are getting converted into days, weeks, months etc. according to the magnitude of the value entered. Neat work, but wouldn't you rather prefer this? </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text"><img src="../../introduction/images/scalehoursrecursive.jpg" width="592" height="338" class="imageBorder" /></td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>Notice how 1.32 months is converted to 1 month, 1 week, 1 day and 21 hours. This map makes use of recursive number scaling and after converting the time in hours to say, months, whatever is left over is not converted into decimals. It is rather converted into smaller units of time and broken down as far as possible - so the remaining hours are first converted to weeks and again the remaining hours to days and when the hours are too few to be converted into days, they are displayed in hours itself. This gives us a fair idea of how much time was used for each shipment. </p>
+        <p>To use recursive number scaling, all you have to do is set <span class="code_container codeInline">&lt;map ... scaleRecursively='1' .. &gt; </span>.</p>
+        <p>The entire XML/JSON for the map above is: </p>
+     </td>
+  </tr>
+  <tr>
+     <td>
+        <div class="container">
+           <ul class="tabs">
+              <li><a href="#tab3">XML</a></li>
+              <li><a href="#tab4">JSON</a></li>
+           </ul>
+           <div class="tab_container">
+              <div id="tab3" class="tab_content">
+                 <pre class="code_container prettyprint">&lt;map <strong>scaleRecursively='1'</strong> defaultNumberScale="h" numberScaleValue="24,7,4,3,4" numberScaleUnit="d,w,m,q,y" borderColor="005879" fillColor="D7F4FF" includeValueInLabels="1" baseFontSize="9" showBevel="0" &gt;
+  &lt;data&gt;
+    &lt;entity id="NA" value="515"/&gt;
+    &lt;entity id="SA" value="373"/&gt;
+    &lt;entity id="AS" value="3875"/&gt;
+    &lt;entity id="EU" value="727"/&gt;
+    &lt;entity id="AF" value="885"/&gt;
+    &lt;entity id="AU" value="32"/&gt;
+  &lt;/data&gt;
+&lt;/map&gt;</pre>
+              </div>
+              <div id="tab4" class="tab_content">
+                 <pre id="pre-datajson" class="prettyprint code_container">{
+	"map": {
+		<strong>"scaleRecursively": "1",</strong>
+		"defaultnumberscale": "h",
+		"numberscalevalue": "24,7,4,3,4",
+		"numberscaleunit": "d,w,m,q,y",
+		"bordercolor": "005879",
+		"fillcolor": "D7F4FF",
+		"includevalueinlabels": "1",
+		"basefontsize": "9",
+		"showbevel": "0"
+	},
+	"data": [
+		{"id": "NA", "value": "515"  },
+		{"id": "SA", "value": "373"  },
+		{"id": "AS", "value": "3875" },
+		{"id": "EU", "value": "727"  },
+		{"id": "AF", "value": "885"  },
+		{"id": "AU", "value": "32"   }
+	]
+}</pre>
+              </div>
+           </div>
+        </div>
+        <div style="clear:both"></div>
+     </td>
+  </tr>
+  <tr>
+  <td class="text" height="20"></td></tr>
+  <tr>
+    <td valign="top" class="header"><a name="recursionlevels"></a>Controlling the levels of recursion </td>
+  </tr>
+   
+  <tr>
+    <td valign="top" class="text"><p><a name="recursionlevels"></a>You can also control the levels of recursion. Suppose in the above map, instead of  1 month, 1 week, 1 day and 21 hours, you are pretty happy with showing 1 month, 1 week itself either for space constraints or some other good reason. You can control the levels of recursion for all the numbers on your map using the <span class="codeInline">maxScaleRecursion</span> attribute. Suppose you want only two levels of recursion, then set <span class="codeInline">&lt;map ... maxScaleRecursion='2'&gt;</span>. This will convert the above map to:</p>
+        <p> <img src="../../introduction/images/scalehoursrecursivemaxscale.jpg" width="590" height="333" class="imageBorder" /></p>
+        <p>Notice how all the numbers on the map are using a maximum of two time units - the rest have been truncated. When you want all the units of a number to be shown on the map, you can either omit the <span class="codeInline">maxScaleRecursion</span> attribute or set it to <span class="codeInline">-1</span>. </p>
+        <p>By default, all the units of a number are separated by a space. You can customize the separator using the <span class="codeInline">scaleSeparator</span> attribute. For example, setting <span class="codeInline"> scaleSeparator=', ' </span>will separate each unit with a comma as shown below: </p>
+        <p><img src="../../introduction/images/scalehoursrecursiveseparator.jpg" width="589" height="337" class="imageBorder" />     </p></td>
+  </tr>
+  
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Number Scaling|NumScaling.html","Input Number Format|FormInNum.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

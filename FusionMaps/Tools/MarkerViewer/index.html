@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <title>FusionMaps XT - Marker Viewer</title>
+        <script type="text/javascript" >
+            window.MAPEXPLORER_MAPPATH = "../../Maps/";
+            window.MARKER_DATAPATH = "data/";
+          
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="resources/css/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/theme.css" />
+        <script type="text/javascript" src="resources/js/jquery.min.js"></script>
+        <script type="text/javascript" src="resources/js/prettify.js"></script>
+        <script type="text/javascript" src="resources/js/vkbeautify.0.98.01.beta.js"></script>
+        <script type="text/javascript" src="resources/js/json2.js"></script>
+
+        <script type="text/javascript" src="../../Maps/FusionCharts.js"></script>
+
+        <script type="text/javascript" src="resources/js/helper.js"></script>
+        <script type="text/javascript" src="resources/js/lib.js"></script>
+        <script type="text/javascript" src="resources/js/theme.js"></script>
+        <script type="text/javascript" src="resources/js/maplist-core-pack.js"></script>
+
+    </head>
+
+
+   <!--[if lt IE 7 ]>   <body class="ie6 theme0">          <![endif]-->
+   <!--[if IE 7 ]>      <body class="ie7 theme0">          <![endif]-->
+   <!--[if IE 8 ]>      <body class="ie8 theme0">          <![endif]-->
+   <!--[if IE 9 ]>      <body class="ie9 theme0">          <![endif]-->
+   <!--[!(IE)]><!-->    <body class="theme0">              <!--<![endif]-->
+        <div id="wrapper">
+
+            <div id="header">
+                <div id="content">
+                    <div id="container"><span class="title"> - Marker Viewer</span></div>
+                </div>
+            </div>
+
+            <div id="body">
+
+                <div id="left" class="leftpanel"><div id="content" >
+                        <div id="container">
+                            <div id="mapList"></div>
+                            <div id="mapListHeading"><nobr>Select a map</nobr></div>
+                        </div>
+                        <div id="swap" class="goin"></div>
+                    </div>
+                </div>
+
+
+   
+                <div id="middle">
+                    <div id="content">
+                        <div id="container">
+                            
+                            <div id="mapContainer"></div>
+                            <div id="mapDataContainer"><pre  class='prettyprint'></pre></div>
+                            
+                            <div id="mapDetails">Marker data of <b><span id="name"></span></b> map</div>
+                            <div id="hoverDetails"> 
+                                <a name="viewxml">View XML</a> | 
+                                <a name="viewjson">View JSON</a>  |  
+                                <a name="viewjavascriptmap">View Markers in JavaScript Map</a><span> | 
+                                <a name="viewflashmap">View Markers in Flash Map</a></span>
+                            </div>
+                            <div id="fullscreenbtn" ><a class="outfull"></a></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+       <div id="searchResultBox"></div>
+       <a class="openinnewwindow" target="_blank" title="Open in new window or tab"></a>
+    </body>
+</html>

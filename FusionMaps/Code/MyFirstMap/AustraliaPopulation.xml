@@ -1,0 +1,12 @@
+
+<map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'> 
+    <data> 
+        <entity id='WA' value='679'  /> 
+        <entity id='NT' value='300' /> 
+        <entity id='QU' value='579' /> 
+        <entity id='SA' value='200' /> 
+        <entity id='SW' value='250' /> 
+        <entity id='VI' value='98' /> 
+        <entity id='TA' value='45' /> 
+    </data> 
+</map>

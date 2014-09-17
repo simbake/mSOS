@@ -1,0 +1,15 @@
+<map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='0' labelSepChar=': ' baseFontSize='9' exportEnabled='1' exportAtClient='0' exportAction='download' exportHandler='http://www.domain.com/ExportHandlers/FCExporter.php' exportFileName='MyFileName' exportFormats='PDF=Export as PDF|PNG=Export as PNG' exportDialogMessage='Building map output ' exportDialogColor='e1f5ff' exportDialogBorderColor='0372ab' exportDialogFontColor='0372ab' exportDialogPBColor='0372ab'>
+	<colorRange>
+		<color minValue='0' maxValue='500' displayValue='Sparsely Populated' color='A7E9BC' />
+		<color minValue='500' maxValue='1000' displayValue='Well Populated' color='FFFFCC' />
+		<color minValue='1000' maxValue='5000' displayValue='Densely Populated' color='FF9377' />
+	</colorRange>
+	<data>
+		<entity id='NA' value='515' />
+		<entity id='SA' value='373' />
+		<entity id='AS' value='3875' />
+		<entity id='EU' value='727' />
+		<entity id='AF' value='885' />
+		<entity id='AU' value='32' />
+	</data>		
+</map>

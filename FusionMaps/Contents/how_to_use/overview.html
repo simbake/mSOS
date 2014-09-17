@@ -1,0 +1,311 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Quick Map Configuration</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script></head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td><span class="pageHeader">Quick Map Configuration </span></td>
+  </tr>
+  
+  <tr> 
+    <td>
+       <p class="text">This section is a guide to the various objects that a map is comprised of and to the structure of the XML/JSON data FusionMaps  XT accepts.</p>
+       <p class="highlightBlock">If you're a non-technical user and want to generate maps without using any programs or scripts, you can  switch to<strong> </strong><a href="GUI.html">Using Visual Map Builder</a> page, where we explain how to visually configure and generate a data-driven map, without getting into any programming. </p>
+	    <p>Let's now take a pictorial tour of each object before we go into more details.</p>
+      <p class="text"><img src="Images/maptour.jpg" width="815" height="550" /></p>
+      
+      </td>
+  </tr>
+  <tr>
+    <td class="header">Map objects</td>
+  </tr>
+  <tr>
+    <td>
+        <p>Each map of FusionMaps  XT pack comprises of a number of objects of which the important ones are :</p>
+        <ul>
+          <li><a href="#entity">Entity</a></li>
+          <li><a href="#legend">Legend showing colored data Ranges</a></li>
+          <li><a href="#marker">Marker</a></li>
+          <li><a href="#markershapes">Marker Shape</a></li>
+          <li><a href="#markerconnector">Marker Connector</a></li>
+        </ul>
+     </td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+     <td class="header"><a name="entity"></a>Entity</td>
+  </tr>
+  <tr>
+     <td>
+        <p>An entity for a map is the smallest item that we're dealing with on the map. For example, in a World Map showing continents, each continent is an entity. In a continent map showing countries, each country is referred to as an entity. Similarly, if a country map is showing states, each state is referred to as an entity.</p>
+        <p>For each map each entity has an unique identifier. We call it <span class="codeInline">internalId </span>of the entity. For example, in World map the <span class="codeInline">internalId</span> of North America is NA, ASIA is AS; in Europe map the <span class="codeInline">internalId </span>of UK is 042 etc. To set a value to an entity of a map, one need to pass the <span class="codeInline">internalId</span> of the entity in the XML to the entity element. The list of <span class="codeInline">internalId</span>s for each map is provided in <strong>Map Entity Specifications </strong>section. The table below is the Entity Specification sheet of the World map. </p>
+        <p><strong><span class="header"><a name="ss" id="ss"></a></span>Map Entity Specification Sheet for  World Map</strong></p>
+        <p><span class="text">The <span class="codeInline">Entities</span> table for the world Map is reproduced below 
+         ( from <strong>Map Entity Specifications</strong> &gt; World &amp; Continents&nbsp; &gt; <strong><a href="../MapSS/WorldMap.html">World</a></strong> ). </span></p>
+        <table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+           <tr>
+              <td width="197" valign="top" class="trAttHeader"> <strong>Internal Id </strong> </td>
+              <td width="197" valign="top" class="trAttHeader"> <strong>Short Name (Abbreviated Name) </strong> </td>
+              <td width="197" valign="top" class="trAttHeader"> <strong>Long Name</strong> </td>
+            </tr>
+           <tr>
+              <td width="197" valign="top" class="codeInline"> NA </td>
+              <td width="197" valign="top" class="text"> NA </td>
+              <td width="197" valign="top" class="text"> North America </td>
+            </tr>
+           <tr>
+              <td width="197" valign="top" class="codeInline"> SA </td>
+              <td width="197" valign="top" class="text"> SA </td>
+              <td width="197" valign="top" class="text"> South America </td>
+            </tr>
+           <tr>
+              <td width="197" valign="top" class="codeInline"> EU </td>
+              <td width="197" valign="top" class="text"> EU </td>
+              <td width="197" valign="top" class="text"> Europe </td>
+            </tr>
+           <tr>
+              <td width="197" valign="top" class="codeInline"> AS </td>
+              <td width="197" valign="top" class="text"> AS </td>
+              <td width="197" valign="top" class="text"> Asia </td>
+            </tr>
+           <tr>
+              <td width="197" valign="top" class="codeInline"> AF </td>
+              <td width="197" valign="top" class="text"> AF </td>
+              <td width="197" valign="top" class="text"> Africa </td>
+            </tr>
+           <tr>
+              <td width="197" valign="top" class="text"> AU </td>
+              <td width="197" valign="top" class="text"> AU </td>
+              <td width="197" valign="top" class="text"> Australia </td>
+            </tr>
+         </table>
+     </td>
+  </tr>
+  
+  <tr> 
+     <td><p class="text">As you can see above, each entity on the map has three 
+        properties:</p>
+        <ul>
+           <li><strong class="codeInline">Internal Id (Entity Id)</strong> 
+              through which we refer to that entity in the <span class="codeInline">XML/JSON 
+            </span>data.</li>
+           <li><strong class="codeInline">Short Name</strong> of the 
+            entity which gets displayed on the map.</li>
+           <li><strong class="codeInline">Full Name</strong> of the 
+              entity, which by default is shown as tool tip for the entity. You can 
+            also opt to show full name on the map instead of short name.</li>
+         </ul>
+        <p class="highlightBlock"><strong>Note</strong>: You can get the specification sheet&nbsp;for each map in the <strong><a href="../MapSS/WorldMap.html">Map Entity Specifications</a></strong> section in this documentation.</p>
+<p class="highlightBlock"><strong>Note</strong>: You can define your own<span class="codeInline"> IDs</span>, 
+        short names and long names for each entity &ndash; we'll see that <a href="CustomID.html">later</a>.</p>
+    
+	<p>Let us now look deeper into the XML that we had built in the first sample.</p>
+	<pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+        &nbsp;&lt;data&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='<span class="codeInline">NA</span>' value='515' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id=<span class="codeInline">'SA</span>' value='373' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='<span class="codeInline">AS</span>' value='3875' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='<span class="codeInline">EU</span>' value='727' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='<span class="codeInline">AF</span>' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='<span class="codeInline">AU</span>' value='32' /&gt;
+        &nbsp;&lt;/data&gt;&nbsp;&nbsp;&nbsp;&nbsp; <br />&lt;/map&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td>
+       <p><span class="text">In the above code, we're setting value to the entities of the World map</span> in an XML format that FusionMaps XT can understand. </p>
+      <p class="text">Each <span>XML </span>data document 
+        for FusionMaps XT starts with <span class="codeInline">&lt;map&gt;</span> element. 
+        There are a number of cosmetic and functional attributes which you can 
+        specify for <span class="codeInline">&lt;map&gt; </span>element. You can see them in <a href="../DataFormats/XML.html#Anchor1">XML API</a> page. For this example, we've defined the 
+        border color of the map, fill color, number suffix (to be added at the 
+        end of every number), a flag to include data values in map labels, the 
+        label separator character and font size attributes.</p>
+      <p class="text">Immediately inside the <span class="codeInline">&lt;map&gt; 
+        </span>element, we've defined <span class="codeInline">&lt;data&gt;</span> 
+        element, whose child nodes contain the actual data. To define data for 
+        each entity on the map, an <span class="codeInline">&lt;entity&gt;</span> 
+        element is added as under:</p>
+      <pre class="prettyprint code_container">&lt;entity id='NA' value='515' /&gt;</pre>
+      <p class="text">The<span class="codeInline"> id </span>here corresponds 
+        to the internal Id of the entity (picked from &quot;Map Entity Specification&quot; Sheet).<span class="codeInline"> 
+        value</span> denotes the actual value which we want to show on the map. There are other attributes that you can specify for <span class="codeInline">&lt;entity&gt;</span> element. Please refer to <a href="../DataFormats/XML.html#Anchor20">XML API</a> page for the list of attributes. </p>
+      <p class="text">That completes the XML part of the application.</p>
+      <p class="highlightBlock">Using the Visual GUI provided in <span class="codeInline">Download Package &gt; Tools &gt; GUI</span>, you can automatically generate the Entity XML template for any map. That is, you will not have to manually write the <span class="codeInline">&lt;entity&gt;</span> element for each entity of the map. Instead our GUI will build this for you, and you can plug it in your code and then replace the values with values from your data store. </p>    </td>
+  </tr>
+  
+  
+  <tr>
+     <td class="header"><a name="legend" id="legend"></a>Legend showing colored data Ranges</td>
+  </tr>
+  <tr>
+     <td>
+        <p>FusionMaps  XT allows you to auto-color each entity based on a defined value-range. Each value range can be defined to have a unique color. This makes the entities distinguishable based on their data. Using color range, you can classify your data into sections, with each section having a different name and specify color to differentiate from each other. For each color range, you'll have to specify the minimum and maximum values, and the hex color code for the range. To display a label for the color range specify the label using the <span class="codeInline">displayValue</span> attribute. The color of the numeric range is specified using the <span class="codeInline">code</span> attribute. <br />
+          <br />
+		The numeric color range is displayed with their lables in legends. A Legend is a 
+		rectangular box appearing at the bottom of the map with icons or a scale along with the labels of the numeric ranges. There are two types of legends. They are: 
+		</p><ol>
+		<li><a href="ColorRange.html">Icon legend</a></li>
+		<li><a href="gradientlegend.html">Gradient legend</a></li>
+		</ol>
+		<p></p>
+        <p>As you will find from the sample World map shown above, four Population color ranges are defined for the map. As per the value of the entities/continents, the entities are set with the matched range's color. Also note that since we do not provide value for Africa, no color (from color-range table) is applied to Africa entity. The definition of the color range is as follows: </p>
+     </td>
+  </tr>
+  
+  <tr>
+     <td>
+        <pre class="prettyprint code_container">&lt;map ...&gt;
+        ...
+   &lt;colorRange&gt;
+   &nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='1' maxValue='100' displayValue=' Below 100 M' code='F29C9C' /&gt;
+   &nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='100' maxValue='500' displayValue='100 - 500 M' code='F2E0A1' /&gt;
+   &nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='500' maxValue='1000' displayValue='500 - 1000 M' code='649A64' /&gt;
+   &nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='1000' maxValue='5000000000' displayValue='Above 1000 M' code='E1F5C9' /&gt;
+   &lt;/colorRange&gt;
+        ...
+&lt;/map&gt;</pre>
+     </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="highlightBlock">Please refer to <a href="../DataFormats/XML.html#Anchor26">Map XML Sheet </a>page for the list of attributes supported by <span class="codeInline">colorRange</span> element. </td>
+  </tr>
+  <tr>
+     <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+     <td class="header"><a name="marker" id="marker"></a>Marker</td>
+  </tr>
+  <tr>
+     <td>
+        <p>Markers are user defined points on the map that help you pin-point  cities, junctions, houses, malls, locations etc. You can set a label and tooltip to the marker. You can turn them as hotspots to open a URL, raise an event or call a function. You can set a shape like circle, triangle, diamond, arc or a custom shape/image  to the marker. The rule for creating a marker is:</p>
+        <ul>
+           <li> define a marker based on the x and y position of the map and </li>
+           <li>make the defined marker visible on the map by applying the marker.</li>
+       </ul>
+        <p>In the map above you can locate a red marker near the top of the North America entity. </p>
+     </td>
+  </tr>
+  
+  
+  
+  <tr>
+     <td class="header"><a name="markershapes" id="markershapes"></a>Marker shapes </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+     <td>You can customize the shapes of a marker by defining custom shapes or loading external images. In the World map above, you will find two custom image marker-shapes are applied as flag of USA and India.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+     <td class="header"><a name="markerconnector" id="markerconnector"></a>Marker connector </td>
+  </tr>
+  <tr>
+     <td>&nbsp;</td>
+  </tr>
+  <tr>
+     <td>You can again connect two defined markers on a map using straight lines, which we call marker-connectors. You can show custom labels for the marker connectors, link it to  external URLs, show tool tips for the connector and customize all the  cosmetics.</td>
+  </tr>
+  <tr>
+     <td>&nbsp;</td>
+  </tr>
+  <tr>
+     <td>The XML shown below defines the markers, shapes and connectors for the World map shown above. </td>
+  </tr>
+  <tr>
+     <td> 
+        <pre class="prettyprint code_container">&lt;map&gt;
+        ...
+   &lt;markers&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;definition&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;marker id='CA' x='116.65' y='94.85' label='Sales Office' labelPos='top'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;marker id='US' x='131.57' y='153.22' label='Headquarters' labelPos='bottom'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;marker id='IN' x='499.26' y='202.5' label='Accounts'  labelPos='bottom'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;/definition&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;shapes&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;shape id='USMap' type='image' url='Resources/us_flag.jpg' labelPadding='12' /&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;shape id='INMap' type='image' url='Resources/ind_flag.jpg' labelPadding='12' /&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;/shapes&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;application&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;marker id='CA' shapeId='circle' toolText='Canada&amp;lt;BR&amp;gt;2 Managers&amp;lt;BR&amp;gt;11 Staff'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;marker id='US' shapeId='USMap' toolText='United States&amp;lt;BR&amp;gt;CEO, CFO, 3 Managers&amp;lt;BR&amp;gt;26 Staff'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;marker id='IN' shapeId='INMap' toolText='India&amp;lt;BR&amp;gt;1 Manager&amp;lt;BR&amp;gt;5 Accountants'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;/application&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;connectors&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;connector from='CA' to='IN' toolText='remote' dashed='0' thickness='2' color='ff0000' alpha='40'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &lt;connector from='IN' to='US' toolText='direct' dashed='1' thickness='2'  color='0000ff' alpha='90'/&gt;
+   &nbsp;&nbsp; &nbsp;&nbsp; &lt;/connectors&gt;
+    &lt;/markers&gt;
+        ...
+&lt;/map&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="highlightBlock">Please refer to <a href="../markers/MarkerXML.html">Quick Map Configuration &gt; Markers &gt; XML structure </a>page for the list of attributes supported by marker related elements.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td><span class="text">Next, we'll see how to use the Visual Map Builder for map generation. </span></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("How FusionMaps XT works? - Data String Method|../how_fm_work/DataXMLExp.html","Using Visual Map Builder|GUI.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

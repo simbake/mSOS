@@ -1,0 +1,29 @@
+<map animation='0' showShadow='0' showBevel='0' showLabels='0' showMarkerLabels='1' fillColor='F1f1f1' borderColor='999999' baseFont='Verdana' baseFontSize='10' markerBorderColor='000000' markerBgColor='' markerRadius='' legendPosition='bottom' useHoverColor='1' showMarkerToolTip='1'  >
+	<data>
+		<entity id='ST.AG'  />
+		<entity id='ST.CG'  />
+		<entity id='ST.CU'  />
+		<entity id='ST.LE'  />
+		<entity id='ST.LO'  />
+		<entity id='ST.MZ'  />
+		<entity id='ST.PA'  />
+	</data>
+	<markers>
+	<shapes>
+	     <shape id='myCustomShape' type='circle' fillcolor='FFFFFF,333333' fillPattern='radial' showBorder='0' radius='4'/>
+		 <shape id='newCustomShape' type='circle' fillcolor='FFFFFF,000099' fillPattern='radial' showBorder='0' radius='3'/>
+		 </shapes>
+		<definition>
+			<marker id='ST' x='114.4' y='207.89' label='Sao Tome' labelPos='right'  />
+			<marker id='01' x='90.48' y='305.65' label='Santa Cruz' labelPos='right'  />
+			<marker id='02' x='60.32' y='215.17' label='Neves' labelPos='left'  />
+			<marker id='03' x='225.68' y='37.33' label='Santo Antonio' labelPos='left'  />
+		</definition>
+		<application>
+			<marker id='ST' shapeId='myCustomShape'  />
+			<marker id='01' shapeId='newCustomShape'  />
+			<marker id='02' shapeId='newCustomShape'  />
+			<marker id='03' shapeId='newCustomShape'  />
+		</application>
+	</markers>
+</map>

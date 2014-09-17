@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Changing map size </title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Changing map dimensions" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Changing map dimensions </td>
+
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>In this page, we will see how to change map dimensions (size). You can  set the dimensions of the map either in terms of  pixels or specify the percentage width and height of the map relative to its container (a DIV or any other HTML element).  If the size is specified in pixels, then the map's dimensions remain constant, irrespective of the size of the container. However, if the width and height of the map are set as percentage of the container, then the map automatically adapts itself to the change in size of the container.</p>
+       <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder.</p>
+    </td>
+  </tr>
+  
+
+  
+  <tr>
+     <td valign="top" class="header" ><a name="pixels" id="pixels"></a>Setting the width and height in pixel values</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text" >
+        <p>To change the width and height, all you have to do is provide the desired width and height in pixels (without appending <span class="codeInline">px</span> at end of it). Let's see how the change is incorporated in the HTML code.</p>
+      
+	    <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+     &lt;title&gt;My First map using FusionMaps XT - change size&lt;/title&gt; 	
+	   &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;&lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+     &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+	   &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 
+
+        var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+		     &quot;myMapId&quot;, <strong>&quot;600&quot;, &quot;400&quot;</strong>, &quot;0&quot; );
+        myMap.setXMLUrl(&quot;Data.xml&quot;);
+        myMap.render(&quot;mapContainer&quot;);
+      
+	   // --&gt;
+	  &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+	    <p>See it <a href="../../Code/MyFirstMap/MyFirstMap-change-size.html" target="_blank">live</a>!</p>
+     
+	 <p>In the above code, we have changed the map's width  to 600 pixels and height to 400 pixels. The map now looks like this: </p>
+	 
+	 <p><img src="../FirstMap/Images/Resize.jpg" width="592" height="393" class="imageBorder" /></p>
+	 </td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="precent" id="precent"></a>Setting the width and height in percent values </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text"><p>You can also set the width and height of the map in terms of percentage. The map will automatically adjust its dimension with respect to the parent HTML container element.  Let's see how this is done in HTML:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text" >
+	 <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First map using FusionMaps  XT- change size in percentage&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;&lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;mapContainer&quot; <strong>style=&quot;width:800px; height:300px;&quot;</strong>&gt;
+        FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 
+
+      var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+          &quot;myMapId&quot;, <strong>&quot;80%&quot;, &quot;100%&quot;</strong>, &quot;0&quot;);
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+      
+    // --&gt;
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+	 <p>See it <a href="../../Code/MyFirstMap/MyFirstMap-change-size-percent.html" target="_blank">live</a>!</p>
+    
+	<p class="text">In the above code, we have set the width of the map to  80% and height to 100%. The DIV with id <span class="codeInline">mapContainer</span> is the container element of the map. Hence, the dimensions of the map will be derived from the dimensions of the <span class="codeInline">mapContainer</span> Div.  In this example, we have set the width of the DIV to 800 pixels and its height to 300 pixels. So, the map's size is automatically set to 640 x 300. The map will  look like the image below:</p>
+	 <p><img src="../FirstMap/Images/ResizePercent.jpg" width="633" height="291" class="imageBorder" /></p>
+	 
+        <p class="highlightBlock">In certain cases, if the HTML container element itself has not acquired proper width or height (due to error in rendering by browser), the map might look squeezed, or it may not render in the first place. If this happens,  then you'll have to specify the map's dimensions in pixels.</p> </td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="dynamic" id="dynamic"></a>Dynamic resize feature of maps </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>Starting FusionMaps XT, maps can dynamically resize itself when the parent container resizes. For this you will need to:</p>
+        <ul>
+         <li>Set the map's size in percentage</li>
+           <li>Set your HTML map container such that its dimension changes dynamically when the browser resizes or due to  other changes taking place in the page (like when an element is added or removed) </li>
+       </ul>
+        <p>Whenever the container element resizes, the map will also dynamically resize itself instantly.</p>
+        <p>In the example below, we have created a  very basic sample where the map will fill up the entire space in the Web browser and if the browser's size is changed, the map will resize itself. Note, that the width and height of the BODY and DIV elements are set using CSS (cascading style sheet).</p></td>
+  </tr>
+  
+
+  <tr>
+    <td valign="top" class="text">
+        <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First map using FusionMaps XT
+          - Using dynamically resizable map&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;   
+  &lt;/head&gt;   
+  <strong>&lt;body style=&quot;height:100%;</strong>&quot;&gt; 
+    &lt;div id=&quot;mapContainer<strong>&quot; style=&quot;height:100%</strong>;&quot; &gt;
+        FusionMaps XT will load here&lt;/div&gt;          
+		
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 		  
+			
+      var myMap = new FusionCharts(&quot;Maps/FCMap_World.swf&quot;, 
+          &quot;myMapId&quot;, &quot;<strong>100%&quot;, &quot;100%&quot;</strong>, &quot;0&quot;);       
+      myMap.setXMLUrl(&quot;Data.xml&quot;);         
+      myMap.render(&quot;mapContainer&quot;);          	  
+      // --&gt;     
+    &lt;/script&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+        <p>
+        See a similar example <a href="../../Code/MyFirstMap/MyFirstMap-change-size-fullscreen.html" target="_blank">live</a>!</p>
+        <p>In the above code we have:</p>
+        <ol>
+           <li>Set the height of the body to  100%</li>
+           <li>Set the height of the container DIV to 100%, which means that it will vertically fill up the body space of the HTML. It is not required to specify the DIV's width, since by default it takes up the full width</li>
+           <li>Set the map's width and height to 100%</li>
+           
+        </ol>
+       
+     <p class="highlightBlock"><a href="../../Code/MyFirstMap/change-size-percent-incontainer.html" target="_blank">Click here</a> to see another example of dynamic resizing. In this example, the container element of the map can be resized through dragging a resizable element at the bottom-left corner.  Drag the resizable element and notice how the map gets automatically resized as per the size of the container element. </p>   </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using XML embedded in the page|dataXML.html","Creating multiple maps in a page|multiple.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

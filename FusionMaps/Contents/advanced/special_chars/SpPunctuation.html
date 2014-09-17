@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using Special Punctuation on Map</title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Advanced Topics", "Using Special characters", "Using Special Punctuation" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+<tr>
+<td class="pageHeader">Using Special Punctuation</td>
+</tr>
+<tr>
+<td valign="top" class="text">
+  <p>You can directly embed most of the special characters and punctuation marks in the XML/JSON data source of your map. However, &amp;,  <, >, ' (apostrophe) and "(quote) need to be specially encoded when providing the same as a part of the map data. Apart from this, there is no need to encode any other special character.</p>
+  <p> <img src="../images/sp_punctuation.jpg" width="679" height="384" class="imageBorder" />      </p>
+  <p>The XML/JSON used for the map above is given below: 
+  </p></td></tr><tr>
+  <td>
+  <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+<pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' baseFontSize='9'&gt;
+ &lt;data&gt;
+  &lt;entity id='NA' value='515' displayValue='<strong>&amp;quot;</strong>Half a billion<strong>&amp;quot;</strong>'/&gt;
+  &lt;entity id='SA' value='373' displayValue='10% of Asia<strong>&amp;apos;s</strong>'/&gt;
+  &lt;entity id='AS' value='3875' displayValue='<strong>&amp;gt;</strong>1Billion'/&gt;
+  &lt;entity id='EU' value='727' displayValue='11<strong>%</strong> of Total'/&gt;
+  &lt;entity id='AF' value='885' displayValue='Add NA <strong>&amp;amp;</strong> SA'/&gt;
+  &lt;entity id='AU' value='32' displayValue='<strong>&amp;lt;</strong>100 Million'/&gt;
+ &lt;/data&gt;
+&lt;/map&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  <pre id="pre-datajson" class="prettyprint code_container">{
+"map": {
+ "borderColor": "005879",
+ "fillColor": "D7F4FF",
+ "numberSuffix": " Mill.",
+ "baseFontSize": "9"
+  },
+ "data": [
+  {"id": "NA", "value": "515" &quot;displayValue&quot;: &quot;<strong>&amp;quot;</strong>Half a billion<strong>&amp;quot;</strong>&quot; },
+  {"id": "SA", "value": "373" &quot;displayValue&quot;: &quot;10% of Asia<strong>&amp;apos;s</strong>&quot; },
+  {"id": "AS", "value": "3875" &quot;displayValue&quot;: &quot;<strong>&amp;gt;</strong>1Billion&quot; },
+  {"id": "EU", "value": "727" &quot;displayValue&quot;: &quot;11<strong>%</strong> of Total&quot; },
+  {"id": "AF", "value": "885" &quot;displayValue&quot;: &quot;Add NA <strong>&amp;amp;</strong> SA&quot; },
+  {"id": "AU", "value": "32" &quot;displayValue&quot;: &quot;<strong>&amp;lt;</strong>100 Million&quot; }
+  ]
+}</pre>
+</div>
+    </div></div>
+<div style="clear:both"></div>
+  </td>
+  </tr>
+  <tr>
+  <td class="text">
+  <p>Let's see  how to use special punctuation marks like -  &amp;,  &lt;, &gt;, ' (apostrophe)  and &quot;(quote) in the following sections:</p>  </td>
+</tr>
+<tr>
+<td class="header"><a name="amp" id="amp"></a>Using <span class="codeInline"><strong>&</strong></span> sign</td>
+</tr>
+<tr>
+<td class="text">
+<p>To display <span class="codeInline"><strong>&amp;</strong></span> character on a map, you need to use the encoded form of the character - <span class="codeInline">&amp;amp;</span>&nbsp; in your map data (XML or JSON). It is applicable in both Data URL and Data String methods. </p>
+<p class="highlightBlock"> When using the <a href="../../FirstMap/html_embed.html">HTML embedding method and Data string method</a>, it is essential to encode <span class="codeInline">&amp;</span> character to<span class="codeInline"> %26.</span></p>
+</td>
+</tr>
+
+
+<tr>
+<td class="header"><a name="ltgt" id="ltgt"></a>Using &lt; or &gt; sign</td>
+</tr>
+<tr>
+<td class="text">
+  <p>You can't directly use <span class="codeInline"><strong>&lt;</strong></span> and <span class="codeInline"><strong>&gt;</strong></span> characters in FusionMaps XT data  as these are invalid characters from XML perspective. To use <span class="codeInline"><strong>&lt;</strong></span> and <span class="codeInline"><strong>&gt;</strong></span>, you first need to convert them into <span class="codeInline">&amp;lt;</span> and <span class="codeInline">&amp;gt;</span>,  respectively. It is applicable in both Data URL and Data String methods. </p>
+   </td>
+</tr>
+
+<tr>
+<td class="text">
+
+<p>Typically, text in FusionMaps XT is rendered in normal mode. But, you can also render the text in limited HTML mode too. In case, you need to use HTML text as part of any label, you'll need to customize the map object using <a href="../../Styles/Font.html"><strong>Styles</strong></a> and set <span class="codeInline"><a href="../../Styles/Font.html#ishtml">isHTML</a></span> property to 1 in Font Styles. Also, you need to double encode the &lt; and &gt; characters in this case, or else these are considered as starting and end brackets of  HTML tags. Hence, <span class="codeInline">&amp;amp;lt;</span> should be used instead of &lt; and <span class="codeInline">&amp;amp;gt;</span> should be used instead of &gt;. A sample data is shown as below: </p>
+
+
+<p class="highlightBlock"> When using the <a href="../../FirstMap/html_embed.html">HTML embedding method and Data string method</a>, it is essential to encode <span class="codeInline">&lt;</span> and <span class="codeInline">&gt;</span> characters to <span class="codeInline">%26lt;</span> and <span class="codeInline">%26gt;</span> ,respectively. In case, HTML text mode is set on, <span class="codeInline">%26amp;lt;</span> and <span class="codeInline">%26amp;gt</span>; are to be used, respectively. </p></td>
+</tr>
+<tr>
+<td class="header"><a name="apos" id="apos"></a>Using Apostrophe(') sign</td>
+</tr>
+<tr>
+<td class="text">
+  <p>To display the <span class="codeInline"><strong>'</strong></span> (apostrophe) character on a map, it is recommended to encode it as <span class="codeInline">&amp;apos;</span>. It is applicable in both Data URL and Data String methods. </p>
+  </td>
+</tr>
+
+<tr>
+<td class="text">
+
+<p class="highlightBlock"> When using the <a href="../../FirstMap/html_embed.html">HTML embedding method and Data string method</a>, it is essential to encode <span class="codeInline"><strong>'</strong></span>(apostrophe) character to <span class="codeInline">%26apos;.</span></p></td>
+</tr>
+<tr>
+<td class="header"><a name="quot" id="quot"></a>Using Quote(&quot;) sign</td>
+</tr>
+<tr>
+<td class="text">
+  <p>To display the <span class="codeInline"><strong>"</strong></span> (double-quotation or quotes) character on a map, it is recommended to encode it as <span class="codeInline">&amp;quot;</span>. It is applicable in both Data URL and Data String methods. </p>
+  </td>
+</tr>
+<tr><td class="text">
+<p class="highlightBlock"> When using the <a href="../../FirstMap/html_embed.html">HTML embedding method and Data string method</a>, it is essential to encode <span class="codeInline"><strong>&quot;</strong></span>(quote) character to<span class="codeInline"> %26quot.</span></p></td>
+</tr>
+
+
+<tr>
+  <td class="header"><a name="percent" id="percent"></a>Using Percent(%) sign</td>
+</tr>
+<tr>
+  <td class="text"><p>At times, you might also want to include the <span class="codeInline"><strong>%</strong></span> (percent) sign in your map data. To display <span class="codeInline"><strong>%</strong></span> (percent) sign on a map, you can simply include it in the XML/JSON data source of the map. It is applicable in both Data URL and Data String methods. </p>
+    </td>
+</tr>
+
+<tr>
+  <td class="text">
+    <p class="highlightBlock"> Note that while using the <a href="../../FirstMap/html_embed.html">HTML embedding and Data String  method</a>, it is essential to encode percent character to<span class="codeInline"> %25.</span></p></td>
+</tr>
+
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Currency Symbols|SpCharAll.html","Using gradients|../UsingGradients.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Markers custom shapes &amp; image icons</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|../how_to_use/BasicUsage.html", "Markers custom shapes &amp; icons" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Markers custom shapes &amp; image icons </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Throughout our previous examples, we had used the default shapes provided by FusionMaps XT(circle, arc, diamond or triangle) as our marker shapes and customized their border and background color. However, FusionMaps XT provides you with many more options for marker shapes like defining your custom shape and loading external images as icons. To do so, you'll need to use the SHAPES feature of markers, as explained here.</p>
+    <p>Before jumping to any code, let's see an example first.  </p>
+       <p><img src="Images/MarkerShapeMap.jpg" width="600" height="333" class="imageBorder" /></p>
+       <p>In the above map, we've used custom image icons to show various offices around the world. Also, we've used custom tool text for each marker to show more information, as shown below: </p>
+       <p><img src="Images/MarkerShapeMapToolTip.jpg" width="297" height="197" class="imageBorder" /></p>
+    
+       <p>The XML code for this map can be reproduced as under: </p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="prettyprint code_container">&lt;map animation='0' showShadow='0' showBevel='0' showLabels='0'  showMarkerLabels='1' fillColor='F1f1f1' borderColor='CCCCCC' baseFont='Verdana' baseFontSize='10' markerBorderColor='000000' markerBgColor='FF5904' markerRadius='7' legendPosition='bottom' useHoverColor='0' showToolTip='0' showMarkerToolTip='1'  &gt;
+  &nbsp;&nbsp;&nbsp;&lt;data&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA'  /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA'  /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU'  /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS'  /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF'  /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU'  /&gt;
+  &nbsp;&nbsp;&nbsp;&lt;/data&gt;
+  &nbsp;&nbsp;&nbsp;&lt;markers&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;definition&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CA' x='116.65' y='94.85' label='Sales Office' labelPos='top'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='US' x='131.57' y='133.22' label='Headquarters' labelPos='bottom'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CN' x='532.3' y='150.68' label='Call Center'  labelPos='bottom'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='BR' x='228.55' y='276.03' label='Production Center'  labelPos='bottom'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='AU' x='621.83' y='311.21' label='Q &amp; A'  labelPos='bottom'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='RU' x='532.3' y='76.73' label='Back Office'  labelPos='bottom'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='IN' x='499.26' y='202.5' label='Accounts'  labelPos='bottom'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/definition&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&lt;shapes&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='USMap' type='image' url='Resources/us_flag.jpg' labelPadding='12' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='CAMap' type='image' url='Resources/canada_flag.jpg' labelPadding='12' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='CNMap' type='image' url='Resources/china_flag.jpg' labelPadding='12' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='BRMap' type='image' url='Resources/brazil_flag.jpg' labelPadding='12' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='AUMap' type='image' url='Resources/aus_flag.jpg' labelPadding='12' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='RUMap' type='image' url='Resources/rus_flag.jpg' labelPadding='12' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='INMap' type='image' url='Resources/ind_flag.jpg' labelPadding='12' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/shapes&gt;</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;application&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CA' shapeId='CAMap' toolText='Canada&amp;lt;BR&amp;gt;2 Managers&amp;lt;BR&amp;gt;11 Staff'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='US' shapeId='USMap' toolText='United States&amp;lt;BR&amp;gt;CEO, CFO, 3 Managers&amp;lt;BR&amp;gt;26 Staff'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CN' shapeId='CNMap' toolText='China&amp;lt;BR&amp;gt;1 Manager&amp;lt;BR&amp;gt;7 Support Staff'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='BR' shapeId='BRMap' toolText='Brazil&amp;lt;BR&amp;gt;COO, 2 Managers&amp;lt;BR&amp;gt;32 Factory Staff'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='AU' shapeId='AUMap' toolText='Australia&amp;lt;BR&amp;gt;1 Manager&amp;lt;BR&amp;gt;(Outsourced Agency)'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='RU' shapeId='RUMap' toolText='Russia&amp;lt;BR&amp;gt;1 Manager&amp;lt;BR&amp;gt;6 Staff'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='IN' shapeId='INMap' toolText='India&amp;lt;BR&amp;gt;1 Manager&amp;lt;BR&amp;gt;5 Accountants'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/application&gt;
+  &nbsp;&nbsp;&nbsp;&lt;/markers&gt;
+  &nbsp;&nbsp;&nbsp;&lt;styles&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;definition&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;style name='TTipFont' type='font' isHTML='1'  color='FFFFFF' bgColor='666666' size='11'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;style name='HTMLFont' type='font' color='333333' borderColor='CCCCCC' bgColor='FFFFFF'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;style name='myShadow' type='Shadow' distance='1'/&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/definition&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;application&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;apply toObject='MARKERS' styles='myShadow' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;apply toObject='MARKERLABELS' styles='HTMLFont,myShadow' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;apply toObject='TOOLTIP' styles='TTipFont' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/application&gt;
+  &nbsp;&nbsp;&nbsp;&lt;/styles&gt;
+  &lt;/map&gt;</pre>
+     </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Though the XML looks pretty long because of a lot of things we've put up in this, we'll concentrate on just the custom shapes part. You'll see that we've introduced the new <span class="codeInline">&lt;shapes&gt;</span> and its children<span class="codeInline"> &lt;shape&gt;</span> elements in this code. These elements help you define  custom shapes that markers on your map can use. </p>
+    <p class="highlightBlock">Note that it's not necessary to define <span class="codeInline">&lt;shapes&gt;</span> or <span class="codeInline">&lt;shape&gt;</span> to use markers. If not defined, you can still use the default marker shapes provided by FusionMaps XT. </p>
+    <p>Each custom shape needs to be present as a <span class="codeInline">&lt;shape&gt; </span>element (inside <span class="codeInline">&lt;shapes&gt;</span> element). It can have a lot of attributes as explained below.</p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header">Attributes for &lt;shape&gt; element. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The <span class="codeInline">&lt;shape&gt;</span> element can have a lot of functional and cosmetic attributes. Of all of them, only the following are compulsory:</p>
+      <ul>
+        <li><strong>ID</strong> - Each shape needs to be given a unique Id. During application, you'll directly refer to the ID of each shape to plot it on the map. </li>
+        <li><strong>type </strong>- Type specifies what kind of shape the marker will draw as. Valid values are circle, arc, polygon or image. So, if you want to create a pentagon, select polygon for this attribute and then later set sides to 5. </li>
+        <li><strong>url </strong>- If you're using an image marker shape, you necessarily need to specify it's URL. FusionMaps XT can load GIF, JPEG and PNG files from the same sub-domain only (owing to cross browser security restrictions). </li>
+      </ul>
+    <p>Additionally, you can set the following properties for each marker shape: </p>
+    <ul>
+      <li><strong>sides</strong> - If you've opted to plot a polygon shaped marker, you can specify the number of sides the polygon will have, using this attribute. Valid values are 3-20. </li>
+      <li><strong>alpha </strong>- This attribute lets you configure the alpha of the entire marker. </li>
+      <li><strong>labelPadding </strong>- This attribute lets you set the distance (in pixels) between your marker shape and the marker label. </li>
+      <li><strong>fillColor </strong>- Using this attribute, you can specify the fill color for the marker shape (hex code without #). If you specify a comma separated list of hex codes (without #), FusionMaps XT will use those colors to form a gradient. </li>
+      <li><strong>fillAlpha</strong> - Used to specify the fill alpha. In case of gradients, you'll need to specify a comma separated list of alpha. </li>
+      <li><strong>fillRatio </strong>- If you're using gradient fills for the marker, this attribute lets you set the ratio (on a scale of 0-100) for the gradient component colors. </li>
+      <li><strong>fillAngle </strong>- If you're using gradient fills for the marker, this attribute lets you set the angle for the gradient. </li>
+      <li><strong>fillPattern</strong> - If you're using gradient fills for the marker, this attribute lets you set the pattern for gradient - valid values are &quot;linear&quot; or &quot;radial&quot;. </li>
+      <li><strong>showBorder </strong>- Whether to show border for the marker shape? </li>
+      <li><strong>borderColor </strong>- Border color for the marker shape</li>
+      <li><strong>borderThickness </strong> - Border thickness for the marker shape</li>
+      <li><strong>borderAlpha </strong>- Border alpha for the marker shape</li>
+      <li><strong>radius </strong>- In case of arc, circle or polygon, this attribute lets you set the radius of the same. </li>
+      <li><strong>innerRadius </strong>- In case of arc, this attribute lets you set the inner radius of the same. </li>
+      <li><strong>startAngle </strong>- In case of arc or polygon, this attribute lets you set the starting draw angle. </li>
+      <li><strong>endAngle </strong>- In case of arc, this attribute lets you set the ending draw angle. </li>
+      </ul>    
+    <p>And, the following attributes apply only if you're plotting an image marker shape:</p>
+    <ul>
+      <li><strong>xScale</strong>&nbsp;- This attribute lets you dynamically re-scale the x-scale of your images after they've been loaded. Valid range is 0-1000. </li>
+      <li><strong>yScale</strong> - This attribute lets you dynamically re-scale the y-scale of your images after they've been loaded. Valid range is 0-1000. </li>
+      <li><strong>vAlign </strong>- When using an image marker, you can specify how the image will vertically align with respect to the marker's y position using this attribute. Valid values are &quot;top&quot;, &quot;middle&quot; and &quot;bottom&quot;. For markers which are simple icons, you can use the middle vertical align. In that case, the image will vertically be at the center position of the marker. However, if you've an image icon like a pin-point or a needle with its pointer faced downwards, you'll need to set the vertical alignment position to &quot;top&quot;, so that the pointer exactly points to the given marker location. Horizontally, the images are always aligned centrally.</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Markers - Usage|MarkerUsage.html","Markers - Connectors|MarkerConnectors.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

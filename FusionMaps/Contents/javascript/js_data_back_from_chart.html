@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<title>Getting data back from map</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and JavaScript|js_overview.html",  "Getting data back from map" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Getting data back from map</td>
+
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	<p class="highlightBlock"> FusionMaps XT uses FusionCharts JavaScript Class that takes care of all the products of FusionCharts Suite XT including FusionMaps XT.</p>
+      <p>The FusionCharts JavaScript Class allows you to get data back from map. Using API functions you can retrieve the map data, along with all attributes or properties, in XML or JSON format. You can also retrieve the map data in CSV format. </p>
+      <p>Moreover, you can read all map attributes from a map. By &quot;map attribute&quot;, we mean all the XML attributes or JSON properties which are passed through <span class="codeInline">&lt;map&gt;</span> element in map XML data or through <span class="codeInline">map</span> property in map's JSON data. </p>
+      <p>In this page, we will learn how to:</p>
+      <ul>
+        <li><a href="#xmldata">Get map data in XML format</a></li>
+        <li><a href="#jsondata">Get map data in JSON format</a></li>
+        <li><a href="#csv">Get map data in CSV format</a></li>
+        <li><a href="#getchartattribute">Retrieve a map attribute from map</a></li>
+      </ul>
+ <br />     
+    </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="xmldata"></a>Get XML data from map </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>You can get map XML data using FusionCharts JavaScript Class API. FusionCharts provides various functions as listed below to achieve this:</p>
+      <ul>
+        <li><span class="codeInline msg_handler"><a>getXMLData()</a> &raquo;</span><span class="msg_body veryLightYellowBg ">  This function can only be called on <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a>. </span></li>
+        <li><span class="codeInline msg_handler "><a>getChartData( format )</a> &raquo; </span><span class="msg_body veryLightYellowBg "> This function takes  data-format (&quot;xml&quot; or &quot;json&quot;) of the data as parameter. This function can only be called on <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a>. </span></li>
+        <li><span class="codeInline msg_handler"><a>getXML()</a> &raquo;</span><span class="veryLightYellowBg msg_body"> This legacy function can be called on both <a href="js_chart_instance.html#html">FusionCharts HTML Object</a> and <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a>. </span>This function is deprecated. </li>
+      </ul>
+      <p>Let's now see how these functions work in code:</p>
+      				<p><strong><a name="html"></a>Get XML data from a map using map HTML Object </strong></p>
+				      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+var mapXML = mapReference.getXMLData();</pre>
+
+                      <p class="msg_handler"><a>Click here to see a complete implementation code sample &raquo;</a></p>
+						<pre class="msg_body code_container prettyprint">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Update Map data&lt;/title&gt;
+    &lt;script type="text/javascript" src=&quot;../../Maps/FusionCharts.js&quot;&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      var myMap = new FusionCharts(&quot;../../Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+
+		function showData(format)
+		{
+			var mapReference = FusionCharts( "myMapId" );
+			alert(<strong>mapReference.getXMLData()</strong>);
+		}
+    // --&gt;
+    &lt;/script&gt;
+
+    &lt;input type=&quot;button&quot; onClick=&quot;<strong>showData</strong>('xml');&quot; value=&quot;Show XML Data&quot;&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+						
+<p class="highlightBlock"><img src="Images/getxmldata.jpg" width="737" height="393" class="imageBorder" />
+ </p></pre>
+  
+
+	      <p class="header" style="padding:3px;">Other functions</p>
+                  <p><strong><a name="getxmljs"></a>Get XML data from a map using getXMLData() on FusionCharts JavaScript Object</strong></p>
+                  <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts.items[ &quot;myMapId&quot; ]; 
+var mapXML = mapReference.getXMLData();</pre>
+                  
+      
+      <p><strong><a name="getchartdata"></a>Get XML from a map using getChartData() function </strong><strong> on FusionCharts JavaScript Object</strong></p>
+            <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+var mapXML = mapReference.getChartData(&quot;xml&quot;);</pre>
+            
+            <p><strong><a name="getxml"></a>Get XML from a map using getXML() function on FusionCharts HTML Object </strong></p>
+            <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+var mapXML = chartReference.getXML();</pre>
+            
+      <p class="highlightBlock">The function <span class="codeInline">getXML()</span> is deprecated. </p>
+     
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="jsondata"></a>Get JSON data from map </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>You can get map JSON data using FusionCharts JavaScript Class API. FusionCharts provides various functions as listed below to achieve this:</p>
+      <ul>
+        <li><span class="codeInline msg_handler"><a>getJSONData()</a> &raquo;</span><span class="msg_body veryLightYellowBg "> This function can only be called on <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a>. </span></li>
+        <li><span class="codeInline msg_handler "><a>getChartData( format )</a> &raquo; </span><span class="msg_body veryLightYellowBg "> This function takes  data-format (&quot;xml&quot; or &quot;json&quot;) of the data as parameter. This function can only be called on <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a>. </span></li>
+      </ul>
+      <p>Let's now see how these functions work in code:</p>
+      <p><strong><a name="getjsondata"></a>Get JSON data from a map using getJSONData() function </strong></p>
+      <pre class="code_container prettyprint">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+var mapJSON = mapReference.getJSONData();</pre>
+      
+      <p><strong><a name="getchartdatajson"></a>Get JSON data from a map using getChartData() function </strong></p>
+      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+var mapXML = mapReference.getChartData(&quot;json&quot;);</pre>
+     
+    </td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="header"><a name="csv" id="csv"></a>Get CSV Data from map</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+      <p>You can access the data of the map from FusionCharts JavaScript API as well. All you need to do is call the API function - <span class="msg_handler"><a class="codeInline">getDataAsCSV()</a> &raquo; </span><span class="veryLightYellowBg msg_body"> This legacy function can be called either on <a href="js_chart_instance.html#html">FusionCharts HTML Object</a> or <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a>. </span></p>
+      <p>Let us see a small sample which gets  CSV data from map and display it in a JavaScript alert box as shown in the image below: </p>
+      <p><img src="../Images/ExportData2.jpg" width="409" height="418" class="imageBorder" /></p>
+      <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;Getting CSV data from map&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLData(&quot;&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;&lt;data&gt;&lt;entity id='NA' value='515' /&gt;&lt;entity id='SA' value='373'/&gt;&lt;entity id='AS' value='3875' /&gt;&lt;entity id='EU' value='727' /&gt;&lt;entity id='AF' value='885' /&gt;&lt;entity id='AU' value='32' /&gt;&lt;/data&gt;&lt;/map&gt;&quot;);
+      myMap.render(&quot;mapContainer&quot;);<strong>
+</strong>
+    // --&gt;     
+    &lt;/script&gt; 	   
+    &lt;input onclick = &quot;alert(<strong>FusionCharts('myMapId').getDataAsCSV())</strong>&quot; type=&quot;button&quot; value=&quot;Get CSV Data from map&quot;&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+	     <p>In the above code, we're first creating a World map with DOM Id as <span class="codeInline">myMapId</span>. We provide the following data to the map and ask it to render:</p>
+					     <pre class="code_container prettyprint">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;
+     &lt;data&gt;
+        &lt;entity id='NA' value='515' /&gt;
+        &lt;entity id='SA' value='373'/&gt;
+        &lt;entity id='AS' value='3875' /&gt;
+        &lt;entity id='EU' value='727' /&gt;
+        &lt;entity id='AF' value='885' /&gt;
+        &lt;entity id='AU' value='32' /&gt;
+     &lt;/data&gt;
+&lt;/map&gt;</pre>
+					     <p>Thereafter, we are creating a button, which when clicked, exports CSV data from the map and shows in an alert box. We get the <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a> reference of the map by <span class="codeInline">FusionCharts('myMapId')</span>. </p>
+					     <pre  class="code_container prettyprint">onclick = &quot;alert(<strong>FusionCharts('myMapId').getDataAsCSV()</strong>)&quot;</pre>
+                         
+					     <p class="highlightBlock">Note that the CSV data provides  only the data of the map's dataplot devoid of all properties and trendline definitions.</p>
+					     <p class="msg_handler_slider" style="margin-bottom:0;"><a>Click here to see other implementations of the same function on various object references</a> &raquo;<br />
+      </p><pre class="code_container prettyprint msg_body">myMap.<strong>getDataAsCSV</strong>();
+...
+FusionCharts.getObjectReference(&quot;myMapId&quot;).<strong>getDataAsCSV</strong>();
+...
+FusionCharts.items[&quot;myMapId&quot;].<strong>getDataAsCSV</strong>();</pre>
+          <p class="highlightBlock">You can customize the output format of CSV data by setting various map attributes in XML or JSON data. You can set the value separator, value qualifier and whether to show formatted data values. Read <strong>Exporting Map Data</strong> &gt; <a href="../export_data/ExportDataJS.html">Using JavaScript API</a> to know more on the attributes that configure CSV output format. </p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="getchartattribute"></a>Read map attributes from map </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>You can read a particular map property (also known as &quot;map attribute&quot; which is passed through <span class="codeInline">&lt;map&gt;</span> element in map XML data or through <span class="codeInline">map</span> property in maps JSON data)&nbsp; from a map using FusionCharts JavaScript API call - <span class="msg_handler"><a>getChartAttribute()</a> &raquo; </span><span class="veryLightYellowBg msg_body"> This legacy function can be called either using <a href="js_chart_instance.html#html">FusionCharts HTML Object</a> or <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a>.</span></p>
+      <p>Let's build a sample which reads the map caption and displays it in a JavaScript alert box as shown in the image below: </p>
+      <p><img src="Images/getAttribute.jpg" width="429" height="350" /></p>
+      <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;Getting CSV data from map&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLData(&quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLData(&quot;&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;&lt;data&gt;&lt;entity id='NA' value='515' /&gt;&lt;entity id='SA' value='373'/&gt;&lt;entity id='AS' value='3875' /&gt;&lt;entity id='EU' value='727' /&gt;&lt;entity id='AF' value='885' /&gt;&lt;entity id='AU' value='32' /&gt;&lt;/data&gt;&lt;/map&gt;&quot;);
+      myMap.render(&quot;mapContainer&quot;);<strong>
+</strong>
+    // --&gt;     
+    &lt;/script&gt; 	   
+    &lt;input onclick = &quot;alert(FusionCharts('myMapId')<strong>.getChartAttribute('fillColor')</strong>)&quot; type=&quot;button&quot; value=&quot;fillColor of map&quot;&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+      
+      <p>The above code does the following:</p>
+      <ul>
+        <li>It creates a World map</li>
+        <li>Creates an HTML button which when clicked will call the <span class="codeInline">getChartAttribute </span>of the rendered map </li>
+        <li>Passes the 'fillColor' function as parameter </li>
+      </ul>
+      <p>When the button is clicked, the <span class="codeInline">getChartAttribute()</span> function retrieves the value of <span class="codeInline">fillColor</span> attribute, that is, &quot;D7F4FF&quot; from the map and displays in an alert box. We get the <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a> reference of the map by <span class="codeInline">FusionCharts('myMapId')</span>. </p>
+      <p class="highlightBlock">To know more on the function <a href="API/methods.html#getchartattribute"><span class="codeInline">getChartAttribute()</span></a> please read <strong>API Reference</strong>&gt; <a href="API/methods.html">Functions</a> page. </p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Changing map properties|js_change_chart_properties.html","Listening to events|js_event_overview.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>FusionMaps  XT and JavaScript - Updating JavaScript map using setXMLData() Method</title>	
+
+
+        <script type="text/javascript" language="Javascript" src="../assets/ui/js/jquery.min.js"></script>
+
+        <script type="text/javascript" src="../../Maps/FusionCharts.js"></script>
+        <script type="text/javascript" language="Javascript" src="../assets/ui/js/lib.js"></script>
+        <link href="../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+
+        <script language="JavaScript">
+            //updatemap method is called whenever the user clicks the button to
+            //update the map. Here, we get a reference to the map and update it's
+            //data using setXMLData method.
+            function updateMap(){
+                //Get reference to map object using Dom ID
+                var mapObj = FusionCharts("map1Id");
+                //Update it's data
+                mapObj.setXMLData("<map exportEnabled='1'  animation='0' borderColor='005879' fillColor='86D2EE' numberSuffix=' per sq. mile' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'><data><entity id='NA' value='32' />	<entity id='SA' value='73' /><entity id='AS' value='203' /><entity id='EU' value='134' /><entity id='AF' value='65' /><entity id='AU' value='6.4' /></data></map>");
+                //Disable the button
+                this.document.frmUpdate.btnUpdate.disabled = true;
+            }
+        </script>
+        <!--[if IE 6]>
+        <script src="../../../assets/ui/js/DD_belatedPNG_0.0.8a-min.js></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->		 
+        <style type="text/css">
+            h2.headline {
+                font: normal 110%/137.5% "Trebuchet MS", Arial, Helvetica, sans-serif;
+                padding: 0;
+                margin: 25px 0 25px 0;
+                color: #7d7c8b;
+                text-align: center;
+            }
+            p.small {
+                font: normal 68.75%/150% Verdana, Geneva, sans-serif;
+                color: #919191;
+                padding: 0;
+                margin: 0 auto;
+                width: 664px;
+                text-align: center;
+            }
+        </style>
+
+    </head>
+    <body>
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- header -->
+            <div id="header"> 
+                <div class="logo" title= "FusionMaps XT ">
+                    <a href="http://www.fusioncharts.com/products/suite/fusionmaps/" target="_blank">
+
+                    </a>
+
+                </div>
+                
+                <h1 class="logo-text">Updating JavaScript map using setXMLData()</h1>
+
+            </div>
+            <!-- content area -->
+            <div class="content-area">
+                <div id="content-area-inner-main">
+                    
+                    <div id="messageBox" style="margin-left:100px; margin-right:100px; display:none;"></div>
+                    <p>&nbsp;</p>
+
+
+                    <div class="clear"></div>
+                    <div class="gen-chart-render">
+                        
+
+                        <div id="map1div">
+                            FusionMaps XT
+                        </div>
+                        <script language="JavaScript">					
+                            FusionCharts.setCurrentRenderer('javascript');
+                            var map1 = new FusionCharts("../../Maps/FCMap_World.swf", "map1Id", "750", "400", "0", "1");
+                            map1.setXMLData("<map exportEnabled='1' borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'><data>	<entity id='NA' value='515' /><entity id='SA' value='373' /><entity id='AS' value='3875' /><entity id='EU' value='727' /><entity id='AF' value='885' /><entity id='AU' value='32' /></data></map>");
+                            map1.render("map1div");
+                        </script>
+                        <br />
+                        <form name='frmUpdate'>
+                            <input type='button' value='Show Population Density' onclick='javaScript:updateMap();' name='btnUpdate' />
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </body>
+
+</html>

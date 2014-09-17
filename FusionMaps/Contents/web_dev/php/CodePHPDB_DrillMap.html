@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with PHP - Drill-down Map</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with PHP", "Plotting from database", "Drill-down Map" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Drill-down Map  </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>Each entity of the main US map on click drills-down to <span class="codeInline">Detailed.php</span> page passing its Internal id and map SWF file name to it. In this section we will see how <span class="codeInline">we make Detaild.php </span>handle these requests and render proper map.    </p>
+        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="highlightBlock">Before moving further with the process of plotting data from database, we recommend  to go through the <a href="CodePHPDXML.html">Using Data String Method</a> and <a href="CodePHPDURL.html">Using Data URL Method</a> to know the basics about FusionMaps  XT generation procedure. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="highlightBlock">The code discussed here is present in <span class="codeInline">Download Package &gt; Code &gt; PHP &gt; DB_Drill </span> folder. </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>The code of <span class="codeInline">Detailed.php </span>file is as follows:      </p>
+      </td>
+  </tr></table><table width="98%" border="0" cellspacing="0" cellpadding="3" align="center"><tr>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p>&lt;?php<br />
+        <span class="codeComment">/*<br />
+This page is invoked when the user clicks on the population distribution map <br />
+contained in Default.php. From there, we pass the internal id of the state and the<br />
+SWF name of the map which represents that state.<br />
+        </span><span class="codeComment">Here, we show more details on that particular state.<br />
+          */</span><br />
+          include(&quot;../Includes/DBConn.php&quot;);<br />
+          <span class="codeComment"># include Fusionmaps  XT Rendering Control file</span><br />
+        include(&quot;../Includes/FusionCharts.php&quot;);<br />
+        ?&gt;</p>
+      <p>&lt;HTML&gt;<br />
+  &lt;HEAD&gt;<br />
+  &lt;TITLE&gt;FusionMaps  XT- Database Example&lt;/TITLE&gt;<br />
+  &lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/SCRIPT&gt;</p>
+      <p>&lt;?php<br />
+        <br />
+        <span class="codeComment"># Connect to the DB</span><br />
+$link = connectToDB();</p>
+      <p> <span class="codeComment"># Variables to store XML Data and sum of data<br />
+        # $strXML will be used to store the entire XML document generated <br />
+        # Generate the Map element</span><br />
+  <br />
+        $strXML = &quot;&lt;map showCanvasBorder='0' borderColor='FFFFFF' connectorColor='000000' fillAlpha='80' hoverColor='FFFFFF' showBevel='0' legendBorderColor='F1f1f1' hoverColor='FFFFFF' legendPosition='bottom'&gt;&quot;;<br />
+        $strXML .= &quot;&lt;colorRange&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='0' maxValue='93' displayValue='0%25 to 93%25' color='D64646' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='93' maxValue='94' displayValue='93%25 to 94%25' color='F6BD0F' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='94' maxValue='95' displayValue='94%25 to 95%25' color='8BBA00' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='95' maxValue='100' displayValue='95%25 or above' color='AFD8F8' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;/colorRange&gt;&quot;;<br />
+  <br />
+        $strXML .=&quot;&lt;data&gt;&quot;;<br />
+  <br />
+        <span class="codeComment"># Fetch all entity records</span><br />
+  <br />
+        $strQuery =&quot;select  a.Internal_Id,a.entity_id,sum(data) datap from fcmap_distribution a group by a.Internal_Id,a.entity_id having a.Internal_Id='&quot; . $_REQUEST['Internal_Id']  . &quot;'&quot;;<br />
+  <br />
+  <br />
+        $result = mysql_query($strQuery) or die(mysql_error());<br />
+  <br />
+        <span class="codeComment"># If we've records to iterate, proceed</span><br />
+        if ($result) {<br />
+        while($rs = mysql_fetch_array($result)) {<br />
+        <span class="codeComment"># Get details for the region </span><br />
+        $strQuery =&quot;select a.Internal_Id,a.entity_id,b.group_name,sum(data) datap from fcmap_distribution a, fcmap_group_master b where b.group_id=a.group_id  group by a.Internal_Id ,a.entity_id, b.group_name having a.Internal_Id='&quot; . $rs['Internal_Id'] . &quot;' and entity_id='&quot; . $rs['entity_id'] . &quot;'&quot;;<br />
+  <br />
+        <span class="codeComment"># We'll create our custom tool text for each entity. So, create a place holder.</span><br />
+        $tooltext=&quot;&quot;; <br />
+        <span class="codeComment"># Total counter</span><br />
+        $totEmp=0;<br />
+        $result2 = mysql_query($strQuery) or die(mysql_error());<br />
+        while($rs2 = mysql_fetch_array($result2)){<br />
+        <span class="codeComment"># Calucation value, Get percentage of employment</span><br />
+        <span class="codeComment"># Add to tool text</span><br />
+        $tooltext .=  $rs2['group_name'] . &quot;:&quot; . round((($rs2['datap'] /  $rs['datap']) * 100),2) . &quot;%25 \\n&quot;;<br />
+        <span class="codeComment"># If it's not unemployed group</span><br />
+        if ($rs2['group_name']!='Unemployed'){<br />
+        $totEmp += round((($rs2['datap'] /  $rs['datap']) * 100),2);<br />
+        }<br />
+        }<br />
+  <br />
+  <br />
+        <span class="codeComment"># Generate &lt;entity id=&quot;..&quot; value=&quot;..&quot; /&gt; <br />
+        # Also append link to Charts.php passing all required information (from querystring) and the database<br />
+        # We also add our custom tool text</span><br />
+  <br />
+        $strXML .= &quot;&lt;entity id='&quot; . $rs['entity_id'] . &quot;' value='&quot; . $totEmp . &quot;'  link='Charts.php?&quot; . $QUERY_STRING . &quot;%26entity_id=&quot; . $rs['entity_id'] . &quot;' tooltext='&quot; . $tooltext . &quot;' /&gt;&quot;;<br />
+  <br />
+        }<br />
+        }<br />
+        mysql_close($link);</p>
+      <p> <span class="codeComment"># Finally, close &lt;data&gt; element</span><br />
+        $strXML .= &quot;&lt;/data&gt;&quot;;<br />
+  <br />
+        <span class="codeComment"># Adding styles element</span><br />
+        $strXML .= &quot;&lt;styles&gt;&lt;definition&gt;&lt;style type='animation' name='animX' param='_xscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animY' param='_yscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animAlpha' param='_alpha' start='0' duration='1' /&gt;&lt;style type='shadow' name='myShadow' color='FFFFFF' distance='1' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;/definition&gt;&lt;application&gt;&lt;apply toObject='PLOT' styles='animX,animY' /&gt;&lt;apply toObject='LABELS' styles='myShadow,animAlpha' /&gt;&lt;/application&gt;&lt;/styles&gt;&quot;;<br />
+  <br />
+        <span class="codeComment"># Closing map element</span><br />
+        $strXML .=&quot;&lt;/map&gt;&quot;;<br />
+  <br />
+        <span class="codeComment"># Now, render the map using renderChart function present in FusionCharts.php (include file)<br />
+        # Also, since we're using Data String method, we provide a &quot;&quot; value for Data URL here<br />
+        </span><br />
+        print renderChart(&quot;../../Maps/&quot; . $_REQUEST['map'] ,&quot;&quot;,$strXML,&quot;Maps&quot;, 750, 460,0,0);<br />
+  <br />
+  <br />
+      ?&gt;<br />
+      <br />
+&lt;/BODY&gt;<br />
+&lt;/HTML&gt;<br />
+      </p>      </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>Let's discuss the process flow of this page in details:</p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>Like the previous page we include <span class="codeInline">FusionCharts.php</span><span class="text">,</span><span class="codeInline"> DBConn.php </span><span class="text">and</span><span class="codeInline"> FusionCharts.js</span>. </li>
+        <li>We also create a variable - <span class="codeInline">strXML</span> to store map XML.</li>
+        <li>We connect to database using <span class="codeInline">connectToDB()</span> function. </li>
+        <li>Next we initialize root map element and add color range settings in XML.</li>
+    
+        <li>Then using SQL we sum up the total population of each entity or county (represented by <span class="codeInline">entity_id </span>) of the selected state (represented by its <span class="codeInline">Internal_Id</span>) <br />
+        </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeInline">$strQuery =&quot;select  a.Internal_Id,a.entity_id,sum(data) datap from fcmap_distribution a group by a.Internal_Id,a.entity_id having a.Internal_Id='&quot; . $_REQUEST['Internal_Id']  . &quot;'&quot;</span></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>Now we iterate through each entity/county of the map/state and get details like percentage of employment in Business, in Service and percentage&nbsp;Unemployed population. </li>
+      <li>To achieve this, we create another array-recordset <span class="codeInline">$rs2</span> using the following SQL query: </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">select a.Internal_Id,a.entity_id,b.group_name,sum(data) datap from fcmap_distribution a, fcmap_group_master b where b.group_id=a.group_id  group by a.Internal_Id ,a.entity_id, b.group_name having a.Internal_Id='&quot; . $rs['Internal_Id'] . &quot;' and entity_id='&quot; . $rs['entity_id'] . &quot;'&quot;;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>Here, <span class="codeInline">$rs2</span> stores records  having total of each group - Business, Service and Unemployed. So iterating through each, we calculate percentage of employment of each group and total employed population. This we did using the following calculation: </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">while($rs2 = mysql_fetch_array($result2)){<br />
+      <span class="codeComment"># Calculation value, Get percentage of employment<br />
+# Add to tool text</span><br />
+$tooltext .=  $rs2['group_name'] . &quot;:&quot; . round((($rs2['datap'] /  $rs['datap']) * 100),2) . &quot;%25 \\n&quot;;<br />
+<span class="codeComment"># If it's not unemployed group do not add it. </span><br />
+if ($rs2['group_name']!='Unemployed'){<br />
+$totEmp += round((($rs2['datap'] /  $rs['datap']) * 100),2);<br />
+}<br />
+}</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>In the above code we also generate custom tool-text for each entity to show Percentage of population in Business, Service and Percentage of Unemployed population for each district/entity of that state's map. We create a variable - $<span class="codeInline">tooltext </span>and accumulate group name and corresponding percentage of each group in it. </li>
+        <li>Moreover we also keep a total of employment percentage in <span class="codeInline">$totEmp </span>variable. This we did by skipping &quot;Unemployed&quot; group. </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Providing map data </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>Let's now discuss how to provide data to each entity of the map. In the above outer iteration through each entity we also add our code to add <span class="codeInline">&lt;entity&gt;</span> element.    </p>
+        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="codeBlock code_container"><span class="codeComment">'Start the &lt;data&gt; element<br />
+          </span><span class="codeInline">$strXML .=    &quot;&lt;data&gt;&quot;</span><span class="codeComment">;<br />
+            <br />
+            </span><span class="codeInline">...</span><span class="codeComment"><br />
+            <br /></span>
+          <p><span class="codeComment"># Generate &lt;entity id=&quot;..&quot; value=&quot;..&quot; /&gt; <br />
+              # Also append link to Charts.php passing all required information (from querystring) and the database<br />
+              # We also add our custom tool text</span><br />
+              <br />
+              $strXML .= &quot;&lt;entity id='&quot; . $rs['entity_id'] . &quot;' value='&quot; . $totEmp . &quot;'  link='Charts.php?&quot; . $QUERY_STRING . &quot;%26entity_id=&quot; . $rs['entity_id'] . &quot;' tooltext='&quot; . $tooltext . &quot;' /&gt;&quot;;<br />
+              <br />
+              }<br />
+              }<br />
+            mysql_close($link);</p>
+          <p> <span class="codeComment"># Finally, close &lt;data&gt; element</span><br />
+              $strXML .= &quot;&lt;/data&gt;&quot;;<br />
+        </p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>As entity id we use the &quot;<span class="codeInline">entity_id</span>&quot; field from the first array-recordset - $<span class="codeInline">rs</span>.</li>
+        <li>We give total employed percent stored in $<span class="codeInline">totEmp</span> as value attribute of each entity.</li>
+      <li>We set <span class="codeInline">tooltext </span>attribute from <span class="codeInline">$tooltext </span>variable. </li>
+      <li>We also create  links that drill-down to another page showing details of the clicked district/entity in maps.</li>
+    </ul></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>Thus, we create entity data. </p>
+    </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text"><ul>
+          <li>Finally we apply style like <span class="codeInline">XScale, YScale, alpha</span> &amp; <span class="codeInline">shadow</span> styles to the map using <span class="codeInline">&lt;styles&gt;</span> element and </li>
+          <li>Render the map using <span class="codeInline">renderChart() </span>function from <span class="codeInline">FusionCharts.php</span>.</li>
+          <li>$_<span class="codeInline">REQUEST[&quot;map&quot;] </span>gives the map SWF name. </li>
+        </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeInline">print renderChart(&quot;../../Maps/&quot; . $_REQUEST['map'] ,&quot;&quot;,$strXML,&quot;Maps&quot;, 750, 460,0,0);</span></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>Here is the screenshot of the drilled-down map</p>
+	<p><img src="../../Images/CodeASPDB2.jpg" width="447" height="531" class="imageBorder" /></p></td>
+  </tr>
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("US Population Map|CodePHPDB_USMap.html","Using with ASP.NET (VB.NET) - Using Data String Method|CodeASPVBDXML.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

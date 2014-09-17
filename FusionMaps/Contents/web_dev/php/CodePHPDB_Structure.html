@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with PHP - Database Structure</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with PHP", "Plotting from database", "Database structure" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Database Structure </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>Before going deeper into the codes and their logics, let us look at the database   structure first. The database has been named as FusionMapsDB.    </p>
+        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="highlightBlock">The  MySQL dump of the database is present in <span class="codeInline">Download Package &gt; Code &gt; PHP &gt; DB_Drill &gt; DB.</span></td>
+  </tr></table>
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center"><tr></tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Tables</td>
+  </tr>
+  <tr>
+    <td height="26" valign="top" class="text">
+        <p>We have used 4 tables in the database, here are the details of all the tables.    </p>
+    </td>
+  </tr>
+  <tr>
+    <td height="16" valign="top" class="header1">Table name: <span class="codeInline">fcmp_master </span></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+        <p>This table stores the internal IDs of each state in&nbsp; US map and their corresponding map file names.    </p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" ><table  class="table" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr class="text tableAlternateHeader">
+          <td width="13%" align="left" valign="top" class="header"><strong>Field</strong></td>
+          <td width="14%" align="left" valign="top" class="header"><strong>Type</strong></td>
+          <td width="63%" align="left" valign="top" class="header"><strong>Description</strong></td>
+        </tr>
+        <tr class="text">
+           <td align="left" valign="top" class="codeInline">Internal_Id</td>
+           <td align="left" valign="top" class="codeInline">varchar(10)</td>
+           <td align="left" valign="top">This represents individual State present in the   US MAP. </td>
+        </tr>
+        <tr class="text tableAlternateDark">
+           <td align="left" valign="top" class="codeInline">s_name</td>
+           <td align="left" valign="top" class="codeInline">varchar(10)</td>
+           <td align="left" valign="top">This stores short name of the states in US MAP. </td>
+        </tr>
+        <tr class="text">
+           <td align="left" valign="top" class="codeInline">l_name</td>
+           <td align="left" valign="top" class="codeInline">varchar(50)</td>
+           <td align="left" valign="top">This stores full name of the states in US MAP. </td>
+        </tr>
+        <tr class="text tableAlternateDark">
+           <td align="left" valign="top" class="codeInline">map_swf</td>
+           <td align="left" valign="top" class="codeInline">varchar(50)</td>
+           <td align="left" valign="top">This is FusionMaps XT Flash File name.</td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>We use different .swf files to display different maps. This table stores the .swf file name required to display the maps in our example along with the Internal Ids of that map. We also store abbreviated and real names of the parts of the maps in this table.    </p>
+        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header1">Table name: <span class="codeInline">fcmap_group_master</span></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+        <p>This table stores the names of major Category groups regarding employment.    </p>
+    </td>
+  </tr></table><table width="98%" border="0" cellspacing="0" cellpadding="3" align="center"><tr>
+  </tr>
+  <tr>
+      <td valign="top" class="text"><table width="100%" cellspacing="0" cellpadding="0" border="0" class="table">
+          <tr class="tableAlternateHeader">
+              <td align="left" valign="top" width="13%" class="header"><strong>Field</strong></td>
+              <td align="left" valign="top" width="14%" class="header"><strong>Type</strong></td>
+              <td align="left" valign="top" width="63%" class="header"><strong>Description</strong></td>
+              </tr>
+          <tr>
+              <td align="left" class="codeInline" valign="top">group_id</td>
+              <td align="left" class="codeInline" valign="top">int(10)</td>
+              <td align="left" class="text" valign="top">Group ID i.e 1,2,3 </td>
+              </tr>
+          <tr class="tableAlternateDark">
+              <td align="left" class="codeInline" valign="top">group_name</td>
+              <td align="left" class="codeInline" valign="top">varchar(50)</td>
+              <td align="left" class="text" valign="top">Group Name i.e business, service, unemployed</td>
+              </tr>
+        </table></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>This table stores the name and id of the employment groups, i.e. Business and Service. It also stores 'Unemployed' as a group here.    </p>
+        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header1">Table name: <span class="codeInline">fcmap_subgroup_master</span></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>This table stores the subgroup names for each of the groups said above.      </p>
+      </td>
+  </tr></table><table width="98%" border="0" cellspacing="0" cellpadding="3" align="center"><tr>
+  </tr>
+  <tr>
+      <td valign="top" class="text"><table width="100%" cellspacing="0" cellpadding="0" border="0"  class="table">
+          <tr class="text tableAlternateHeader">
+              <td align="left" valign="top" width="13%" class="header"><strong>Field</strong></td>
+              <td align="left" valign="top" width="14%" class="header"><strong>Type</strong></td>
+              <td align="left" valign="top" width="63%" class="header"><strong>Description</strong></td>
+              </tr>
+          <tr class="text">
+              <td align="left" valign="top" class="codeInline">group_id</td>
+              <td align="left" valign="top" class="codeInline">int(10)</td>
+              <td align="left" valign="top">Group id of Group Master </td>
+              </tr>
+          <tr class="text tableAlternateDark">
+              <td align="left" valign="top" class="codeInline">subgroup_id</td>
+              <td align="left" valign="top" class="codeInline">int(10)</td>
+              <td align="left" valign="top">Subgroup id i.e 1,2,3,4</td>
+              </tr>
+          <tr class="text">
+              <td align="left" valign="top" class="codeInline">subgroup_name</td>
+              <td align="left" valign="top" class="codeInline">varchar(50)</td>
+              <td align="left" valign="top">Subgroup name of individual Group Master i.e business -&gt; software , business -&gt; automobile</td>
+              </tr>
+        </table></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>Each group is divided into various sub-groups, e.g.        </p>
+          <ul>
+              <li>We divide Business into Automobile, Communication, Evergy, Finance and Software subgroups.</li>
+              <li>We divide Service into Administration, Education, Law, Postal and Security subgroups.</li>
+              <li>We divide Unemployed group into different age-groups like 20-30 years, 30-40 years, 40-50 years, 50-60 years and 60 above.</li>
+            </ul>
+          <p>This table stores subgroup names, unique subgroup ids and the parent group id for each subgroup. </p>
+        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="header1">Table name: <span class="codeInline">fcmap_distribution</span></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>This table stores the data for each subgroup for each entity for each state. Hence, this table is the main storehouse of data which we will use in our code. </p>
+          
+        </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="100%" cellspacing="0" cellpadding="0" border="0" class="table">
+        <tr class="text tableAlternateHeader">
+          <td width="13%" align="left" valign="top" class="header" ><strong>Field</strong></td>
+          <td width="14%" align="left" valign="top" class="header" ><strong>Type</strong></td>
+          <td width="63%" align="left" valign="top" class="header" ><strong>Description</strong></td>
+        </tr>
+        <tr class="text">
+          <td align="left" valign="top" class="codeInline">Internal_Id</td>
+          <td align="left" valign="top" class="codeInline">varchar(10)</td>
+          <td align="left" valign="top">This represents individual State present in the   USA MAP [Internal Id from fcmap_master]</td>
+        </tr>
+        <tr class="text tableAlternateDark">
+          <td align="left" valign="top" class="codeInline">entity_id</td>
+          <td align="left" valign="top" class="codeInline">varchar(10)</td>
+          <td align="left" valign="top">This represents individual internal id of each USA State entity. </td>
+        </tr>
+        <tr class="text">
+          <td align="left" valign="top" class="codeInline">group_id</td>
+          <td align="left" valign="top" class="codeInline">int(10)</td>
+          <td align="left" valign="top">group id related to <span class="codeInline">fcmap_group_master</span></td>
+        </tr>
+        <tr class="text tableAlternateDark">
+          <td align="left" valign="top" class="codeInline">subgroup_id</td>
+          <td align="left" valign="top" class="codeInline">int(10)</td>
+          <td align="left" valign="top">subgroup id related to <span class="codeInline">fcmap_subgroup_master</span> </td>
+        </tr>
+        <tr class="text">
+          <td align="left" valign="top" class="codeInline">data</td>
+          <td align="left" valign="top" class="codeInline">numeric(10)</td>
+          <td align="left" valign="top"><p><strong>This field stores the actual population data for each sub group of each county of each state of US. </strong></p></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p><span class="codeInline">fcmap_distribution</span> stores the actual data that are to be plotted in our example. It stores the number of people in each of the subgroups mentioned above along with respective subgroup id, group id, county code and state code.    </p>
+        
+          <p>Now, let's look at the Relations among these tables      </p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Relations</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="100%"  class="table" cellspacing="0" cellpadding="0" border="0">
+        
+        <tr class="text tableAlternateDark">
+          <td align="left" valign="top"><strong>fcmap_group_master.group_id = fcmap_subgroup_master.subgroup_id</strong> [Link with fcmap_group_master and fcmap_subgroup_master Table]</td>
+        </tr>
+        <tr class="text">
+          <td align="left" valign="top"><strong>fcmap_distribution.group_id = fcmap_group_master.group_id</strong> [Link with fcmap_distribution and fcmap_group_master Table] </td>
+        </tr>
+        <tr class="text tableAlternateDark">
+          <td align="left" valign="top"><strong>fcmap_distribution.subgroup_id = fcmap_subgroup_master.subgroup_id </strong>[Link with fcmap_distribution and fcmap_subgroup_master Table] </td>
+        </tr>
+        <tr class="text">
+          <td align="left" valign="top"><strong>fcmap_master.Internal_Id = fcmap_distribution.Internal_Id</strong> [Link with fcmap_master and fcmap_distribution Table] </td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Goal|CodePHPDB_Goal.html","Data to be plotted|CodePHPDB_Plot.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

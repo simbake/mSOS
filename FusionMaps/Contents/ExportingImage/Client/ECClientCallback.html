@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Exporting Maps as PDF or Images - Client-side export - Setting JavaScript callback </title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Exporting as Image/PDF|../ECOverview.html", "Client-side exporting|ECClientOverview.html", "Setting JavaScript callback" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Setting JavaScript callback </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>When using FusionCharts Export component, you can configure the component to invoke a callback JavaScript method, when the map has been saved by user. This is useful for tracking whether the exported maps have been saved by your user. </p>
+      <p>By default, the invoked function name is <span class="codeInline">FC_Exported(objRtn)</span>. You can, however, call a different function as well by specifying the following in your map XML: </p>
+      <p class="code_container codeInline">&lt;map .. exportCallback='myCallBackFunction' ...&gt;</p>
+      <p>And you then need to define this function in your JavaScript code.  However, if you do not define any call back function in your XML, the  default callback function <span class="codeInline">FC_Exported</span> is invoked. In either case, an object is passed to the function as <span class="codeInline">FC_Exported(objRtn)</span> or <span class="codeInline">myCallBackFunction(objRtn)</span>, which contains the following parameters (returned from Export Component):</p>
+    <ul>
+      <li><span class="codeInline">statusCode</span> - Has the value of 1 in case of success, and 0 in case of failure.</li>
+      <li><span class="codeInline">statusMessage</span> - In case of  failure, this parameter contains a string description of the error (returned by server)</li>
+      <li><span class="codeInline">fileName</span> - If saving was successful, this parameter contains the HTTP reference to the image/PDF file saved on server</li>
+      <li><span class="codeInline">width</span> &amp; <span class="codeInline">height</span> - If saving was successful, these parameters contain the width/height of saved image. Else, they contain 0. </li>
+      <li><span class="codeInline">DOMId</span> - DOMId of the map that was successfully exported. 
+	   <p class="highlightBlock">To provide cross-browser compatibility, we recommend you not to start the ID with a numerical value, nor use space as part of the ID. </p>
+	  </li>
+    </ul>
+    <p>Let's  quickly see an example code where a callback function has been  implemented. In this example, once the user has saved the exported map on his disk (after clicking the Save button for the same), we just show it in a JavaScript alert. </p></td>
+  </tr>
+  <tr>
+    <td valign="top">  <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt;
+	&lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+	&lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionChartsExportComponent.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		//Default callback function that gets invoked when user has finished saving the exported output to his disk
+		<strong>function FC_Exported(objRtn){
+			if (objRtn.statusCode==&quot;1&quot;){
+				alert(&quot;The map was successfully saved. Its DOM Id is &quot; + objRtn.DOMId);
+			} else{
+				alert(&quot;There was an error saving the map. Error message: &quot; + objRtn.statusMessage + &quot;. Its DOM Id is &quot; + objRtn.DOMId);
+			}
+		} </strong>
+	&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body bgcolor=&quot;#ffffff&quot;&gt;
+	&lt;div id=&quot;mapdiv&quot; align=&quot;center&quot;&gt;The map will appear within this DIV. This text will be replaced by the map.&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		var myMap = new FusionCharts(&quot;../../Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;350&quot;, &quot;0&quot;, &quot;1&quot;);
+		myMap.setXMLUrl(&quot;Callback.xml&quot;);
+		myMap.render(&quot;mapdiv&quot;);
+	&lt;/script&gt
+	&lt;div id=&quot;fcexpDiv&quot; align=&quot;center&quot;&gt;FusionCharts Export Handler Component&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		var myExportComponent = new FusionChartsExportObject(&quot;fcExporter1&quot;, &quot;../../Maps/FCExporter.swf&quot;);
+		myExportComponent.Render(&quot;fcexpDiv&quot;);
+	&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"> </td>
+  </tr>
+  <tr>
+    <td valign="top">
+       <p>See it <a href="../../../Code/ExportMapSamples/ClientSide/Callback.html" target="_blank">live</a>!   </p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="fc_exportready"></a>FC_ExportReady event </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>At times, you might want  to track the event when the map has finished its capture phase and has passed the data to export component, but user has not saved the image/PDF on his disk. Between initiation of map export and till the time <span class="codeInline">FC_ExportReady</span> event is raised, you might show a waiting message/alert to the user that the map is in processing stage. </p>
+      <p>The syntax of the event is <span class="codeInline">FC_ExportReady(DOMId)</span>. You can use <span class="codeInline">DOMId</span> (string) as the identifier for each map to check which map has finished processing. </p>
+      <p>The following code explains its usage: </p></td>
+  </tr>
+  <tr>
+    <td valign="top"> <pre class="code_container prettyprint">&lt;script type=&quot;text/javascript&quot;&gt;
+	//This event is raised when the map has finished capture phase and passed the data to 
+	//Export Component for further processing
+	function FC_ExportReady(DOMId){
+		alert(&quot;The map with DOM ID as &quot; + DOMId + &quot; has finished capture mode. It's now ready to be downloaded&quot;);
+	}  
+&lt;/script&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">See it <a href="../../../Code/ExportMapSamples/ClientSide/Callback.html" target="_blank">live</a>! </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Setting for multiple maps|ECClientMultiple.html","Component UI Customization|ECComponentUI.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

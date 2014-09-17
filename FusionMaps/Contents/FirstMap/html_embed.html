@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Embedding  Maps  Using &lt;object&gt;/&lt;embed&gt; Tags</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Using HTML embedding method" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Embedding  Maps  Using &lt;object&gt;/&lt;embed&gt; HTML Tags</td>
+
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+       <p>FusionMaps  XT can also be embedded in web pages using plain HTML and without using FusionCharts JavaScript Class. </p>
+	   <p class="highlightBlock"><strong>Note</strong>: Only Flash maps can be rendered using <span class="codeInline">&lt;object&gt;</span>/<span class="codeInline">&lt;embed&gt;</span> tags.</p>
+	   <p>For this, you need to use the <span class="codeInline">&lt;object&gt;</span>/<span class="codeInline">&lt;embed&gt;</span> HTML tags. This method can be implemented in applications that do not support JavaScript. You can also use this method where  the entire map embedding code is fetched using an AJAX request (e.g., ASP.NET UpdatePanel) and the AJAX response should contain the <span class="codeInline">&lt;object&gt;</span>/<span class="codeInline">&lt;embed&gt;</span> tags.</p>
+        <div class="highlightBlock" style="margin:10px;">
+        We always recommend that you use FusionCharts JavaScript Class method for embedding the maps in  an HTML page. This is the only way to get JavaScript (HTML5) fallback for the maps. When embedding using <span class="codeInline">&lt;object&gt;</span>/<span class="codeInline">&lt;embed&gt;</span> method, only Flash maps will show up.  Additionally, the following features will not be supported as they are dependent on the FusionCharts JavaScript Class: 
+        <ul>
+          <li>  JSON data support</li>
+          <li>Managed printing in Mozilla based browsers</li>
+          <li>Enhanced browser-specific error handling</li>
+        </ul>
+      </div>
+      <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder.</p>
+  </td>
+    </tr>
+    <tr>
+    <td class="header"><a name="dataurl" id="dataurl"></a>HTML embedding with XML data provided as URL </td>
+    </tr>
+   <tr>
+     <td class="text">
+      <p>We modify our <a href="first_chart.html">first sample</a> <span class="codeInline">FirstMap.html </span>and rename it as <span class="codeInline" style="codeInline">FirstMap-html-embed-xml-url.html</span>, and  copy the following code into it: </p>  </td>
+   </tr>
+  <tr> 
+    <td valign="top" class="text">
+	 <pre class="code_container prettyprint lang-html">&lt;html&gt;
+   &lt;head&gt;
+	&lt;title&gt;My First Map using FusionMaps XT - 
+          Using HTML embedding method - XML from URL&lt;/title&gt;
+	&lt;/head&gt;
+   &lt;body&gt;
+    <strong>&lt;object width=&quot;750&quot; height=&quot;400&quot; id=&quot;World&quot; 
+            classid=&quot;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&quot; 
+            codebase=&quot;http://fpdownload.macromedia.com
+              /pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0&quot; &gt;
+
+         &lt;param name=&quot;movie&quot; value=&quot;Maps/FCMap_World.swf&quot; /&gt;
+
+         &lt;param name=&quot;FlashVars&quot; value=&quot;&dataURL=Data.xml
+                    &chartWidth=750&chartHeight=400
+                    &DOMId=myMapId&amp;registerWithJS=1&debugMode=0&quot;&gt;
+
+         &lt;param name=&quot;quality&quot; value=&quot;high&quot; /&gt;
+
+         &lt;embed src=&quot;Maps/FCMap_World.swf&quot; flashVars=&quot;&dataURL=Data.xml
+                    &chartWidth=750&chartHeight=400
+                    &DOMId=myMapId&amp;registerWithJS=1&debugMode=0&quot; 
+            
+              width=&quot;750&quot; height=&quot;400&quot; name=&quot;World&quot; 
+              quality=&quot;high&quot; 
+              type=&quot;application/x-shockwave-flash&quot; 
+              pluginspage=&quot;http://www.macromedia.com/go/getflashplayer&quot; /&gt;
+
+      &lt;/object&gt;</strong>
+
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+	 <br />
+	  See it <a href="../../Code/MyFirstMap/HTMLEmbed-DataURL.html" target="_blank">live</a>!
+    </td>
+  </tr>
+  <tr>
+    <td valign = "top" class="text">
+      <p>The  HTML code in bold is responsible for embedding&nbsp;Flash maps into the HTML page.</p>
+      <p>In  the above code, we have  done the following: </p>
+      <ul>
+        <li>Used the <span class="codeInline">&lt;object&gt;</span> and <span class="codeInline">&lt;embed&gt;</span> tags to embed the World Map (<span class="codeInline">FCMap_World.swf</span>) within the HTML page. We set the tags' ID and name, set the width (750 pixels) and height (400 pixels).</li>
+        <li>Loaded the map SWF  file using <span class="codeInline">movie</span> parameter of <span class="codeInline">&lt;object&gt;</span> tag and <span class="codeInline">src</span> attribute of <span class="codeInline">&lt;embed&gt;</span> tag.</li>
+        <li>Passed map external data to <span class="codeInline">FlashVars</span> parameter/attribute using <span class="codeInline"><strong>&amp;dataUrl=Data.xml</strong></span>. Here, we indicate the path of the data source (XML file) relative to the HTML page &ndash; <span class="codeInline">Data.xml</span> in this case.</li>
+        <li>Passed  the width and  height to the map by means of <span class="codeInline">chartWidth</span> and <span class="codeInline">chartHeight</span> variables through <span class="codeInline">FlashVars</span>.</li>
+        <li>Provided other required FlashVars like <span class="codeInline">DOMId</span> which is the DOM id of the map and FlashVars like  <span class="codeInline">debugMode</span>, <span class="codeInline">registerWithJS</span>. </li>
+      </ul>
+     <p class="highlightBlock">To render a Flash movie in a browser, the HTML page must  contain certain tags for initiating the Flash movie. <span class="codeInline">&lt;object&gt;</span> and  <span class="codeInline">&lt;embed&gt;</span> tags are used for this purpose. The <span class="codeInline">&lt;object&gt;</span> tag is recognized  by Internet Explorer under Microsoft Windows and the <span class="codeInline">&lt;embed&gt;</span> tag is  recognized by other browsers. <br />
+        <br />
+      Even though both <span class="codeInline">&lt;object&gt;</span> and <span class="codeInline">&lt;embed&gt;</span> tags have  similar functionality, it is essential to use both the tags for the sake of cross  browser compatibility. For optimum compatibility, the <span class="codeInline">&lt;embed&gt;</span> tag must be  nested within the <span class="codeInline">&lt;object&gt;</span> tag (as shown in the code above). This way, Active X-enabled  browsers like Internet Explorer can ignore the <span class="codeInline">&lt;embed&gt;</span> tag (as it is inside the <span class="codeInline">&lt;object&gt;</span>  tag), and other browsers that do not recognize the <span class="codeInline">&lt;object&gt;</span> tag can carry  on with the <span class="codeInline">&lt;embed&gt;</span> tag. </p>
+    </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="datastring" id="datastring"></a>HTML embedding using XML data embedded in HTML page </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>You can also embed the XML in the <span class="codeInline">&lt;object&gt;</span>/<span class="codeInline">&lt;embed&gt;</span> tag itself without depending on the external source.</p> </td>
+  </tr>
+  
+  <tr>
+    <td class="text">
+        We modify our first sample <span class="codeInline" style="codeInline">FirstMap-html-embed-xml-url.html</span> and rename it as <span class="codeInline" style="codeInline">FirstMap-html-embed-xml-embed.html</span>.<br />
+        <br />
+ 
+	 <pre class="code_container  prettyprint lang-html">&lt;html&gt;
+   &lt;head&gt;
+	&lt;title&gt;My First map using FusionMaps XT - 
+     Using HTML embedding method - XML from URL&lt;/title&gt;
+	&lt;/head&gt;
+   &lt;body&gt;
+    &lt;object width=&quot;750&quot; height=&quot;400&quot; id=&quot;World&quot; 
+            classid=&quot;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&quot; 
+            codebase=&quot;http://fpdownload.macromedia.com/pub/
+              shockwave/cabs/flash/swflash.cab#version=8,0,0,0&quot; &gt;
+
+         &lt;param name=&quot;movie&quot; value=&quot;Maps/FCMap_World.swf&quot; /&gt;
+
+         &lt;param name=&quot;FlashVars&quot; value=&quot;&chartWidth=400&chartHeight=300
+                    &DOMId=myMapId&amp;registerWithJS=1&debugMode=0
+                    <strong>&amp;dataXML=&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;
+     &lt;data&gt;
+        &lt;entity id='NA' value='515' /&gt;
+        &lt;entity id='SA' value='373'/&gt;
+        &lt;entity id='AS' value='3875' /&gt;
+        &lt;entity id='EU' value='727' /&gt;
+        &lt;entity id='AF' value='885' /&gt;
+        &lt;entity id='AU' value='32' /&gt;
+     &lt;/data&gt;
+&lt;/map&gt;</strong>&quot;
+         &gt;
+
+         &lt;param name=&quot;quality&quot; value=&quot;high&quot; /&gt;
+
+         &lt;embed src=&quot;Maps/FCMap_World.swf&quot;
+                flashVars=&quot;&chartWidth=750&chartHeight=400
+                    &DOMId=myMapId&amp;registerWithJS=1&debugMode=0
+                    <strong>&amp;dataXML=&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;
+     &lt;data&gt;
+        &lt;entity id='NA' value='515' /&gt;
+        &lt;entity id='SA' value='373'/&gt;
+        &lt;entity id='AS' value='3875' /&gt;
+        &lt;entity id='EU' value='727' /&gt;
+        &lt;entity id='AF' value='885' /&gt;
+        &lt;entity id='AU' value='32' /&gt;
+     &lt;/data&gt;
+&lt;/map&gt;</strong>&quot; 
+            
+              width=&quot;750&quot; height=&quot;400&quot; name=&quot;World&quot; 
+              quality=&quot;high&quot; 
+              type=&quot;application/x-shockwave-flash&quot; 
+              pluginspage=&quot;http://www.macromedia.com/go/getflashplayer&quot; /&gt;
+
+      &lt;/object&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+	 <br />
+	 See it <a href="../../Code/MyFirstMap/HTMLEmbed-DataString.html" target="_blank">live</a>!</td>
+  </tr>
+  
+  <tr>
+     <td valign="top" class="text">
+       <p>As you can note from the bold text in the code above, we have only replaced <span class="codeInline">&amp;dataURL </span>FlashVars variable with <span class="codeInline">&amp;dataXML</span> and to this variable we have passed the map XML data. The resultant map will be the same.</p> 
+       <p class="highlightBlock">Depending on your coding practice, you&rsquo;d be enclosing the entire XML string either using single or double quotation marks (&quot;,&quot;&quot;). So, if you are enclosing the entire XML in double quotes, then the XML attributes must be encapsulated in single quotes. Using, single quotes for encapsulation of the entire XML string and also for individual attributes, will lead to a conflict. Conflict arising due to improper use of quotes does not raise an error, but shows an empty space in place of map (or sometimes a JavaScript error).</p>
+     </td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="flashvars" id="flashvars"></a>FusionMaps XT FlashVars details </td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>When using HTML embedding, all variables to the map are passed using <span class="codeInline">FlashVars</span>. The table below lists all such variables supported: </p>
+        <table width="95%" border="0" align="left" cellpadding="00" cellspacing="0" class="table">
+      <tr>
+        <td width="19%" valign="top" class="header">Variable</td>
+        <td width="81%" valign="top" class="header">Description</td>
+      </tr>
+      
+      <tr>
+        <td valign="top" class="codeInline">dataURL</td>
+        <td valign="top" class="text"> This variable takes the path of the XML data file or stream as value. This method is called <strong><a href="../how_fm_work/DataURL.html">Data URL method</a></strong>. It is mutually exclusive to <span class="codeInline">dataXML </span>variable.
+           <p>* In case both <span class="codeInline">&amp;dataURL</span> and <span class="codeInline">&amp;dataXML </span>are set to blank or not provided, the map will search for the default <span class="codeInline">Data.xml</span> file in the same path as the HTML file.</p>
+        </td>
+      </tr>
+      <tr class="trVeryLightGrayBg">
+        <td valign="top" class="codeInline">dataXML</td>
+        <td valign="top" class="text"> This variable passes the XML embedded in <span class="codeInline">&lt;object&gt; or &lt;embed&gt;</span> tag. This method is called the <strong><a href="../how_fm_work/DataXMLExp.html">Data String method</a></strong>. It is mutually exclusive to <span class="codeInline">dataURL </span>variable.
+           <p>* In case both <span class="codeInline">&amp;dataURL</span> and <span class="codeInline">&amp;dataXML </span>are set to blank or not provided, the map will search for default <span class="codeInline">Data.xml</span> file in the same path as the HTML file.</p>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">DOMId</td>
+        <td valign="top" class="text"> ID for the map using which it will be recognized in the HTML page. <strong>Each map on the page needs to have a unique ID.</strong></td>
+      </tr>
+      <tr class="trVeryLightGrayBg">
+        <td valign="top" class="codeInline">chartWidth</td>
+        <td valign="top" class="text">Intended width for the map (value in pixels without any px suffix or value in percent with %25 as suffix. %25 is the UrlEncoded form of % sign)</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">chartHeight</td>
+        <td valign="top" class="text">Intended height for the map (values in pixels without any px suffix or value in percent with %25 as suffix. %25 is the UrlEncoded form of % sign)</td>
+      </tr>
+      <tr class="trVeryLightGrayBg">
+        <td valign="top" class="codeInline">debugMode</td>
+        <td valign="top" class="text">Whether to start the map in debug mode which shows a Debug Window over the map. Set it to 1 to show the Debug Window (for Flash maps). Please see<a href="../Debug/Window.html"> Debugging your Maps </a> section for more details on Debug Mode. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">registerWithJS</td>
+        <td valign="top" class="text"> Whether to register the map with JavaScript. This value should always be set to 1 to get maximum possible access to JavaScript APIs of the map. But when using the <span class="codeInline">object</span>/<span class="codeInline">embed </span>method, only minimal JavaScript functions are available to map (e.g., <span class="codeInline">setDataURL</span>, <span class="codeInline">setDataXML</span>, <span class="codeInline">print</span>, <span class="codeInline">exportChart</span> etc.) . 
+          <p class="highlightBlock">If you are running the maps from local file system, you need to configure the <a href="../../Tools/FlashPlayerSecuritySetup/index.html" target="_blank">Flash Player Global Security settings</a>. </p>
+        </td>
+      </tr>
+      
+	  
+      
+      <tr class="trVeryLightGrayBg">
+        <td valign="top" class="codeInline">scaleMode</td>
+        <td valign="top"><span class="text">Scaling  option of the map. It can take any value out of the four: &quot;noscale&quot;, &quot;exactfit&quot;,  &quot;noborder&quot; and &quot;showall&quot;. FusionMaps XT works best in &quot;noScale&quot; mode. </span></td>
+      </tr>
+      
+      <tr>
+        <td valign="top" class="codeInline">lang</td>
+        <td valign="top" class="text">(optional) Preferred language for map messages. For example, <strong>EN. </strong>The present supported language is EN, that is, English. Other languages can be added by adding to source code of map and then compiling it. </td>
+      </tr>
+    </table>
+     </td>
+  </tr> 
+  <tr><td height="23"></td></tr> 
+ <tr>
+    <td valign="top" class="header"><a name="limitations" id="limitations"></a>Limitations of using HTML embed method</td>
+ </tr>
+ <tr>
+    <td valign="top" class="text">
+       <p>There are some  limitations of HTML embedding method. Let us get a comprehensive list of the limitations:</p>
+       <ul>
+          <li>It does not support JSON data format. So the only data format that you can pass to map using this method is XML.</li>
+          <li>It is not fully compatible with FusionCharts JavaScript framework; hence, many of the advanced features  (like Print Manager, <em>LinkedCharts</em>, Advanced Event management, etc.) will not work.</li>
+          <li>It does not support rendering of JavaScript (HTML5) map.</li>
+      </ul>
+    </td>
+ </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating maps and charts in a page|maps_charts.html","Using FusionCharts jQuery plugin|using_jquery.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

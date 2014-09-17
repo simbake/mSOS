@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Markers connectors </title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|../how_to_use/BasicUsage.html", "Markers connectors" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Markers connectors </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>FusionMaps XT also allows you to connect any two defined markers on the map using <strong>Marker Connectors</strong>. You can show custom labels for the marker connectors, link it to external URLs, show tool tips for the connector and customize all the cosmetics. Here, we'll see how to define and use marker connectors. </p>
+      <p>Shown below is an example of marker connectors where we've defined a few cities on the US Map and then connected them using connectors: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/Connector_Example.gif" width="495" height="318" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, we've defined a few cities as markers and used the image marker feature to show a plane icon for each of them. Thereafter, we've connected the markers using connectors.</p>
+    <p>The following XML drives this map:  </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="prettyprint code_container">&lt;map showShadow='0' showBevel='0' showMarkerLabels='0' useHoverColor='0' showLabels='0' showCanvasBorder='0' mapRightMargin='0' fillColor='AFCED9' bordercolor='FFFFFF'  markerBgColor='00577F' animation='1' markerBorderColor='00577F' markerRadius='3' showTooltip='0' showMarkerTooltip='1'&gt;
+      <span class="codeComment">... Map Data here ...</span>  
+  &lt;markers&gt;
+  &nbsp;&nbsp;&nbsp;&lt;definition&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SE' x='35.34' y='50.56' label='Seattle' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CO' x=' 525.85' y='172.94' label='Columbus' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='MA' x='444.94' y='119.34' label='Madison' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='LA' x='81.86' y=' 257.89' label='Los Angeles' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SLC' x='163.79' y='156.76' label='Salt Lake City' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='KC' x='383.25' y='183.05 ' label='Kansas City' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='AT' x='508.66' y='267' label='Atlanta' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CH' x='467.19' y='139.56' label='Chicago' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='OK' x='344.82' y='236.65' label='Oklahoma City' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='NO' x='432.81' y='314.53' label='New Orleans' /&gt;
+  &nbsp;&nbsp;&nbsp;&lt;/definition&gt;
+  &nbsp;&nbsp;&nbsp;&lt;shapes&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;shape id='Icon' type='image' URL='Resources/PlaneIcon.gif'/&gt;
+  &nbsp;&nbsp;&nbsp;&lt;/shapes&gt;
+  &nbsp;&nbsp;&nbsp;&lt;application&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SE' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SP' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CO' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='MA' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='LA' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SLC' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='KC' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='AT' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='CH' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='OK' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='NO' shapeId='Icon' /&gt;
+  &nbsp;&nbsp;&nbsp;&lt;/application&gt;
+  &nbsp;&nbsp;&nbsp;<strong>&lt;connectors&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='SE' to='SLC' toolText='Seattle - Salt Lake City: 689 miles' dashed='1' color='00577F' alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='CH' to='AT' toolText='Chicago - Atlanta: 606 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='SE' to='LA' toolText='Seattle - Los Angeles: 954 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='AT' to='LA' toolText='Atlanta - Los Angeles: 1946 miles' dashed='1' color='00577F' alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='LA' to='NO' toolText='Los Angeles - New Orleans: 1645 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='KC' to='MA' toolText='Kansas City - Madison: 381 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='SE' to='OK' toolText='Seattle - Oklahoma City: 1499 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='MA' to='SE' toolText='Madison - Seattle: 1595 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='KC' to='SLC' toolText='Kansas City - Salt Lake City: 905 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='SLC' to='CH' toolText='Salt Lake City - Chicago: 1239 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='CO' to='SLC' toolText='Columbus - Salt Lake City: 1575 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='NO' to='CO' toolText='New Orleans - Columbus: 355 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;connector from='OK' to='CH' toolText='Oklahoma City - Chicago: 682 miles' dashed='1' color='00577F'  alpha='40'/&gt;
+&nbsp;&nbsp;&nbsp;&lt;/connectors&gt;</strong>
+      &lt;/markers&gt;
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here, we first define the properties of map as attributes of <span class="codeInline">&lt;map&gt;</span> element. Then, we define the data for the map (which has been intentionally omitted in the XML above). </p>
+      <p>Soon after that, we first define our custom markers for the map and apply them. As previously explained, each marker has its id, x, y and label. Also, we use an image marker shape to show each marker on the map. </p>
+    <p>The newly introduced element in this XML is the <span class="codeInline">&lt;connectors&gt;</span> element. As children of this element, you'll find multiple <span class="codeInline">&lt;connector&gt;</span> element - one for each connector on the map. Each connector element helps you connect two defined markers on the map. To define which connectors to connect, you specify the marker ID as:</p>
+    <p class="codeInline">&lt;connector from='From_Marker_ID' to='To_Marker_Id' .../&gt;</p>
+    <p class="highlightBlock">You need to make sure that the marker IDs specified in <span class="codeInline">&lt;connector&gt;</span> element is defined in the XML.</p>
+    <p>Additionally, we've defined the <span class="codeInline">toolText</span> for each connector and specified a few cosmetic properties here. </p>
+    <p>Each <span class="codeInline">&lt;connector&gt;</span> element can have the following attributes:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left"><table width="98%" align="left" class="table" cellpadding="4">
+      <tr class="header">
+        <td width="25%" class="header">Attribute Name</td>
+        <td width="15%" class="header">Type</td>
+        <td width="15%" class="header"><span > Range </span> </td>
+        <td width='45%' class="header"><span > Description </span> </td>
+      </tr>
+      
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">from</td>
+        <td valign="top" class="text">String</td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text"> Id of the marker from where the connector will start. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">to</td>
+        <td valign="top" class="text">String</td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text"> Id of the marker where the connector will end. </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">link</td>
+        <td valign="top" class="text">String</td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text">Each connector can also link to an external URL. For this attribute, you can specify the link for the connector in FusionCharts Link format.</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">label</td>
+        <td valign="top" class="text">String</td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text">Each connector can have a visible text label. This attribute lets you set the text. </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">toolText</td>
+        <td valign="top" class="text">String</td>
+        <td valign="top" class="text">&nbsp;</td>
+        <td valign='top' class="text">If you want to set a custom tool text for the connectors, this attribute lets you do so. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">thickness</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">0-10</td>
+        <td valign='top' class="text">Thickness of the connector line. </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">color</td>
+        <td valign="top" class="text">Color</td>
+        <td valign="top" class="text">Hex Code </td>
+        <td valign='top' class="text">Color of the connector line. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">alpha</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">0-100</td>
+        <td valign='top' class="text">Alpha (transparency) of the connector line. </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">dashed</td>
+        <td valign="top" class="text">Boolean</td>
+        <td valign="top" class="text">0/1</td>
+        <td valign='top' class="text">Whether the connector line should appear as dashed? </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">dashLen</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">0-10</td>
+        <td valign='top' class="text">If the connector line is to appear as dashed, this attribute defines the length of each dashed line. </td>
+      </tr>
+      <tr class='trLightBlueBg'>
+        <td valign="top" class="codeInline">dashGap</td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">0-10</td>
+        <td valign='top' class="text">If the connector line is to appear as dashed, this attribute defines the gap between each dashed line.</td>
+      </tr>
+      <tr>
+         <td valign="top" class="codeInline">showTooltip
+            <div class="version-info">Since v3.2</div>
+         </td>
+         <td valign="top" class="text">Boolean</td>
+         <td valign="top" class="text">0/1</td>
+         <td valign='top' class="text">Whether to show tooltip for the connector. Default value is 1. </td>
+      </tr>
+
+      
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Markers - Custom Shapes & Icons|MarkerShapes.html","Markers - XML structure|MarkerXML.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

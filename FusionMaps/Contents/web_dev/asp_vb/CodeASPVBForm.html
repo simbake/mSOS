@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with ASP.NET (VB.NET) - Using Data from Form</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with ASP.NET (VB)", "Using data from Form"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Data from Form </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">In this section, we will see how to generate a FusionMaps  XT map using data collected from Form. </td>
+  </tr>
+    <tr>
+    <td valign="top" class="text"><p>For the sake of demo, let us take the example of a fictional company that wants to plot the world-wide sales report for a particular day on a map. </p>
+    <p>The example first loads a page that has a form to accept data for all the continents. Here, we have put some default data which can be modified as per user's wish.  This data will be submitted  to another ASP.NET (VB) page. This page will acquire the data   and plot it on the map. For the sake of simplicity, we wouldn't do any   processing or checking on this data. However, your real life applications might process data   before presenting it on the map. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="highlightBlock">Before proceeding further, we recommend to go through the section <a href="../../how_fm_work/HowFCWorks.html">How FusionMaps XT works?</a> for a better insight. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">The code examples contained in this page are present in   <span class="codeInline">Download Package &gt; Code &gt; VB_NET &gt; FormBased</span> folder. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Building the Form </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The form is contained in the<span class="codeInline"> Default.aspx</span> page. Shown below is a snapshot: </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p class='text1'><img src="../../Images/CodeASPForm1.jpg" width="474" height="377" class="imageBorder" /></p>
+      </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text">This is a very simple form which submits to <span class="codeInline">FormSubmit.aspx</span>  which accepts the values and renders the map. Let us have a look at the page - <span class="codeInline">FormSubmit.aspx.</span></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr class="codeBlock code_container">
+    <td valign="top" ><p>&lt;%@ Page Language=&quot;VB&quot; AutoEventWireup=&quot;false&quot; CodeFile=&quot;FormSubmit.aspx.vb&quot; Inherits=&quot;FormBased_FormSubmit&quot; %&gt;<br />
+      &nbsp; &lt;html &gt;<br />
+      &nbsp;&nbsp;&nbsp; &lt;head&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;FusionMaps  XT- Form Based Example&lt;/title&gt;<br />
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;script language=&quot;Javascript&quot; src=&quot;../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;/head&gt;</p>
+      <p>&nbsp;&nbsp;&nbsp; &lt;body&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form id='form1' name='form1' method='post' runat=&quot;server&quot;&gt;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style1"> &lt;% '<span class="codeComment"> Show the Map</span></span><strong> %&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;asp:Literal ID=&quot;FusionMapsContainer&quot; runat=&quot;server&quot;/&gt;</strong><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br />
+  &nbsp;&nbsp; &lt;/body&gt;<br />
+  &lt;/html&gt;<br />
+      </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Requesting the data and Creating the Map </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The work of requesting the data from submitted form and creating the map is   done in <span class="codeInline">FormSubmit.aspx.vb</span>, present in the same folder. It   contains the following code: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p>Imports InfoSoftGlobal <span class="codeComment">'FusionCharts.dll in bin folder</span></p>
+      <p>Partial Class FormBased_FormSubmit<br />
+       &nbsp;&nbsp; Inherits System.Web.UI.Page</p>
+      <p> <span class="codeComment">&nbsp;&nbsp; ''' &lt;summary&gt;<br />
+       &nbsp;&nbsp; ''' This program takes Maps Request value and convert into an Array <br />
+       &nbsp;&nbsp; ''' finally converts the data into FusionMaps XT Data String to render map<br />
+       &nbsp;&nbsp; ''' &lt;/summary&gt;</span><br />
+     &nbsp;&nbsp; Protected Sub Page_Load(ByVal ob As Object, ByVal e As EventArgs) Handles Me.Load</p>
+      <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Define dataArray Two dimension string Array element. 1st column take <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' map internal id and 2nd column take Value.</span><br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Dim dataArray(8, 2) As String</p>
+      <p class="codeComment"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Array data assigned from Context object Items<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' In this example, we're directly showing this data back on map.<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' In your apps, you can do the required processing and then show the <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' relevant data only.</p>
+      <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(1, 1) = &quot;01&quot; : dataArray(1, 2) = Context.Items(&quot;AS1&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(2, 1) = &quot;02&quot; : dataArray(2, 2) = Context.Items(&quot;EU&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(3, 1) = &quot;03&quot; : dataArray(3, 2) = Context.Items(&quot;AF&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(4, 1) = &quot;04&quot; : dataArray(4, 2) = Context.Items(&quot;NA&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(5, 1) = &quot;05&quot; : dataArray(5, 2) = Context.Items(&quot;SA&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(6, 1) = &quot;06&quot; : dataArray(6, 2) = Context.Items(&quot;CA&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(7, 1) = &quot;07&quot; : dataArray(7, 2) = Context.Items(&quot;OC&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>dataArray(8, 1) = &quot;08&quot; : dataArray(8, 2) = Context.Items(&quot;ME1&quot;)</p>
+      <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Now that we've the data in variables, we need to convert this into XML.<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'The simplest method to convert data into XML is using string concatenation. </span><br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Dim strXML As New StringBuilder</p>
+      <p class="codeComment"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Initialize &lt;map&gt; element</p>
+      <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;map borderColor='FFFFFF' connectorColor='000000' fillAlpha='70' hoverColor='FFFFFF' showBevel='0'&gt;&quot;)</p>
+      <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Set colorRange's Maximum and minimum value for displaying color range</span><br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;colorRange&gt;&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='1' maxValue='350' displayValue='Population - 1 to 350' color='CC0001' /&gt;&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='350' maxValue='500' displayValue='Population - 350 to 500' color='FFD33A' /&gt;&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='500' maxValue='700' displayValue='Population - 500 to 700' color='069F06' /&gt;&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;color minValue='700' maxValue='1000' displayValue='Population - 700 or above' color='ABF456' /&gt;&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;/colorRange&gt;&lt;data&gt;&quot;)</p>
+      <p><span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Dim i As Integer</p>
+      <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Fatch Data from array</span> <br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>For i = 1 To UBound(dataArray)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Set each map &lt;entity&gt; id and value</span><br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>&nbsp;&nbsp; strXML.Append(&quot;&lt;entity id='&quot; &amp; dataArray(i, 1) &amp; &quot;' value='&quot; &amp; dataArray(i, 2) &amp; &quot;' /&gt;&quot;)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Next<br />
+       &nbsp;&nbsp;&nbsp;&nbsp; <span class="codeComment"> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Close  &lt;data&gt; element</span><br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; strXML.Append(&quot;&lt;/data&gt;&quot;)<br />
+       &nbsp;&nbsp;&nbsp; <span class="codeComment">&nbsp; ' Add Style on map</span><br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;styles&gt;&lt;definition&gt;&lt;style type='animation' name='animX' param='_xscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animY' param='_yscale' start='0' duration='1' /&gt;&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;/definition&gt;&lt;application&gt;&lt;apply toObject='PLOT' styles='animX,animY' /&gt;&lt;/application&gt;&lt;/styles&gt;&quot;)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>        <span class="codeComment">' Close &lt;map&gt; element</span><br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>strXML.Append(&quot;&lt;/map&gt;&quot;)</p>
+      <p><span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="codeComment">' Create Map embedding HTML with data contained in strXML <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ' We use FusionCharts class of InfoSoftGlobal namespace (FusionCharts.dll in BIN folder)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ' RenderChart() generates the necessary HTML needed to render the map</span><br />
+     <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> Dim mapHTML As String = <strong>FusionCharts.RenderChart(&quot;../Maps/FCMap_World8.swf&quot;, &quot;&quot;, strXML.ToString(), &quot;mapid&quot;, &quot;600&quot;, &quot;400&quot;, False, False)</strong></p>
+      <p><span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="codeComment">'embed the map rendered as HTML into Literal -  FusionMapsContainer</span><br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>FusionMapsContainer.Text = mapHTML</p>
+      <p>  <span class="codeComment">&nbsp;&nbsp;&nbsp;</span>End Sub</p>
+      <p>End Class<br />
+      </p></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">Like the first Example - Using Data String Method, we call generate the XML and render the map. Let us now discuss the steps involved:</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Steps involved in this code </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">As you can see in the above code, we're doing the following:</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Requesting data from the submitted form and storing it in local array - <span class="codeInline">dataArray</span>. </li>
+      <li>Creating an XML data document using string concatenation and storing it in <span class="codeInline">strXML</span> StringBuilder object by iterating through <span class="codeInline">dataArray</span>. </li>
+      <li>Using <span class="codeInline">InfosoftGlobal </span>assembly's <span class="codeInline">FusionCharts class</span>'s <span class="codeInline">RenderChart()</span>  function to pass <span class="codeInline">strXML</span> as the <span class="codeInline">Data String</span> for the map and render it in literal control - FusionMapsContainer.</li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Below is the snapshot of the map that we get here. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="../../Images/CodeASPForm2.jpg" width="724" height="419" class="imageBorder" /></td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Data URL Method|CodeASPVBDURL.html","Plotting data from Database - Goal|CodeASPVBDB_Goal.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

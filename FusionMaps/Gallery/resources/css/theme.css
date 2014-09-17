@@ -1,0 +1,230 @@
+@charset "utf-8";
+/* CSS Document */
+/***** THEME 0 SILVER *************/
+body.theme0 {
+    color:#3F4B54;  
+}
+.theme0 #header #content #container span.title {
+    color:#1c1c2b;
+}
+.theme0 #mapList {
+    border:1px solid #c2c9d3;
+    background-color:#f2f5f7;
+}
+.theme0 #configbody {
+    border:1px solid #d1d4da;
+    background-color:#f7f8fc;
+}
+.theme0 .accordiantitle{
+    background-color: #c0d0e0;
+    
+}
+.theme0 .saccordiantitle {
+    background-color: #DCE3E9;
+    
+}
+.theme0 .mgroupbody {
+    border-bottom: 1px solid #F1F5F7;
+}
+.theme0 .mgrouptitle {
+    background-color: #EAEEF1;
+}
+.theme0 .maplistitem {
+    color:#57636B;
+    background-color: #EAEEF1;
+}
+.theme0 .highlightedlistitem{
+    background-color: #c2c9d3;/* #BFD7E9; */
+}
+
+.theme0 #mapDataContainer {
+    border:1px solid #97A4B7;
+}
+
+.theme0 #mapDataContainer #mapDataContainerContent div#titlebar {
+    border-bottom: 1px solid #97A4B7;
+    background-color: #DCE3E9;
+}
+
+
+.theme0 #mapDataContainer #mapDataContainerContent #mapData table{
+    
+}
+
+.theme0 #mapDataContainer #mapDataContainerContent #mapData table td {
+    border-bottom:1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+.theme0 #mapDataContainer #mapDataContainerContent #mapData table thead td {
+    background-color: #EAEEF1; 
+}
+
+.theme0 .highlightedlistitem{
+   color:#fff !important;
+}
+
+.theme0 .disabledinput {
+    color: #ccc;
+}
+
+.theme0 .rootmaplist #searchthismap {
+    background: url('../img/tinysearch.jpg') no-repeat 3px center #FFF;
+    border: 1px solid #416CAC;
+    color: #5F87C2;
+
+}
+
+.theme0 div#searchResultBox {
+    border: 1px solid #416CAC;
+    border-top: 1px solid #fff;
+    background: #fff;
+    
+}
+
+.theme0 div#searchResultBox div.searchedItem {
+    border-top: 1px solid #ededed;
+}
+
+
+.theme0 div#searchResultBox div.searchedItem a:hover {
+    background-color: #ededed;
+}
+
+
+/***** THEME 1 BLUE *************/
+body.theme1 {
+    color:#0000FF;  
+}
+.theme1 #header #content #container span.title {
+    color:#1c1c2b;
+}
+.theme1 #mapList {
+    border:1px solid #1C80C0;
+    background-color:#B1D0DF;
+}
+.theme1 #configbody {
+    border:1px solid #1C80C0;
+    background-color:#B1D0DF;
+}
+.theme1 .accordiantitle{
+    background-color: #c0d0e0;
+   
+}
+.theme1 .saccordiantitle {
+    background-color: #DCE3E9;
+    
+}
+.theme1 .mgroupbody {
+    border-bottom: 1px solid #F1F5F7;
+}
+.theme1 .mgrouptitle {
+    background-color: #EAEEF1;
+}
+.theme1 .maplistitem {
+    color:#57636B;
+    background-color: #EAEEF1;
+}
+.theme1 .highlightedlistitem{
+    background-color: #1C80C0;
+}
+
+.theme1 #mapDataContainer {
+    border:1px solid #97A4B7;
+}
+
+
+
+
+/***** THEME 2 GREEN *************/
+body.theme2 {
+    color:#008800;  
+}
+.theme2 #header #content #container span.title {
+    color:#1c1c2b;
+}
+.theme2 #mapList {
+    border:1px solid #c0d0e0;
+    background-color:#CBD3B2;
+}
+.theme2 #configbody {
+    border:1px solid #c0d0e0;
+    background-color:#CBD3B2;
+}
+.theme2 .accordiantitle{
+    background-color: #c0d0e0;
+    
+}
+.theme2 .saccordiantitle {
+    background-color: #DCE3E9;
+   
+}
+.theme2 .mgroupbody {
+    border-bottom: 1px solid #F1F5F7;
+}
+.theme2 .mgrouptitle {
+    background-color: #EAEEF1;
+}
+.theme2 .maplistitem {
+    color:#57636B;
+    background-color: #EAEEF1;
+}
+.theme2 .highlightedlistitem{
+    background-color: #A9ba1a;
+}
+
+.theme2 #mapDataContainer {
+    border:1px solid #97A4B7;
+}
+
+
+/***** THEME 3 RED *************/
+body.theme3 {
+  color:#FF0000;  
+}
+.theme3 #header #content #container span.title {
+    color:#1c1c2b;
+}
+.theme3 #mapList {
+    border:1px solid #c0d0e0;
+    background-color:#F7C77B;
+}
+.theme3 #configbody {
+    border:1px solid #c0d0e0;
+    background-color:#F7C77B;
+}
+.theme3 .accordiantitle{
+    background-color: #c0d0e0;
+    
+}
+.theme3 .saccordiantitle {
+    background-color: #DCE3E9;
+   
+}
+.theme3 .mgroupbody {
+    border-bottom: 1px solid #F1F5F7;
+}
+.theme3 .mgrouptitle {
+    background-color: #EAEEF1;
+}
+.theme3 .maplistitem {
+    color:#57636B;
+    background-color: #EAEEF1;
+}
+.theme3 .highlightedlistitem{
+    background-color: #B70000;
+    
+}
+.theme3 #mapDataContainer {
+    border:1px solid #97A4B7;
+}
+
+
+
+/***** THEME x 
+					{selectionColor:"#CAD3DB", rollOverColor:"#E6EAEE", backgroundColor:"#E9E9E9" , textSelectedColor: "#FFFFFF" }, // default
+					{selectionColor:"#1C80C0", rollOverColor:"#88deef", backgroundColor:"#B1D0DF" , textSelectedColor: "#FFFFFF" }, //blue
+					{selectionColor:"#A9ba1a", rollOverColor:"#dbe67c", backgroundColor:"#cbd3b2" , textSelectedColor: "#FFFFFF" }, //green
+					{selectionColor:"#B70000", rollOverColor:"#fc9073", backgroundColor:"#F7C77B" , textSelectedColor: "#FFFFFF" } // red
+                                        
+                                        
+                                        *************/

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<title>Handling errors using FusionCharts JavaScript Class</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and JavaScript|js_overview.html",  "Handling errors" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Handling errors using FusionCharts JavaScript Class</td>
+
+  </tr>
+  
+  <tr>
+     <td valign="top" class="text">
+	 <p class="highlightBlock"> FusionMaps XT uses FusionCharts JavaScript Class that takes care of all the products of FusionCharts Suite XT including FusionMaps XT.</p>
+        <p>The FusionCharts JavaScript Class provides an effective mechanism to debug maps. Errors can be debugged using one of the following methods:</p>
+        <ul>
+           <li><a href="#simple">Listening to data-error related events using simple events model</a></li>
+           <li><a href="#advanced">Listening to data-error related events using advanced events registration model</a></li>
+           <li><a href="#jsdebug">Using JavaScript debug mode</a></li>
+       </ul>
+        <p>Let us see below how each can be implemented:</p>
+        <p class="header"><a name="simple" id="simple"></a>Listening to data-error related events using simple events model </p>
+        <p>The map itself can raise one of three data related errors listed below:</p>
+        <ol>
+           <li><span class="codeInline">FC_DataLoadError</span>: This event is fired when there was an error in loading data from the specified URL. It can   be used to show an error message to the user, or to take a corrective   measure.</li>
+           <li><span class="codeInline">FC_DataXMLInvalid</span>: This event is fired when the XML data loaded by map is invalid. It   can be used to show an error message to the user, or to take a corrective   measure.</li>
+       </ol>
+        <p class="highlightBlock">You can listen to these events and take necessary steps as per the requirement you have. For a sample with detailed description, please go through the <strong>Debugging your Maps</strong> &gt; <a href="../Debug/JS.html#simple">Using JavaScript</a> page.</p>
+        <p class="header"><a name="advanced" id="advanced"></a>Listening to data-error related events using advanced events registration model </p>
+        <p>Using the advanced event registration model, you can also listen to the events listed above. The event types or event names for the above mentioned events are <span class="codeInline">DataLoadError</span>, and <span class="codeInline">DataXMLInvalid</span>. </p>
+        <p>Additionally, FusionCharts JavaScript Library provides two more error  events.</p>
+        <ol>
+           <li>Error</li>
+           <li>Warning</li>
+        </ol>
+        <p>You can listen to the above events globally  or on a per-map basis. </p>
+        <p class="highlightBlock">For sample implementation and explanations read  <strong>Debugging your Maps</strong> &gt; <a href="../Debug/JS.html#advanced">Using JavaScript</a> page. </p>
+        <p class="header"><a name="jsdebug" id="jsdebug"></a>Using JavaScript debug mode</p>
+        <p>Other than the debug mode of individual  map SWFs, the map has its own <span class="codeInline">debugMode</span> as  well. This allows users to watch the map &rsquo;s JavaScript activities and debug maps  accordingly.  To enable the JavaScript <span class="codeInline">debugMode</span>, you  need to write the following lines of code:</p>
+        <pre class="code_container prettyprint">FusionCharts.debugMode.enabled(true);
+FusionCharts.debugMode.outputTo(console.log);</pre>
+        <p class="highlightBlock">For details of this debug mode, sample code snippets and explanations read  <strong>Debugging your Maps</strong> &gt; <a href="../Debug/JS.html">Using JavaScript</a> page. </p>
+     </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="errorlist" id="errorlist"></a> Error Code and Description</td></tr>
+		<tr>
+    <td valign="top" class="text">
+		<p>The table below contains the list of Error codes and the description of each error. </p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+        <tr>
+          <td class="header">Error Code </td>
+          <td class="header"><span class="table">Nature</span></td>
+          <td class="header"><span class="table">Description</span></td>
+        </tr>
+        
+        <tr>
+          <td><span class="table">25081429 </span></td>
+          <td><span class="table">param</span></td>
+          <td><span class="table">Invalid parameters have been passed to the </span><span class="codeInline">getChartAttribute() </span><span class="table">function.</span></td>
+        </tr>
+        <tr>
+          <td> 25081543	</td>
+          <td>param</td>
+          <td>Invalid parameters have been passed to the <span class="codeInline">getChartData()</span> function. Check whether you are specifying one of the valid data-format strings.</td>
+        </tr>
+        <tr>
+          <td><span class="table">25081617</span></td>
+          <td><span class="table">run</span></td>
+          <td><span class="table">Call to a particular method on Flash map (ExternalInterface function) failed. Check whether the map has been rendered or whether you have correct <a href="../../Tools/FlashPlayerSecuritySetup/index.html">Flash Playersecurity settings</a>.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081621</span></td>
+          <td><span class="table">run</span></td>
+          <td><span class="table">This is an error caused when the FusionCharts Flash object is sending data to non-existent object while accessing flashVars. This happens when a map has been disposed from JavaScript, but due to manipulations by any other external script, the map's HTMLNode is not deleted from the DOM.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081627</span></td>
+          <td><span class="table">param</span></td>
+          <td><span class="table">Invalid parameters (null, undefined, etc) passed to the </span><span class="codeInline">setDataXML()</span><span class="table">function.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081724</span></td>
+          <td><span class="table">param</span></td>
+          <td><span class="table">Invalid parameters (null, undefined, etc) passed to the function </span><span class="codeInline">setDataURL()</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081731</span></td>
+          <td><span class="table">param</span></td>
+          <td><span class="table">Invalid parameters (null, undefined, etc) passed to the </span><span class="codeInline">configureLink()</span><span class="table"> function.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081803</span></td>
+          <td>Runtime</td>
+          <td><span class="table">Canvas text drawing is not supported in browser</span>. This error occurs when the <span class="codeInline">printManager</span> is activated. Make sure you are not using a very old browser version that does not have full support for HTML5 canvas.</td>
+        </tr>
+        <tr>
+          <td><span class="table">25081807</span></td>
+          <td>Runtime</td>
+          <td><span class="table">There was an error while drawing text on canvas. This error occurs when the </span><span class="codeInline">printManager</span><span class="table"> is activated. Make sure you are not using a very old browser version that does not have full support for HTML5 canvas.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081810</span></td>
+          <td>Runtime</td>
+          <td><span class="table">There was an error while drawing canvas. This error occurs when the </span><span class="codeInline">printManager</span><span class="table"> is created image. Make sure you are not using a very old browser version that does not have full support for HTML5 canvas.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081816</span></td>
+          <td>Runtime</td>
+          <td><span class="table">printManager is not compatible with your browser</span>. This error occurs when <span class="codeInline">printManager</span> is enabled. Make sure you are not using a very old browser version that does not have support for HTML5 canvas.</td>
+        </tr>
+        <tr>
+          <td><span class="table">25081731</span></td>
+          <td><span class="table">param</span></td>
+          <td><span class="table">An invalid value was specified for renderer-name. Make sure you are using one of the valid renderer name strings while using the </span><span class="codeInline">setCurrentRenderer()</span><span class="table"> function or while specifying &quot;renderer&quot; parameter during FusionCharts construction.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081733</span></td>
+          <td><span class="table">type</span></td>
+          <td>An invalid data type was specified for renderer-name. Make sure you are not sending undefined or null to the <span class="codeInline">setCurrentRenderer()</span> function or to &quot;renderer&quot; parameter while FusionCharts construction.</td>
+        </tr>
+        <tr>
+          <td><span class="table">25081840</span></td>
+          <td><span class="table">run</span></td>
+          <td>An invalid value was specified for renderer-name. Make sure you are using one of the valid renderer name strings while using the <span class="codeInline">setCurrentRenderer()</span> function or while specifying &quot;renderer&quot; parameter during FusionCharts construction.</td>
+        </tr>
+        <tr>
+          <td><span class="table">25081843</span></td>
+          <td><span class="table">param</span></td>
+          <td><span class="table">Missing required parameter swfUrl while creating a new FusionCharts object.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081845</span></td>
+          <td><span class="table">run</span></td>
+          <td><span class="table">No active renderer. This is a critical error. Try hard-specifying the renderer name using the </span><span class="codeInline">setCurrentRenderer()</span><span class="table"> method.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081850</span></td>
+          <td><span class="table">run</span></td>
+          <td><span class="table">Error rendering map. This is possibly caused when there is an issue while accessing the map container HTMLNode element.</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">25081843</span></td>
+          <td><span class="table">comp</span></td>
+          <td><span class="table"> IECompatibility variable naming error. This error occurs when you have a JavaScript variable in the global window scope with the same name as that of the map's Id.<br />
+             <br />
+            For example:<br />
+            <span class="codeInline">var myMap = new FusionCharts('FCMap_World.swf', 'myMap');</span><br />
+            Note that the map id &quot;myMap&quot; is same as the JS variable name &quot;myMap&quot;</span></td>
+        </tr>
+        <tr>
+          <td><span class="table">03091549</span></td>
+          <td><span class="table">param</span></td>
+          <td><span class="table"> Unspecified event type </span>specified to the parameter of <span class="codeInline">addEventListener()</span> function. Refer to <a href="API/events.html">Event API</a> reference for valid event names.</td>
+        </tr>
+        <tr>
+          <td><span class="table">03091550</span></td>
+          <td><span class="table">param</span></td>
+          <td>Invalid  event type specified to the parameter of <span class="codeInline">removeEventListener()</span> function. Refer to <a href="API/events.html">Event API</a> reference for valid event names.</td>
+        </tr>
+        <tr>
+          <td><span class="table">03091559</span></td>
+          <td><span class="table">param</span></td>
+          <td>Invalid event type specified to the parameter of <span class="codeInline">removeEventListener()</span> function. Refer to <a href="API/events.html">Event API</a> reference for valid event names.</td>
+        </tr>
+        <tr>
+          <td><span class="table">03091560</span></td>
+          <td><span class="table">param</span></td>
+          <td>Unrecognized event type provided to the <span class="codeInline">removeEventListener()</span> function. Refer to <a href="API/events.html">Event API</a> reference for valid event names.</td>
+        </tr>
+        <tr>
+          <td><span class="table">03091602</span></td>
+          <td><span class="table">param</span></td>
+          <td>Invalid event type (null, undefined, etc) provided while event manager raises an event.</td>
+        </tr>
+        <tr>
+          <td><span class="table">03091609</span></td>
+          <td><span class="table">param</span></td>
+          <td>Invalid parameters passed to the <span class="codeInline">setChartDataUrl()</span> function. Check whether you are specifying one of the valid data-format strings.</td>
+        </tr>
+        <tr>
+          <td><span class="table">03091610</span></td>
+          <td><span class="table">param</span></td>
+          <td>Invalid parameters passed to the <span class="codeInline">setChartData()</span> function. Check whether you are specifying one of the valid data-format strings.</td>
+        </tr>
+        <tr>
+          <td height="48"><span class="table">03091611</span></td>
+          <td><span class="table">param</span></td>
+          <td>Invalid parameters passed to the <span class="codeInline">setChartData()</span> function. Check whether you are specifying one of the valid data-format strings.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Managed Print for Mozilla|js_print_manager.html","API Reference Overview|API/overview.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

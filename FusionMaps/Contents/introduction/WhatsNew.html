@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>What's new in XT</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/Overview.html", "Introduction", "Version History" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">FusionMaps XT Version History </td>
+  </tr>
+ 
+  <tr>
+     <td valign="top" class="text">
+        <p>FusionMaps XT (v3.3.1)  boasts of a plethora of enhancements which are listed below: </p>
+     </td>
+  </tr>
+  <tr>
+     <td valign="top"  class="header"><a name="v330" id="v330"></a>What's new in XT (v3.3.1) </td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionMaps XT or earlier users can learn how to use the new features introduced in FusionMaps XT  <a href="UpgradingXT.html">here</a>.          </p>
+          </p>
+		  <p><strong>Improved:</strong>
+		  <ul>
+		  <li>Improved legend interactivity in JavaScript maps.</li>
+		  <li>Better label management for marker labels in Flash Maps.</li>
+		  </ul>
+		  </p>
+		  <p><strong>Fix:</strong>          
+		  <ul>
+		    <li>Minor fix in rendering of tooltip and hover event related issues in JavaScript Maps.</li>
+		    <li>Minor fix in the functioning of <span class="codeInline">scale</span> attribute when <span class="codeInline">radius</span> is provided within <span class="codeInline">&lt;shape&gt;</span> element of JavaScript Maps.</li>
+		  <li>JavaScript functions as links for entities are no longer invoked twice when entity labels having connector lines are clicked.</li>
+		  <li>Corrected entity id for 'Cuyuni-Mazaruni' (GY.CU) region of Guyana map and 'Central' (ZM.CE) province of Zambia map.</li>
+		  <li>Fixed runtime errors in VML browsers when shadow is enabled in JavaScript Maps.</li>
+		  <li>Minor fix in markers when shape type is arc in JavaScript Maps.</li>
+		  <li>Inner radius of 'arc' shape is fixed within <span class="codeInline">&lt;marker&gt;</span> element in JavaScript Maps.</li>
+		  <li><span class="codeInline">manageLabelOverflow</span> attribute now works properly when set along with <span class="codeInline">baseFontSize</span>, in JavaScript maps.</li>
+		  </ul>
+		  </p></td></tr>
+   <tr>
+     <td valign="top"  class="header"><a name="v330" id="v330"></a>What's new in XT (v3.3.0) </td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionMaps XT or earlier users can learn how to use the new features introduced in FusionMaps XT  <a href="UpgradingXT.html">here</a>.</p>
+          <p><strong>New Features:</strong>
+		  <ul>
+		  <li>430 new maps added.</li>
+		  <li>Four new additional packs.</li>
+		  <li>New attributes to configure marker cosmetics in Flash map:<br/>
+		    &nbsp;&nbsp;&nbsp; - <span class="codeInline">markerFillColor</span><br/>
+		    &nbsp;&nbsp;&nbsp; - <span class="codeInline">markerFillAlpha</span><br/>
+		    &nbsp;&nbsp;&nbsp; - <span class="codeInline">markerFillRatio</span><br/>
+		    &nbsp;&nbsp;&nbsp; - <span class="codeInline">markerFillAngle</span><br/>
+		    &nbsp;&nbsp;&nbsp; - <span class="codeInline">markerBorderAlpha</span><br/>
+		  </li>
+		  <li>Support for <span class="codeInline">radius</span> and&nbsp;<span class="codeInline">shapeId</span> attributes in marker definition node in Flash maps.</li>
+		  <li>Markers can now be auto-scaled when a Flash map is resized setting <span class="codeInline">autoScaleMarkers='1'</span>.</li>
+		  <li>Exported JavaScript maps can now be saved to a server (using PHP and JAVA).</li>
+		  </ul>
+		  </p>
+		  <p><strong>Improved:</strong>
+		  <ul>
+		  <li><span class="codeInline">displayValue</span> and&nbsp;<span class="codeInline">maxValue</span> attributes are now calculated from&nbsp;<span class="codeInline">&lt;colorRange&gt;</span> element when single color gradient is used in Flash Maps.</li>
+		  <li>Added support to customize export related context-menu items of JavaScript maps.</li>
+		  </ul>
+		  </p>
+		  <p><strong>Fix:</strong>          
+		  <ul>
+		    <li>Minor fix in space management for legend in Flash maps.</li>
+		    <li>Flash maps now displays entity names properly in Apple Mac.</li>
+		  <li>Entity labels are now click-able to allow drill-down in Flash maps.</li>
+		  <li>Minor fix related to the position of Gradient-Legend pointer in Flash charts.</li>
+		  <li><span class="codeInline">exportChart()</span> can now be invoked multiple times in JavaScript maps.</li>
+		  <li>Fix related to disparity between Flash maps and JavaScript maps with respect to their boundaries.</li>
+		  <li>Flash&nbsp;<span class="codeInline">World with Countries</span> map no more returns &quot;Null&quot; as the DOMId through&nbsp;FC_Rendered event.</li>
+		  </ul>
+		  </p></td></tr>
+  <tr>
+     <td valign="top"  class="header"><a name="XTSR1" id="XTSR1"></a>What's new in XT (v3.2 - SR1) </td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionMaps v3.2 or earlier users can learn how to use the new features introduced in FusionMaps XT  <a href="UpgradingXT.html">here</a>.</p>
+          <p><strong>New Features:</strong></p>
+		<ul>
+		 <li>Ability to turn off url-decoding of links using the <span class="codeInline">unescapeLinks</span> attribute in JavaScript maps.</li>
+	   </ul>
+		<p><strong>Improved:</strong></p>
+		<ul>
+		 <li>Kosovo added in World with Countries, Europe and Europe (with islands) maps.</li>
+		 <li>South Sudan added in World with Countries and Africa maps.</li>
+		 <li>Faroe island updated as a part of Denmark in Europe map.</li>
+		 <li>Correction of entity definitions for numerous maps  as listed <a href="UpgradingXT.html#definitions">here</a>.<br />
+		 </li>
+	   </ul>
+		<p><strong>Fix:</strong></p>
+		<ul>
+		 <li>jQuery 1.8 compatibility issues.</li>
+		 <li>Exporting issues related to JavaScript <i>LinkedCharts</i>.</li>
+		 <li>Mixed content browser warning on Internet Explorer when using maps within secured (https) pages.</li>
+		 <li>Minor fix related to legend interactivity in JavaScript maps.</li>
+		 <li>Minor fix related to loading of chart or map SWF files while using <i>LinkedCharts</i> feature.</li>
+		 <li>Links are no longer invoked when mouse is dragged onto map from foreign elements.</li>
+		 <li>Flash <i>LinkedCharts</i> overlay button does not disappear anymore while exporting.</li>
+		 <li>Bold and Italics styles can now be applied to tool tips.</li>
+		 <li>JavaScript maps now export the current state of the maps.</li>
+	   </ul>
+	</td>
+		</tr>
+		<tr>
+		<td valign="top" class="text">&nbsp;</td>
+		</tr>
+  <tr>
+     <td valign="top"  class="header"><a name="XT" id="XT"></a>What's new in XT (v3.2) </td>
+  </tr>
+  <tr>
+     <td valign="top">
+          <p class="highlightBlock">Existing FusionMaps v3.2 or earlier users can learn how to use the new features introduced in FusionMaps XT  <a href="UpgradingXT.html">here</a>.</p>
+        <p><strong>New Features:</strong></p>
+	<ul>
+	    <li>Automatic rendering of JavaScript maps on devices (like iPad and  iPhone) where Flash player is not supported</li>
+	    <li> Use of FusionCharts JavaScript Class (<span class="codeInline">FusionCharts.js</span>) to render and manage maps</li>
+	    <li> Support for JSON data format</li>
+	    <li>Support for <em>LinkedCharts</em>, where a single data source controls multiple maps</li>
+	    <li>Color-range based interactive legends that allow selective showing/hiding of map entities</li>
+	    <li>Interactive gradient legend to show/hide entities</li>
+	    <li> Advanced print management for Flash Maps in non-Internet Explorer browsers</li>
+	    <li>Additional options for efficient event handling using JavaScript</li>
+	    <li>Introduced click, roll-over and roll-out events for Markers and Connectors </li>
+	    <li> Introduced click event for Legend items	       </li>
+	    <li>Support for dynamic update of map properties using JavaScript</li>
+	    <li>Dynamic resizing of maps when parent containers resize</li>
+	    <li>Image can now be used to fill the map background in different modes with custom alignments</li>
+	    <li>Ability to control number formatting for Indian and East Asian thousand/lac separation formats</li>
+	    <li>Support for recursive number scaling to display the map data better</li>
+	    <li> jQuery plugin to render and manage maps using jQuery syntax</li>
+	    <li>2 new maps added in&nbsp;the Core Map Pack: <ul>
+	       <li>World  with Antarctica&nbsp;(<span class="codeInline">FCMap_WorldWithAntarctica.swf</span>)</li>
+	       <li>World 8 Regions with Antarctica (<span class="codeInline">FCMap_World8WithAntarctica.swf</span>)</li>
+	    </ul>
+	    </li>
+	   </ul>
+	<p><strong>Improved:</strong></p>
+	<ul>
+       <li><span class="codeInline">FCMap_Netherland.swf</span> is renamed to<span class="codeInline"> FCMap_Netherlands.swf</span></li>
+	   <li><span class="codeInline">FCMap_NorthIreland.swf</span> is renamed to <span class="codeInline">FCMap_NorthernIreland.swf</span></li>
+	   <li>&quot;China-2&quot; map has been renamed to &quot;China (With Direct-controlled municipalities and Special administrative regions)&quot; </li>
+	   <li>Recreated maps of Scotland (<span class="codeInline">FCMap_Scotland.swf</span>) and Poland Counties (<span class="codeInline">FCMap_PolandCounties.swf</span>)</li>
+	   <li>Option to show and hide individual label of entity (along with label connector line - if any)</li>
+	   <li>Option to set hover color for individual entity</li>
+	   <li>Option to hide or show tool tip for individual entity and connector</li>
+	   <li>Option to set a map title and sub-title using <span class="codeInline">caption</span> and <span class="codeInline">subCaption</span> attributes</li>
+	   <li>Option to position map title using <span class="codeInline">captionPoistion</span>&nbsp;attribute</li>
+	   <li>Option to set a different cosmetic (color and alpha) for the entities with no value</li>
+	   <li>Option to set hover color for individual entity</li>
+	   <li>Option to disable hover color for individual entity</li>
+	   <li>Option to hide common entity border using<span class="codeInline"> showBorder = '0'</span></li>
+	   <li><span class="codeInline">exportdataready</span> event returns more number of properties as event argument</li>
+	   <li>Set default polygon shape to circle when sides are less than 3</li>
+	   <li>Correction of entity long names for numerous maps as listed <a href="UpgradingXT.html#definitions">here</a></li>
+	</ul>
+	<p><strong>Fix:</strong></p>
+	<ul>
+	   <li>Maximum value of all the Color Ranges is now included in the highest Color Range</li>
+	   <li>Individual entity label cannot be shown when all labels are hidden from the <span class="codeInline">&lt;map&gt; </span>element using <span class="codeInline">showLabels='0'</span></li>
+	   <li> Entity Definition does not change short name or long name when same <span class="codeInline">internalId</span> and <span class="codeInline">newId</span> is provided</li>
+	   </ul>
+	<p><strong>Deprecated</strong>:</p>
+	<ul>
+	    <li>Use of <span class="codeInline">FusionMaps.js</span> as the JavaScript Wrapper class to render map.<br />
+	        Use FusionCharts JavaScript Class (<span class="codeInline">FusionCharts.js</span> and supportive JavaScript modules) instead.</li>
+	    <li> Use of <span class="codeInline">FusionMapsExportComponent.js</span> is deprecated. Use <span class="codeInline">FusionChartsExportComponent.js</span> instead.</li>
+	    <li> Use of <span class="codeInline">FusionMaps.asp</span>, <span class="codeInline">FusionMaps.php</span>, <span class="codeInline">FusionMaps.dll</span> (or the sources <span class="codeInline">FusionMaps.cs</span>, <span class="codeInline">FusionMaps.vb</span>) are deprecated<br />
+	       Use <span class="codeInline">FusionCharts.asp</span>, <span class="codeInline">FusionCharts.php</span>, <span class="codeInline">FusionCharts.dll</span> (or the sources <span class="codeInline">FusionCharts.cs</span>, <span class="codeInline">FusionCharts.vb</span>) </li>
+	    <li>Use of various XML and JavaScript APIs as listed <a href="UpgradingXT.html#deprecatedxt">here</a>.</li>
+	</ul>
+     </td>
+  </tr>
+  <tr>
+      <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top"  class="header"><a name="310" id="310"></a>What's new in v3.1.0</td>
+  </tr>
+  <tr>
+      <td valign="top"  class="text">
+          <p><strong>New Features</strong>:</p>
+          <ul>
+              <li>Ability to export maps as PNG/JPG/PDF at client side or server side. We've also devised a batch export mechanism at client side, which allows you to export all the maps in a page as a single image/PDF using one-click.</li>
+              <li>Ability to copy data from map as CSV using context menu, or JavaScript function.</li>
+              <li>Personalization of map - you can now add your logos over the map, and also add an &quot;About your company&quot; to map's context menu and link it to your URL.</li>
+              <li>1 new map in core pack (Europe with islands); 69 new maps in Americas &amp; India / Europe Pack, including Brazil (States), Portugal (Districts), Austria (States) &amp; Caribbean Islands (Islands).</li>
+            </ul>
+          <p><strong>Improved</strong>:</p>
+          <ul>
+              <li> More control over chart using JavaScript - many new APIs and events exposed by map.</li>
+            </ul>
+          <p><strong>Fix</strong>:</p>
+          <ul>
+              <li>Entity IDs/ Physical entities bug fixes in many maps.</li>
+            </ul>
+        </td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top"  class="header"><a name="306" id="306"></a>What's new in v3.0.6</td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text">
+        <p><strong>Improved</strong>:</p>
+        <ul>
+            <li>Added another option to specify JavaScript links that works in IE 6/7.</li>
+        </ul>
+<p><strong>Fix</strong>:</p>
+<ul>
+    <li>Bug in showLabels attribute.</li>
+    <li>Bug in California and West Virginia map.<br />
+    </li>
+</ul>
+    </td>
+  </tr>
+ 
+  <tr>
+      <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="header"><a name="305" id="305"></a>What's new in v3.0.5</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">
+          <p>            <strong>New Features</strong>:</p>
+          <ul>
+              <li>Ability to save maps as images and to invoke this functionality from JavaScript.</li>
+              <li>Ability to print maps from JavaScript.</li>
+              <li>Option to remove &quot;Print Map&quot; context menu item.</li>
+              <li>Option to show/hide entity label for individual entities.</li>
+              <li>Ability to handle the rollOver/rollOut event for entities in JavaScript/flash code.</li>
+              <li>Option to show entity long names as part of labels.</li>
+              <li>Map Specification Sheet Generator in JavaScript or as a Windows application. Generate CSV files for entity ids and names directly from map.</li>
+              <li>125 maps in core suite. 2 additional packs (Europe &amp; Americas/India) containing 170 additional maps that can be downloaded as part of your existing license.</li>
+              <li>ASP.NET code samples in both VB.NET and C# with new Master Page and Update Panel examples.</li>
+          </ul>
+<p><strong>Improved</strong>:</p>
+<ul>
+    <li>FusionMaps JavaScript Class v1.3 with support for maps within FORMs and transparent mode.</li>
+</ul>
+<p><strong>Fix</strong>:</p>
+<ul>
+    <li>Flash Player 9.0.115 problem where links were not being invoked when map was loaded in Flash movie.</li>
+    <li>Security fix that restricts XSS attacks. FusionMaps now loads data from only relative URLs. Absolute URLs are not allowed.<br />
+    </li>
+</ul>
+      </td>
+  </tr>
+  <tr>
+      <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="304" id="304"></a>What's new in v3.0.4</td>
+  </tr>
+   <tr>
+       <td valign="top" class="text">
+           <p><strong>Renamed product to FusionMaps (from PowerMaps)</strong></p>
+<p><strong>New Features</strong>:</p>
+<ul>
+    <li>Following 5 maps added: Europe (UK divided into countries), Central America with Caribbean, North America without Central America division, Asia-3, Malta</li>
+    <li> Added option for Marker Connectors. Marker Connectors allow you to connect any two markers using a line and a label. The cosmetic properties of the label and line can be configured from XML.</li>
+    <li>Added pre-built Marker XMLs indicating important cities for most of the maps in suite. You can now directly use these XMLs to show important cities in your region.</li>
+    <li>New code samples (ASP, PHP) and documentation on how to use FusionMaps with database.</li>
+    <li>Website, map gallery &amp; dashboard samples.</li>
+    <li>Font properties can now be customized for each entity on the map.</li>
+    <li>Added option to disable hover for entities that do not have a value.</li>
+    <li>Added option to add a caption to legend.</li>
+</ul>
+<p><strong>Fix</strong>: </p>
+<ul>
+    <li>Legend empty marker issue. Now, the legend marker will consistently show as filled rectangle across all platforms.</li>
+    <li>Label placement position, when x-scale and y-scale of map was simultaneously animated.</li>
+    <li>Tool tip position issue when map is loaded into nested movie clips inside other Flash movie.</li>
+    <li>Minor changes in World-8 Map, Virginia Map &amp; North America Map tracing.</li>
+</ul>
+       </td>
+   </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	 document.getElementById("fcfooter").innerHTML =  addFCFooter("Introducing JavaScript maps|JSChartingCapabilities.html","Upgrading from Evaluation|UpgradingEval.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

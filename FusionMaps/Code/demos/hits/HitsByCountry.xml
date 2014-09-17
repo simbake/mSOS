@@ -1,0 +1,83 @@
+<map animation="1" showShadow="0" showBevel="0" showMarkerLabels="1" fillColor="CCCC33" fillAlpha="30" borderColor="CCCC33" 
+baseFontSize="10" markerBorderColor="333333" markerBgColor="333333" markerRadius="8" useHoverColor="0" showMarkerToolTip="1"  
+showLabels="0" bgColor="FFCC00, FFFFFF" bgAlpha="30,30"  showToolTip="0">
+ <data>
+  <entity id="NA"  />
+  <entity id="SA"  />
+  <entity id="EU"  /> 
+  <entity id="AS"  />
+  <entity id="AF"  />
+  <entity id="AU"  />
+ </data>
+ <markers>
+  <definition>
+   <marker id="CA" x="114.51" y="95.92" label="Canada"  />
+   <marker id="US" x="128.37" y="133.22" label="United States"  />
+   <marker id="IN" x=" 497.13" y="197.17" label="India"  />
+   <marker id="CN" x="525.91" y="157.73" label="China"  />
+   <marker id="BR" x=" 242.41" y="277.1" label="Brazil"  />
+   <marker id="AU" x="623.96" y="310.14" label="Australia"  />
+   <marker id="AR" x=" 210.44" y="328.26" label="Argentina"  />
+   <marker id="CH" x="186.99" y="339.98" label="Chile" labelPos="bottom" />
+   <marker id="PE" x="171" y=" 271.77" label="Peru"  />
+   <marker id="CO" x="178.46" y="240.86" label="Colombia"  />
+   <marker id="ME" x="116.65" y=" 191.84" label="Mexico"  />
+   <marker id="RU" x="547.22" y="84.19" label="Russia"  />
+   <marker id="UK" x="337.26" y=" 120.43" label="United Kingdom" labelPos="right" />
+   <marker id="SP" x="334.07" y="158.8" label="Spain"  labelPos="right"/>
+   <marker id="FR" x="347.92 " y="137.48" label="France"  />
+   <marker id="PO" x="324.47" y="158.8" label="Portugal"  labelPos="left"/>
+   <marker id="IR" x=" 323.41" y="120.43" label="Ireland"  labelPos="left"/>
+   <marker id="NO" x="362.84" y="94.85" label="Norway"  labelPos="left"/>
+   <marker id="SW" x=" 372.44" y="96.98" label="Sweden"  />
+   <marker id="JA" x="625.03" y="163.06" label="Japan"  />
+   <marker id="SA" x=" 388.42" y="337.85" label="South Africa"  />
+   <marker id="SD" x="429.99" y="202.5" label="Saudi Arabia"  />
+   <marker id="IRA" x=" 450.24" y="182.25" label="Iran"  />
+   <marker id="FI" x="389.49" y="90.59" label="Finland"  labelPos="right"/>
+   <marker id="TU" x="414" y=" 166.26" label="Turkey"  />
+  </definition>
+  <shapes>
+   <shape id="tri_gra" type="circle" fillColor="FFFFFF,616118" showBorder="0"/> 
+  </shapes>
+  <application>
+   <marker id="CA" shapeId="tri_gra" toolText="1645467 hits" scale="0.61"/>
+   <marker id="US" shapeId="tri_gra" toolText="2673400 hits" scale="1"/>
+   <marker id="IN" shapeId="tri_gra" toolText="1782991 hits" scale=" 0.66"/>
+   <marker id="CN" shapeId="tri_gra" toolText="1576563 hits" scale="0.61"/>
+   <marker id="BR" shapeId="tri_gra" toolText="1968531 hits" scale="0.77"/>
+   <marker id="AU" shapeId="tri_gra" toolText="1334213 hits" scale=" 0.5"/>
+   <marker id="AR" shapeId="tri_gra" toolText="984532 hits" scale="0.33"/>
+   <marker id="CH" shapeId="tri_gra" toolText="683472 hits" scale="0.25"/>
+   <marker id="PE" shapeId="tri_gra" toolText="453124 hits" scale=" 0.16"/>
+   <marker id="CO" shapeId="tri_gra" toolText="243382 hits" scale="0.6"/>
+   <marker id="ME" shapeId="tri_gra" toolText="974837 hits" scale="0.35"/>
+   <marker id="RU" shapeId="tri_gra" toolText="1954673 hits" scale=" 0.83"/>
+   <marker id="UK" shapeId="tri_gra" toolText="2489543 hits" scale="0.92"/>
+   <marker id="SP" shapeId="tri_gra" toolText="978437 hits" scale="0.33"/>
+   <marker id="FR" shapeId="tri_gra" toolText="1234271 hits" scale=" 0.5"/>
+   <marker id="PO" shapeId="tri_gra" toolText="743783 hits" scale="0.27"/>
+   <marker id="IR" shapeId="tri_gra" toolText="678342 hits" scale="0.25"/>
+   <marker id="NO" shapeId="tri_gra" toolText="937834 hits" scale=" 0.35"/>
+   <marker id="SW" shapeId="tri_gra" toolText="854674 hits" scale="0.31"/>
+   <marker id="JA" shapeId="tri_gra" toolText="1278344 hits" scale="0.50"/>
+   <marker id="SA" shapeId="tri_gra" toolText="754783 hits" scale=" 0.28"/>
+   <marker id="SD" shapeId="tri_gra" toolText="743673 hits" scale="0.28"/>
+   <marker id="IRA" shapeId="circle" toolText="567389 hits" scale="0.21" />
+   <marker id="FI" shapeId="tri_gra" toolText="854783 hits"  scale=" 0.33"/>
+   <marker id="TU" shapeId="tri_gra" toolText="445378 hits" scale="0.16"/>
+  </application>
+ </markers>
+ <styles>
+  <definition>
+   <style name="TTipFont" type="font" color="77771E" bgColor="F7F7DB" borderColor="77771E" /> 
+   <style name="labelFont" type="font" size="9" color="77771E" /> 
+   <style name="markerAnim" type="animation" param="_y" start="0" duration="1.2" easing="bounce" /> 
+  </definition>
+  <application>
+   <apply toObject="TOOLTIP" styles="TTipFont" />
+   <apply toObject="MARKERLABELS" styles="labelFont" />
+   <apply toObject="MARKERS" styles="markerAnim" />
+  </application>
+ </styles>
+</map> 

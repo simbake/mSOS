@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>
+	FusionMaps Server-side Export Sample - Configuration of Export Dialog Cosmetics
+	</title>
+	<script language="JavaScript" src="../../../Maps/FusionCharts.js"></script>
+</head>
+
+<body bgcolor="#ffffff">
+
+<div id="mapdiv" align="center">The map will appear within this DIV. This text will be replaced by the chart.</div>
+   <script type="text/javascript">
+   	//Create the map.
+	var myMap = new FusionCharts("../../../Maps/FCMap_World.swf", "myMapId", "500", "266", "0", "1");
+	myMap.setXMLUrl("DialogConfig.xml");
+	myMap.render("mapdiv");
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Creating Drill-Down Maps</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Drill-down Maps", "Simple example"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating Drill-Down Maps </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>FusionMaps XT can be easily and extensively 
+        used to create drill-down maps. All the maps in FusionMaps XT support drill down. Using the drill down functionality 
+        provided by FusionMaps XT, you can easily produce maps that enact &quot;drill 
+        down&quot; or &quot;zoom in (data)&quot; capabilities. All the entities, all the markers and all the connectors for the map can have links. </p>
+      <p>In FusionMaps XT, you can define the following types of link for the 
+        map entities and any defined markers:</p>
+      <ul>
+        <li>Simple links that open in the same page</li>
+        <li>Simple links that open in a new page</li>
+        <li>Links that open in a specified frame</li>
+        <li>Links that open in a new pop-up window</li>
+        <li>Existing JavaScript functions (on the same page) to be invoked as 
+          links</li>
+      </ul></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td valign="top" class="header">Defining links for a map </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"> <p>To define a simple link for any data plot, 
+        just define the <span class="codeInline">link</span> attribute for the 
+        <span class="codeInline">&lt;entity&gt;</span> element as under:<br />
+        <span class="codeInline">&lt;entity... value='2235' ... <strong>link='ShowDetails.asp%3FId%3D45'</strong> 
+        ...&gt; </span></p>
+      <p>With the above XML, the entity  
+      when clicked, will take to the page <span class="codeInline">ShowDetails.asp?Id=45.</span></p>
+      <p>Similarly, to define a link for a marker, add the <span class="codeInline">link</span> attribute to <span class="codeInline">&lt;marker&gt;</span> element (which is child of <span class="codeInline">&lt;application&gt;</span> element). Note that links need to be applied to marker <span class="codeInline">application</span> elements and not marker <span class="codeInline">definition</span> elements. </p>
+      <p>As you will note, the above link has been URL Encoded. FusionMaps XT expects 
+        all the links in URL Encoded format, if you have characters special characters 
+        (like ?,&amp;, etc.) in your link. When the user clicks on the link, FusionMaps XT 
+        decodes it and invokes <span class="codeInline">ShowDetails.asp?Id=45</span>.      </p>
+      <p class="highlightBlock">All the server side scripting languages provide 
+        a generic function to URL Encode any string - like in ASP and ASP.NET, 
+        we've Server.URLEncode(strURL) and so on.</p>
+   </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">XML Example:</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td valign="top" ><pre class="code_container prettyprint">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+&nbsp;&nbsp;&nbsp;&lt;data&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA' value='515' link='DemoLinkPages/DemoLink1.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA' value='373' link='DemoLinkPages/DemoLink2.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS' value='3875' link='DemoLinkPages/DemoLink3.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU' value='727' link='DemoLinkPages/DemoLink4.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF' value='885' link='DemoLinkPages/DemoLink5.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU' value='32' link='DemoLinkPages/DemoLink6.html'/&gt;
+&lt;/data&gt; 
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="header"><a name="newwindow"></a>Opening links in new window</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td valign="top" class="text">Quite often, you might want to open the drill-down 
+      link in a new window instead of the same window. To have a link open in 
+      a new window, all you need to do is, add <span class="codeInline">n-</span> 
+      before any link. E.g., 
+      <p><span class="codeInline">&lt;entity ... value='2235' ... <strong>link='n-ShowDetails.asp%3FId%3D45'</strong> 
+        ...&gt; </span></p>
+      <p>The above link, when clicked, will open in a new window.</p>
+      <p>Example XML:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" ><pre class="code_container prettyprint">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+&nbsp;&nbsp;&nbsp;&lt;data&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA' value='515' link='n-DemoLinkPages/DemoLink1.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA' value='373' link='n-DemoLinkPages/DemoLink2.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS' value='3875' link='n-DemoLinkPages/DemoLink3.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU' value='727' link='n-DemoLinkPages/DemoLink4.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF' value='885' link='n-DemoLinkPages/DemoLink5.html'/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU' value='32' link='n-DemoLinkPages/DemoLink6.html'/&gt;
+&nbsp;&nbsp;&nbsp;&lt;/data&gt;
+&lt;/map&gt;</pre></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("","Links in frames|Frames.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

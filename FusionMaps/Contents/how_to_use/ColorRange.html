@@ -1,0 +1,223 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using Color Range to define data range and colors</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|BasicUsage.html", "Define range based data" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td><span class="pageHeader">Using Color Range to define data range and colors</span></td>
+  </tr>
+  <tr> 
+    <td><p class="text">In our previous population example, when we were providing data for each entity of the world map, we were not distinguishing each entity based on colors. Effectively, this didn't enhance the visual interpretation of data. But, FusionMaps XT allows you to use color ranges to distinguish various entities based on their data. </p>
+      <p><span class="text">Using color range, you can classify your data into sections, 
+        with each section having a different name and color to differentiate from 
+        each other. These sections are called color ranges. For each color range, 
+        you'll have to specify the minimum and maximum values, and the hex color 
+        code for the rang</span>e. </p>
+      <p><span class="text">Let's say we wanted to divide the World Continent Population 
+      into three groups as under:</span></p></td>
+  </tr>
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="148" valign="top" class="header"><strong>Population</strong></td>
+          <td width="148" valign="top" class="header"><strong>Name</strong></td>
+        </tr>
+        <tr> 
+          <td width="148" valign="top" class="text">0-500 Million</td>
+          <td width="148" valign="top" class="text">Sparsely Populated</td>
+        </tr>
+        <tr> 
+          <td width="148" valign="top" class="text">500-1000 Million</td>
+          <td width="148" valign="top" class="text">Well Populated</td>
+        </tr>
+        <tr> 
+          <td width="148" valign="top" class="text">Over 1000 Million</td>
+          <td width="148" valign="top" class="text">Densely Populated</td>
+        </tr>
+      </table></td>
+  </tr>
+ 
+  <tr> 
+    <td>
+	<p class="text">From our above table, we can clearly define three color ranges as under:</p>
+	<table width="400" border="0" class="table">
+      <tr>
+        <td class="header">Numeric Range </td>
+        <td class="header">Label</td>
+        <td class="header">Color Hex code </td>
+      </tr>
+      <tr>
+        <td>value is greater than equal to 0 and less then 500.</td>
+        <td> Sparsely Populated </td>
+        <td>A7E9BC (Green) </td>
+      </tr>
+      <tr>
+        <td>value is greater than equal to 500 and less than 1000.</td>
+        <td>Well Populated </td>
+        <td>FFFFCC (Yellow) </td>
+      </tr>
+      <tr>
+        <td>value is greater than equal to 1000 and less than equal to 5000.</td>
+        <td>Densely Populated </td>
+        <td>FF9377 (Red) </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr> 
+    <td><p class="text">Now, for each color range, we can select the following 
+        properties:</p>
+      <ul>
+        <li><strong class="codeInline">MinValue</strong> &ndash; 
+          Lower limit (data value) from where this color range starts. For example, 
+          0 is <span class="codeInline">minValue</span> for first color range 
+          and 500 is <span class="codeInline">minValue</span> for second.</li>
+        <li><strong class="codeInline">MaxValue</strong> &ndash; 
+          Upper limit (data value) from where this color range ends. For example, 
+          500 is<span class="codeInline"> maxValue</span> for first color range 
+          and 1000 for second one.</li>
+        <li><span class="codeInline"><strong>displayValue</strong> 
+          </span>&ndash;&nbsp; Color range name which will be added to the map legend to aid interpretation 
+          of data. In our above example, <span class="codeInline">"Sparsely Populated"</span>, 
+          <span class="codeInline">"Well Populated"</span> and<span class="codeInline"> 
+          "Densely Populated"</span> are the names of the three color ranges. This 
+          attribute is optional &ndash; if you do not specify the <span class="codeInline">displayValue 
+          </span>for a specific color range, it'll show the range value instead 
+          (e.g., 500-1000).</li>
+        <li><span class="codeInline"><strong>Code</strong></span> &ndash; Each color range 
+          is denoted by a unique color. All the entities on the map whose data 
+          value fall within the given color range assume the same color as that 
+          of the applicable color range. You need to provide hex color codes without #. </li>
+        <li><span class="codeInline"><strong>Alpha</strong></span> &ndash; You can also set the alpha 
+          (transparency) for color range to highlight data.</li>
+      </ul>
+      <p><span class="text">Each color range should have its own unique range value, <span class="codeInline">displayValue </span>and <span class="codeInline">code</span>. </span></p>
+	  <p class="highlightBlock">Starting FusionMaps XT, use of <span class="codeInline">color</span> as the unique hex color code in <span class="codeInline">&lt;color&gt;</span> element is deprecated . Use <span class="codeInline">code</span> instead. However, if you use <span class="codeInline">color</span> it will work fine as earlier. It is recommended that you use <span class="codeInline">code</span>.</p>
+      <p><span class="text">Let's now implement the color range concept in our World 
+        Population Map. We'll follow the above defined range and color <span class="codeInline">"Sparsely 
+        Populated"</span> continents in green, <span class="codeInline">"Well 
+        Populated"</span> continents in yellow and<span class="codeInline"> "Densely 
+      Populated"</span> continents in red. </span></p>
+      <p><span class="text">To do so, create a new XML file named as </span><span class="codeInline">ColorRange.xml</span><span class="text">, with the following XML data: </span></p></td>
+  </tr>
+  <tr> 
+    <td><pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+        &nbsp;&nbsp; <strong>&lt;colorRange&gt;</strong>
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='0' maxValue='500' displayValue='Sparsely Populated' code='A7E9BC' /&gt;</strong>
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='500' maxValue='1000' displayValue='Well Populated' code='FFFFCC' /&gt;</strong>
+        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color minValue='1000' maxValue='5000' displayValue='Densely Populated' code='FF9377' /&gt;</strong>
+        <strong>&nbsp;&nbsp; &lt;/colorRange&gt;</strong>
+        &nbsp;&nbsp;&nbsp;&lt;data&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA' value='515' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA' value='373' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS' value='3875' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU' value='727' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF' value='885' /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU' value='32' /&gt;
+        &nbsp;&nbsp;&nbsp;&lt;/data&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td><p class="text">The only difference in this data (from the previous one) 
+        is the introduction of new <span class="codeInline">&lt;colorRange&gt;</span> 
+        and <span class="codeInline">&lt;color&gt;</span> elements. The <span class="codeInline">&lt;colorRange&gt; 
+        </span>element encapsulates the definition of all color range. And, individual 
+        color ranges are defined using the <span class="codeInline">&lt;color&gt;</span> 
+        element which can assume the following attributes:</p>
+      <ul>
+        <li><span class="codeInline">minValue</span> &ndash; Lower 
+          limit of range</li>
+        <li><span class="codeInline">maxValue </span>&ndash; Upper 
+          limit of range</li>
+        <li><span class="codeInline">displayValue</span> &ndash; 
+          Text representation of range (to be shown in legend)</li>
+        <li><span class="codeInline">code</span>&ndash; Hex color 
+          code (without #) for the range</li>
+        <li><span class="codeInline">alpha</span> &ndash; Transparency 
+          (0-100) for the entities belonging to that range</li>
+      </ul></td>
+  </tr>
+  <tr> 
+    <td class="text">
+       <p>Here, we've defined our 3 color ranges in the <span class="codeInline">XML</span>. 
+          When you now view the map, you'll see the following results:</p>
+       <p><img src="Images/WorldMap4.gif" width="600" height="345" class="imageBorder" /></p>
+    </td>
+  </tr>
+  
+  <tr> 
+    <td class="text">Bingo! - As you can see above, each continent has been 
+        colored according to its data value (which falls in one of the defined 
+        ranges). Also, a legend has now appeared on the map indicating the string 
+        representation of each color range. You can customize the properties of 
+        this legend using various attributes of<span class="codeInline"> &lt;map&gt; 
+        </span>element described in &quot;XML Attributes&quot; section.</td>
+  </tr>
+  
+  <tr> 
+    <td><p class="highlightBlock">Note: If any entity's data doesn't fall into 
+        any of the defined color range, it takes the color defined in <span class="codeInline">fillColor</span>        attribute of <span class="codeInline">&lt;map&gt; </span>element (or it's 
+        default value if this attribute is also not defined).</p></td>
+  </tr>
+ 
+  <tr>      
+      <td class="header">Legend Interactivity</td>
+  </tr>
+  <tr>
+  <td>
+    <p> Starting FusionMaps XT, Legend is also interactive. You can click on a legend item to hide or show all the cells mapped with the color range represented by the legend item. For example, you may want to hide the numeric range 0-500. Click on the icon labeled as &quot;Sparsely Populated &quot;. The map will show blank dataplots only with the border for the numbers residing in that range. Any data value not present in that range will be visible. A sample map is shown below:</p>
+  </td></tr>
+  <tr>
+  <td>
+  <img src="Images/hiddendataplots.jpg" class="imageBorder" /><br/><br/></td></tr>
+  
+  
+  
+
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Custom Labels & Tool-tips|CustomLabels.html","Gradient legend|gradientlegend.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

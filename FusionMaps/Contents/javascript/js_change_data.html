@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<title>Providing and updating map data</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and JavaScript|js_overview.html",  "Providing &amp; updating data" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Providing and updating map data</td>
+
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	<p class="highlightBlock"> FusionMaps XT uses FusionCharts JavaScript Class that takes care of all the products of FusionCharts Suite XT including FusionMaps XT.</p>
+      <p>FusionCharts JavaScript Classes offer a number of functions for <a href="#provide">providing data to map </a> and <a href="#update">updating </a> map data. The FusionCharts JavaScript Class supports data in XML or JSON format. The data can be assigned as URL or as String. </p>
+	  <p>In this page we will discuss:</p>
+<ul>
+   <li><a href="#provide">How to provide data to a map at the time of rendering</a></li>
+   <li><a href="#update">How to update data of an already rendered map </a></li>
+</ul>
+      <br />
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="provide" id="provide"></a>Providing data to map </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>You can provide data to the map using various methods as shown below: </p>
+      <p><strong><a name="setdataurl" id="setdataurl"></a>Using XML file as the map's data source</strong></p>
+      <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First map using FusionMaps XT&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+      &quot;MyMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );<strong>
+      myMap.setXMLUrl (&quot;Data.xml&quot;);
+     </strong> myMap.render(&quot;mapContainer&quot;);<strong>
+</strong>      
+    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;
+</pre>
+      <br />
+      <br />
+<img src="../FirstMap/Images/first_map_flash.jpg" width="679" height="384"  class="imageBorder"/>
+					 <p>In the above code, data is provided through an external XML file whose URL is provided using the <span class="codeInline">setXMLUrl()</span> function. </p>
+			         <p class="msg_handler"><a>Click here to see implementation of other functions that do the same &raquo;</a> </p>
+					<pre class="code_container prettyprint msg_body">
+myMap.<strong>setChartData</strong>(&quot;Data.xml&quot; , &quot;xmlurl&quot;);
+...
+myMap.<strong>setChartDataUrl</strong>(&quot;Data.xml&quot; , &quot;xml&quot;);
+<p class="highlightBlock">FusionCharts can also use <span class="codeInline">setDataUrl()</span>to provide map data. This function has been deprecated.</p></pre>
+<p class="text"><strong><a name="setxmldata" id="setxmldata"></a>Using XML String as the map data source</strong></p>
+					 <p>In case you have XML data as String in JavaScript, you can use the <span class="codeInline">setXMLData()</span> function to provide this XML String as shown in the code below: </p>
+					
+						<pre class="code_container prettyprint">// String containing map XML
+var strXML = &quot;&quot;&lt;map&gt;&lt;data&gt;&lt;entity id='NA' value='515' /&gt;...&lt;/data&gt;&lt;/map&gt;&quot;&quot;; 
+
+myMap.<strong>setXMLData</strong>(strXML);</pre>
+			            <p class="msg_handler"><a>Click here to see implementation of other functions that do the same &raquo;</a></p>
+					<pre class="code_container prettyprint  msg_body">
+myMap.<strong>setChartData</strong>(strXML , &quot;xml&quot;);
+<p class="highlightBlock">FusionCharts can also use <span class="codeInline">setDataXML()</span>to provide map data. This function has been deprecated.</p></pre>
+								
+						<p><strong><a name="setjsonurl" id="setjsonurl"></a>Using JSON URL as the map data source</strong></p>
+						<p>In case you are feeding  JSON data to the map from a Url, you can use the <span class="codeInline">setJSONUrl()</span> function. See code below: </p>
+						<pre class="code_container prettyprint">myMap.<strong>setJSONUrl</strong>(&quot;Data.json&quot;);</pre>
+						 		   <p class="msg_handler"><a>Click here to see implementation of other functions that do the same &raquo;</a> </p>
+					<pre class="code_container prettyprint  msg_body">myMap.<strong>setChartData</strong>(&quot;Data.json&quot; , &quot;jsonurl&quot;);
+...
+myMap.<strong>setChartDataUrl</strong>(&quot;Data.json&quot; , &quot;json&quot;);</pre>
+
+						
+                    <p><strong><a name="setjsondata" id="setjsondata"></a>Using  JSON Object or JSON stored as String in JavaScript </strong></p>
+<p>In case you are using JSON Object or JSON as String to be fed to map, you can use <span class="codeInline">setJSONData()</span> function. See code below: </p>
+<pre class="code_container prettyprint lang-js">var objJSON = { map : { ... } , data : { ... } ... } ; // Map JSON data
+myMap.<strong>setJSONData</strong>( objJSON ); </pre>
+								<br />
+
+<pre class="code_container prettyprint lang-js">var strJSON = &quot;{ map : { ... } , data : { ... } ... }&quot; ; // map data as JSON String
+myMap.<strong>setJSONData</strong>( strJSON ); 
+</pre>
+													<p class="msg_handler"><a>Click here to see implementation of other functions that do the same &raquo;</a></p>
+					<pre class="code_container prettyprint  msg_body">myMap.<strong>setChartData</strong>(objJSON , &quot;json&quot;);
+...
+myMap.<strong>setChartData</strong>(strJSON , &quot;json&quot;);
+</pre>
+                    <p class="highlightBlock"> The code samples here use URL of static XML/JSON files. Ideally, you will be using server side scripts to  dynamically generate  XML or JSON data, rather than build JSON or XML files. So, you can provide the URL of the script, which   relays  dynamically generated data to the map. </p>
+                    <p><strong><a name="related" id="related"></a>List of functions that help in providing data to map </strong></p>
+								<p>Here is the list of FusionCharts JavaScript functions which can be used for providing data to the map in XML or JSON format:</p>
+								<ul>
+								  <li><span class="codeInline">setXMLUrl(url) - </span>This function specifies the URL of the XML data source. The XML is relayed to the map through the provided Url</li>
+								  <li><span class="codeInline">setXMLData(data) - </span>This function provides data to the map in form of  XML string. The XML String is passed as <span class="codeInline">data </span>parameter</li>
+								  <li><span class="codeInline">setJSONUrl(url) - </span>This function specifies the URL of the JSON data source. The JSON is relayed to the map through this URL  </li>
+								  <li><span class="codeInline">setJSONData(data) - </span>This function provides data to the map in form of  JSON String. The JSON String is passed as <span class="codeInline">data </span>parameter</li>
+								  <li><span class="codeInline">setChartDataUrl(url, format) - </span>This function  takes URL of the data source. It takes two parameters <span class="codeInline">url</span> and <span class="codeInline">format</span>. The <span class="codeInline">format </span>parameter accepts either <span class="codeInline">xml </span>or <span class="codeInline">json</span>. As per the value of the <span class="codeInline">format </span>parameter the function accepts data in the following manner:
+                                    <ul>
+              <li>When the format is <span class="codeInline">xml</span>, the function will look for the Url of  xml data from <span class="codeInline">url </span>parameter</li>
+              <li>When the format is <span class="codeInline">json</span>, the function will look for the Url of JSON data from <span class="codeInline">url </span>parameter</li>
+            </ul>
+								  </li>
+								  <li><span class="codeInline">setChartData(data, format) </span>- This function sets map data. It takes two parameters. The first is the data string itself. The second parameter, <span class="codeInline">format</span>, takes one of the four values - <span class="codeInline">xml</span>,<span class="codeInline"> xmlurl</span>, <span class="codeInline">json, jsonurl</span>. As per the value of <span class="codeInline">format</span> parameter the function accepts data in the following manner:
+												<ul>
+														<li>When the <span class="codeInline">format</span> is <span class="codeInline">xml</span>, the function will look for XML string in <span class="codeInline">data</span> parameter</li>
+														<li>When the <span class="codeInline">format</span> is <span class="codeInline">json</span>, the function will look for JSON object or JSON string in <span class="codeInline">data</span> parameter</li>
+														<li>When the <span class="codeInline">format</span> is <span class="codeInline">xmlurl</span>, the function will look for  URL of the XML data in <span class="codeInline">data</span> parameter</li>
+														<li>When the <span class="codeInline">format</span> is <span class="codeInline">jsonurl</span>, the function will look for the URL of JSON data in <span class="codeInline">data</span> parameter</li>
+						                  </ul>
+								  </li>
+						          <li>The deprecated functions are given below. While these are backward compatible and still work, going forward, we do not recommend using these.
+						            <ul>
+						              <li><span class="codeInline">setDataURL(url) - </span>This function specifies the URL of the XML data source. The URL is relayed to the map through the provided  URL. </li>
+					                  <li><span class="codeInline">setDataXML(data) - </span>This function provides data to the map in form of XML string. The XML String is passed as <span class="codeInline">data </span>parameter.</li>
+						            </ul>
+						          </li>
+    </ul>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">While using HTTPS/SSL protocols it is not recommended to use the <span class="codeInline">setDataURL()</span>function. </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">
+      <p class="header"><a name="compact" id="compact"></a>Providing data to the map using compact rendering method</p>
+      <p>Apart from the above mentioned functions, data can be provided to the map using the <a href="js_create_chart.html#compact">compact rendering method</a>. Using this method you can pass your data as XML/JSON URL or String. All you need to do is  provide the settings correctly. The code snippets below show how to use the compact rendering mode: </p>
+      <p><strong><a name="compact_xmlurl" id="compact_xmlurl"></a>Using XML file as the map data source</strong></p>
+      <pre class="code_container prettyprint">var myMap = FusionCharts.render( "Maps/FCMap_World.swf", "myMapId",
+  "750", "400", "MapContainer", <strong>"Data.xml" , "xmlurl"</strong> );</pre>
+      
+      <p><strong><a name="compact_jsonurl" id="compact_jsonurl"></a>Using JSON  file as the map data source</strong></p>
+						<pre class="code_container prettyprint">var myMap = FusionCharts.render( "Maps/FCMap_World.swf", "myMapId",
+  "750", "400", "MapContainer", <strong>"Data.json" , "jsonurl"</strong> );</pre>
+                        
+                        <p><strong><a name="compact_xml" id="compact_xml"></a>Using XML String as the map data source</strong></p>
+						<pre class="code_container prettyprint">var myMap = FusionCharts.render( "Maps/FCMap_World.swf", "myMapId",
+  "750", "400", "MapContainer",<strong> strXML , "xml"</strong> );</pre>
+                        
+                        <p><strong><a name="compact_json" id="compact_json"></a>Using JSON Object as the map data source</strong> </p>
+						<pre class="code_container prettyprint">var objJSON = { map : { ... } , data : { ... } ... } ; // map data as JSON object
+var myMap = FusionCharts.render( "Maps/FCMap_World.swf", "myMapId",
+  "750", "400", "MapContainer", <strong>objJSON , "json" </strong>);</pre>
+                        
+                        <p><strong><a name="compact_json_string" id="compact_json_string"></a>Using JSON String as the map data source</strong> </p>
+						<pre class="code_container prettyprint">var strJSON = &quot;{ map : { ... } , data : { ... } ... }&quot; ; // map data as JSON String
+var myMap = FusionCharts.render( "Maps/FCMap_World.swf", "myMapId",
+  "750", "400", "MapContainer", <strong>strJSON , "json"</strong> );</pre>
+                        
+                        <p>For more information on compact rendering mode read <a href="js_create_chart.html#compact">Constructor methods</a>. </p>
+    </td>
+  </tr>
+  
+  <tr>
+     <td valign="top" class="header"><a name="update" id="update"></a>Updating an existing map </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>Let's render a sample map and then change its data (see code below). The map which renders initially shows  the sales data for the Month of August. However, its data is changed to show sales for the month of September when a button is clicked.  We have separate XML files for each month, The code is as follows:
+      </p>
+      <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Update data for map&lt;/title&gt;
+    &lt;script type="text/javascript" src=&quot;../../Maps/FusionCharts.js&quot;&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      var myMap = new FusionCharts( &quot;../../Maps/FCMap_World.swf&quot;, 
+        &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+
+		function <strong>changeData</strong>()
+		{
+			var mapReference = FusionCharts(&quot;myMapId&quot;);
+			mapReference.<strong>setXMLUrl</strong>(&quot;Density.xml&quot;);
+		}
+    // --&gt;
+    &lt;/script&gt;
+
+    &lt;input type=&quot;button&quot; onClick=&quot;<strong>changeMonth</strong>();&quot; value=&quot;Change Month&quot;&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>In the above code we have created a map using population data as count in numbers, the data for which is in <span class="codeInline">Data.xml</span>. We have created an HTML button which calls a JavaScript function, <span class="codeInline">changeData()</span>. In this function we have:</p>
+      <ul>
+         <li>Tracked the reference of the map using <span class="codeInline">FusionCharts(&quot;myMapId&quot;)</span></li>
+         <li>Updated the map using <span class="codeInline">setXMLData()</span>function</li>
+         <li>Passed <span class="codeInline">&quot;Density.xml&quot;</span>, which contains data for September, to <span class="codeInline">setXMLData()</span></li>
+      </ul>
+      <p>The maps will look as follows:</p>
+      <table width="680" border="0" cellspacing="0" cellpadding="0">
+         <tr>
+            <td><img src="../FirstMap/Images/first_map_flash.jpg" width="679" height="384" /></td>
+        </tr>
+         <tr>
+            <td align="center" class="imageCaption">Map with population count data</td>
+            </tr>
+         <tr>
+            <td align="center" class="imageCaption">&nbsp;</td>
+            </tr>
+         <tr>
+            <td align="center" class="imageCaption"><img src="Images/updateddata.jpg" width="678" height="393" /></td>
+            </tr>
+         <tr>
+            <td align="center" class="imageCaption">Map with population density data</td>
+            </tr>
+      </table>
+      
+    </td>
+  </tr>
+      <tr>
+      <td class="text">
+      <p><strong>Other Methods of updating data for maps </strong></p>
+      <p>To update an existing map with data, all you need to do is get the <a href="js_chart_instance.html">map reference</a> and a  function from the list provided above. All of the functions listed <a href="#related" title="List of functions that help in providing data to chart">above</a> can then be used for updating the data of an existing map. Following code  snippets  illustrate the process:
+      </p><pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;);
+mapReference.setXMLUrl(&quot;newData.xml&quot;);</pre> 
+      <br/>
+      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;);
+mapReference.setJSONUrl(&quot;updatedJSON.json&quot;);</pre>
+      <br/>
+      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts.items[&quot;myMapId&quot;];
+mapReference.setXMLData(newXMLString);
+<span class="codeComment">//newXMLString is a JavaScript String variable containing the map XML</span></pre>
+      <br/>
+      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts.items[&quot;myMapId&quot;];
+mapReference.setJSONData(objJSON);
+<span class="codeComment">//objJSON is an Object containing map JSON</span></pre>
+      <br/>
+      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts.items[&quot;myMapId&quot;];
+mapReference.setJSONData(strJSON);
+<span class="codeComment">//strJSON is a String which contains map JSON</span></pre>
+      <span class="msg_handler">
+      <p><a>Click here to see implementation of other similar functions &raquo;</a></p></span>
+    
+      <pre class="msg_body code_container prettyprint lang-js" >var mapReference = FusionCharts.items[&quot;myMapId&quot;];
+...
+mapReference.setChartDataUrl(&quot;updatedXML.xml&quot;, &quot;xml&quot;);
+...
+mapReference.setChartDataUrl(&quot;updatedJSON.json&quot;, &quot;json&quot;);
+...
+mapReference.setChartData(&quot;updatedXML.xml&quot;, &quot;xmlurl&quot;);
+...
+mapReference.setChartData(&quot;updatedJSON.json&quot;, &quot;jsonurl&quot;);
+...
+mapReference.setChartData(strXML, &quot;xml&quot;);
+...
+mapReference.setChartData(objJSON, &quot;json&quot;);
+...
+mapReference.setChartData(strJSON, &quot;json&quot;);</pre>
+      <p><strong>Deprecated Functions</strong></p>
+      <pre class="code_container prettyprint lang-js">myMap.setDataURL(&quot;newData.xml&quot;);</pre> 
+				  <br/> 
+					 <pre class="code_container prettyprint lang-js">var mapReference = getMapFromId(&quot;myMapId&quot;);
+mapReference.setDataXML(newXMLString); 
+//newXMLString is a JavaScript String variable containing the map XML</pre> 
+					 <br/> 
+					 <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts.getObjectReference(&quot;myMapId&quot;);
+mapReference.setDataURL(&quot;newData.xml&quot;);</pre> 
+					 <br/> 
+						<pre class="code_container prettyprint lang-js">myMap.setDataXML(newXMLString); 
+//new XMLString is a string containing map XML</pre>
+						<br/> 
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">Please note that only the <span class="codeInline">setDataXML()</span>and <span class="codeInline">setDataURL()</span>functions  will work if you get reference to map's <a href="js_chart_instance.html#html">HTML Object reference</a> instead of its <a href="js_chart_instance.html#js">JavaScript object reference</a>. If you get the map's JavaScript Object reference, you can use all the functions listed above. </td>
+  </tr>
+  <tr>
+     <td height="30"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="legacy" id="legacy"></a>Notes on Backward compatibility </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Your existing code (i.e. code used prior to FusionMaps XT) will continue to work as before.</p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Getting map reference|js_chart_instance.html","Changing map properties|js_change_chart_properties.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

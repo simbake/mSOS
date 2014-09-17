@@ -1,0 +1,19 @@
+<map animation='0' showShadow='0' showBevel='0' showLabels='0' showMarkerLabels='1' fillColor='F1f1f1' borderColor='999999' baseFont='Verdana' baseFontSize='10' legendPosition='bottom' useHoverColor='1' showMarkerToolTip='1'  >
+	<data>
+		<entity id='KI.GI'  />
+		<entity id='KI.LI'  />
+		<entity id='KI.PI'  />
+	</data>
+	<markers>
+	    <shapes>
+		     <shape id='myCustomShape' type='circle' fillColor='FFFFFF,333333'  fillPattern='radial' showborder='0' radius='4'/>
+			 <shape id='newCustomShape' type='circle' fillColor='FFFFFF,000099'  fillPattern='radial' showborder='0' radius='3'/>
+		</shapes>
+		<definition>
+			<marker id='TA' x='26.66' y='49.06' label='Tarawa'  />
+		</definition>
+		<application>
+			<marker id='TA' shapeId='myCustomShape'  />
+		</application>
+	</markers>
+</map>

@@ -1,0 +1,23 @@
+<map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'>
+	<entityDef>
+		<entity internalId='NA' newId='NAM' sName='N.Am' lName='N. America'/>
+		<entity internalId='SA' newId='SAM' sName='S.Am' lName='S. America'/>
+		<entity internalId='EU' newId='EUR' />
+		<entity internalId='AS' newId='ASI' />
+		<entity internalId='AF' newId='AFR' />
+		<entity internalId='AU' newId='AUS' />
+	</entityDef>
+	<colorRange>
+		<color minValue='0' maxValue='500' displayValue='Sparsely Populated' color='A7E9BC' />
+		<color minValue='500' maxValue='1000' displayValue='Well Populated' color='FFFFCC' />
+		<color minValue='1000' maxValue='5000' displayValue='Densely Populated' color='FF9377' />
+	</colorRange>
+	<data>
+		<entity id='NAM' value='515' />
+		<entity id='SAM' value='373' />
+		<entity id='ASI' value='3875' />
+		<entity id='EUR' value='727' />
+		<entity id='AFR' value='885' />
+		<entity id='AUS' value='32' />
+	</data>		
+</map>

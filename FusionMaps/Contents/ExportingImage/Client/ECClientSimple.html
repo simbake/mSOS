@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Exporting Maps as PDF or Images - Client-side export - Simple Example </title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Exporting as Image/PDF|../ECOverview.html", "Client-side exporting|ECClientOverview.html", "Simple example" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Simple Example </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here, we'll cover examples for setting up client-side exporting of maps. We'll first start with the simplest example and then move ahead by configuring various parameters.</p>
+      <p>Before you start, you'll need to follow these steps:</p>
+      <ol>
+        <li>Copy <span class="codeInline">FusionChartsExportComponent.js</span> from <span class="codeInline">Download Package &gt; Maps </span>folder to your server. A good location is where you've placed <span class="codeInline">FusionCharts.js</span></li>
+        <li>Copy <span class="codeInline">FCExporter.swf</span> from <span class="codeInline">Download Package &gt; Maps</span> to your server. A good location is where you've placed the other map SWF  files.</li>
+      </ol>
+    <p class="highlightBlock"><strong>Existing users</strong>: Starting FusionMaps XT, use of <span class="codeInline">FusionMapsExportComponent.js</span> is deprecated.  Use <span class="codeInline">FusionChartsExportComponent.js</span> instead. It is recommended that you  replace all  references <span class="codeInline">FusionMapsExportComponent</span><span class="codeInline">.js</span> to <span class="codeInline">FusionChartsMapsExportComponent.js</span> in your code. </p>
+    <p>With that done, our next few steps are:</p>
+    <ol>
+      <li>Include an instance of Exporter Component in your web page</li>
+      <li>Configure the map  (XML) to use this instance of export component by specifying it in HTML </li>
+      <li>Start exporting   </li>
+      </ol>
+    <p>Let's see how to implement each of them in details. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="exportcomponentinstance"></a>Creating instance of Export Component in your web page </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The instance of the export component can be created in your web page easily using our <span class="codeInline">FusionChartsExportComponent</span> JavaScript class.</p>
+    <p> So, you first need to include the JavaScript class in your page as under. Make sure to include this page after <span class="codeInline">FusionCharts.js</span>, as this class references some of the objects defined in <span class="codeInline">FusionCharts.js</span>. This order of inclusion is important.</p></td>
+  </tr>
+  <tr>
+    <td valign="top" ><pre class="code_container prettyprint">&lt;head&gt;
+    &lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+    &lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionChartsExportComponent.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Now, using this class, you need to create an instance of this component in your page. For that, you first define an empty DIV and name it, as shown under:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" ><pre class="code_container prettyprint">&lt;!-- We also create a DIV to contain the FusionCharts client-side exporter component --&gt;
+&lt;div id=&quot;fcexpDiv&quot; align=&quot;center&quot;&gt;FusionCharts Export Handler Component&lt;/div&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, the DIV has been named as <span class="codeInline">fcexpDiv</span>. </p>
+      <p class="highlightBlock">Note that you can place this DIV anywhere in your page - it's not necessary to place it beside the map. However, since the UI of this export component shows a button for initiating export, it's better to place it somewhere near the map so that your users can recognize it. </p>
+      <p>Finally, you create an instance of the export component in your page using the following JavaScript code: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" ><pre class="code_container prettyprint">&lt;script type=&quot;text/javascript&quot;&gt;
+	//Note: fcExporter1 is the DOM ID of the DIV and should be specified as value of exportHandler
+	//attribute of map XML.
+	var myExportComponent = new FusionChartsExportObject(&quot;fcExporter1&quot;, &quot;../../Maps/FCExporter.swf&quot;);
+	//Render the exporter SWF in our DIV fcexpDiv
+	myExportComponent.Render(&quot;fcexpDiv&quot;);
+&lt;/script&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here:</p>
+	<ul>
+	<li> we first create an instance of <span class="codeInline">FusionChartsExportObject</span>, which is the JavaScript class representation of FusionCharts Export Component.</li>
+	<li> To this, we specify the DOM-Id of this export component instance - <span class="codeInline">fcExporter1</span> in this case. We also specify the location of the component SWF file as second parameter.
+	<p class="highlightBlock">To provide cross-browser compatibility, we recommend you not to start the ID with a numerical value, nor use space as part of the ID. </p>
+	</li>
+	<li> Finally, we call the <span class="codeInline">Render</span> method of the class with our DIV id as parameter. This generates an instance of the exporter component in the specified DIV at run-time.</li></ul>
+	
+    <p class="highlightBlock">While there are more parameters that you can provide in this constructor to customize the cosmetics and functional behavior of export component, we'll come to them later.</p>
+    <p>The final code of the page looks as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" ><pre class="code_container prettyprint">&lt;html&gt;
+&lt;head&gt;
+	&lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+	&lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionChartsExportComponent.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#ffffff&quot;&gt;
+	&lt;div id=&quot;mapdiv&quot; align=&quot;center&quot;&gt;The map will appear within this DIV. This text will be replaced by the map.&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		//Create the map.
+		var myMap = new FusionCharts(&quot;../../Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;500&quot;, &quot;300&quot;, &quot;0&quot;, &quot;1&quot;);
+		myMap.setXMLUrl(&quot;SimpleExample.xml&quot;);
+		myMap.render(&quot;mapdiv&quot;);
+	&lt;/script&gt;
+	&lt;!-- We also create a DIV to contain the FusionCharts client-side exporter component --&gt;
+	&lt;div id=&quot;fcexpDiv&quot; align=&quot;center&quot;&gt;FusionCharts Export Handler Component&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		//Render the export component in this
+		//Note: fcExporter1 is the DOM ID of the DIV and should be specified as value of exportHandler
+		//attribute of map XML.
+		var myExportComponent = new FusionChartsExportObject(&quot;fcExporter1&quot;, &quot;../../Maps/FCExporter.swf&quot;);
+		//Render the exporter SWF in our DIV fcexpDiv
+		myExportComponent.Render(&quot;fcexpDiv&quot;);
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>This completes the code needed in your HTML. Now, we just need to configure our map XML data to use this export component.</p>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="configurexml"></a>Configuring XML for client-side export </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In the XML, you need to do three things:</p>
+      <ul>
+        <li>Enable your map for export (using <span class="codeInline">exportEnabled</span> attribute) </li>
+        <li>Set it to use client-side export (using <span class="codeInline">exportAtClient</span> attribute) </li>
+        <li>Give reference (DOM Id) of the export component that you created in your HTML page (using <span class="codeInline">exportHandler</span> attribute)
+		 
+		 </li>
+      </ul>
+    <p>The following XML snippet shows how to attain these: </p></td>
+  </tr>
+  <tr>
+    <td valign="top"> <pre class="code_container prettyprint">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9' <strong>exportEnabled='1' exportAtClient='1' exportHandler='fcExporter1'</strong>&gt;
+    &nbsp;&lt;data&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id='NA' value='515' /&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id='SA' value='373'/&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id='AS' value='3875' /&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id='EU' value='727' /&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id='AF' value='885' /&gt;<br />&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id='AU' value='32' /&gt;<br />&nbsp; &nbsp; &nbsp;&lt;/data&gt;
+&lt;/map&gt;</pre></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>When you now fire up your HTML page, you'll see a screen as under.</p>
+      <p><img src="../Images/ECClientSimple1.jpg" width="508" height="311" class="imageBorder" /></p>
+      <p>See it <a href="../../../Code/ExportMapSamples/ClientSide/SimpleExample.html" target="_blank">live</a>! </p>
+    <p>The screen consists of a map and a small <span class="codeInline">Waiting</span> button below it. This button is the UI of FusionCharts export component. By default, it's enabled as the map hasn't yet exported its data to export component. The export component can have UI in two modes - Compact or Full. What you see here is the compact mode with just the button on. We'll cover customization of this mode and full mode in the coming sections. </p>
+      <p>To start exporting, right-click on the map and select &quot;<span class="codeInline">Save as JPEG</span>&quot;. You'll see the map entering the capture phase. Once the capture phase is finished, the map passes this data to the export component, which in turn processes it and makes it available for download. In this state, the title of button changes to &quot;Save&quot; and it gets enabled, as shown below. </p>
+	  <p><img src="../Images/ECClientSimple2.jpg" width="506" height="315" class="imageBorder" /></p>
+  <p>When you click this button now, the browser shows a &quot;Save as&quot; dialog box, which allows you to save the exported map output on your hard drive.</p>
+  <p><img src="../Images/ECClientSimple3.jpg" width="577" height="475" /></p>
+  
+      <p>As you can see above, the map downloads as &quot;<span class="codeInline">FusionCharts.jpg</span>&quot;. If you wish to change the name of file, you can specify it in your XML as:</p>
+      <pre class="code_container prettyprint">&lt;map ... exportFileName='MyFileName' ...&gt; </pre>
+      <p>Note  that you do not have to provide the extension here, as the extension  depends on the format that was selected on the map during export. Now, if you're wondering why the export component needs to be a separate SWF file and why does it need to have a UI, let's understand the same. </p>      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="separateui"></a>FusionCharts Export Component - Why a separate UI? </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>FusionMaps XT Flash maps are made in Flash 8 (AS2) which don't support byte-streams and file downloads. However, Flash 10 (AS3) does support the same. So, to get the best of both worlds, the Export Component has been coded in Flash 10 (AS3) to be able to handle image/PDF building (using byte streams) and to allow download of the same. </p>
+      <p>The bridge between FusionMaps  XT Flash maps and the Export Component is JavaScript. So, we always ask you to run the files from a server (either localhost, or a remote server), as Flash Player, by default, blocks JavaScript communication when running from local file system, <a href="../../../Tools/FlashPlayerSecuritySetup/index.html" target="_blank"> unless otherwise specifically set</a>.</p>
+      <p>Now if you're wondering why we cannot start automatic download of image/PDF from export component, rather than having to click a button, let us explain. In Flash Player, to allow download of a file, the end user has to necessarily interact with the Flash movie that initiates download. This has been done to avoid &quot;evil&quot; movies on web from doing any sort of harm. As such, the export component provides a button to click on, which initiates the download. As we  mentioned earlier, the export component has two modes - Compact and Full Mode. The full mode has a much enhanced UI, wherein you can select format for each map, or download all maps as a single file. We'll cover them later in <a href="../Batch/ECBatchOverview.html">Batch Export</a> section. </p>
+      <p>Before that, let's quickly glance through customization options for the compact mode. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="exportcomponentui" id="exportcomponentui"></a>Customizing the Export Component UI </td>
+  </tr>
+ 
+  
+  <tr>
+    <td valign="top" class="text"><p>The export component offers extensive UI customization options. Here, we'll see some of the basic configuration options. The entire list can be found in the <a href="ECComponentUI.html">Component UI Customization </a>section. Consider the code below:</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="code_container prettyprint">&lt;!-- We also create a DIV to contain the FusionCharts client-side exporter component --&gt;
+&lt;div id=&quot;fcexpDiv&quot; align=&quot;center&quot;&gt;FusionCharts Export Handler Component&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	//Render the export component in this
+	//Note: fcExporter1 is the DOM ID of the DIV and should be specified as value of exportHandler<br />
+	//attribute of map XML.
+	var myExportComponent = new FusionChartsExportObject(&quot;fcExporter1&quot;, &quot;../../Maps/FCExporter.swf&quot;);
+	//Customize the component properties 
+	//Width and height
+	myExportComponent.componentAttributes.width = '400';
+	myExportComponent.componentAttributes.height = '60';
+	//Background color
+	myExportComponent.componentAttributes.bgColor = 'ffffdd';
+	//Border properties
+	myExportComponent.componentAttributes.borderThickness = '2';
+	myExportComponent.componentAttributes.borderColor = '0372AB';
+	//Font properties
+	myExportComponent.componentAttributes.fontFace = 'Arial';
+	myExportComponent.componentAttributes.fontColor = '0372AB';
+	myExportComponent.componentAttributes.fontSize = '12';
+	//Message - caption of export component
+	myExportComponent.componentAttributes.showMessage = '1';
+	myExportComponent.componentAttributes.message = 'Export the map first, and then click on this button to save';
+	//Button visual configuration
+	myExportComponent.componentAttributes.btnWidth = '200';
+	myExportComponent.componentAttributes.btnHeight= '25';
+	myExportComponent.componentAttributes.btnColor = 'E1f5ff';
+	myExportComponent.componentAttributes.btnBorderColor = '0372AB';
+	//Button font properties
+	myExportComponent.componentAttributes.btnFontFace = 'Verdana';
+	myExportComponent.componentAttributes.btnFontColor = '0372AB';
+	myExportComponent.componentAttributes.btnFontSize = '15';
+	//Title of button
+	myExportComponent.componentAttributes.btnsavetitle = 'Save the map'
+	myExportComponent.componentAttributes.btndisabledtitle = 'Waiting for export';
+	//Render the exporter SWF in our DIV fcexpDiv
+	myExportComponent.Render(&quot;fcexpDiv&quot;);
+&lt;/script&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above, we've specified the various parameters for export component. This is done in the following syntax:</p>
+      <pre class="code_container prettyprint">Component_Instance.componentAttributes.Parameter_name = 'Value';
+e.g., myExportComponent.componentAttributes.width = '400';</pre>
+    <p>We've changed background colors, button colors, font properties, added a caption to UI and changed the title of button (both disabled stated and active state). When you now see your page, you'll get something as under. </p>
+	<p><img src="../Images/ECClientSimple4.gif" width="405" height="61" class="imageBorder" /></p>
+	<p>In disabled mode (when export has not been initiated)</p>
+	<p><img src="../Images/ECClientSimple5.gif" width="402" height="65" class="imageBorder" /></p>
+	<p>In active mode (post export).</p>
+     <p>See it <a href="../../../Code/ExportMapSamples/ClientSide/SimpleExampleCustom.html" target="_blank">live</a>!</p>
+      
+    <p>The full mode has more complex UI and allows lot more configuration options. Please see the page <span class="codeInline">Component UI Customization</span> to get the complete list. Before that, let's quickly see what to do when you've multiple maps on the page. </p>
+	</td></tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Overview|ECClientOverview.html","Setting for multiple maps|ECClientMultiple.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

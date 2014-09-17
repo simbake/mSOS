@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>FusionMaps XT - Using multiple maps in a page</title>
+        <script type="text/javascript" language="Javascript" src="../assets/ui/js/jquery.min.js"></script>
+
+        <script type="text/javascript" src="../../Maps/FusionCharts.js"></script>
+		<script type="text/javascript" language="Javascript" src="../assets/ui/js/lib.js"></script>
+        <link href="../assets/ui/css/style.css" rel="stylesheet" type="text/css" />
+        
+    </head>
+
+    <body>
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- header -->
+            <div id="header">
+              <div class="logo" title= "FusionMaps XT ">
+                    <a href="http://www.fusioncharts.com/products/suite/fusionmaps/" target="_blank">
+
+                    </a>
+                </div>
+                <h1 class="brand-name"></h1>
+                <h1 class="logo-text-home">Multiple maps in a page</h1>
+            </div>
+            <!-- content area -->
+            <div class="content-area">
+                <div id="content-area-inner-main">
+                    <p class="text" align="center">Create any number of maps in a single page. Here, 2 maps are embedded in a single HTML page.</p>
+					<div id="messageBox" style="margin-left:120px; margin-right:120px; display:none;"></div>
+					<p>&nbsp;</p>
+
+                    <div class="gen-chart-render">
+
+                        <center>
+                            <span id="mapContainerWorld">World map will load here</span>
+    						<span id="mapContainerAus">Australia map will load here</span>
+
+
+                            
+
+                            <script type="text/javascript"><!--
+
+                                var WorldMap = new FusionCharts("../../Maps/FCMap_World.swf", "WorldMapId", "475", "300", "0");
+                                WorldMap.setXMLUrl("Data.xml");
+                                WorldMap.render("mapContainerWorld");
+                
+                
+                                var AusMap = new FusionCharts("../../Maps/FCMap_Australia.swf", "AusMapId", "375", "300", "0");
+                                AusMap.setXMLUrl("AustraliaPopulation.xml");
+                                AusMap.render("mapContainerAus");
+
+                
+                // -->
+                            </script>
+                        </center>
+
+                    </div>
+                    <div class="clear"></div>
+                    <p>&nbsp;</p>
+                    <p class="small">    </p>
+                    <div class="underline-dull"></div>
+					<div>
+					
+                <p class="highlightBlock">The above sample showcases how to create multiple maps in a page. Click <a href="../../Contents/index.html?FirstMap/multiple.html" target="_blank">here</a> to know more on how the code of this example works.</p>
+            </div>
+                </div>
+            </div>
+
+        </div>
+		 <script type="text/javascript"><!--//
+			$(document).ready ( function() {
+			   showConditionalMessage( "Your browser does not seem to have Flash Player support. JavaScript maps are rendered instead.", isJSRenderer(WorldMap) );
+			});	
+		// -->
+		</script>
+    </body>
+</html>

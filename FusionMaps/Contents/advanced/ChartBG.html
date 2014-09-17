@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Setting backgrounds for maps </title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Advanced Topics", "Set backgrounds for map" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Setting backgrounds for maps </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>FusionMaps XT allows you to easily set a background image/movie for your   map. You can use this option to embed background images (GIF, JPEG or PNG), other SWF Files, or data tables (in image format) as your map background.</p>
+      <p>To embed an image, all you need to do is set the <span class="codeInline">bgImage</span> property of <span class="codeInline">&lt;map&gt;</span> element. Additionally, you can also configure a lot of other settings like transparency, scale, stretch, tile etc. We will learn about each of these in details soon in this page.</p>
+      <p class="highlightBlock"><a href="../../Code/JavaScript/bgImageTryout/index.html" target="_blank">Click here to explore all the configurable options of background image using an interactive demo.</a></p>
+      <p>Let's first see how we may use the <span class="codeInline">bgImage</span> property in a map, as shown below:</p></td>
+  </tr>
+  <tr>
+    <td valign="top">
+    <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container" style="width:100%; overflow:auto;">
+       <div id="tab1" class="tab_content">
+	   <pre class="prettyprint code_container">&lt;map bgImage="MapBG-Small.jpg" bgImageAlpha="100" bgImageScale="100" bgImageDisplayMode="none" bgImageHAlign="left" bgImageVAlign="top"  showtooltips="1" showshadow="1" showlabels="1" showbevel="0" showExportDataMenuItem="1" exportEnabled="1" exposeHoverEvent="1" animation="0" showCanvasBorder="1" borderThickness="1" showPrintMenuItem="1" bgalpha="5,10" bgcolor="375277,E9E9E9" fillColor="CAD3DB" hoverColor="E6EAEE" toolTipBgColor="FFFFFF" toolTipBorderColor="CAD3DB" baseFontColor="000000" borderColor="FFFFFF" canvasBorderColor="375277" canvasBorderAlpha="15"&gt;
+ &lt;data&gt;
+  &lt;entity id='NA' /&gt;
+  &lt;entity id='SA' /&gt;
+  &lt;entity id='AS' /&gt;
+  &lt;entity id='EU' /&gt;
+  &lt;entity id='AF' /&gt;
+  &lt;entity id='AU' /&gt;
+ &lt;/data&gt;
+&lt;/map&gt;</pre>
+       </div>
+<div id="tab2" class="tab_content">
+  <pre class="prettyprint code_container">{<br />&nbsp; &quot;map&quot;: {<br />&nbsp; &nbsp;&quot;bgimage&quot;: &quot;MapBG-Small.jpg&quot;,<br />    &quot;bgimagealpha&quot;: &quot;100&quot;,<br />    &quot;bgimagescale&quot;: &quot;100&quot;,<br />    &quot;bgimagedisplaymode&quot;: &quot;none&quot;,<br />    &quot;bgimagehalign&quot;: &quot;left&quot;,<br />    &quot;bgimagevalign&quot;: &quot;top&quot;,<br />    &quot;showtooltips&quot;: &quot;1&quot;,<br />    &quot;showshadow&quot;: &quot;1&quot;,<br />    &quot;showlabels&quot;: &quot;1&quot;,<br />    &quot;showbevel&quot;: &quot;0&quot;,<br />    &quot;showexportdatamenuitem&quot;: &quot;1&quot;,<br />    &quot;exportenabled&quot;: &quot;1&quot;,<br />    &quot;exposehoverevent&quot;: &quot;1&quot;,<br />    &quot;animation&quot;: &quot;0&quot;,<br />    &quot;showcanvasborder&quot;: &quot;1&quot;,<br />    &quot;borderthickness&quot;: &quot;1&quot;,<br />    &quot;showprintmenuitem&quot;: &quot;1&quot;,<br />    &quot;bgalpha&quot;: &quot;5,10&quot;,<br />    &quot;bgcolor&quot;: &quot;375277,E9E9E9&quot;,<br />    &quot;fillcolor&quot;: &quot;CAD3DB&quot;,<br />    &quot;hovercolor&quot;: &quot;E6EAEE&quot;,<br />    &quot;tooltipbgcolor&quot;: &quot;FFFFFF&quot;,<br />    &quot;tooltipbordercolor&quot;: &quot;CAD3DB&quot;,<br />    &quot;basefontcolor&quot;: &quot;000000&quot;,<br />    &quot;bordercolor&quot;: &quot;FFFFFF&quot;,<br />    &quot;canvasbordercolor&quot;: &quot;375277&quot;,<br />    &quot;canvasborderalpha&quot;: &quot;15&quot;<br />&nbsp; },<br />&nbsp; &quot;data&quot;: [<br />&nbsp; &nbsp; {&quot;id&quot;: &quot;NA&quot; },<br />&nbsp; &nbsp; {&quot;id&quot;: &quot;SA&quot; },<br />&nbsp; &nbsp; {&quot;id&quot;: &quot;AS&quot; },<br />&nbsp; &nbsp; {&quot;id&quot;: &quot;EU&quot; },<br />&nbsp; &nbsp; {&quot;id&quot;: &quot;AF&quot; },<br />&nbsp; &nbsp; {&quot;id&quot;: &quot;AU&quot; }<br />&nbsp; ]<br />}</pre>
+  
+</div>
+    </div></div></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In the above code, we're:</p>
+      <ul>
+        <li>Loading a background image <span class="codeInline">MapBG-Small.jpg</span> by setting it as the value of the <span class="codeInline">bgImage</span> attribute. If your image file is in a different location, you'll need to specify the relative path. Note that due to security restrictions, your image file has to reside on the same sub-domain as that of the map SWF  File and a relative path to the same has to be specified.</li>
+        <li>Setting canvas background of the map as transparent to  get a full view of the background image</li>
+        <li>Defining styles for formatting of other map elements</li>
+      </ul>
+    <p>When you view this map (with the background image), you'll get something as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="images/bgimage_1.jpg" width="464" height="314" class="imageBorder"/><br/>
+    <br/></td>
+  </tr>
+  
+  <tr>
+  <td>See it <a href="../../Code/JavaScript/bgImageTryout/index.html" target="_blank">live</a>!</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Simple and effective - isn't it? </p>
+	<p class="highlightBlock"><strong>Existing users</strong>: You might be wondering what happened to the  <span class="codeInline">bgSWF</span> attribute which you have been using. Starting FusionMaps XT, use of <span class="codeInline">bgSWF </span>and<span class="codeInline"> bgSWFAlpha </span>is deprecated. However, you can continue to use this parameter in your existing code without any problem.</p>
+    <p>In the following sections of this page we will learn how the background image can be configured.</p></td>
+  </tr>
+  <tr>
+  <td class="header"><a name="backgroundimage" id="backgroundimage"></a>Configuring background image</td>
+  </tr>
+  <tr>
+  <td class="text">
+    <p>FusionMaps XT allows you to configure the background images. You can configure the following:</p>
+    <ul>
+    <li><a href="#alpha">Set transparency of the loaded image</a></li>
+    <li> <a href="#scale">Scale the loaded image</a> </li>
+    <li> <a href="#alignment">Horizontally or vertically align the image with respect to the map </a>and </li>
+    <li><a href="#displaymode">Set the mode in which the image will be displayed (like tile, stretch etc.) </a></li>
+    </ul>
+  </td></tr>
+  <tr>
+  <td class="text"><p>In the following sections, we will discuss how to implement the above given configurations on the background image.</p>
+    </td>
+  </tr>
+  <tr>
+  <td class="header"><a name="alpha"></a>Setting the transparency of the background image</td>
+  </tr>
+  <tr>
+  <td class="text"><p>You can set the transparency of the image using the <span class="codeInline">bgImageAlpha</span> attribute.The default value of this attribute is '100'. The image remains fully opaque when 100 is set. 0 (zero) turns the image completely transparent. An example code setting the background image 50% transparent is shown as under:</p></td></tr> 
+  <tr>
+    <td valign="top">
+    <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+         <pre class="prettyprint code_container">&lt;map <strong>bgImageAlpha='50' </strong> &gt;
+   ...
+&lt;/map&gt;</pre>
+       </div>
+<div id="tab4" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{<br />&nbsp; &quot;map&quot;:{&nbsp; &nbsp; 
+    <strong>&quot;bgImageAlpha&quot;:&quot;50&quot;</strong>,
+},
+  ...
+}  </pre>
+</div></div></div></td>
+  </tr>
+  <tr>
+  <td class="text"><p> In the above code, we have added the attribute <span class="codeInline">bgImageAlpha='50'</span>. The map will look as under:</p>
+    <p> <img src="images/bgimage_2.jpg" class="imageBorder"/></p></td></tr>
+	<tr><td><p class="highlightBlock"><strong>Existing users</strong>: You might be wondering what happened to the  <span class="codeInline">bgSWF</span> attribute which you have been using. Starting FusionMaps XT, use of <span class="codeInline">bgSWF </span>and<span class="codeInline"> bgSWFAlpha </span>is deprecated. However, you can continue to use this parameter in your existing code without any problem.</p></td></tr>
+	
+	<tr>
+	  <td class="header"><a name="scale"></a>Setting the scale of the background image </td>
+	</tr>
+	<tr><td class="text"> <p>You can also increase or decrease the magnification of the background image. To customize the magnification of the background image the attribute <span class="codeInline">bgImageScale</span> is used. The value of this attribute can be anything between<span class="codeInline"> 0-300</span>. The default value of the attribute is <span class="codeInline">100</span>. Any value less than <span class="codeInline">100</span> will reduce the size of the background image and any value more than <span class="codeInline">100</span> will increase the size of the background image. </p></td></tr>
+	
+	<tr>
+	  <td class="text">In this example below, the value of the <span class="codeInline">bgImageScale</span> attribute is set to <span class="codeInline">50</span>. Hence, the size of the background image will be reduced to half of its size.<br/>
+      <br/></td>
+	</tr>
+	<tr>
+    <td valign="top">
+    <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+         <pre class="prettyprint code_container">&lt;map <strong>bgImageScale='50'</strong> &gt;
+   ...
+&lt;/map&gt;</pre>
+       </div>
+<div id="tab6" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{<br />&nbsp; &quot;map&quot;:{<br /><strong> &quot;bgImageScale&quot;:&quot;50&quot;</strong>,
+},
+  ...
+}  </pre>
+</div></div></div></td>
+  </tr>
+  <tr><td class="text"><p>The map for the above code will look as under:</p>
+      <img src="images/bgimage_3.jpg" width="465" height="315"/><br/>
+      <br/></td></tr>
+   <tr>
+  <td>&nbsp; </td>
+  </tr>
+  <tr>
+  <td class="header"><a name="alignment"></a>Vertical &amp; Horizontal alignment of the&nbsp; background image</td>
+  </tr>
+  <tr>
+  <td class="text"><p>You can set the position of the background image on the map according to your choice by altering the vertical and horizontal alignments of the background image. The two attributes used to set the alignments are <span class="codeInline">bgImageVAlign</span> (top, middle, bottom) and <span class="codeInline">bgImageHAlign </span>(left, middle, right). The default value of these two attributes are <span class="codeInline">bgImageVAlign='top'</span> and <span class="codeInline">bgImageHAlign='left'</span>. 
+  By default, the background image will appear on the top-left position of the map. </p></td></tr>
+ 
+  <tr>
+  <td class="text">All possible combinations of vertical and horizontal alignments of the background image are given below:<br/>
+    <br/></td></tr>
+  <tr>
+  	<td>
+	<table cellpadding="2" cellspacing="2" border="0">
+  <tr>
+  <td width="33%"><img src="images/bgimage-align-left-top.jpg" width="312" height="254" /></td>
+  <td width="33%"><img src="images/bgimage-align-center-top.jpg" width="313" height="254" /></td>
+  <td width="33%"><img src="images/bgimage-align-right-top.jpg" width="313" height="255" /></td>
+  </tr>
+  <tr align="center">
+  <td class="text"><span class="codeInline">bgImageVAlign='top'</span> <br />
+    <span class="codeInline">bgImageHAlign='left'</span></td>
+   <td class="text"><span class="codeInline">bgImageVAlign='top'</span> <span class="codeInline"><br />
+     bgImageHAlign='middle'</span></td>
+   <td class="text"><span class="codeInline">bgImageVAlign='top'</span> <span class="codeInline"><br />
+     bgImageHAlign='right'</span></td>
+  </tr>
+  <tr>
+  <td colspan="3">&nbsp;</td></tr>
+  
+  <tr>
+  <td width="33%"><img src="images/bgimage-align-left-middle.jpg" width="313" height="254" /></td>
+  <td width="33%"><img src="images/bgimage-align-center-middle.jpg" width="313" height="254" /></td>
+  <td width="33%"><img src="images/bgimage-align-right-middle.jpg" width="314" height="254" /></td>
+  </tr>
+   <tr align="center">
+  <td class="text"><span class="codeInline">bgImageVAlign='middle'</span> <br />
+    <span class="codeInline">bgImageHAlign='left'</span></td>
+   <td class="text"><span class="codeInline">bgImageVAlign='middle'</span> <span class="codeInline"><br />
+     bgImageHAlign='middle'</span></td>
+   <td class="text"><span class="codeInline">bgImageVAlign='middle'</span> <span class="codeInline"><br />
+     bgImageHAlign='right'</span></td>
+  </tr>
+  <tr>
+   <td colspan="3">&nbsp;</td></tr>
+ 
+ 
+  <tr>
+  <td width="33%"><img src="images/bgimage-align-left-bottom.jpg" width="314" height="254" /></td>
+  <td width="33%"><img src="images/bgimage-align-center-bottom.jpg" width="314" height="254" /></td>
+  <td width="33%"><img src="images/bgimage-align-right-bottom.jpg" width="314" height="254" /></td>
+  </tr>
+  <tr align="center">
+  <td class="text"><span class="codeInline">bgImageVAlign='bottom'</span> 
+  <span class="codeInline"><br />
+  bgImageHAlign='left'</span></td>
+   <td class="text"><span class="codeInline">bgImageVAlign='bottom'</span> <br />
+     <span class="codeInline">bgImageHAlign='middle'</span></td>
+   <td class="text"><span class="codeInline">bgImageVAlign='bottom'</span> <br />
+     <span class="codeInline">bgImageHAlign='right'</span></td>
+  </tr>
+  </table>
+  <br/>
+	</td>
+  </tr>
+  
+  <tr>
+  <td> See the samples <a href="../../Code/JavaScript/bgImageTryout/index.html" target="_blank">live</a>!<br/>
+    <br/></td>
+  </tr>
+  <tr>
+  <td class="header"><a name="displaymode"></a>Setting the mode of display of the background image</td>
+  </tr>
+  <tr>
+  <td class="text"><p>A  background image can be displayed using one of the various modes of display. The form can be changed using the <span class="codeInline">bgImageDisplayMode</span> attribute. The values of this attribute are  <span class="codeInline">none</span>, <span class="codeInline">center</span>, <span class="codeInline">stretch</span>, <span class="codeInline">tile</span>, <span class="codeInline">fit</span> and <span class="codeInline">fill</span>. By default, the value of the attribute is set to <span class="codeInline">none</span>. Examples with different display modes are shown below:</p></td></tr>
+  <tr>
+  <td>
+  <table  cellpadding="5" cellspacing="5" border="0">
+  <tr>
+  <td  align="center"><img src="images/bgimage-none.jpg" /></td>
+  </tr>
+  <tr align="center">
+  <td align="center"><span class="codeInline">none </span>- The original image is placed at the top left corner <br />
+     of the background (default mode)</td>
+  </tr>
+  <tr>  </tr><tr>
+  <td align="center" class="text">&nbsp;</td>
+  </tr>
+  
+  <td align="center"><img src="images/bgimage-center.jpg" /></td>
+  </tr>
+  <tr align="left">
+  <td align="center"><span class="codeInline">Center </span>- The image is positioned at the center of the map area</td>
+  </tr>
+   <tr>
+  <td align="center" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+  <td align="center"><img src="images/bgimage-stretch.jpg" /></td>
+  </tr>
+  <tr align="left">
+  <td align="center"><span class="codeInline">Stretch </span>- Expands the image to fit the entire map area, <br />
+     without maintaining original image constraints</td>
+  </tr>
+  <tr>
+  <td align="center" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+  
+  <td align="center"><img src="images/bgimage-tile.jpg" /></td>
+  </tr>
+  <tr>  </tr><tr align="left">
+  <td align="center"><span class="codeInline">Tile</span> - The image is repeated as a pattern on the entire map area</td>
+  </tr>
+  <td align="center" class="text">&nbsp;</td>
+  </tr>
+  
+  
+  <tr>
+  <td align="center"><img src="images/bgimage-fit.jpg" /></td>
+  </tr>
+   <tr align="left">
+  <td align="center"><span class="codeInline">Fit </span>- Fits the  image proportionately on the map area</td>
+   </tr>
+  <tr>
+  <td align="center" class="text">&nbsp;</td>
+  </tr>
+ 
+  
+  <tr>
+  <td align="center"><img src="images/bgimage-fill.jpg" /></td>
+  </tr>
+   <tr align="left">
+  <td align="center"><span class="codeInline">Fill </span>- Proportionately fills the entire map area with the image</td>
+   </tr>
+  </table>
+  </td></tr>
+  <tr>
+  <td>See the samples <a href="../../Code/JavaScript/bgImageTryout/index.html" target="_blank">live</a>!<br/>
+    <br/></td>
+  </tr>
+ 
+  <tr>
+  <td class="highlightBlock">Note: Alignment attributes are ignored for  <span class="codeInline">center</span> and <span class="codeInline">stretch</span> display modes and the <span class="codeInline">bgImageScale</span> attribute works only for <span class="codeInline">none</span>, <span class="codeInline">center</span> and <span class="codeInline">tile</span>  display modes.</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+		document.getElementById("fcfooter").innerHTML =  addFCFooter("Tooltip in multiple lines|MultilineTT.html", "Using map on SSL/HTTPS|HTTPS.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

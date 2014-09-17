@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>LinkedCharts JSON data format</title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Drill-Down maps|../Simple.html", "<i>LinkedCharts</i>|Overview.html", "JSON Data Format" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+<tr>
+<td valign="top" class="pageHeader"> <i>LinkedCharts</i> JSON Data Format</td>
+</tr>
+<tr>
+<td valign="top" class="text">
+   <p>FusionMaps XT introduces <i>LinkedCharts</i>, which is a smart and efficient method  of creating drill-down maps. <i>LinkedCharts</i> are not special map types. Any map can be used as a <i>LinkedChart</i>. You can create a master summarized map which, when clicked, will  create detailed maps. You can define the data-string or data-url of the detailed maps <a href="#embedded">within the data-source of the master map</a>. </p>
+   <p>This section shows how  to create a single JSON data source using data-string for rendering <i>LinkedCharts. </i>For better understanding, we'll create a JSON for a world map. Clicking on a continent (say, Australia) will bring up another map showing Australia map(see image below).</p>
+   <table border="0" cellpadding="0" cellspacing="0"><tr><td><img src="../../FirstMap/Images/linkedMap1.jpg" width="498" height="283" class="imageBorder" /></td>
+   <td  align="center"><img src="../../FirstMap/Images/linkedMap2.jpg" width="498" height="283" class="imageBorder" /></td>
+   </tr>
+		<tr>
+		   <td align="center"><span class="imageCaption">Parent map when the continent Australia is clicked </span></td>
+		   <td align="center"><span class="imageCaption"><i>LinkedChart</i> displaying Australia map </span></td>
+		</tr>
+   </table>
+   <!--<p>Watch it <a href="../../Code/MyFirstChart/linked-charts.html" target="_blank">live</a>!</p>-->
+   <p class="highlightBlock">To learn how <i>LinkedCharts</i> work,  read FusionMaps XT and JavaScript &gt; <a href="../../javascript/js_linkedcharts.html">Using <i>LinkedCharts</i></a> page. </p>
+   <p class="header"><a name="embedded" id="embedded"></a> Embedding data-source as string of <i>LinkedCharts</i> in the data of master map </p>
+   <p>Following is the JSON data for a map which contains <i>LinkedChart</i> data:</p>
+   <pre class="prettyprint code_container" style="height:300px; overflow:auto">
+{
+    "map": {
+        "bordercolor": "005879", 
+        "fillcolor": "D7F4FF", 
+        "includevalueinlabels": "1", 
+        "numberprefix": "$", 
+        "basefontsize": "9"
+    }, 
+    "data": [ {
+        "id": "NA", 
+        "value": "6921900", 
+        "link": "newchart:FCMap_NorthAmerica.swf-xml-NorthAmerica"
+    }, {
+        "id": "SA", 
+        "value": "3087120", 
+        "link": "newchart:FCMap_SouthAmerica.swf-xml-SouthAmerica"
+    }, {
+        "id": "AS", 
+        "value": "2434120", 
+        "link": "newchart:FCMap_Asia.swf-xml-Asia"
+    }, {
+        "id": "EU", 
+        "value": "5093230", 
+        "link": "newchart:FCMap_Europe.swf-xml-Europe"
+    }, {
+        "id": "AF", 
+        "value": "1032900", 
+        "link": "newchart:FCMap_Africa.swf-xml-Africa"
+    }, {
+        "id": "AU", 
+        "value": "3461230", 
+        "link": "newchart:FCMap_Australia.swf-xml-Australia"
+    } ], 
+    "linkeddata": [ {
+        "id": "Australia", 
+        "linkedmap": {
+            "map": {
+                "bordercolor": "005879", 
+                "fillcolor": "D7F4FF", 
+                "includevalueinlabels": "1", 
+                "numberprefix": "$", 
+                "basefontsize": "9"
+            }, 
+				"data": [ {
+                    "id": "WA", 
+                    "value": "200050"
+                }, {
+                    "id": "NT", 
+                    "value": "1509800"
+                }, {
+                    "id": "QU", 
+                    "value": "8034800"
+                }, {
+                    "id": "SA", 
+                    "value": "123000"
+                }, {
+                    "id": "SW", 
+                    "value": "548000"
+                }, {
+                    "id": "VI", 
+                    "value": "182000"
+                }, {
+                    "id": "TA", 
+                    "value": "94900"
+                } ]
+        }
+    }, {
+    "id": "NorthAmerica", 
+    "linkedmap": {
+        "map": {
+            "bordercolor": "005879", 
+            "fillcolor": "D7F4FF", 
+            "includevalueinlabels": "1", 
+            "numberprefix": "$", 
+            "basefontsize": "9"
+        }, 
+		  "data": [ {
+                "id": "001", 
+                "value": "210000"
+            }, {
+                "id": "002", 
+                "value": "130000"
+            }, {
+                "id": "003", 
+                "value": "180000"
+            }, {
+                "id": "004", 
+                "value": "150000"
+            }, {
+                "id": "005", 
+                "value": "289823"
+            }, {
+                "id": "006", 
+                "value": "120979"
+            }, {
+                "id": "007", 
+                "value": "120000"
+            }, {
+                "id": "008", 
+                "value": "234232"
+            }, {
+                "id": "009", 
+                "value": "100000"
+            }, {
+                "id": "010", 
+                "value": "120000"
+            }, {
+                "id": "011", 
+                "value": "820000"
+            }, {
+                "id": "012", 
+                "value": "450000"
+            }, {
+                "id": "013", 
+                "value": "570000"
+            }, {
+                "id": "014", 
+                "value": "110000"
+            }, {
+                "id": "015", 
+                "value": "100000"
+            }, {
+                "id": "016", 
+                "value": "430000"
+            }, {
+                "id": "017", 
+                "value": "180000"
+            }, {
+                "id": "018", 
+                "value": "150000"
+            }, {
+                "id": "019", 
+                "value": "80000"
+            }, {
+                "id": "020", 
+                "value": "450000"
+            }, {
+                "id": "021", 
+                "value": "660000"
+            }, {
+                "id": "022", 
+                "value": "800000"
+            }, {
+                "id": "023", 
+                "value": "100000"
+            }, {
+                "id": "024", 
+                "value": "20000"
+            }, {
+                "id": "025", 
+                "value": "46866"
+            }, {
+                "id": "026", 
+                "value": "300000"
+            } ]
+    }
+}, {
+    "id": "SouthAmerica", 
+    "linkedmap": {
+        "map": {
+            "bordercolor": "005879", 
+            "fillcolor": "D7F4FF", 
+            "includevalueinlabels": "1", 
+            "numberprefix": "$", 
+            "basefontsize": "9"
+        }, 
+		  "data": [ {
+                "id": "001", 
+                "value": "200000"
+            }, {
+                "id": "002", 
+                "value": "120000"
+            }, {
+                "id": "003", 
+                "value": "300000"
+            }, {
+                "id": "004", 
+                "value": "400000"
+            }, {
+                "id": "005", 
+                "value": "320000"
+            }, {
+                "id": "006", 
+                "value": "98690"
+            }, {
+                "id": "007", 
+                "value": "402000"
+            }, {
+                "id": "008", 
+                "value": "70000"
+            }, {
+                "id": "009", 
+                "value": "30000"
+            }, {
+                "id": "010", 
+                "value": "55000"
+            }, {
+                "id": "011", 
+                "value": "520000"
+            }, {
+                "id": "012", 
+                "value": "251000"
+            }, {
+                "id": "013", 
+                "value": "125000"
+            }, {
+                "id": "014", 
+                "value": "85000s"
+            }, {
+                "id": "015", 
+                "value": "40000"
+            }, {
+                "id": "016", 
+                "value": "70430"
+            } ]
+    }
+}, {
+    "id": "Asia", 
+    "linkedmap": {
+        "map": {
+            "bordercolor": "005879", 
+            "fillcolor": "D7F4FF", 
+            "includevalueinlabels": "1", 
+            "numberprefix": "$", 
+            "basefontsize": "9"
+        },
+		  "data": [ {
+                "id": "001", 
+                "value": "42000"
+            }, {
+                "id": "002", 
+                "value": "31000"
+            }, {
+                "id": "003", 
+                "value": "12000"
+            }, {
+                "id": "005", 
+                "value": "31000"
+            }, {
+                "id": "006", 
+                "value": "25000"
+            }, {
+                "id": "007", 
+                "value": "82200"
+            }, {
+                "id": "008", 
+                "value": "125000"
+            }, {
+                "id": "009", 
+                "value": "305000"
+            }, {
+                "id": "010", 
+                "value": "421597"
+            }, {
+                "id": "012", 
+                "value": "122160"
+            }, {
+                "id": "013", 
+                "value": "22000"
+            }, {
+                "id": "014", 
+                "value": "27060"
+            }, {
+                "id": "015", 
+                "value": "34000"
+            }, {
+                "id": "016", 
+                "value": "32000"
+            }, {
+                "id": "019", 
+                "value": "40000"
+            }, {
+                "id": "021", 
+                "value": "31000"
+            }, {
+                "id": "022", 
+                "value": "15000"
+            }, {
+                "id": "023", 
+                "value": "18000"
+            }, {
+                "id": "025", 
+                "value": "50000"
+            }, {
+                "id": "026", 
+                "value": "30000"
+            }, {
+                "id": "028", 
+                "value": "21000"
+            }, {
+                "id": "030", 
+                "value": "25000"
+            }, {
+                "id": "031", 
+                "value": "31000"
+            }, {
+                "id": "033", 
+                "value": "14000"
+            }, {
+                "id": "034", 
+                "value": "21000"
+            }, {
+                "id": "036", 
+                "value": "22000"
+            }, {
+                "id": "038", 
+                "value": "25000"
+            }, {
+                "id": "039", 
+                "value": "20000"
+            }, {
+                "id": "041", 
+                "value": "18000"
+            }, {
+                "id": "042", 
+                "value": "19000"
+            }, {
+                "id": "044", 
+                "value": "30000"
+            }, {
+                "id": "046", 
+                "value": "40000"
+            }, {
+                "id": "047", 
+                "value": "22000"
+            }, {
+                "id": "049", 
+                "value": "50000"
+            }, {
+                "id": "050", 
+                "value": "33000"
+            }, {
+                "id": "051", 
+                "value": "21000"
+            }, {
+                "id": "052", 
+                "value": "45669"
+            }, {
+                "id": "053", 
+                "value": "44736"
+            }, {
+                "id": "054", 
+                "value": "43822"
+            }, {
+                "id": "055", 
+                "value": "42927"
+            }, {
+                "id": "056", 
+                "value": "42050"
+            }, {
+                "id": "057", 
+                "value": "41191"
+            }, {
+                "id": "058", 
+                "value": "40349"
+            }, {
+                "id": "059", 
+                "value": "39525"
+            }, {
+                "id": "060", 
+                "value": "38717"
+            }, {
+                "id": "061", 
+                "value": "37926"
+            }, {
+                "id": "062", 
+                "value": "37151"
+            }, {
+                "id": "063", 
+                "value": "36392"
+            }, {
+                "id": "064", 
+                "value": "35648"
+            } ]
+    }
+}, {
+    "id": "Europe", 
+    "linkedmap": {
+        "map": {
+            "bordercolor": "005879", 
+            "fillcolor": "D7F4FF", 
+            "includevalueinlabels": "1", 
+            "numberprefix": "$", 
+            "basefontsize": "9"
+        }, 
+        "data": [ {
+                "id": "001", 
+                "value": "150000"
+            }, {
+                "id": "002", 
+                "value": "160000"
+            }, {
+                "id": "003", 
+                "value": "120000"
+            }, {
+                "id": "004", 
+                "value": "45000"
+            }, {
+                "id": "005", 
+                "value": "42000"
+            }, {
+                "id": "006", 
+                "value": "80000"
+            }, {
+                "id": "007", 
+                "value": "250000"
+            }, {
+                "id": "008", 
+                "value": "320000"
+            }, {
+                "id": "009", 
+                "value": "152000"
+            }, {
+                "id": "010", 
+                "value": "210000"
+            }, {
+                "id": "011", 
+                "value": "320000"
+            }, {
+                "id": "012", 
+                "value": "100000"
+            }, {
+                "id": "013", 
+                "value": "120000"
+            }, {
+                "id": "014", 
+                "value": "80000"
+            }, {
+                "id": "015", 
+                "value": "70000"
+            }, {
+                "id": "016", 
+                "value": "40000"
+            }, {
+                "id": "017", 
+                "value": "100000"
+            }, {
+                "id": "018", 
+                "value": "42000"
+            }, {
+                "id": "019", 
+                "value": "55000"
+            }, {
+                "id": "020", 
+                "value": "22000"
+            }, {
+                "id": "021", 
+                "value": "33000"
+            }, {
+                "id": "022", 
+                "value": "11000"
+            }, {
+                "id": "023", 
+                "value": "50000"
+            }, {
+                "id": "024", 
+                "value": "32000"
+            }, {
+                "id": "025", 
+                "value": "37230"
+            }, {
+                "id": "026", 
+                "value": "40000"
+            }, {
+                "id": "027", 
+                "value": "80000"
+            }, {
+                "id": "028", 
+                "value": "41000"
+            }, {
+                "id": "029", 
+                "value": "28000"
+            }, {
+                "id": "030", 
+                "value": "110000"
+            }, {
+                "id": "031", 
+                "value": "120000"
+            }, {
+                "id": "032", 
+                "value": "200000"
+            }, {
+                "id": "033", 
+                "value": "100000"
+            }, {
+                "id": "034", 
+                "value": "89000"
+            }, {
+                "id": "035", 
+                "value": "51000"
+            }, {
+                "id": "036", 
+                "value": "41000"
+            }, {
+                "id": "037", 
+                "value": "32000"
+            }, {
+                "id": "038", 
+                "value": "80000"
+            }, {
+                "id": "039", 
+                "value": "110000"
+            }, {
+                "id": "040", 
+                "value": "42000"
+            }, {
+                "id": "041", 
+                "value": "50000"
+            }, {
+                "id": "042", 
+                "value": "265000"
+            }, {
+                "id": "043", 
+                "value": "422000"
+            }, {
+                "id": "044", 
+                "value": "342000"
+            }, {
+                "id": "045", 
+                "value": "120000"
+            }, {
+                "id": "046", 
+                "value": "89000"
+            } ]
+    }
+}, {
+    "id": "Africa", 
+    "linkedmap": {
+        "map": {
+            "bordercolor": "005879", 
+            "fillcolor": "D7F4FF", 
+            "includevalueinlabels": "1", 
+            "numberprefix": "$", 
+            "basefontsize": "9"
+        }, 
+		  "data": [ {
+                "id": "001", 
+                "value": "10000"
+            }, {
+                "id": "002", 
+                "value": "23000"
+            }, {
+                "id": "003", 
+                "value": "12000"
+            }, {
+                "id": "004", 
+                "value": "8000"
+            }, {
+                "id": "005", 
+                "value": "5000"
+            }, {
+                "id": "006", 
+                "value": "11000"
+            }, {
+                "id": "007", 
+                "value": "12000"
+            }, {
+                "id": "008", 
+                "value": "13000"
+            }, {
+                "id": "009", 
+                "value": "14000"
+            }, {
+                "id": "010", 
+                "value": "12000"
+            }, {
+                "id": "011", 
+                "value": "19000"
+            }, {
+                "id": "012", 
+                "value": "11000"
+            }, {
+                "id": "013", 
+                "value": "2000"
+            }, {
+                "id": "014", 
+                "value": "3000"
+            }, {
+                "id": "015", 
+                "value": "4000"
+            }, {
+                "id": "016", 
+                "value": "5000"
+            }, {
+                "id": "017", 
+                "value": "8000"
+            }, {
+                "id": "018", 
+                "value": "1200"
+            }, {
+                "id": "019", 
+                "value": "6000"
+            }, {
+                "id": "020", 
+                "value": "43000"
+            }, {
+                "id": "021", 
+                "value": "32000"
+            }, {
+                "id": "022", 
+                "value": "14000"
+            }, {
+                "id": "023", 
+                "value": "16000"
+            }, {
+                "id": "024", 
+                "value": "19000"
+            }, {
+                "id": "025", 
+                "value": "18000"
+            }, {
+                "id": "026", 
+                "value": "19000"
+            }, {
+                "id": "027", 
+                "value": "21000"
+            }, {
+                "id": "028", 
+                "value": "20000"
+            }, {
+                "id": "029", 
+                "value": "40000"
+            }, {
+                "id": "030", 
+                "value": "21000"
+            }, {
+                "id": "032", 
+                "value": "32000"
+            }, {
+                "id": "033", 
+                "value": "12000"
+            }, {
+                "id": "034", 
+                "value": "43000"
+            }, {
+                "id": "035", 
+                "value": "71000"
+            }, {
+                "id": "036", 
+                "value": "10000"
+            }, {
+                "id": "038", 
+                "value": "41000"
+            }, {
+                "id": "040", 
+                "value": "4980"
+            }, {
+                "id": "041", 
+                "value": "12000"
+            }, {
+                "id": "042", 
+                "value": "8560"
+            }, {
+                "id": "043", 
+                "value": "22000"
+            }, {
+                "id": "044", 
+                "value": "51000"
+            }, {
+                "id": "045", 
+                "value": "32000"
+            }, {
+                "id": "046", 
+                "value": "45000"
+            }, {
+                "id": "047", 
+                "value": "25000"
+            }, {
+                "id": "048", 
+                "value": "23000"
+            }, {
+                "id": "049", 
+                "value": "21000"
+            }, {
+                "id": "051", 
+                "value": "11000"
+            }, {
+                "id": "052", 
+                "value": "18000"
+            }, {
+                "id": "053", 
+                "value": "13000"
+            }, {
+                "id": "054", 
+                "value": "30000"
+            }, {
+                "id": "055", 
+                "value": "8000"
+            }, {
+                "id": "056", 
+                "value": "14000"
+            }, {
+                "id": "057", 
+                "value": "12160"
+            }, {
+                "id": "058", 
+                "value": "18000"
+            }, {
+                "id": "059", 
+                "value": "13000"
+            } ]
+    }
+} ]
+}</pre>
+   <p>The  initial part of JSON provides the data for the master map:</p>
+   <pre class="prettyprint code_container" style="height:250px; overflow:auto">{
+  "map": {
+		  "bordercolor": "005879",
+		  "fillcolor": "D7F4FF",
+		  "includevalueinlabels": "1",
+		  "numberprefix": "$",
+		  "basefontsize": "9"
+  },
+  "data": [
+    {
+      "id": "NA",
+      "value": "6921900",
+      "link": "newchart:FCMap_NorthAmerica.swf-json-NorthAmerica"
+    },
+    {
+      "id": "SA",
+      "value": "3087120",
+      "link": "newchart:FCMap_SouthAmerica.swf-json-SouthAmerica"
+    },
+    {
+      "id": "AS",
+      "value": "2434120",
+      "link": "newchart:FCMap_Asia.swf-json-Asia"
+    },
+    {
+      "id": "EU",
+      "value": "5093230",
+      "link": "newchart:FCMap_Europe.swf-json-Europe"
+    },
+    {
+      "id": "AF",
+      "value": "1032900",
+      "link": "newchart:FCMap_Africa.swf-json-Africa"
+    },
+    {
+      "id": "AU",
+      "value": "3461230",
+      "link": "newchart:FCMap_Australia.swf-json-Australia"
+    }
+  ],</pre>
+  <p>Note, that every object in the <span class="codeInline">data</span> array contains the <span class="codeInline">link</span> property. The value of this property follows the syntax: </p>
+<pre class="prettyprint code_container"><a name="linkid" id="linkid"></a>&quot;link&quot;: &quot;newchart:FCMap_NorthAmerica.swf-json-NorthAmerica&quot;</pre>
+<br />
+
+<ul>
+<li><span class="codeInline">newchart</span> - indicates that a click action on map entity will lead to rendering of a new <i>LinkedChart</i></li>
+<li><span class="codeInline">FCMap_NorthAmerica</span> - indicates the name of the child map separated by a colon (:) from <span class="codeInline">newchart</span>
+<p class="highlightBlock"><strong>Note:</strong> Do not set the complete path of the map SWF file here. FusionCharts JavaScript Class is smart enough to pick it up from the path of the parent map. However, if required, you can also <a href="Overview.html#otherfolder">configure the path of the child map SWF files</a>.</p>     </li>
+<li><span class="codeInline">json</span> - indicates that the new map will use JSON data</li>
+<li><span class="codeInline">id</span> - this can be any string, and each object of the data array  must have a unique link id. This id will be searched in the<span class="codeInline"> id </span> property under the <span class="codeInline"> linkeddata </span>array object,  later in the JSON. Once matched, the map data present in that object, will be used as the data for the <i>LinkedCharts,</i> which opens up when a particular link is clicked. </li>
+</ul>
+<p>Next, separate&nbsp;map objects for each   <i>LinkedChart</i> are declared under <span class="codeInline">linkeddata</span> array. Following JSON  shows one of the arrays, which provides  data for a drill-down map, which renders when the   Australia continent&nbsp;of the master map is clicked:</p>
+<pre class="prettyprint code_container" style="height:250px; overflow:auto">  "linkeddata": [
+    {
+      "id": "Australia",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        },
+        "data": [
+              {
+                "id": "WA",
+                "value": "200050"
+              },
+              {
+                "id": "NT",
+                "value": "1509800"
+              },
+              {
+                "id": "QU",
+                "value": "8034800"
+              },
+              {
+                "id": "SA",
+                "value": "123000"
+              },
+              {
+                "id": "SW",
+                "value": "548000"
+              },
+              {
+                "id": "VI",
+                "value": "182000"
+              },
+              {
+                "id": "TA",
+                "value": "94900"
+              }
+          ]
+      }
+    }
+...
+]
+
+
+
+</pre>
+  <p>The JSON data of drill-down maps is specified under the <span class="codeInline">linkeddata</span> array, each object in this array contains an <span class="codeInline">id</span> property and a linkedmap object - which holds the JSON data for a drill-down map - corresponding to that id. Essentially, the id helps in mapping each object of the <span class="codeInline">linkeddata</span> array to its corresponding object in the <span class="codeInline">data </span>array object for the master map. In the above code, the object of the <span class="codeInline">linkeddata</span> array whose<span class="codeInline"> id </span> &quot;Australia&quot; matches with the id provided in  the <span class="codeInline">link</span> property of the first object of the <span class="codeInline">data</span> array pertaining to the master map &quot; <span class="codeInline">link&quot;:&quot;newchart:FCMap_Australia.swf-json-<strong>Australia</strong>&quot;</span>. Hence, when Australia entity of the master map is clicked, the map that opens up - will take data from this object.  </p>
+  <p class="highlightBlock"><strong>Note</strong>: You can create <em>LinkedCharts</em> using the <span class="codeInline">clickURL</span> or the <span class="codeInline">link</span> attribute of a map. </p>
+</td>
+</tr>
+
+<tr>
+   <td valign="top" class="header"><a name="url" id="url"></a>Setting  data-source as URL of the <i>LinkedCharts</i> in the data of master map </td>
+</tr>
+<tr>
+   <td valign="top" class="text">
+      <p>Instead of embedding the data of the <i>LinkedCharts</i> inside the data-source of the master map, you can also specify the data source URL of the <i>LinkedCharts</i>. See the following code below&quot;:</p>
+      <pre class="prettyprint code_container" style="height:250px; overflow:auto">{
+  &quot;map&quot;: {
+		  "bordercolor": "005879",
+		  "fillcolor": "D7F4FF",
+		  "includevalueinlabels": "1",
+		  "numberprefix": "$",
+		  "basefontsize": "9"
+  },
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;NA&quot;,
+      &quot;value&quot;: &quot;6921900&quot;,
+      &quot;link&quot;: &quot;newchart:FCMap_NorthAmerica.swf-jsonurl-NorthAmerica.json&quot;
+    },
+    {
+      &quot;id&quot;: &quot;SA&quot;,
+      &quot;value&quot;: &quot;3087120&quot;,
+      &quot;link&quot;: &quot;newchart:FCMap_SouthAmerica.swf-jsonurl-SouthAmerica.json&quot;
+    },
+    {
+      &quot;id&quot;: &quot;AS&quot;,
+      &quot;value&quot;: &quot;2434120&quot;,
+      &quot;link&quot;: &quot;newchart:FCMap_Asia.swf-jsonurl-Asia.json&quot;
+    },
+    {
+      &quot;id&quot;: &quot;EU&quot;,
+      &quot;value&quot;: &quot;5093230&quot;,
+      &quot;link&quot;: &quot;newchart:FCMap_Europe.swf-jsonurl-Europe.json&quot;
+    },
+    {
+      &quot;id&quot;: &quot;AF&quot;,
+      &quot;value&quot;: &quot;1032900&quot;,
+      &quot;link&quot;: &quot;newchart:FCMap_Africa.swf-jsonurl-Africa.json&quot;
+    },
+    {
+      &quot;id&quot;: &quot;AU&quot;,
+      &quot;value&quot;: &quot;3461230&quot;,
+      &quot;link&quot;: &quot;newchart:FCMap_Australia.swf-jsonurl-Australia.json&quot;
+    }
+  ]
+}</pre>
+		<p>Note, here also, every object in the <span class="codeInline">data</span> array contains the <span class="codeInline">link</span> property. The value of this property follows the syntax: </p>
+      <pre class="prettyprint code_container"><a name="linkurl" id="linkurl"></a>&quot;link&quot;: &quot;newchart:FCMap_NorthAmerica.swf-jsonurl-NorthAmerica.json&quot;</pre>
+      <br />
+
+      <ul>
+         <li><span class="codeInline">newchart</span> - indicates that a click action on map entity will lead to rendering of a new <i>LinkedChart</i></li>
+         <li><span class="codeInline">FCMap_NorthAmerica.swf</span> - indicates the name of the map that will open when clicked on the respective entity. <p class="highlightBlock"><strong>Note:</strong> Do not set the complete path of the map SWF file here. FusionCharts JavaScript Class is smart enough to pick it up from the path of the parent map. However, if required, you can also <a href="Overview.html#otherfolder">configure the path of the child map SWF files</a>.</p>     </li>
+         <li><span class="codeInline">jsonurl</span> - indicates that the new map will get JSON data from a URL </li>
+         <li><span class="codeInline">NorthAmerica.json</span> - sets the URL  of the JSON data source of each <i>LinkedChart</i></li>
+      </ul>
+      <p>The link property specifies that the new map will load JSON data from a url. When any entity is clicked, a drill-down map will be rendered based on data obtained from <span class="codeInline">NorthAmerica.json</span>. </p>
+   </td>
+</tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("XML Data Format|XMLFormat.html","FusionMaps XT and JavaScript - Overview|../../javascript/js_overview.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

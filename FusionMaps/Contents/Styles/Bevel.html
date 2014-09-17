@@ -1,0 +1,293 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Bevel Style Type</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Using Styles|Styles.html", "Bevel style type"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td><span class="pageHeader">Bevel Style Type</span><br /><br /></td>
+  </tr>
+  <tr> 
+    <td class="text">If you need to create bevel effects for any of map objects, 
+      you'll need to use the <span class="codeInline">Bevel Style Type</span> 
+      with the following list of properties. By default, the plot on the map already implements the Bevel style type. </td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="163" valign="top" class="header">Properties</td>
+          <td width="715" valign="top" class="header">Description</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">Angle</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              angle of the bevel. Valid values are from 0 to 360 degrees. The 
+              default value is 45</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">Distance</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              offset distance of the bevel. Valid values are in pixels (floating 
+              point). The default value is 4.</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">shadowColor</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              shadow color of the bevel. Valid values are in hexadecimal format 
+              RRGGBB (without #). The default value is 000000</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">shadowAlpha</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              alpha transparency value of the shadow color. This value is specified 
+              as a normalized value from 0 to 100. For example, 25 set a transparency 
+              value of 25%. The default value is 50.</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">highlightColor</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              highlight color of the bevel. Valid values are in hexadecimal format 
+              RRGGBB (without #). The default value is FFFFFF</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">highlightAlpha</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              alpha transparency value of the highlight color. The value is specified 
+              as a normalized value from 0 to 100. For example, 25 sets a transparency 
+              value of 25%. The default value is 50.</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">blurX</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              amount of horizontal blur in pixels. Valid values are from 0 to 
+              255 (floating point). The default value is 4. Values that are a 
+              power of 2 (such as 2, 4, 8, 16, and 32) are optimized to render 
+              more quickly than other values</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">blurY</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              amount of vertical blur in pixels. Valid values are from 0 to 255 
+              (floating point). The default value is 4. Values that are a power 
+              of 2 (such as 2, 4, 8, 16, and 32) are optimized to render more 
+              quickly than other values</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">Strength</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              strength of the imprint or spread. Valid values are from 0 to 255. 
+              The larger the value, the more color is imprinted and the stronger 
+              the contrast between the bevel and the background. The default value 
+              is 1</td>
+        </tr>
+        <tr> 
+          <td width="163" valign="top" bordercolor="f1f1f1" class="codeInline">Quality</td>
+          <td width="715" valign="top" bordercolor="f1f1f1" class="text">The 
+              number of times to apply the filter. The default value is 1, which 
+              is equivalent to low quality. A value of 2 is medium quality, and 
+              a value of 3 is high quality. Filters with lower values are rendered 
+              more quickly</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+  <td class="highlightBlock">Note: In JavaScript maps, customized <span class="codeInline">bevel</span> style type is not available.</td>
+   </tr>
+  <tr> 
+    <td><p><span class="text">To set the bevel for any object of the map, you 
+        just need to define a </span><span class="codeInline">Bevel Style Type 
+        </span><span class="text">and apply it as under:</span><br />
+      </p></td>
+  </tr>
+  <tr> 
+    <td><pre class="code_container prettyprint" >&lt;style name='MyFirstBevel' type='Bevel' /&gt;
+      &hellip;
+&lt;apply toObject='DataPlot' styles='MyFirstBevel' /&gt;</pre> </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="header">Setting angle and distance</td>
+  </tr>
+  
+  <tr> 
+    <td class="text"><p>You can set the bevel angle and distance as under:</p>
+      <pre class="code_container prettyprint" >&lt;style name='MyFirstBevel' type='Bevel' distance='7' angle='200'/&gt;</pre><br /></td>
+  </tr>
+  
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="226" valign="top" bordercolor="f1f1f1" class="header"><strong>Property</strong></td>
+          <td width="241" valign="top" bordercolor="f1f1f1" class="header"><strong>Format</strong></td>
+          <td width="239" valign="top" bordercolor="f1f1f1" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="226" valign="top" bordercolor="f1f1f1" class="codeInline">Distance 
+          </td>
+          <td width="241" valign="top" bordercolor="f1f1f1" class="codeInline">distance=<span class="codeInline">'value 
+              (in pixels)' </span></td>
+          <td width="239" valign="top" bordercolor="f1f1f1" class="codeInline">distance=<span class="codeInline">'7' 
+              </span></td>
+        </tr>
+        <tr> 
+          <td width="226" valign="top" bordercolor="f1f1f1" class="codeInline">Angle</td>
+          <td width="241" valign="top" bordercolor="f1f1f1" class="codeInline">angle=<span class="codeInline">'value 
+              (between 0 to 360)'</span></td>
+          <td width="239" valign="top" bordercolor="f1f1f1" class="codeInline">angle=<span class="codeInline">'200'</span></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="header">Setting shadow colors</td>
+  </tr>
+  
+  <tr> 
+    <td class="text"><p>To change shadow color and alpha, you can use the following 
+      parameters:</p>
+      <pre class="code_container prettyprint" >&lt;style name='MyFirstBevel' type='Bevel' shadowColor='000000' shadowAlpha='80' distance='5' angle='45'/&gt;</pre><br /></td>
+  </tr>
+  
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="247" valign="top" bordercolor="f1f1f1" class="header"><strong>Property</strong></td>
+          <td width="338" valign="top" bordercolor="f1f1f1" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="247" valign="top" bordercolor="f1f1f1" class="codeInline">shadowColor 
+          </td>
+          <td width="338" valign="top" bordercolor="f1f1f1" class="codeInline">shadowColor=<span class="codeInline">'Hex 
+              Value (without #)' </span></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">shadowColor=<span class="codeInline">'000000' 
+              </span></td>
+        </tr>
+        <tr> 
+          <td width="247" valign="top" bordercolor="f1f1f1" class="codeInline">shadowAlpha</td>
+          <td width="338" valign="top" bordercolor="f1f1f1" class="codeInline">shadowAlpha=<span class="codeInline">'value 
+              (between 0 to 100)'</span></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">shadowAlpha=<span class="codeInline">'80'</span></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="header">Controlling blur amount</td>
+  </tr>
+  <tr> 
+    <td class="text"><p>You can also change the blur amount to get a smoother 
+        bevel.</p>
+		<pre class="code_container prettyprint" >&lt;style name='MyFirstBevel' type='Bevel' blurX='12' blurY='12'/&gt;</pre><br /></td>
+  </tr>
+  
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Property</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">blurX 
+          </td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">blurX='value' 
+          </td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">blurX='12' 
+          </td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">blurY</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">blurY='value'</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">blurY='12'</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="header">Increasing bevel strength</td>
+  </tr>
+  
+  <tr> 
+    <td class="text"><p>To increase bevel strength, use the strength attribute 
+      as under:</p>
+      <pre class="code_container prettyprint" >&lt;style name='MyFirstBevel' type='Bevel' strength='3'/&gt;</pre><br /></td>
+  </tr>
+  
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Property</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">Strength</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">strength='value'</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">strength='3'</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td><p class="text">You can play with a plethora of aforementioned properties 
+        and style type to get the look you want.</p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Glow Style type|Glow.html","Blur Style type|Blur.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

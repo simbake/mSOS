@@ -1,0 +1,13 @@
+<map> 
+	<markers>
+	   <shapes>
+	       <shape id='myCustomShape' type='circle' fillColor='FFFFFF,333333' fillPattern='radial' showBorder='0' radius='4'/>
+		</shapes>   
+		<definition>
+			<marker id='MA' x='433.55' y='206.62' label='Madrid (Capital)' LabelPos='right' />
+		</definition>
+		<application>
+			<marker id='MA' shapeId='myCustomShape'  />
+		</application>
+	</markers>
+</map>

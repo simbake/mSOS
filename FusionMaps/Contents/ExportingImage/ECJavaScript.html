@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Exporting Maps as PDF or Images - JavaScript Reference - Initiating from JavaScript </title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+table2 caption { text-align:left; font-weight: bold; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 11px;
+	padding-bottom: 6px; }
+table2 td { padding-bottom: 10px;}
+table2 td p { margin: 0; }
+</style>
+
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Exporting as Image/PDF|ECOverview.html", "Initiating from JavaScript" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Initiating from JavaScript </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>In this section, we will discuss how we can export maps using JavaScript. First we will start with the simplest of examples and then move on to the harder ones.</p>
+      <p class="highlightBlock"><strong>Important:</strong><br />
+        The JavaScript method will only work when the map has been fully rendered in the client browser. You can use the FC_Rendered method to track the same.<br />
+        <br />
+      Due to Adobe Flash Player's default security system, the JavaScript method does not work from local file system. It only works when hosted on a server (localhost or remote) <a href="../../Tools/FlashPlayerSecuritySetup/index.html" target="_blank">unless configured otherwise</a>.</p>
+      <p class="header"><a name="simplejs"></a>Simple JavaScript-Triggered Export</p>
+      <p>In this example, you will first need to create a map on your page. Then use  an HTML button to initiate the export process on that map.</p>
+      <p>To achieve this, we will have to do the following:</p>
+      <ol>
+        <li><a href="#page">Create an HTML page with a map in it.</a></li>
+        <li><a href="#adjustdataxml">Setup the XML of the map to enable exporting.</a></li>
+        <li><a href="#function">Create a JavaScript function to initiate exporting of the map.</a></li>
+        <li><a href="#button">Insert an HTML button to call the above JavaScript.</a></li>
+      </ol>
+      <p class="textBold"><a name="page" id="page"></a>Create an HTML page with a map in it:</p>
+      <p>The process involves including the <span class="codeInline">FusionCharts.js</span> file within the <span class="codeInline">&lt;head&gt;</span> section of your newly created HTML page. Then follow the standard process to load a map using the <span class="code-inline">FusionCharts</span> JavaScript object. (You may refer to <a href="../FirstMap/first_chart.html">Creating your first map </a> article under &quot;Creating your First Map &quot; section.)</p>
+      <p>The JavaScript code to create a map will appear like below:</p>
+     
+      <pre class="prettyprint code_container">var myMap = new FusionCharts('Maps/FCMap_World.swf', 'myMap', '900', '300', '0', '1');
+myMap.setXMLUrl('Data.xml');
+myMap.render('mapContainerDiv');</pre>
+     
+      <p class="textBold"><a name="adjustdataxml" id="adjustdataxml"></a>Setup the XML of the map to enable exporting</p>
+      <p>For this example, we will  export at a PHP server, with a default action of &quot;Download&quot;. For more information on server-side exporting, refer to our <a href="Server/ECServerOverview.html">Server-side exporting</a> section. The XML to do so will be like below (the attributes pertinent to exporting is marked in bold) and the file will be saved as &quot;Data.xml&quot; beside your HTML file:</p>
+      <pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='0' labelSepChar=': ' baseFontSize='9'  <br />exportEnabled='1' exportAtClient='0' exportAction='download' <br />exportHandler='http://www.domain.com/ExportHandlers/index.php' exportFileName='MyFileName'&gt;
+	&lt;colorRange&gt;<br />		&lt;color minValue='0' maxValue='500' displayValue='Sparsely Populated' color='A7E9BC' /&gt;<br />		&lt;color minValue='500' maxValue='1000' displayValue='Well Populated' color='FFFFCC' /&gt;<br />		&lt;color minValue='1000' maxValue='5000' displayValue='Densely Populated' color='FF9377' /&gt;<br />	&lt;/colorRange&gt;<br />	&lt;data&gt;<br />		&lt;entity id='NA' value='515' /&gt;<br />		&lt;entity id='SA' value='373' /&gt;<br />		&lt;entity id='AS' value='3875' /&gt;<br />		&lt;entity id='EU' value='727' /&gt;<br />		&lt;entity id='AF' value='885' /&gt;<br />		&lt;entity id='AU' value='32' /&gt;<br />	&lt;/data&gt;		<br />&lt;/map&gt;<br /></pre>
+      <p class="highlightBlock"> The exporting procedure to export at client-side is almost similar, except that additional steps are required to setup the client-side Export Component. For more information, refer to the <strong>Client-side exporting</strong> section.</p>
+      <p class="textBold"><a name="function" id="function"></a>Create a JavaScript function to initiate exporting of the map</p>
+      <p>The JavaScript function uses the simple function provided within <span class="codeInline">FusionCharts.js</span> to locate the map SWF  from its id. Then it calls the <span class="codeInline">exportChart()</span> function on the map. Note that we have first verified whether the map has fully rendered by calling the new <span class="codeInline">hasRendered()</span> function of the map.</p>
+      <pre class="prettyprint code_container">&lt;script type=&quot;text/javascript&quot;&gt;
+    function ExportMyChart() {
+         var mapObject = FusionCharts('myMap');
+         if( mapObject.hasRendered() ) mapObject.exportChart(); 
+   }
+&lt;/script&gt;      </pre>
+<p class="textBold"><a name="button" id="button"></a>Insert an HTML button to call the above JavaScript</p>
+      <p>Now that we have all our codes ready, we assemble them within one HTML file and see the results.</p>
+      <p>The Final code will look like this:</p>
+<pre class="prettyprint code_container">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;My Map&lt;/title&gt;
+	&lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+        	function ExportMyChart() {
+            		var mapObject = FusionCharts('myMap');
+            		if( mapObject.hasRendered() ) mapObject.exportChart();
+    		}
+	&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id=&quot;mapContainerDiv&quot;&gt;FusionMaps XT loaded here...&lt;/div&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		var myMap = new FusionCharts('Maps/FCMap_World.swf', 'myMap', '900', '300', '0' );
+		myMap.setXMLUrl('Data.xml');
+		myMap.render('mapContainerDiv');
+	&lt;/script&gt;
+	&lt;input type=&quot;button&quot; value=&quot;Export My Map&quot; onclick=&quot;ExportMyChart()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>After this, we open this file in a browser and click on the &quot;Export My Map &quot; button and the map will start exporting all by itself! In case you face any error, refer to the &quot;<a href="ECReferenceDebugJS.html">Debug Mode</a>&quot; section under &quot;<strong>JavaScript Reference</strong>&quot;</p>
+      <p class="header"><a name="exportparameters"></a>Providing Export Parameters (Overriding XML Export Attributes) using JavaScript:</p>
+      <p>FusionMaps XT allows you to provide values for XML attributes via JavaScript as well. The <span class="codeInline">exportChart()</span> function also takes in a parameter that accepts these XML attributes in a JSON object notation.</p>
+      <p>You  cannot override all XML attributes. The list of export-related XML attributes that can be overridden, can be found under the <a href="JavaScriptRef/ECReferenceExport.html">Export Attributes</a> section under <strong>JavaScript Reference</strong>. You can provide export attributes in {key1: 'value1', key2: 'value2', ...} format as shown below:</p>
+      <pre class="prettyprint code_container">&lt;script type=&quot;text/javascript&quot;&gt;
+  function ExportMyChart() {         
+    var mapObject = FusionCharts('myMap');         
+    mapObject.exportChart( <strong>{ exportAtClient: '1',  exportFormat: 'PDF' }</strong> );    
+  } 
+&lt;/script&gt;</pre> 
+      <br /> 
+    </td></tr></table>
+	<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("JavaScript Reference-Export Attributes|JavascriptRef/ECReferenceExport.html","Exporting Pure JavaScript maps|ECPureJS.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+
+</html>

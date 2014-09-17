@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+<title>Creating LinkedCharts</title></head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Creating <em>LinkedCharts</em>" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating <i>LinkedCharts</i> </td>
+  </tr>
+  <tr>
+  <td class="text">
+     <p>FusionMaps XT  introduces a new and smart drill-down feature - <i>LinkedCharts</i> - that allows you to create unlimited level of drill-down maps using a single data source. All the links originate from a parent map and its data, which comprehensively contains data or data URL for all descendant (child, grand-child) maps. Upon clicking the entity items (anchors)  of the parent map, users can drill-down into descendant maps. The descendant maps (or children maps) can either replace the parent map with an option to drill-up, or can be opened in new dialogs or frames. </p>
+     <p>Let's consider a simple scenario with a single level of drill-down. There is a parent map which is a world map that shows  continent-wise global sales figures. Each continent  when clicked will render detailed child map  of the respective continent along with detailed drill down data in it.  <em>LinkedCharts </em>allows you to build these kinds of scenarios (and much more complex) without having to write any additional line of code.</p>
+     <p>A very basic implementation of <em>LinkedCharts</em> feature  works in the following way:</p>
+    </td>
+  </tr>
+  <tr>
+<td class="text">
+   <table width="700" cellpadding="0" cellspacing="0"><tr><td>
+      <img src="Images/linkedMap1.jpg" width="498" height="283" class="imageBorder" /></td>
+   <td  align="center"><img src="Images/linkedMap2.jpg" width="498" height="283" class="imageBorder" /></td>
+   </tr>
+		<tr>
+		   <td align="center" class="imageCaption">Parent map when the continent Australia is clicked </td>
+		   <td align="center" class="imageCaption"><i>LinkedChart</i> displaying Australia map </td>
+		</tr>
+   </table>
+   
+   <p>See it <a href="../../Code/MyFirstMap/linkedcharts-data-string.html" target="_blank">live</a>!</p>
+   <p class="header">How to render?</p>
+   <p class="text">To create <em>LinkedCharts</em>, you need  to follow these steps:</p>
+   <ul>
+     <li>Create the XML/JSON data for <strong>parent map  </strong>. This is called the <strong>parent data source</strong> and comprehensively contains data String or data URL for all descendant maps. </li>
+     <li>Append the <strong>data string </strong>or <strong>data URL </strong>for all the <strong>descendant maps </strong>(also called child map) within the parent data source. If the <strong>data string</strong> method is used, data for each descendant map is embedded within the <strong>parent data source</strong> and linked using <strong>unique data identifiers</strong>.</li>
+     
+   </ul><br />
+   You're done. Yes, no additional code is required! 
+   <p>Let's see the code for a simple <em>LinkedChart</em> that renders a world map with links:</p>
+   <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using LinkedCharts feature&lt;/title&gt; 
+    &lt;script type="text/javascript" src="Maps/FusionCharts.js"&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id="mapContainer"&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type="text/javascript"&gt;&lt;!--
+         
+      var myMap = new FusionCharts ("Maps/FCMap_World.swf", "MyMapId", "700", "400", "0");
+      myMap.setXMLUrl ("Linked-Data.xml");
+      myMap.render("mapContainer"); 
+    // --&gt; 
+    &lt;/script&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+	<p class="text">In the above code (which we have saved as <span class="codeInline">linked-maps.html</span>) we render a world map with <span class="codeInline">Linked-Data.xml</span> as the data source for the map. This is the parent map from which descendant maps will be generated.&nbsp; Let's see how to define the data for all the <em>LinkedCharts </em>in the parent map's data. The definition of data involves two parent things:</p>
+	<ol>
+	  <li>Select the option whether to embed the map data for the descendent maps <em> </em>into the parent map's data source or to keep them as separate URLs sources</li>
+	  <li>Define the <span class="codeInline">link </span>attribute of each entity, as per the option decided, and specify the descendant map's name, data-format and data-source</li>
+	  </ol>
+   <p>To begin with, let's find out below, how the data is stored in a single  data source:</p>
+</td>
+</tr>
+  
+  <tr>
+  <td class="header"><a name="data" id="data"></a>Defining <i>LinkedCharts</i> using a single data source</td>  
+  </tr>
+
+  <tr>
+     <td valign="top" class="text">
+     <p class="highlightBlock">Note: To make the sample data light-weight for this demonstration, we have placed data only for the  Australia map. In actual implementation, data will be required.</p>
+
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tabXML_LC1">XML</a></li>
+       <li><a href="#tabJSON_LC1">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tabXML_LC1" class="tab_content">
+        		      <pre class="code_container prettyprint lang-xml" style="height:300px; overflow:auto" >&lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9'&gt;
+      
+      &lt;data&gt;
+        &lt;entity id="NA" value="6921900" link='newchart:FCMap_NorthAmerica.swf-xml-NorthAmerica' /&gt;
+        &lt;entity id="SA" value="3087120" link='newchart:FCMap_SouthAmerica.swf-xml-SouthAmerica' /&gt;
+        &lt;entity id="AS" value="2434120" link='newchart:FCMap_Asia.swf-xml-Asia' /&gt;
+        &lt;entity id="EU" value="5093230" link='newchart:FCMap_Europe.swf-xml-Europe' /&gt;
+        &lt;entity id="AF" value="1032900" link='newchart:FCMap_Africa.swf-xml-Africa' /&gt;
+        &lt;entity id="AU" value="3461230" link='newchart:FCMap_Australia.swf-xml-Australia' /&gt;
+      &lt;/data&gt;
+  &lt;linkeddata id="Australia"&gt;
+   &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+	&lt;data&gt;
+		&lt;entity id='WA'  value=&quot;200050&quot; /&gt;
+		&lt;entity id='NT'  value=&quot;1509800&quot; /&gt;
+		&lt;entity id='QU'  value=&quot;803480&quot; /&gt;
+		&lt;entity id='SA'  value=&quot;123000&quot; /&gt;
+		&lt;entity id='SW'  value=&quot;548000&quot; /&gt;
+		&lt;entity id='VI'  value=&quot;182000&quot; /&gt;
+		&lt;entity id='TA'  value=&quot;94900&quot; /&gt;
+	&lt;/data&gt;
+   &lt;/map&gt;
+  &lt;/linkeddata&gt;
+
+  &lt;linkeddata id=&quot;NorthAmerica&quot;&gt;
+     &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+     &lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id=&quot;SouthAmerica&quot;&gt;
+    &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+    &lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id=&quot;Asia&quot;&gt;
+    &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+    &lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id=&quot;Europe&quot;&gt;
+    &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+    &lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id=&quot;Africa&quot;&gt;
+    &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+    &lt;/map&gt;
+  &lt;/linkeddata&gt;
+
+&lt;/map&gt;</pre>
+       </div>
+<div id="tabJSON_LC1" class="tab_content"  >
+  <pre id="pre-datajson2" class="prettyprint code_container" style="height:300px; overflow:auto">{
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "includevalueinlabels": "1",
+    "numberprefix": "$",
+    "basefontsize": "9"
+  },
+  "data": [
+    {
+      "id": "NA",
+      "value": "6921900",
+      "link": "newchart:FCMap_NorthAmerica.swf-json-NorthAmerica"
+    },
+    {
+      "id": "SA",
+      "value": "3087120",
+      "link": "newchart:FCMap_SouthAmerica.swf-json-SouthAmerica"
+    },
+    {
+      "id": "AS",
+      "value": "2434120",
+      "link": "newchart:FCMap_Asia.swf-json-Asia"
+    },
+    {
+      "id": "EU",
+      "value": "5093230",
+      "link": "newchart:FCMap_Europe.swf-json-Europe"
+    },
+    {
+      "id": "AF",
+      "value": "1032900",
+      "link": "newchart:FCMap_Africa.swf-json-Africa"
+    },
+    {
+      "id": "AU",
+      "value": "3461230",
+      "link": "newchart:FCMap_Australia.swf-json-Australia"
+    }
+  ],
+  "linkeddata": [
+    {
+      "id": "Australia",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        },
+        "data": [
+              {
+                "id": "WA",
+                "value": "200050"
+              },
+              {
+                "id": "NT",
+                "value": "1509800"
+              },
+              {
+                "id": "QU",
+                "value": "8034800"
+              },
+              {
+                "id": "SA",
+                "value": "123000"
+              },
+              {
+                "id": "SW",
+                "value": "548000"
+              },
+              {
+                "id": "VI",
+                "value": "182000"
+              },
+              {
+                "id": "TA",
+                "value": "94900"
+              }
+          ]
+      }
+    },
+    {
+      "id": "NorthAmerica",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "SouthAmerica",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "Asia",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "Europe",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "Africa",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    }
+  ]
+}</pre>
+</div>
+</div>
+</div>
+</td>
+  </tr>
+  
+  <tr>
+  <td class="text"><br />
+  	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML - Explanation</a></li>
+       <li><a href="#tab2">JSON - Explanation</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+     <p>The above map XML contains  sales data. Each entity is set with a link whose value starts with a prefix - <span class="codeInline">newchart</span>. The prefix lets the parent map know that it is going to open a <i>LinkedChart</i> when the entity or link is clicked. <span class="codeInline">newchart</span> takes additional parameters
+     as listed below:</p>
+     <ol>
+	 	<li><span class="codeInline">newchart</span> is followed by a colon (:) and then the SWF filename of the child map is specified.  If you are rendering only JavaScript maps, you can provide  <a href="../introduction/MapsList.html">JavaScript map alias</a> instead.
+            <p class="highlightBlock"><strong>Note</strong>: Do not provide the complete path of the map SWF file here. FusionCharts JavaScript Class is smart enough to pick it up from the path of the parent map. However, if required, you can also configure the path of the child map SWF files - which we will <a href="../DrillDown/LinkedCharts/Overview.html#otherfolder">soon see</a>.</p>
+	 	</li>
+		<li>Then the data-format for the new map is specified separated by a hyphen (-). In this example it is <span class="codeInline">xml</span>. It can also take <span class="codeInline">xmlurl</span>, <span class="codeInline">json </span><span class="text">and </span><span class="codeInline">jsonurl</span> as its value.</li>
+       
+        <li>The rest of the value, after a hyphen again (-), of the link attribute defines the data-source as per the data-format provided in that link. </li>
+        <li>When <span class="codeInline">xml</span> is set as the data format, the data becomes an id of a <span class="codeInline">&lt;linkeddata&gt;</span> node in the same <span class="codeInline">xml</span> that contains the data for the existing map.</li>
+        <li>In other cases, a URL of <span class="codeInline">XML</span> is set as the data.</li>
+      </ol>
+     <p>The XML contains some nodes called <span class="codeInline">&lt;linkeddata&gt;. </span>For each <span class="codeInline">&lt;linkeddata&gt;</span> node of the parent data (<span class="codeInline">xml </span>in this sample) an ID is defined. This ID is passed as the data source id of the <span class="codeInline">xml</span> data for the <i>LinkedChart</i> (as we discussed in point 3 above).The <span class="codeInline">&lt;linkeddata&gt; </span>node contains complete map data (here XML) for the <i>LinkedChart</i>. Hence, when a map entity is clicked, the new map that opens up takes data from this node.</p>
+       </div>
+		 
+		 
+		 
+		  <div id="tab2" class="tab_content">
+           <p>In case of JSON data (shown above), annual sales data for four years has been defined.  Each map entity is set with a link whose value starts with a prefix - <span class="codeInline">newchart</span>. The prefix lets the parent map know that it is going to open a <i>LinkedChart</i> when the entity is clicked. <span class="codeInline">newchart</span> takes additional parameters
+     as listed below:</p>
+           <ol>
+      <li><span class="codeInline">newchart</span> is followed by a colon (:) and then the SWF filename of the child map is specified.  If you are rendering only JavaScript maps, you can provide <a href="../introduction/MapsList.html">JavaScript map alias</a> instead. 
+          <p class="highlightBlock">You do not need&nbsp;to set the complete path of the map SWF file here. FusionCharts JavaScript Class is smart enough to pick it up from the path of the parent map. However, if required, you can also configure the path of the child map SWF files - which we will soon see.</p>
+      </li>
+		<li>Then the data-format for the new map is specified separated by a hyphen (-). In this example it is <span class="codeInline">json</span>. It can also take <span class="codeInline">jsonurl</span>, <span class="codeInline">xml </span><span class="text">and </span><span class="codeInline">xmlurl</span> as its value.</li>
+       
+        <li>The rest of the value, after a hyphen again (-), of the link attribute defines the data-source as per the data-format provided in that link. </li>
+        <li>When <span class="codeInline">json</span> is set as the data format, the data becomes an id of a <span class="codeInline">&lt;linkeddata&gt;</span> node in the same <span class="codeInline">json</span> that contains the data for the existing map.</li>
+        <li>In other cases, a URL of <span class="codeInline">JSON</span> is set as the data.</li>
+      </ol>
+           
+              <p>The JSON contains a  special Array called <span class="codeInline">linkeddata. </span>Each element of <span class="codeInline">linkeddata </span>Array  contains data for the child <em>LinkedCharts</em>. Each element is an Object with an <span class="codeInline">id</span> property. The string that forms the value of the <span class="codeInline">id </span>property, serves as  a JSON data for the <i>LinkedChart</i> (as we discussed in point 3 above). Each <span class="codeInline">linkeddata </span>element contains full chart data (JSON data in this case) for the <i>LinkedChart</i> -in a separate property <span class="codeInline">linkedchart</span>. Hence, when a map entity is clicked, the new map that opens up takes data from this property.</p>
+		  </div>
+	 </div>
+  </div>
+    </td>
+  </tr>
+  <tr>
+  <td class="text" height="25"></td></tr>
+  <tr>
+    <td class="header"><a name="background" id="background"></a>What happens in the background? </td>
+  </tr>
+  <tr>
+    <td class="text">
+      <p>To achieve the seamless implementation of the <i>LinkedChart</i>s, FusionCharts JavaScript Class does the following: </p>
+      <ul>
+        <li> Automatically creates and shows a detailed child map  when a data plot item <span class="msg_handler"><a>link</a> &raquo; </span><span class="veryLightYellowBg msg_body"> (specially defined links using <span class="codeInline">newchart</span> prefix) </span> in the parent map is clicked</li>
+        <li>Clones all map configuration settings from the parent map to create the child map or the <i>LinkedChart</i></li>
+        <li><span class="msg_handler">Allows you to configure specific properties for the descendant <a>maps</a> &raquo; </span><span class="veryLightYellowBg msg_body"> for example, type of map, width, height, where the maps will be shown etc. </span>using the <a href="../javascript/API/methods.html#configurelink"><span class="codeInline">configureLink()</span></a> function </li>
+        <li>Notifies your code by way of <a href="../javascript/API/events.html#linkedcharts">events</a> whenever a link is invoked,  link item is opened and link item is closed</li>
+        <li>Allows you to drill-down to unlimited <a href="../DrillDown/LinkedCharts/Overview.html">numbers of levels</a> </li>
+      </ul>
+      <p class="highlightBlock"><i>LinkedCharts</i> feature provides a number of customizable options for the <i>LinkedCharts</i> as per your requirements. It can let you open <i>LinkedCharts</i><a href="../../Code/JavaScript/Basics/UsingLinkedCharts/jqprettyphoto.html" target="_blank"> in light box </a><span class="text">or </span><a href="../../Code/JavaScript/Basics/UsingLinkedCharts/ExtJs.html" target="_blank">floating boxes</a> or in a <a href="../../Code/MyFirstMap/linkedcharts-renderat.html" target="_blank">separate HTML container</a>. It allows you to configure the type of the drilled-down map. It invokes JavaScript events that one can listen to and perform advanced actions. To know more on this feature and for more code samples, go through <strong>Drill Down Charts</strong> &gt; <a href="../DrillDown/LinkedCharts/Overview.html"><em>LinkedCharts</em></a>. If you require more details on the JavaScript API pertinent to <em>LinkedCharts</em>, please go through: <strong>FusionMaps XT and JavaScript</strong>&gt;<span class="codeInline"> <a href="../javascript/js_linkedcharts.html">Using <i>LinkedCharts</i></a></span>.</p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Adding drill-down links to maps|drill_down.html","Exporting maps to Image/PDF|export_chart.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

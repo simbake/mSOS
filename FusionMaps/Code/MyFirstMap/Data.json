@@ -1,0 +1,36 @@
+{
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "numbersuffix": " Mill.",
+    "includevalueinlabels": "1",
+    "labelsepchar": ": ",
+    "basefontsize": "9"
+  },
+  "data": [
+    {
+      "id": "NA",
+      "value": "515"
+    },
+    {
+      "id": "SA",
+      "value": "373"
+    },
+    {
+      "id": "AS",
+      "value": "3875"
+    },
+    {
+      "id": "EU",
+      "value": "727"
+    },
+    {
+      "id": "AF",
+      "value": "885"
+    },
+    {
+      "id": "AU",
+      "value": "32"
+    }
+  ]
+}

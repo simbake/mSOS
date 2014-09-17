@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Number Formatting - Number Scaling</title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Advanced Topics", "Number Formatting|Basics.html", "Number Scaling" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td width="100%" class="pageHeader">Number Scaling </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Number scaling lets you shorten the numbers on maps using commonly   used scales (like K,M, etc.). You can define your own scales for numbers   and then apply it to all numbers on the map.</p>      </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="header"><a name="example"></a>Basic Example </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>Let's start with the most basic example which is already defined in FusionMaps XT - thousands (K) and millions (M) scale. </p>
+      <p>If your numbers on the map are greater than 1000, FusionMaps   XT gives you the option to scale them to K (Thousands) or M (Millions). For example, if you plot a map with values as 3400 and 17400 and use number scaling by setting <span class="codeInline">&lt;map ... formatNumberScale='1' ...&gt;</span>, you'll see the following map: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text" align="left"><img src="../images/Number_Format_3.jpg" width="423" height="246" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	<p>As you can see above, FusionMaps XT has scaled the numbers down to K. By default,   FusionMaps XT has the K,M (1000,1000) scaling defined for each map. If you do not want this scaling to be applied by default, you can set:</p>
+	<div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content">
+<pre class="prettyprint code_container">&lt;map formatNumberScale='0' ...&gt;  </pre></div>
+<div id="tab2" class="tab_content">
+  <pre id="pre-datajson" class="prettyprint code_container">&quot;map&quot;:{<br />&nbsp; &nbsp; &quot;formatnumberscale&quot;:&quot;0&quot;
+      ...<br />&nbsp; }</pre>
+</div></div></div>
+    <p>You can,   however, change it to anything you wish. Let's see it in the next example. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="billions" id="billions"></a>Adding billions to default scaling </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>FusionMaps XT, by default, has 1000,1000 (K,M) scaling defined for all maps.   It doesn't have the scaling for billions defined. Let's modify the number   scaling to add billion so that the final scale looks like 1000,1000,1000   (K,M,B). </p>
+      <p>This scale, in human terms, will look something as under:</p>
+      <p>1000 = 1 K<br />
+        1000 K = 1 M<br />
+        1000 M = 1 B</p>
+      <p>Now, to convert this scale into FusionMaps XT XML format, you'll have to do   the following: </p>
+      <ol>
+        <li>Define your own scale for the map as under:<br />
+          <div class="container" style="overflow:hidden;">
+    <ul class="tabs">
+       <li><a href="#tab3">XML</a></li>
+       <li><a href="#tab4">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab3" class="tab_content">
+       <pre class="prettyprint code_container">&lt;map numberScaleValue='1000,1000,1000' numberScaleUnit='K,M,B' &gt;</pre></div>
+       <div id="tab4" class="tab_content">
+         <pre id="pre-datajson2" class="prettyprint code_container"> &quot;map&quot;:{<br />&nbsp; &nbsp; &quot;numberscalevalue&quot;:&quot;1000,1000,1000&quot;,<br />&nbsp; &nbsp; &quot;numberscaleunit&quot;:&quot;K,M,B&quot;<br />&nbsp; }</pre>
+       </div></div></div><br />
+          If you carefully see this and match   it with previous table, you'll find that whatever numeric figure was present on   the left hand side of the table is put in <span class="codeInline">numberScaleValue</span> and whatever unit was present on the   right side of the scale table has been put under <span class="codeInline">numberScaleUnit</span> - all separated by commas. </li>
+        <li>Set the map formatting flag to on as under:<br />
+          <div class="container" style="overflow:hidden;">
+    <ul class="tabs">
+       <li><a href="#tab5">XML</a></li>
+       <li><a href="#tab6">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab5" class="tab_content">
+<pre class="prettyprint code_container">&lt;map formatNumber='1' formatNumberScale='1' ...&gt;</pre></div>
+<div id="tab6" class="tab_content">
+  <pre id="pre-datajson3" class="prettyprint code_container"> &quot;map&quot;:{<br />&nbsp; &nbsp; &quot;formatnumber&quot;:&quot;1&quot;,<br />&nbsp; &nbsp; &quot;formatnumberscale&quot;:&quot;1&quot;
+      ...<br />&nbsp; }</pre>
+</div></div></div></li>
+      </ol>
+    <p>When you now view a map containing data in billions, you'll see as under.   Note that the map now contains figure both in millions and billions. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="../images/Number_Scale_1.jpg" width="415" height="242" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The XML/JSON for the above map is: </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab7">XML</a></li>
+       <li><a href="#tab8">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab7" class="tab_content">
+	<pre class="code_container prettyprint">&lt;map lowerLimit='0' upperLimit='2000000000' lowerLimitDisplay='Bad' upperLimitDisplay='Good' <strong>numberScaleValue='1000,1000,1000' numberScaleUnit='K,M,B' formatNumberScale='1'</strong>&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;...
+&lt;/map&gt; </pre>
+       </div>
+<div id="tab8" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "map": {
+    "lowerlimit": "0",
+    "upperlimit": "2000000000",
+    "lowerlimitdisplay": "Bad",
+    "upperlimitdisplay": "Good",
+    <strong>"numberscalevalue": "1000,1000,1000",
+    "numberscaleunit": "K,M,B",
+    "formatnumberscale": "1"</strong>
+  },
+...
+}</pre>
+</div></div></div>
+  <div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="time" id="time"></a>Another Example - Putting time in scale</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Let's consider another example where we intend to plot time related figures   on the map. Say we're plotting a map which indicates the time taken by a   machine to do a particular task. The task can take any time ranging from   a few seconds to few days. And we've the data for the task in seconds   itself. Now, if we were to show all the data on the map in seconds only, it   won't appear too legible. What we can do is build a scale indicating time and   then specify it to the map. This scale, in human terms, will look something   as under:</p>
+      <p>60 seconds = 1 minute<br />
+        60 minute = 1 hr<br />
+        24 hrs = 1 day<br />
+        7 days = 1   week</p>
+      <p>Now, to convert this scale into FusionMaps XT XML format, you'll have to do it   as under:</p>
+      <ol>
+        <li>First you need to define the unit of the data which you're providing.   Like, in this example, you're providing all data in seconds. So, the default number   scale will be represented in seconds. We can represent it as under:<br />
+          <div class="container" style="overflow:hidden;">
+    <ul class="tabs">
+       <li><a href="#tab11">XML</a></li>
+       <li><a href="#tab12">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab11" class="tab_content">
+<pre class="prettyprint code_container">&lt;map defaultNumberScale='s' ...&gt; </pre>
+       </div>
+<div id="tab12" class="tab_content">
+  <pre id="pre-datajson6" class="prettyprint code_container">&quot;map&quot;:{<br />&nbsp; &nbsp; &quot;defaultnumberscale&quot;:&quot;s&quot;
+      ...<br />&nbsp; }</pre>
+</div></div></div></li>
+        <li>Next, we define our own scale for the map as under:<br />
+          <div class="container" style="overflow:hidden;" >
+    <ul class="tabs">
+       <li><a href="#tab13">XML</a></li>
+       <li><a href="#tab14">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab13" class="tab_content">
+<pre class="prettyprint code_container">&lt;map numberScaleValue='60,60,24,7' numberScaleUnit='min,hr,day,wk' &gt;</pre>
+       </div>
+<div id="tab14" class="tab_content">
+  <pre id="pre-datajson7" class="prettyprint code_container">&quot;map&quot;:{<br />&nbsp; &nbsp; &quot;numberscalevalue&quot;:&quot;60,60,24,7&quot;,<br />&nbsp; &nbsp; &quot;numberscaleunit&quot;:&quot;min,hr,day,wk&quot;<br />&nbsp; }</pre>
+</div></div></div>
+          <br />
+          Again, if you carefully see   this and match it with our range, you'll find that whatever numeric figures are   present on the left  side of the range have been put in <span class="codeInline">numberScaleValue</span> and whatever units are present on the   right side of the scale have been put under <span class="codeInline">numberScaleUnit</span> - all separated by commas. </li>
+        <li>Set the map formatting flags to on as under:<br />
+          <div class="container" style="overflow:hidden;">
+    <ul class="tabs">
+       <li><a href="#tab15">XML</a></li>
+       <li><a href="#tab16">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab15" class="tab_content">
+<pre class="prettyprint code_container">&lt;map formatNumber='1' formatNumberScale='1' ...&gt;</pre>
+       </div>
+<div id="tab16" class="tab_content">
+  <pre id="pre-datajson8" class="prettyprint code_container">&quot;map&quot;:{<br />&nbsp; &nbsp; &quot;formatnumber&quot;:&quot;1&quot;,<br />&nbsp; &nbsp; &quot;formatnumberscale&quot;:&quot;1&quot;
+      ...<br />&nbsp; }</pre>
+</div></div></div> </li>
+      </ol>
+    <p>The entire XML/JSON looks as under: </p></td>
+  </tr>
+  <tr>
+    <td>
+	 <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab17">XML</a></li>
+       <li><a href="#tab18">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab17" class="tab_content">
+	<pre class="code_container prettyprint">&lt;map lowerLimit='0' upperLimit='100000' <strong>numberScaleValue='60,60,24,7' numberScaleUnit='min,hr,day,wk' formatNumberScale='1'</strong>&gt;
+&nbsp;&nbsp;&nbsp;...
+&lt;/map&gt;</pre>
+       </div>
+<div id="tab18" class="tab_content">
+  
+  <pre id="pre-datajson" class="prettyprint code_container">{
+  "map": {
+    "lowerlimit": "0",
+    "upperlimit": "100000",
+    <strong>"numberscalevalue": "60,60,24,7",
+    "numberscaleunit": "min,hr,day,wk",
+    "formatnumberscale": "1"</strong>
+  },
+  ...
+}</pre>
+</div></div></div>
+  <div style="clear:both"></div>
+ </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>When you now view the map, you'll see that all the data has been   automatically scaled to the best value. Like:</p>
+      <p>100000s - the upper limit was converted to 1.16 days<br />
+    340s - the 1st dial's value was converted to 5.67 min<br />
+    17400s - the 2nd dial's value was converted to 4.83 hours<br />
+    and so on...</p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><img src="../images/Number_Scale_2.jpg" width="418" height="244" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="storagesize" id="storagesize"></a>Storage Size Example </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Take another example, where you're plotting a map indicating memory usage   of a network server. The usage can be from few bits to a few gigabytes. Again,   you've all your data in bits - so we can render the range as under:</p>
+      <p>8 bits = 1 Byte<br />
+        1024 bytes = 1 KB<br />
+        1024 KB = 1 MB<br />
+        1024 MB = 1   GB<br />
+        1024 GB = 1 TB</p>
+      <p>And the XML can be written as under:</p>
+    <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab21">XML</a></li>
+       <li><a href="#tab22">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab21" class="tab_content">
+<pre class="prettyprint code_container"> &lt;map defaultNumberScale='bits' numberScaleValue='8,1024,1024,1024,1024' numberScaleUnit='bytes,KB,MB,GB,TB' &gt;</pre>
+       </div>
+<div id="tab22" class="tab_content">
+  <pre id="pre-datajson11" class="prettyprint code_container"> &quot;map&quot;:{<br />&nbsp; &nbsp; &quot;defaultnumberscale&quot;:&quot;bits&quot;,<br />&nbsp; &nbsp; &quot;numberscalevalue&quot;:&quot;8,1024,1024,1024,1024&quot;,<br />&nbsp; &nbsp; &quot;numberscaleunit&quot;:&quot;bytes,KB,MB,GB,TB&quot;<br />&nbsp; }</pre>
+</div></div></div></td>
+  </tr>
+ <tr><td>&nbsp;</td></tr>
+  <tr>
+    <td valign="top" class="header"><a name="lengthdistance" id="lengthdistance"></a>Length/Distance Example </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Let's consider another length/distance example. The standard length/distance   range can be rendered as under (with inches being   the default unit):</p>
+      <p>12 inches = 1 feet<br />
+        3 feet = 1 yard<br />
+        1760 yards = 1 mile</p>
+      <p>So, we can write the XML as under:</p>
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab25">XML</a></li>
+       <li><a href="#tab26">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab25" class="tab_content">
+<pre class="prettyprint code_container">&lt;map defaultNumberScale='inches' numberScaleValue='12,3,1760' numberScaleUnit='feet,yards,miles' &gt;</pre></div>
+<div id="tab26" class="tab_content">
+  <pre id="pre-datajson13" class="prettyprint code_container"> &quot;map&quot;:{<br />&nbsp; &nbsp; &quot;defaultnumberscale&quot;:&quot;inches&quot;,<br />&nbsp; &nbsp; &quot;numberscalevalue&quot;:&quot;12,3,1760&quot;,<br />&nbsp; &nbsp; &quot;numberscaleunit&quot;:&quot;feet,yards,miles&quot;<br />&nbsp; }</pre>
+</div></div></div></td>
+  </tr>
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Basics|Basics.html","Recursive Number Scaling|RecNumScaling.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

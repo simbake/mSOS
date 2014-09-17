@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<title>Capturing mouse events</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and JavaScript|js_overview.html",  "Capturing mouse events" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Capturing Mouse events</td>
+
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p class="highlightBlock"> FusionMaps XT uses FusionCharts JavaScript Class that takes care of all the products of FusionCharts Suite XT including FusionMaps XT.</p>
+        <p>Starting FusionMaps XT, you can capture the following mouse events:</p>
+        <ul>
+           <li>Click on legend items (in icon based legend) using <span class="codeInline">LegendItemClicked</span>&nbsp;event</li>
+           <li>Click on markers using <span class="codeInline">MarkerClicked</span> event</li>
+           <li>Hover on marker using <span class="codeInline">MarkerRollover</span> event</li>
+           <li>Hover out from markers using <span class="codeInline">MarkerRollout</span> event</li>
+           <li>Click on connectors using <span class="codeInline">ConnectorClicked</span> event</li>
+           <li>Hover on connectors using <span class="codeInline">ConnectorRollover</span> event</li>
+           <li>Hover out from connectors <span class="codeInline">ConnectorRollout</span> event</li>
+           <li>Hover on entities using <span class="codeInline">EntityRollover</span> event</li>
+           <li>Hover out from entities using <span class="codeInline">EntityRollout</span> event</li>
+         </ul>
+        <p class="highlightBlock"><strong>Existing users</strong>: Prior to FusionMaps XT, entity roll over/out events could be captured through a single event - <span class="codeInline"><a href="#deprecated">FC_Event</a></span>. Although deprecated, you can continue to use this event in your existing code without any problem.</p>
+        
+   <p>These events can be particularly useful if you want to show additional information or perform additional processing for mouse click or hover on respective objects. In this section we will see how to capture and make use of these events. </p>
+   <p class="highlightBlock"><strong>Note</strong>: Before you go further with this page, we recommend you to please see the previous section, <a href="js_event_overview.html">Listening to events</a>, as we start off from concepts explained in that page.</p>
+   <p class="header"><a name="LegendItemClicked" id="methods"></a>Using <span class="codeInline">LegendItemClicked</span>&nbsp;event</p>
+        <p><span class="codeInline">LegendItemClicked</span> event is raised when any of the legend items are clicked. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the minimum (<span class="codeInline">minRange</span>) and maximum (<span class="codeInline">maxRange</span>) values of the color range represented by the legend item.</p>
+        <p>The following example listens to <span class="codeInline">LegendItemClicked</span> event and shows the minimum and maximum values (of the color range associated with the clicked legend item) in a message box:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to LegendItemClicked event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+         alert( &quot;<strong>You have clicked the legend representing the color range having <strong>&quot;  + argumentsObject</strong>.minRange + &quot; as minimum value and <strong>&quot;  + argumentsObject</strong>.maxRange + &quot;</strong> as the maximum value.&quot; );
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;LegendItemClicked&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;
+</pre>
+        <p class="highlightBlock">Note: <span class="codeInline">LegendItemClicked</span>&nbsp;event is not applicable in Gradient Legend.</p>
+        <p class="header"><a name="MarkerClicked" id="methods"></a>Using <span class="codeInline"> MarkerClicked</span>&nbsp;event</p>
+        <p><span class="codeInline">MarkerClicked</span> event is raised when a marker is clicked. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the data and position of the marker through the following properties:</p>
+        <ul>
+           <li><span class="codeInline">id</span>: ID of the marker</li>
+           <li><span class="codeInline">label</span>: Marker label</li>
+           <li><span class="codeInline">x</span> and <span class="codeInline">y</span>: The original x and y positions of the marker. This x and y positions are the values set through&nbsp;the marker definition in XML/JSON data. </li>
+           <li><span class="codeInline">scaledX</span> and <span class="codeInline">scaledY</span>: Scaled x and y positions of the marker. These scaled values proportionate to the scaled dimension of the map. <br />
+              <p class="highlightBlock">            Each map is created using a specific width and height. These dimensions are specified as original dimensions in the Map Specification Sheet of the respective map. Marker's x and y positions are defined in the XML/JSON with respect to the original dimensions of the map. However, a map's dimensions are scaled based on the map size set while rendering the map. Accordingly,&nbsp;the x and y positions of the markers also get scaled. </p>
+            </li>
+           <li><span class="codeInline">chartX</span> and c<span class="codeInline">hartY</span>: The x and y positions of the marker with respect to the top-left corner of the map canvas (that is, 0,0 position).</li>
+         </ul>
+        <p>You can use this event to create external HTML based elements (like panels, information balloons etc.) having information related the marker, over/near the marker. For example, when clicked, you can show a big callout box on top of a city marker with detailed weather data (possibly fetched from web services etc.).</p>
+   <p>The following example listens to <span class="codeInline">MarkerClicked</span> event and shows all the properties passed by the <span class="codeInline">argumentsObject</span> &nbsp;in a message box:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to LegendItemClicked event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			alert([ 
+				&quot;ID: &quot;,<strong><strong> argumentsObject</strong>.id</strong>, &quot;; Label: &quot;, <strong><strong>argumentsObject</strong>.label,</strong>
+				&quot;<strong>; x: <strong>&quot;, argumentsObject</strong>.x, &quot;, y: &quot;, <strong>argumentsObject</strong>.x,
+</strong>				&quot;; scaled<strong>X: <strong>&quot;, argumentsObject</strong>.scaledX, &quot;, scaledY: &quot;, <strong>argumentsObject</strong>.scaledY,
+</strong>				&quot;<strong>; chartX: <strong>&quot;, argumentsObject</strong>.chartX, &quot;, chartY: &quot;, <strong>argumentsObject</strong>.chartY
+</strong>			].join(&quot;&quot;));
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;MarkerClicked&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;
+</pre>
+        
+   <p class="header"><a name="MarkerRollover" id="methods"></a>Using <span class="codeInline"> MarkerRollover</span>&nbsp;event</p>
+        <p><span class="codeInline">MarkerRollover</span> event is raised when mouse hovers over a marker. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the data and position of the marker through the following properties:</p>
+        <ul>
+           <li><span class="codeInline">id</span>: ID of the marker</li>
+           <li><span class="codeInline">label</span>: Marker label</li>
+           <li><span class="codeInline">x</span> and <span class="codeInline">y</span>: The original x and y positions of the marker. This x and y positions are the values set through&nbsp;the marker definition in XML/JSON data. </li>
+           <li><span class="codeInline">scaledX</span> and <span class="codeInline">scaledY</span>: Scaled x and y positions of the marker. These scaled values proportionate to the scaled dimension of the map. <br />
+              <p class="highlightBlock"> Each map is created using a specific width and height. These dimensions are specified as original dimensions in the Map Specification Sheet of the respective map. Marker's x and y positions are defined in the XML/JSON with respect to the original dimensions of the map. However, a map's dimensions are scaled based on the map size set while rendering the map. Accordingly,&nbsp;the x and y positions of the markers also get scaled. </p>
+            </li>
+           <li><span class="codeInline">chartX</span> and c<span class="codeInline">hartY</span>: The x and y positions of the marker with respect to the top-left corner of the map canvas (that is, 0,0 position).</li>
+         </ul>
+        <p>You can use this event to create external HTML based elements (like  information balloons, quick callouts etc.) having information related the marker, over/near the marker. For example, when hovered, you can show a big callout  on top of a city marker with detailed weather data (possibly fetched from web services etc.).</p>
+        <p>The following example listens to <span class="codeInline">MarkerRollover</span> event and shows the label and the ID of the hovered marker in an HTML element:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to MarkerRollover event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/jquery.min.js<strong>&quot;</strong>&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+
+    &lt;div id=&quot;<strong>details</strong>&quot;&gt;&lt;/div&gt;          
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			$(&quot;#details&quot;).text( &quot;<strong>You rolled over</strong> marker with label: &quot; + <strong><strong>argumentsObject</strong>.label</strong> + &quot; and ID : &quot; + <strong><strong>argumentsObject</strong>.id );</strong>
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;MarkerRollover&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;
+      </pre>
+        <p class="header"><a name="MarkerRollout" id="methods"></a>Using <span class="codeInline"> MarkerRollout</span>&nbsp;event</p>
+        <p><span class="codeInline">MarkerRollout</span> event is raised when mouse leaves a marker. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the data and position of the marker through the following properties:</p>
+        <ul>
+           <li><span class="codeInline">id</span>: ID of the marker</li>
+           <li><span class="codeInline">label</span>: Marker label</li>
+           <li><span class="codeInline">x</span> and <span class="codeInline">y</span>: The original x and y positions of the marker. This x and y positions are the values set through&nbsp;the marker definition in XML/JSON data. </li>
+           <li><span class="codeInline">scaledX</span> and <span class="codeInline">scaledY</span>: Scaled x and y positions of the marker. These scaled values proportionate to the scaled dimension of the map. <br />
+              <p class="highlightBlock"> Each map is created using a specific width and height. These dimensions are specified as original dimensions in the Map Specification Sheet of the respective map. Marker's x and y positions are defined in the XML/JSON with respect to the original dimensions of the map. However, a map's dimensions are scaled based on the map size set while rendering the map. Accordingly,&nbsp;the x and y positions of the markers also get scaled. </p>
+            </li>
+           <li><span class="codeInline">chartX</span> and c<span class="codeInline">hartY</span>: The x and y positions of the marker with respect to the top-left corner of the map canvas (that is, 0,0 position).</li>
+         </ul>
+        <p>You can use this event in conjunction with <span class="codeInline">MarkerRollover</span> event to un-do all actions done through <span class="codeInline">MarkerRollover</span> event. For example, removing a callout detailed description box which was created using <span class="codeInline">MouseRollover</span> event.</p>
+   <p>The following example listens to <span class="codeInline">MarkerRollout</span> event and shows the label and the ID of the hovered-out marker in an HTML element:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to MarkerRollout event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;pastdetails&quot;&gt;&lt;/div&gt;          
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			$(&quot;#pastdetails&quot;).text( &quot;<strong>You rolled out of </strong>marker with label: &quot; + <strong><strong>argumentsObject</strong>.label</strong> + &quot; and ID : &quot; + <strong><strong>argumentsObject</strong>.id );</strong>
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;MarkerRollout&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;
+      </pre>
+        
+   <p class="header"><a name="ConnectorClicked" id="ConnectorClicked"></a>Using <span class="codeInline"> ConnectorClicked</span>&nbsp;event</p>
+        <p><span class="codeInline">ConnectorClicked</span> event is raised when marker connectors are clicked. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the IDs of the connecting markers&nbsp;(<span class="codeInline">fromMarkerId</span>,<span class="codeInline">toMarkerId</span>).</p>
+        <p>The following example listens to <span class="codeInline">ConnectorClicked</span> event and shows the IDs of the connecting markers in a message box:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to ConnectorClicked event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			alert( &quot;<strong>From marker ID: <strong>&quot;+ argumentsObject</strong>.fromMarkerId + &quot;, To marker ID: &quot; + <strong>argumentsObject</strong>.toMarkerId</strong>);
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;ConnectorClicked&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;
+      </pre>
+        <p class="header"><a name="ConnectorRollover" id="methods"></a>Using <span class="codeInline"> ConnectorRollover</span>&nbsp;event</p>
+        <p><span class="codeInline">ConnectorRollover</span> event is raised when mouse hovers over marker connectors. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the IDs of the connecting markers&nbsp;(<span class="codeInline">fromMarkerId</span>,<span class="codeInline">toMarkerId</span>).</p>
+        <p>The following example listens to <span class="codeInline">ConnectorRollover</span> event and shows the IDs of the connecting markers in an HTML element:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to ConnectorRollover event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/jquery.min.js<strong>&quot;</strong>&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;
+	  &lt;div id=&quot;details&quot;&gt;&amp;nbsp;&lt;/div&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			$(&quot;#details&quot;).text( &quot;You rolled over Connector which draws from <strong>marker with ID: <strong>&quot;+ argumentsObject</strong>.fromMarkerId + &quot;, To marker with ID: &quot; + <strong>argumentsObject</strong>.toMarkerId </strong>);
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;ConnectorRollover&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;
+      </pre>
+        <p class="header"><a name="ConnectorRollout" id="methods"></a>Using <span class="codeInline"> ConnectorRollout</span>&nbsp;event</p>
+        <p><span class="codeInline">ConnectorRollout</span> event is raised when mouse leaves marker connectors. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the IDs of the connecting markers&nbsp;(<span class="codeInline">fromMarkerId</span>,<span class="codeInline">toMarkerId</span>).</p>
+        <p>The following example listens to <span class="codeInline">ConnectorRollout</span> event and shows the IDs of the connecting markers:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to ConnectorRollout event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/jquery.min.js<strong>&quot;</strong>&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;
+	  &lt;div id=&quot;pastdetails&quot;&gt;&amp;nbsp;&lt;/div&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			$(&quot;#pastdetails&quot;).text( &quot;You rolled out from Connector which draws from <strong>marker with ID: <strong>&quot;+ argumentsObject</strong>.fromMarkerId + &quot;, To marker with ID: &quot; + <strong>argumentsObject</strong>.toMarkerId </strong>);
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;ConnectorRollout&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+        
+   <p class="header"><a name="EntityRollover" id="methods"></a>Using <span class="codeInline"> EntityRollover</span>&nbsp;event</p>
+        <p><span class="codeInline">EntityRollover</span> event is raised when mouse hovers over entities. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the following properties:</p>
+        <ul>
+           <li> <span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">id</span>: ID of the entity. In general it&nbsp;is the internal ID specified in the Maps Specification Sheet of the respective map. However, if <a href="../how_to_use/CustomID.html">custom ID is defined</a>, it provide the custom ID. </li>
+           <li><span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">originalId</span>: When <a href="../how_to_use/CustomID.html">custom ID is defined</a> for an entity, it provide the original internal ID of the map, as per Map Specification Sheet of the respective map.</li>
+           <li><span class="codeInline">value</span>:&nbsp; Value of entity.</li>
+           <li> <span class="codeInline">label</span>: Long name&nbsp;of entity.</li>
+           <li><span class="codeInline">shortLabel</span>: Short name&nbsp;of entity.</li>
+         </ul>
+        <p>The following example shows an HTML element getting updated with entity data and label when that entity is rolled over:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to EntityRollover event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/jquery.min.js<strong>&quot;</strong>&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;
+	  &lt;div id=&quot;details&quot;&gt;&amp;nbsp;&lt;/div&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			$(&quot;#details&quot;).text( &quot;You are over entity named: <strong><strong>&quot;+ argumentsObject</strong>.label + &quot; with value: &quot; + <strong>argumentsObject</strong>.value </strong>);
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;EntityRollover&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+        
+   <p class="header"><a name="EntityRollout" id="methods"></a>Using<span class="codeInline"> EntityRollout</span>&nbsp;event</p>
+        <p><span class="codeInline">EntityRollout</span> event is raised when mouse hovers out of entities. The event can be listened using <a href="js_event_overview.html#advanced">advanced event registration model</a>. In the <span class="codeInline">argumentsObject</span> it provides the following properties:</p>
+        <ul>
+           <li> <span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">id</span>: ID of the entity. In general it&nbsp;is the internal ID specified in the Maps Specification Sheet of the respective map. However, if <a href="../how_to_use/CustomID.html">custom ID is defined</a>, it provide the custom ID. </li>
+           <li><span class="codeInline" style="font-variant:normal; letter-spacing:normal; line-height:17px; orphans:2; text-align:left; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px; -webkit-text-size-adjust:auto; -webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); display:inline !important; float:none; font-family:Arial, FreeSans, Helvetica, sans-serif; font-size:13px; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">originalId</span>: When <a href="../how_to_use/CustomID.html">custom ID is defined</a> for an entity, it provide the original internal ID of the map, as per Map Specification Sheet of the respective map.</li>
+           <li><span class="codeInline">value</span>:&nbsp; Value of entity.</li>
+           <li> <span class="codeInline">label</span>: Long name&nbsp;of entity.</li>
+           <li><span class="codeInline">shortLabel</span>: Short name&nbsp;of entity.</li>
+         </ul>
+   <p>The following example updates an HTML element with entity name and its value when mouse moves out of an entity:</p>
+        <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;FusionMaps XT - listen to EntityRollout event&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/jquery.min.js<strong>&quot;</strong>&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js<strong>&quot;</strong>&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;
+	  &lt;div id=&quot;pastdetails&quot;&gt;&amp;nbsp;&lt;/div&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+<strong>      </strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;400&quot;, &quot;300&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+					
+<strong>      function myChartListener(eventObject, argumentsObject)</strong>{
+			$(&quot;#pastdetails&quot;).text( &quot;You are out of entity named: <strong><strong>&quot;+ argumentsObject</strong>.label + &quot; with value: &quot; + <strong>argumentsObject</strong>.value </strong>);
+      }
+
+<strong>      FusionCharts(&quot;myMapId&quot;).addEventListener (&quot;EntityRollout&quot; , myChartListener );
+
+</strong>    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+        
+      </td>
+  </tr>
+  <tr>
+     <td valign="top" >
+        <div class="highlightBlock">
+           <p class="header nomargin" ><a name="deprecated" id="deprecated"></a>
+             <strong>Using <span class="codeInline">FC_Event</span> (deprecated) to capture roll over/out events on entities</strong></p>
+           <p>To track entity roll over/out through <span class="codeInline">FC_Event</span>, you need to do the following:</p>
+           <ul>
+              <li>Set <span class="codeInline">exposeHoverEvent </span>attribute to <span class="codeInline">1</span>  in <span class="codeInline">&lt;map&gt;</span> element&nbsp;of the XML (or in <span class="codeInline">map</span> Object of the JSON)</li>
+              <li>Define&nbsp;a function named <span class="codeInline">FC_Event</span>&nbsp;(in the global scope)&nbsp; that can accept the following parameters:
+                 <ul>
+                    <li><span class="codeInline">DOMId</span>: The Id of the map (string) in the page. You can use this to track events generated from multiple maps in the same page. </li>
+                    <li><span class="codeInline">eventType</span>: A text value representing the event generated by map. Currently, two events are supported - namely <span class="codeInline">rollOve</span>r and <span class="codeInline">rollOut</span>. </li>
+                    <li><span class="codeInline">objParams</span>: An object containing the required parameters. In case of <span class="codeInline">rollOver</span> and <span class="codeInline">rollOut</span> on each entity, the following entity related properties  are passed: <ul>
+                       <li><span class="codeInline">id</span>: Entity Id</li>
+                       <li><span class="codeInline">sName</span>: Short name of entity</li>
+                       <li> <span class="codeInline">lName</span>: Long  name of entity </li>
+                       <li><span class="codeInline">value</span>: value of the entity</li>
+                       </ul>
+                      </li>
+                   </ul>
+                </li>
+             </ul>
+           <p>The following code shows an example of how to track roll-over events and display information about the entity in a DIV below the map. </p>
+           <pre class="prettyprint code_container">
+&lt;head&gt;
+&lt;head&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;FusionMaps XT and JavaScript - Entity Hover Capture&lt;/title&gt; 
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=&quot;text/javascript&quot; src=&quot;../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>function FC_Event(DOMId, eventType, objParams){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (eventType==&quot;rollOver&quot;){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(&quot;content&quot;).innerHTML = &quot;You rolled over entity with id as &quot; + objParams.id + &quot; having name as &quot; + objParams.lName + &quot; (&quot;+ objParams.sName +  &quot;) and value as &quot; + objParams.value;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(&quot;content&quot;).innerHTML = &quot;Please roll over an entity to see details.&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;center&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;FusionMaps XT and JavaScript - Entity Hover Capture Example&lt;/h2&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id=&quot;map1div&quot;&gt;FusionMaps XT&lt;/div&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=&quot;text/javascript&quot;&gt; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var myMap = new FusionCharts(&quot;../../Maps/FCMap_World.swf&quot;, &quot;map1Id&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myMap.setXMLData(&quot;&lt;map <strong>exposeHoverEvent='1'</strong> borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;&lt;data&gt;	&lt;entity id='NA' value='515' /&gt;&lt;entity id='SA' value='373' /&gt;&lt;entity id='AS' value='3875' /&gt;&lt;entity id='EU' value='727' /&gt;&lt;entity id='AF' value='885' /&gt;&lt;entity id='AU' value='32' /&gt;&lt;/data&gt;&lt;/map&gt;&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myMap.render(&quot;map1div&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;br /&gt;&lt;div id='content'&gt;Please roll over an entity to see details.&lt;/div&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+           <p>The above code&nbsp;does the following:</p>
+           <ul>
+              <li>Create a world map with DOM Id as <span class="codeInline">map1Id</span>. </li>
+              <li>Enable map's hover events setting <span class="codeInline">exposeHoverEvent='1'</span>. </li>
+              <li>Create a function <span class="codeInline">FC_Event</span> to track the events generated from this map. This function gets invoked whenever the user rolls over a map entity. </li>
+              <li>This function gets the properties of the entity and displays them in a DIV&nbsp; (with <span class="codeInline">content</span> as id).</li>
+            </ul>
+           </div>	  
+      </td>
+  </tr>
+  <tr>
+      <td valign="top" >&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+		document.getElementById("fcfooter").innerHTML =  addFCFooter("Listening to events|js_event_overview.html","Using <i>LinkedCharts</i>|js_linkedcharts.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

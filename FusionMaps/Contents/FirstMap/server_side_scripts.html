@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Creating maps using various server side scripts </title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Using server side scripts" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Creating maps using various server side scripts </td>
+
+  </tr>
+  <tr>
+     <td class="text">
+        <p>So far in this section, we have shown you how to build maps using static data (that is, data which was manually created by you). However, FusionMaps XT can also connect to dynamic sources of data using server side scripts like ASP, ASP.NET C#, ASP.NET VB.NET, PHP, J2EE, Ruby on Rails, ColdFusion,
+           <!--, Perl-->
+         etc. </p>
+        <p>FusionMaps XT can be implemented using <strong>ANY</strong> server-side technology, since maps are  rendered  at client side. The <strong>role of  server-side scripts is only to provide  XML/JSON data</strong> as string.</p>
+        <p>To make the task of embedding maps in  Web pages easier, FusionMaps XT provides wrapper classes  (FusionCharts wrapper classes) for various server-side scripts like ASP, ASP.NET C#, ASP.NET VB.NET, PHP, J2EE, Ruby on Rails, and ColdFusion. Moreover,  in ASP and PHP, the APIs allow you to connect to arrays and databases. You can  even dynamically build XML data which can directly be provided to the map.</p>
+        <p class="highlightBlock">FusionCharts wrapper classes for ASP.NET C#, ASP.NET VB, PHP and Classic ASP are present in <span class="codeInline">Download Pack</span> &gt; <span class="codeInline">Code </span>folder. All the wrapper classes are present in FusionCharts XT pack. If you   do not have the licensed pack of FusionCharts XT, you can directly <a href="http://www.fusioncharts.com/download" target="_blank">download the trial version of FusionCharts XT</a> and get the fully functional wrapper classes from the pack. The wrapper   classes are present in the FusionCharts XT Download Pack's <span class="codeInline">Code</span> folder.</p>
+        <p>In this page, we provide highlights of code snippets that are used in various server-side technologies for embedding FusionMaps XT. The next section,  shows how maps can be generated using dynamic data from database. </p></td>
+  </tr>  
+  <tr>
+     <td class="header"><a name="asp" id="asp"></a>Using Classic ASP</td>
+  </tr>
+  <tr>
+     <td height="23"></td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">Call renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, 750, 400, False, True)</pre>
+     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Code to create JavaScript map:</p>
+     </td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">FC_SetRenderer( &quot;javascript&quot; )
+Call renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, 750, 400, False, True)</pre>
+     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Read <a href="../web_dev/asp/CodeASPDXML.html">more</a>.</p>
+     </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="cs" id="cs"></a>Using ASP.NET C# </td>
+  </tr>
+  <tr>
+     <td height="23"></td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">FusionCharts.RenderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, &quot;750&quot;, &quot;400&quot;, false, true);</pre>     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Code to create JavaScript map:</p>
+     </td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">FusionCharts.SetRenderer(&quot;javascript&quot;);
+Literal1.Text = FusionCharts.RenderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, &quot;750&quot;, &quot;400&quot;, false, true); </pre>
+     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Read <a href="../web_dev/asp_cs/CodeASPCSDXML.html">more</a>. </p>
+     </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="vb" id="vb"></a>Using ASP.NET VB</td>
+  </tr>
+  <tr>
+     <td height="23"></td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">FusionCharts.RenderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, &quot;750&quot;, &quot;400&quot;, False, True)</pre>     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Code to create JavaScript map:</p>
+     </td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">FusionCharts.SetRenderer(&quot;javascript&quot;)
+Literal1.Text = FusionCharts.RenderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, &quot;750&quot;, &quot;400&quot;, False, True)</pre>     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Read <a href="../web_dev/asp_vb/CodeASPVBDXML.html">more</a>.</p>
+     </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="php" id="php"></a>Using PHP</td>
+  </tr>
+  <tr>
+     <td height="23"></td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, 750, 400, false, true);</pre>     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Code to create JavaScript map:</p>
+    </td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">FC_SetRenderer( &quot;javascript&quot; );
+echo renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, 750, 400, false, true); </pre>
+    </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Read <a href="../web_dev/php/CodePHPDXML.html">more</a>.</p>
+     </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="j2ee" id="j2ee"></a>Using J2EE</td>
+  </tr>
+  <tr>
+     <td height="23"></td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">&lt;<strong>fc:render</strong> mapId=&quot;map1&quot; swfFilename=&quot;../Maps/FCMap_World.swf&quot; 
+    width=&quot;750&quot; height=&quot;400&quot; debugMode=&quot;false&quot; 
+     <strong>xmlUrl=&quot;Data.xml&quot;</strong> /&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Code to create JavaScript map:</p>
+    </td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">&lt;<strong>fc:render</strong> mapId=&quot;map1&quot; swfFilename=&quot;../Maps/FCMap_World.swf&quot; 
+    width=&quot;750&quot; height=&quot;400&quot; debugMode=&quot;false&quot; 
+     <strong>xmlUrl=&quot;Data.xml&quot;</strong> renderer=&quot;javascript&quot;/&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Read <a href="http://docs.fusioncharts.com/charts/?Code/J2EE/JSP_BasicExample.html" target="_blank">more</a>.</p>
+     </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="cf" id="cf"></a>Using ColdFusion</td>
+  </tr>
+  <tr>
+     <td height="23"></td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">&lt;cfoutput&gt;#renderChart(&quot;../Maps/FCMap_World.swf&quot;, &quot;Data.xml&quot;, &quot;&quot;, &quot;map1&quot;, 750, 400, false, true)#&lt;/cfoutput&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Read <a href="http://docs.fusioncharts.com/charts/?guide-for-web-developers/coldfusion/CFM_BasicExample.html" target="_blank">more</a>.</p>
+     </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="ror" id="ror"></a>Using Ruby on Rails</td>
+  </tr>
+  <tr>
+     <td height="23"></td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">render_chart '/Maps/FCMap_World.swf', 'Data.xml', '', map1, 750, 400, false, true </pre>     </td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Code to create JavaScript map:</p>
+    </td>
+  </tr>
+  <tr>
+     <td>
+        <pre class="code_container prettyprint">View:
+&lt;%
+ #Create the map - World Map with data from Data.xml
+ render_chart '/Maps/FCMap_World.swf', '/Data.xml', '', 'map1', 
+ 750, 400, false, true, {:renderer=&gt;&quot;javascript&quot;} do-%&gt;
+&lt;% end -%&gt;</pre> 
+        <p>Read <a href="http://docs.fusioncharts.com/charts/?Code/ROR/Ruby_basicexample.html" target="_blank">more</a>.</p>
+    
+        <p class="highlightBlock">Apart from embedding map in web applications, some of the server-side-scripts also help in exporting the map into image or a PDF. You can know more on this from <strong>Exporting as Image/PDF &gt; <a href="../ExportingImage/Server/ECServerOverview.html">Server Side Exporting</a></strong> section. For scripts that do not support server side exporting, you can always use the client side Export handlers.</p>
+      </td>
+  </tr> 
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using FusionCharts jQuery plugin|using_jquery.html","Creating database driven maps|database_maps.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

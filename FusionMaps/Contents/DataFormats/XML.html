@@ -1,0 +1,2591 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Map XML Sheet</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT Data Formats", "Map XML Sheet" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<a name='top'></a><br />
+	<table width="98%" align="center" cellpadding="2" border="0">
+	<tr> 
+    <td colspan="2" class="pageHeader">Map XML Sheet</td>
+  </tr>
+    <tr>
+	   <td align="left"><a name="top"></a><p class="text" style="margin-bottom:2px;"><b>Quick Links</b> (within this page)</p></td>
+	   </tr>
+	<tr>
+	   <td align="center">
+	      <table width="100%" align="center" cellpadding="4" cellspacing="2" class="tableYellowBorder" border="0">
+	         <tr class="trLightYellowBg">
+	            <td width="33%"> <span class="text"> &nbsp;<b>Map</b> </span> </td>
+	            <td width="33%"> <span class="text"> &nbsp;<b>Data</b> </span> </td>
+	            <td width="34%"> <span class="text"> &nbsp;<b>Others</b> </span> </td>
+             </tr>
+	         <tr>
+	            <td width="33%" valign="top" class="trVeryLightYellowBg"> <img src="Images/Bullet.gif" width="9" height="9" />&nbsp;<a href="#chartimage">Map Image</a><br />
+	               <img src="Images/Bullet.gif" width="9" height="9" />&nbsp;<a href="#Objects">Map Objects</a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor1'>Functional Attributes</a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor3'>Map Cosmetics</a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor4'>Map Entities Cosmetics</a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor8'>Tool-tip</a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor6'>Paddings and Margins</a><br />
+                </td>
+	            <td width="33%" valign="top"> <img src="Images/Bullet.gif" width="9" height="9" />&nbsp;<a href="#sample">Sample XML Data</a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor20'>Entity</a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor21'>Marker Definition </a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor22'>Marker Application </a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor23'>Marker Shapes definition </a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor24'>Marker Connectors </a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor25'>Custom entity definitions </a><br />
+	               <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor26'>Color Range</a><br />
+	               <br />
+                </td>
+	            <td width="34%" valign="top" class="trVeryLightYellowBg"> <img src='Images/Bullet.gif' width="9" height="9" />&nbsp;<a href='#Anchor7'>Number Formatting</a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor9'>Font Properties</a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor16'>Legend Properties </a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor17'>Marker Properties </a><br />
+	               <img src='Images/Bullet.gif' />&nbsp;<a href='#Anchor18'>Export Properties </a><br />
+                </td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="center">&nbsp;</td>
+	   </tr>
+	<tr>
+	   <td align="center"><a name="chartimage"></a><span class="text">&nbsp;(Sample map) World Map looks as under:</span></td>
+	   </tr>
+	<tr>
+	<td align="center"><img src="Images/map.jpg" width="643" height="392" class="imageBorder" /></td>
+	</tr>
+	<tr>
+	   <td align="left"><a name="sample"></a></td>
+	   </tr>
+	<tr>
+	   <td align="left"><span class="text">&nbsp;Sample XML / JSON for World map:</span></td>
+	   </tr>
+	<tr>
+	   <td align="left">
+        <div class="container">
+    <ul class="tabs">
+       <li><a href="#tab1">XML</a></li>
+       <li><a href="#tab2">JSON</a></li>
+    </ul>
+    <div class="tab_container">
+       <div id="tab1" class="tab_content"><pre class="code_container prettyprint">&lt;map animation="0" showBevel="0" numberSuffix=" Mill." includeValueInLabels="1" labelSepChar=": " 
+    baseFontSize="9" fillAlpha="70" hoverColor="639ACE" borderColor="FFFFFF" legendPosition="BOTTOM"&gt;
+&lt;colorRange&gt;
+        &lt;color minValue="0" maxValue="500" displayValue="Sparsely Populated" color="008200" /&gt;
+        &lt;color minValue="500" maxValue="1000" displayValue="Well Populated" color="FFCC33" /&gt;
+        &lt;color minValue="1000" maxValue="5000" displayValue="Densely Populated" color="B80000" /&gt;
+&lt;/colorRange&gt;
+&lt;data&gt;
+        &lt;entity id="NA" value="515" /&gt;
+        &lt;entity id="SA" value="373" /&gt;
+        &lt;entity id="AS" value="3875" /&gt;
+        &lt;entity id="EU" value="727" /&gt;
+        &lt;entity id="AF" value="885" /&gt;
+        &lt;entity id="AU" value="32" /&gt;
+&lt;/data&gt;
+&lt;/map&gt;
+</pre>
+       </div>
+       <div id="tab2" class="tab_content"><pre class="prettyprint code_container">{
+  "map": {
+    "showbevel": "0", 
+    "numbersuffix": " Mill.",
+    "includevalueinlabels": "1",
+    "labelsepchar": ": ",
+    "basefontsize": "9",
+    "fillalpha": "70",
+    "hovercolor": "639ACE",
+    "bordercolor": "FFFFFF",
+    "legendposition": "BOTTOM"
+  },
+  "colorrange": {
+    "color": [
+      { "minvalue": "0", "maxvalue": "500", "displayvalue": "Sparsely Populated", "color": "008200" },
+      { "minvalue": "500", "maxvalue": "1000", "displayvalue": "Well Populated", "color": "FFCC33" },
+      { "minvalue": "1000", "maxvalue": "5000", "displayvalue": "Densely Populated", "color": "B80000" }
+    ]
+  },
+  "data": [
+    { "id": "NA", "value": "515" },
+    { "id": "SA", "value": "373" },
+    { "id": "AS", "value": "3875"},
+    { "id": "EU", "value": "727" },
+    { "id": "AF", "value": "885" },
+    { "id": "AU", "value": "32"  }
+  ]
+}</pre>
+       </div>
+       </div></div><div style="clear:both"></div>
+       
+       </td>
+	   </tr>
+	<tr>
+	   <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> 
+      </a></span></td>
+	   </tr>
+	<tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	   <td align="left" class="header"><a name="Objects" ></a>Map Objects</td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <p>Each map has the following list of defined Objects for direct association with style definitions.  For example, the background of the map is termed as <span class="codeInline">BACKGROUND</span>.           Similarly, the plot on the map is named           as <span class="codeInline">PLOT</span>. This enables you to associate           each style to multiple map objects or associate multiple map objects           to a particular style.	   </p>
+	      <p>To know more on how to use <strong>Styles</strong> in a map read <a href="../Styles/HowToUse.html">How to Use?</a>&nbsp;in Styles section.</p>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" cellpadding="4" cellspacing="2" class="table">
+	         <tr>
+	            <td width="15%" valign="top" class="greyTr"><span class="textBold"> <a name="Objects"></a>Object Name </span></td>
+	            <td width="35%" valign="top" class="greyTr"><span class="textBold"> Description </span></td>
+	            <td width="25%" valign="top" class="greyTr"><span class="textBold"> Features Supported </span></td>
+	            <td width="25%" valign="top" class="greyTr"><span class="textBold"> Animation Parameters Supported </span></td>
+             </tr>
+	         <tr>
+	            <td width="15%" valign="top"><span class="text"> BACKGROUND </span></td>
+	            <td width="35%" valign="top"><span class="text"> BACKGROUND refers to the entire background of the map. </span></td>
+	            <td width="25%" valign="top">
+	               <ul>
+	                  <li><span class="text">Animation</span></li>
+	                  <li><span class="text">Shadow </span></li>
+	                  <li> <span class="text">Glow </span></li>
+	                  <li><span class="text">Bevel </span></li>
+	                  <li><span class="text">Blur </span></li>
+                   </ul>
+                </td>
+	            <td width="25%" valign="top">
+	               <ul>
+	                  <li><span class="text">_alpha </span></li>
+	                  <li><span class="text">_x </span></li>
+	                  <li><span class="text">_y </span></li>
+	                  <li><span class="text">_xScale </span></li>
+	                  <li><span class="text">_yScale<br />
+	                     </span></li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr >
+	            <td width="15%" valign="top" class="greyTr"><span class="text"> PLOT </span></td>
+	            <td width="35%" valign="top" class="greyTr"><span class="text"> Plot refers to the actual map entities on the map i.e., individual city/state/county drawings. </span></td>
+	            <td width="25%" valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">Animation </span> </li>
+	                  <li><span class="text">Shadow </span> </li>
+	                  <li><span class="text">Glow </span> </li>
+	                  <li><span class="text">Bevel </span> </li>
+	                  <li><span class="text">Blur<br />
+	                     </span></li>
+                   </ul>
+                </td>
+	            <td width="25%" valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">_alpha </span> </li>
+	                  <li><span class="text">_x </span> </li>
+	                  <li><span class="text">_y </span> </li>
+	                  <li><span class="text">_xScale </span> </li>
+	                  <li><span class="text">_yScale </span></li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr>
+	            <td width="15%" valign="top"><span class="text"> LABELS </span></td>
+	            <td width="35%" valign="top"><span class="text"> LABELS refers to all the labels of individual entities. </span></td>
+	            <td width="25%" valign="top">
+	               <ul>
+	                  <li><span class="text">Animation </span> </li>
+	                  <li><span class="text">Font </span> </li>
+	                  <li><span class="text">Shadow </span> </li>
+	                  <li><span class="text">Glow </span> </li>
+	                  <li><span class="text">Bevel </span> </li>
+	                  <li><span class="text">Blur </span></li>
+                   </ul>
+                </td>
+	            <td width="25%" valign="top">
+	               <ul>
+	                  <li><span class="text">_alpha </span> </li>
+	                  <li><span class="text">_x </span> </li>
+	                  <li><span class="text">_y </span></li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="greyTr"><span class="text"> MARKERLABELS </span></td>
+	            <td valign="top" class="greyTr"><span class="text">MARKERLABELS refers to the labels of the defined markers on the map. </span></td>
+	            <td valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">Animation</span> </li>
+	                  <li><span class="text">Font</span> </li>
+	                  <li><span class="text">Shadow</span> </li>
+	                  <li><span class="text">Glow</span> </li>
+	                  <li><span class="text">Bevel</span> </li>
+	                  <li><span class="text">Blur</span> </li>
+                   </ul>
+                </td>
+	            <td valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">_alpha</span> </li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> MARKERS </span></td>
+	            <td valign="top"><span class="text"> MARKERS refers to all the defined markers on the map. </span></td>
+	            <td valign="top">
+	               <ul>
+	                  <li><span class="text">Animation </span> </li>
+	                  <li><span class="text">Shadow </span> </li>
+	                  <li><span class="text">Glow </span> </li>
+	                  <li><span class="text">Bevel </span> </li>
+	                  <li><span class="text">Blur </span></li>
+                   </ul>
+                </td>
+	            <td valign="top">
+	               <ul>
+	                  <li><span class="text">_alpha </span> </li>
+	                  <li><span class="text">_x </span> </li>
+	                  <li><span class="text">_y</span> </li>
+	                  <li><span class="text">_xscale</span> </li>
+	                  <li><span class="text">_yscale </span></li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="greyTr"><span class="text"> LEGEND </span></td>
+	            <td valign="top" class="greyTr"><span class="text"> LEGEND is the object in which the names of defined color ranges for the map show up. </span></td>
+	            <td valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">Animation</span> </li>
+	                  <li><span class="text">Font</span> </li>
+	                  <li><span class="text">Shadow</span> </li>
+	                  <li><span class="text">Glow</span> </li>
+	                  <li><span class="text">Bevel</span> </li>
+	                  <li><span class="text">Blur</span> </li>
+                   </ul>
+                </td>
+	            <td valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">_alpha</span> </li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr>
+	            <td width="15%" valign="top"><span class="text"> TOOLTIP </span></td>
+	            <td width="35%" valign="top"><span class="text"> TOOLTIP refers to the tool tip shown when mouse is hovered over the entities. </span></td>
+	            <td width="25%" valign="top">
+	               <ul>
+	                  <li><span class="text">Font </span></li>
+                   </ul>
+                </td>
+	            <td width="25%" valign="top"><span class="text"> </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="greyTr"><span class="text"> MARKERCONNECTORS </span></td>
+	            <td valign="top" class="greyTr"><span class="text"> MARKERCONNECTORS  refers to any defined connectors between markers and the connector labels (if defined). </span></td>
+	            <td valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">Animation</span> </li>
+	                  <li><span class="text">Font</span> </li>
+	                  <li><span class="text">Shadow</span> </li>
+	                  <li><span class="text">Glow</span> </li>
+	                  <li><span class="text">Bevel</span> </li>
+	                  <li><span class="text">Blur</span> </li>
+                   </ul>
+                </td>
+	            <td valign="top" class="greyTr">
+	               <ul>
+	                  <li><span class="text">_alpha</span></li>
+	                  <li><span class="text">_xscale</span> </li>
+	                  <li><span class="text">_yscale</span> </li>
+                   </ul>
+                </td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	   <td align="left" class="header">&nbsp;<a name="mapattribute"></a>&lt;map&gt; element Attributes</td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <p>The following list of attributes are applicable to the <span class="codeInline">&lt;map&gt;</span> element of a map XML data. In map <a href="JSONOverview.html">JSON</a>&nbsp;data, the same attribute&nbsp;names are used as property names of&nbsp; &quot;map&quot; object.	   </p>
+	   </td>
+	   </tr>
+	
+  <tr> 
+    <td class="header"> <a name="Anchor1"></a>Functional Attributes  </td>
+  </tr>
+  
+  <tr> 
+    <td class="text"><p> These attributes let you control a variety of functional 
+      elements on the map. For example, you can opt to show/hide data values, 
+      labels etc.</p> </td>
+  </tr>
+ 
+
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> animation </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Boolean </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0/1 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> This attribute lets you 
+	               set the configuration whether the map should fade in. If you do not want 
+	               to animate any part of the map, set this as 0. </span></td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top"> <span class="text"> defaultAnimation </span></td>
+	            <td valign="top"> <span class="text"> Boolean </span></td>
+	            <td valign="top"> <span class="text"> 0/1 </span></td>
+	            <td valign='top'> <span class="text"> By default, each map fades 
+	               in. If you wish to switch off this default fading effect, you can set this 
+	               attribute to 0. It can be particularly useful when you want to define your 
+	               own animation patterns using <a href="../Styles/Animation.html">Style</a> feature. </span></td>
+             </tr>
+	         <tr >
+	            <td width="25%" valign="top"> showLabels </td>
+	            <td width="15%" valign="top"> Boolean </td>
+	            <td width="15%" valign="top"> 0/1 </td>
+	            <td width='45%' valign='top'> It sets the configuration 
+	               whether the entity labels will be displayed or not. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top" class="text">includeNameInLabels </td>
+	            <td width="15%" valign="top"> <span class="text"> Boolean</span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0/1</span></td>
+	            <td width='45%' valign='top' class="text">If you've opted to show map labels, this attributes 
+	               lets you control whether to show entity names as a part of map labels? </td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top"> includeValueInLabels </td>
+	            <td width="15%" valign="top"> Boolean </td>
+	            <td width="15%" valign="top"> 0/1 </td>
+	            <td width='45%' valign='top' class="text">Whether to show entity values on 
+	               the map as a part of map label?</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">useSNameInLabels</td>
+	            <td valign="top"><span class="text">Boolean</span></td>
+	            <td valign="top"><span class="text">0/1 </span></td>
+	            <td valign='top' class="text">Whether to use the short name of entities in labels or 
+	               full names?</td>
+             </tr>
+	         <tr class='text'>
+	            <td valign="top">useSNameInToolTip</td>
+	            <td valign="top">Boolean</td>
+	            <td valign="top">0/1 </td>
+	            <td valign='top'>Whether to use the short name of entities in tool-tip or 
+	               full names?</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> showShadow</span></td>
+	            <td width="15%" valign="top"> <span class="text"> Boolean </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0/1 </span></td>
+	            <td width='45%' valign='top' class="text">Whether to drop a shadow effect 
+	               for the map?</td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top"> showBevel </td>
+	            <td width="15%" valign="top"> Boolean</td>
+	            <td width="15%" valign="top"> 0/1 </td>
+	            <td width='45%' valign='top'> Whether to render a 3D bevel 
+	               effect to the map?</td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top"> <span class="text"> caption</span>
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td width="15%" valign="top"><span class="text">String</span></td>
+	            <td width="15%" valign="top"> <span class="text"></span></td>
+	            <td width='45%' valign='top'> <span class="text">Allows you to add a caption of the map.</span></td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top"> subCaption
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td width="15%" valign="top">String</td>
+	            <td width="15%" valign="top">&nbsp; </td>
+	            <td width='45%' valign='top'> Allows you to add a sub caption of the map.</td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top"> <span class="text">captionPosition</span>
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td width="15%" valign="top"> <span class="text">String</span></td>
+	            <td width="15%" valign="top"> <span class="text">top-left, top-right, bottom-left, bottom-right and top-center</span> </td>
+	            <td width='45%' valign='top'> <span class="text">Allows you to set the position of the caption and sub caption. You can set the position these either on the top-left corner, top-right corner, bottom-left corner or on the bottom-right corner of the map. The default value is 'top-center'.</span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> clickURL </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> The entire map can  act 
+	               as a hotspot. Use this URL to define the hotspot link for the map. The link 
+	               can be specified in <a href="../DrillDown/LinkFormat.html">FusionCharts Link Format</a>. </span></td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">exposeHoverEvent</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text"> Whenever the user rolls his mouse over a map entity, you can choose to track the details of that entity in your JavaScript/container Flash movie code. Just set this attribute as 1. More details on this is present in <a href="../javascript/js_event_mouse.html#deprecated">FusionMaps XT and JavaScript</a> section.
+	               <p class="highlightBlock">This attribute is&nbsp;applicable only to Flash maps. In JavaScript maps, this attribute is always set to 1.</p>
+                </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">hoverOnEmpty</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text"> 0/1 </td>
+	            <td valign='top' class="text">Whether to show tool tip for those entities whose value has not been defined in the XML data? </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">showPrintMenuItem</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether to show "<em>Print Map </em>" item in the context menu of the map? Even if you opt to hide the item in context menu, you can still opt to invoke <span class="codeInline">print()</span> JavaScript method of the map to print the same.</td>
+             </tr>
+	         <tr >
+	            <td valign="top" class="text">showAboutMenuItem</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Setting this to 1 shows up a custom context menu in the map, which can be customized to show your text and can be linked to your URL. For e.g., you can set the context menu of the map to include &quot;About your company name&quot; and then link to your company home page. By default, the map shows &quot;About FusionCharts&quot; when right clicked. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">aboutMenuItemLabel</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">The menu item label for the custom context menu item. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">aboutMenuItemLink</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">URL</td>
+	            <td valign='top' class="text">Link for the custom context menu item. You can specify the link in <a href="../DrillDown/LinkFormat.html">FusionCharts Link Format</a> to be able to open the same in new window, pop-ups, frames or as JavaScript links. </td>
+             </tr>
+			 <tr>
+	            <td valign="top" class="text">entityLabelsOnTop
+				<div class="version-info">Since v3.3.1</div>
+				</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">This attribute is used to show the entity labels above or below the   markers in the maps. If 0, the entity-labels appear below the marker. By default, it is set to 1 and the entity-labels appear above the markers.
+				<span class="text">
+				<p class="highlightBlock">This attribute is supported only by JavaScript maps.  In Flash maps, entity labels are always positioned above the markers.</p> 
+				</span>				</td>
+             </tr>
+	         <tr>
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	
+	         <tr>
+	            <td class="header"><a name="Anchor3"></a> Map Cosmetics </td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The following attributes let you configure map cosmetics 
+	               like background color, background alpha etc.</p></td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">showCanvasBorder</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">1/0</td>
+	            <td valign='top' class="text">Whether to show a border around entire map object. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">canvasBorderColor</td>
+	            <td valign="top" class="text">Color</td>
+	            <td valign="top" class="text">Hex Code </td>
+	            <td valign='top' class="text">If you've opted to show a border around entire map object, this attribute lets you control the color of the border. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">canvasBorderThickness</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">In Pixels </td>
+	            <td valign='top' class="text">If you've opted to show a border around entire map object, this attribute lets you control the thickness of the border in pixels. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">canvasBorderAlpha</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-100</td>
+	            <td valign='top' class="text">If you've opted to show a border around entire map object, this attribute lets you control the alpha of the border. </td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> bgColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> This attribute sets the 
+	               background color for the map. You can set any hex color code as the value 
+	               of this attribute. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> bgAlpha </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Sets the alpha (transparency) 
+	               for the background.</span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> bgRatio </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> If you've opted for a gradient 
+	               background, this attribute lets you set the ratio of each color constituent. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> bgAngle </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-360 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Angle of the background 
+	               color, in case of a gradient. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> bgImage</span>
+	               <p>or</p>
+	               <div class="text">bgSWF <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> To place any Flash movie 
+	               as background of the map, enter the (path and) name of the background 
+	               SWF. It should be in the same domain as the map. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> bgImageAlpha</span>
+	               <p>or</p>
+	               <div class="text">bgSWFAlpha <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Helps you specify alpha 
+	               for the loaded background SWF. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"><span class="text">bgImageDisplayMode</span>
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> stretch, tile, fit, fill, center, none </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Helps you specify the mode in which the background image is to be displayed.
+	               <ul>
+	                  <li>Stretch - expands the image to fit the entire map area, without maintaining original image constraints</li>
+	                  <li>Tile - the image is repeated as a pattern on the entire map area </li>
+	                  <li>Fit - fits the  image proportionately on the map area </li>
+	                  <li>Fill -proportionately fills the entire map area with the image </li>
+	                  <li>Center - the image is positioned at the center of the map area </li>
+	                  <li>None - Default mode. None of the above modes are applied </li>
+                  </ul>
+	               </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> bgImageVAlign </span>
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> top, middle, bottom </span></td>
+	            <td width='45%' valign='top'> <span class="text">Helps you to vertically align the  background image. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> bgImageHAlign </span>
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> left, middle, right</span></td>
+	            <td width='45%' valign='top'> <span class="text">Helps you to horizontally align the  background image. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> bgImageScale </span>
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-300 </span></td>
+	            <td width='45%' valign='top'> <span class="text">Helps you magnify the background image. This attribute will only work when the attribute <span class="CodeInline">bgImageDisplayMode</span> is set to none, center or tile. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> logoURL </span></td>
+	            <td valign="top"><span class="text"> String </span></td>
+	            <td valign="top"><span class="text"> URL </span></td>
+	            <td valign='top'><span class="text">You can load an external logo (JPEG/PNG/SWF) on the map once it has rendered. This attribute lets you specify the URL of the same. Owing to Flash Player security settings, you can only specify logo that are on the sub-domain as the SWF file of the map. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"><span class="text"> logoPosition </span></td>
+	            <td valign="top"><span class="text"> String </span></td>
+	            <td valign="top"><span class="text"> TL, TR, BL, BR, CC </span></td>
+	            <td valign='top'>
+	               <p class="text"> Where to position the logo on the map:</p>
+	               <ul>
+	                  <li>TL - Top-left</li>
+	                  <li>TR - Top-right</li>
+	                  <li>BR - Bottom right</li>
+	                  <li>BL - Bottom left</li>
+	                  <li><span class="text">CC - Center of screen</span></li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> logoAlpha </span></td>
+	            <td valign="top"><span class="text"> Number </span></td>
+	            <td valign="top" class="text"> 0-100 </td>
+	            <td valign='top'><span class="text">Once the logo has loaded on the map, you can configure its opacity using this atribute.</span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"><span class="text"> logoScale </span></td>
+	            <td valign="top"><span class="text"> Number </span></td>
+	            <td valign="top"><span class="text"> 0-300 </span></td>
+	            <td valign='top'><span class="text">You can also change the scale of externally loaded logo at run-time by specifying a value for this parameter. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> logoLink </span></td>
+	            <td valign="top"><span class="text"> String </span></td>
+	            <td valign="top"><span class="text"> URL </span></td>
+	            <td valign='top'><span class="text">If you want to link the logo to an external URL, specify the link in this attribute. The link can be in FusionCharts <a href="../DrillDown/LinkFormat.html">Link Format</a>, allowing you to link to new windows, pop-ups, frames etc. </span></td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+    </tr><tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	
+	         <tr>
+	            <td class="header"><a name="Anchor4"></a> Map Entities Cosmetics </td>
+             </tr>
+	         
+	         <tr>
+	            <td valign="top" class="text"><p>These attributes let you configure how your 
+	               entities will appear on the map.</p> </td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> borderColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text">Hex Code</span></td>
+	            <td width='45%' valign='top'> <span class="text"> Border Color for map entities</span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> borderAlpha</span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100</span></td>
+	            <td width='45%' valign='top'> <span class="text"> Border alpha for map entities</span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> fillColor</span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color</span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code</span></td>
+	            <td width='45%' valign='top'> <span class="text"> Default fill color to use 
+	               for entities, if no color range has been specified.</span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> fillAlpha</span></td>
+	            <td width="15%" valign="top"> <span class="text"> Alpha</span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100</span></td>
+	            <td width='45%' valign='top'> <span class="text"> Alpha to be used for filling 
+	               entities. </span></td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">useHoverColor</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether to use hover color for the map. If set to yes, whenever the end user hovers his mouse over a map entity, it will change its color to the color defined in attribute below. </td>
+             </tr>
+	         <tr class="text">
+	            <td valign="top">hoverColor</td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code</td>
+	            <td valign='top'>When the end user hovers his mouse over any map entity, it 
+	               changes its color. Using this attribute you can define that color.</td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">showBorder<div class="version-info">Since v3.2</div></td>
+	            <td valign="top">Boolean</td>
+	            <td valign="top">0/1</td>
+	            <td valign="top"> Whether the common entity border will be displayed or not. Default value is 1. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">emptyEntityColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code</td>
+	            <td valign="top"> The default color for any map entity whose values are not provided in map data. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">emptyEntityAlpha
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-100</td>
+	            <td valign="top">The default opacity of any map entity whose values are not provided in map data. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">showEntityToolTip
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Boolean</td>
+	            <td valign="top">0/1</td>
+	            <td valign="top">Whether to show or hide tooltip for all entities present in a map. The default value is 1. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">labelConnectorColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top" class="text">Hex code</td>
+	            <td valign="top" class="text"></td>
+	            <td valign='top' class="text">Specifies the color of the static label connector. This attribute is used when you want to explicitly define the color of the label connector. If not set, the label connector color is taken from <span class="codeInline">connectorColor</span> attribute. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">labelConnectorAlpha
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-100</td>
+	            <td valign='top' class="text">Specifies the transparency of the static label connector. This attribute is used when you want to explicitly define the transparency of the label connector. If not set, the label connector alpha is taken from <span class="codeInline">connectorAlpha</span> attribute. </td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr><tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	
+	         <tr>
+	            <td class="header"><a name="Anchor7"></a> Number Formatting</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>Using the attributes below, you can control a myriad of 
+	               options like:</p>
+	               <ul>
+	                  <li>Formatting of commas and decimals</li>
+	                  <li>Number prefixes and suffixes</li>
+	                  <li>Decimal places to which the numbers will round to</li>
+	                  <li>Scaling of numbers based on a user defined scale</li>
+	                  <li>Custom number input formats </li>
+                   </ul>
+                
+	   </td>
+	   </tr>
+	   <tr><td valign="top" class="text">&nbsp;</td></tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> formatNumber </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Boolean </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0/1 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> This configuration determines 
+	               whether the numbers displayed on the map will be formatted using commas, 
+	               e.g., 40,000 if <span class="codeInline">formatNumber='1'</span> and 40000 if <span class="codeInline">formatNumber='0'</span> </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"> <span class="text"> decimals </span></td>
+	            <td valign="top"> <span class="text"> Number </span></td>
+	            <td valign="top"> <span class="text"> 0-10 </span></td>
+	            <td valign='top'> <span class="text"> Number of decimal places 
+	               to which all numbers on the map will be rounded to. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"> <span class="text"> numberPrefix </span></td>
+	            <td valign="top"> <span class="text"> String </span></td>
+	            <td valign="top"> <span class="text"> Character </span></td>
+	            <td valign='top'> <span class="text"> Using this attribute, you 
+	               could add prefix to all the numbers visible on the map. For example, to 
+	               represent all dollars figure on the map, you could specify this attribute 
+	               to ' $' to show like $40000, $50000. For more details, please see Advanced 
+	               Number Formatting section. </span></td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top"> <span class="text"> numberSuffix </span></td>
+	            <td valign="top"> <span class="text"> String </span></td>
+	            <td valign="top"> <span class="text"> Character </span></td>
+	            <td valign='top'> <span class="text"> Using this attribute, you 
+	               could add suffix to all the numbers visible on the map. For example, to 
+	               represent all figure quantified as per annum on the map, you could specify 
+	               this attribute to ' /a' to show like 40000/a, 50000/a. For more details, 
+	               please see Advanced Number Formatting section. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"> <span class="text"> decimalSeparator </span></td>
+	            <td valign="top"> <span class="text"> String </span></td>
+	            <td valign="top"> <span class="text"> Character </span></td>
+	            <td valign='top'> <span class="text"> This option helps you specify 
+	               the character to be used as the decimal separator in a number. For more 
+	               details, please see Advanced Number Formatting section. </span></td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top"> <span class="text"> thousandSeparator </span></td>
+	            <td valign="top"> <span class="text"> String </span></td>
+	            <td valign="top"> <span class="text"> Character </span></td>
+	            <td valign='top'> <span class="text"> This option helps you specify 
+	               the character to be used as the thousands separator in a number. For more 
+	               details, please see Advanced Number Formatting section. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">thousandSeparatorPosition
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">List of comma separated Numbers </td>
+	            <td valign="top"></td>
+	            <td valign="top">This option helps you specify the position of the thousand separator. For more details, read <a href="../advanced/number_format/Basics.html#thousandSeparatorPosition">this</a>. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"> <span class="text"> inDecimalSeparator </span></td>
+	            <td valign="top"> <span class="text"> String </span></td>
+	            <td valign="top"> <span class="text"> Character </span></td>
+	            <td valign='top'> <span class="text"> In some countries, commas 
+	               are used as decimal separators and dots as thousand separators. In XML, 
+	               if you specify such values, it will give a error while converting to number. 
+	               So, FusionMaps XT accepts the input decimal and thousand separator from user, 
+	               so that it can convert it accordingly into the required format. This attribute 
+	               lets you input the decimal separator. For more details, please see Advanced 
+	               Number Formatting section. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"> <span class="text"> inThousandSeparator </span></td>
+	            <td valign="top"> <span class="text"> String </span></td>
+	            <td valign="top"> <span class="text"> Character </span></td>
+	            <td valign='top'> <span class="text"> In some countries, commas 
+	               are used as decimal separators and dots as thousand separators. In XML, 
+	               if you specify such values, it will give a error while converting to number. 
+	               So, FusionMaps XT accepts the input decimal and thousand separator from user, 
+	               so that it can convert it accordingly into the required format. This attribute 
+	               lets you input the thousand separator. For more details, please see Advanced 
+	               Number Formatting section. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> formatNumberScale </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Boolean </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0/1 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Configuration whether to 
+	               add K (thousands) and M (millions) to a number after truncating and rounding 
+	               it - e.g., if <span class="codeInline">formatNumberScale</span> is set to 1, 1043 will become 1.04K (with 
+	               decimals set to 2 places). Same with numbers in millions - an M will 
+	               added at the end. For more details, please see Advanced Number Formatting 
+	               section. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> defaultNumberScale </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> The default unit of the 
+	               numbers that you're providing to the map. For more details, please see 
+	               Advanced Number Formatting section. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> numberScaleUnit </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Unit of each block of the 
+	               scale. For more details, please see Advanced Number Formatting section. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> numberScaleValue </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Range of the various blocks 
+	               that constitute the scale. For more details, please see Advanced Number 
+	               Formatting section. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">scaleRecursively
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Boolean</td>
+	            <td valign="top">0/1</td>
+	            <td valign="top">Whether to scale the number recursively? For more details, read <a href="../advanced/number_format/RecNumScaling.html">this</a>.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">maxScaleRecursion
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top"></td>
+	            <td valign="top">How many recursions to complete during recursive scaling? -1 completes the entire set of recursion. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">scaleSeparator
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">String</td>
+	            <td valign="top"></td>
+	            <td valign="top">What character to use to separate the scales that are generated after recursion? </td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	</tr><tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" cellpadding="2">
+	         <tr>
+	            <td class="header"><a name="Anchor16"></a>Legend Properties</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>If you've defined color ranges, the color range names appear 
+	               in a legend. You can place the legend at the bottom of the map or to the 
+	               right of the map.</p>
+	               <p>Also, using the attributes below, you can configure the functional and cosmetic 
+	               properties of the legend.</p> </td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class="trVeryLightYellowBg">
+	            <td valign="top"><span class="text"> showLegend </span></td>
+	            <td valign="top"><span class="text"> Boolean </span></td>
+	            <td valign="top"><span class="text"> 0/1 </span></td>
+	            <td valign='top'><span class="text"> Whether to show legend for 
+	               the map? </span></td>
+             </tr>
+	         <tr class="text">
+	            <td valign="top">interactiveLegend
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top"> Boolean </td>
+	            <td valign="top"> 0/1 </td>
+	            <td valign='top'> This attribute lets you interact with the legend in your map. When you click a legend item, the entities associated with that color range are hidden from the map. Re-clicking the legend item causes the entities to reappear. </td>
+             </tr>
+	         <tr>
+	            <td valign="top"> <span class="text"> legendAllowDrag </span></td>
+	            <td valign="top"> <span class="text"> Boolean </span></td>
+	            <td valign="top"> <span class="text"> 0/1 </span></td>
+	            <td valign='top'> <span class="text"> The legend can be made drag-able 
+	               by setting this attribute to 1. End viewers of the map can drag the legend 
+	               around on the map. </span></td>
+             </tr>
+	         <tr class="trVeryLightYellowBg">
+	            <td valign="top" class="text">legendCaption</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">Lets you add a caption to your legend. </td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> reverseLegend </span></td>
+	            <td valign="top"><span class="text"> Boolean </span></td>
+	            <td valign="top"><span class="text"> 0/1 </span></td>
+	            <td valign='top'><span class="text">You can reverse the ordering of the legend items in the legend by setting this attribute to 1.</span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> legendPosition </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> BOTTOM or RIGHT </span></td>
+	            <td width='45%' valign='top'> <span class="text"> The legend can be plotted 
+	               at two positions on the map - below the map (BOTTOM) and on the RIGHT 
+	               side of the map. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendIconScale
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top">(0-5)</td>
+	            <td valign="top">Sets the magnification of legend icons. The default value is 1 which denotes 100% size. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"> <span class="text"> legendShadow </span></td>
+	            <td valign="top"> <span class="text"> Boolean </span></td>
+	            <td valign="top"> <span class="text"> 0/1 </span></td>
+	            <td valign='top'> <span class="text"> Whether to show a shadow 
+	               for legend? </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> legendBgColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Background color for the 
+	               legend. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> legendBgAlpha </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Background alpha for the 
+	               legend. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> legendBorderColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Border Color for the legend. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> legendBorderThickness </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> In Pixels </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Border thickness for the 
+	               legend. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> legendBorderAlpha </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Border alpha for the legend. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> legendScrollBgColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code </span></td>
+	            <td width='45%' valign='top'> <span class="text"> If you've too many items 
+	               on the legend, a scroll bar shows up on the same. This attribute lets you 
+	               configure the background color of the scroll bar. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> legendScrollBarColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code </span></td>
+	            <td width='45%' valign='top'> <span class="text"> If you've too many items 
+	               on the legend, a scroll bar shows up on the same. This attribute lets you 
+	               configure the bar color of the scroll bar. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> legendScrollBtnColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code </span></td>
+	            <td width='45%' valign='top'> <span class="text"> If you've too many items 
+	               on the legend, a scroll bar shows up on the same. This attribute lets you 
+	               configure the color of buttons of the scroll bar. </span></td>
+             </tr>
+	         <tr class="text">
+	            <td valign="top">interactiveAnimation
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top"> Boolean </td>
+	            <td valign="top"> 0/1 </td>
+	            <td valign='top'> Whether to apply animation on entities getting hidden or shown due to interactivity through  <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>. The default value is 1. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top"><span class="text">interactiveAnimDuration</span>
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top"> <span class="text"> Number </span></td>
+	            <td valign="top"> <span class="text"></span></td>
+	            <td valign='top'> <span class="text">The duration (in seconds) of the animation of entities getting hidden or shown due to interactivity through  <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>. The default value is .5 second.</span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">enableSnapLegend
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Boolean</td>
+	            <td valign="top">0/1</td>
+	            <td valign="top"> Allows you to snap the <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers exactly on the tick when released on a near by position. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">snapLegendPointers
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Boolean</td>
+	            <td valign="top">0/1</td>
+	            <td valign="top"> Allows you to snap the <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers exactly on the tick when released on a near by position. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendSnapRange
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-5</td>
+	            <td valign="top">Allows you to set the snapping range of the <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendPointerWidth
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top"></td>
+	            <td valign="top">Allows you to set the width of the <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">legendPointerHeight
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top"></td>
+	            <td valign="top"> Allows you to set the height of the <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendPointerBgColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code</td>
+	            <td valign="top">Sets the background color of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">legendPointerBgAlpha
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-100</td>
+	            <td valign="top">Sets the opacity of the background of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendPointerBorderColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code </td>
+	            <td valign="top">Sets the color of the border of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">legendPointerBorderThickness
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top"></td>
+	            <td valign="top">Sets the border thickness of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendPointerHighlightColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code</td>
+	            <td valign="top">Sets the highlight color of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">legendPointerShadowColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code </td>
+	            <td valign="top">Sets the shadow color of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a> pointers. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendScaleLineColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code </td>
+	            <td valign="top">Sets the color of the line showing the numeric scale of <a href="../how_to_use/gradientlegend.html">Gradient Legend.</a></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">legendScaleLineAlpha
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-100</td>
+	            <td valign="top">Sets the opacity of the line showing the numeric scale of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>.</td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">legendScaleLineThickness
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top"></td>
+	            <td valign="top">Sets the thickness of the line showing the numeric scale of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>.</td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /></a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" cellpadding="2">
+	         <tr>
+	            <td class="header"><a name="Anchor17"></a> Marker Properties </td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>Markers are custom defined points on the map, which help you pin-point locations like cities, houses, malls, junctions etc. Using the properties listed below, you can configure the various aspects of the markers.</p></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"><span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"><span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"><span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"><span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"><span class="text"> markerFont </span></td>
+	            <td valign="top"><span class="text"> String </span></td>
+	            <td valign="top"><span class="text"> Font Name</span></td>
+	            <td valign='top'><span class="text"> This attribute sets the 
+	               font face for all the defined marker labels.  You can over-ride this using STYLES.</span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> markerFontSize </span></td>
+	            <td valign="top"><span class="text"> Number </span></td>
+	            <td valign="top"><span class="text"> </span><span class="text">0-72 </span></td>
+	            <td valign='top'><span class="text"> This attribute sets the font size for all the defined marker labels on the map.  You can over-ride this using STYLES.</span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"><span class="text"> markerFontColor </span></td>
+	            <td valign="top"><span class="text"> Color </span></td>
+	            <td valign="top">&nbsp;</td>
+	            <td valign='top'><span class="text"> This attribute sets the font color for all the defined marker labels on the map. You can over-ride this using STYLES. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> showMarkerToolTip </span></td>
+	            <td valign="top"><span class="text"> Boolean </span></td>
+	            <td valign="top"><span class="text"> </span><span class="text">0/1</span></td>
+	            <td valign='top'><span class="text"> Whether to show tool tips for the defined markers? </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"><span class="text"> showMarkerLabels</span></td>
+	            <td valign="top"><span class="text"> Boolean </span></td>
+	            <td valign="top"><span class="text">0/1</span></td>
+	            <td valign='top'><span class="text"> You can opt to show/hide label for all the markers on the map using this attribute. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> markerLabelPadding </span></td>
+	            <td valign="top"><span class="text"> Number </span></td>
+	            <td valign="top"><span class="text"> </span><span class="text">Pixels</span></td>
+	            <td valign='top'><span class="text"> This attribute lets you set a global label padding between the marker icon and its label. You can later over-ride the label padding for each individual marker too. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"><span class="text"> markerBgColor </span></td>
+	            <td valign="top"><span class="text"> Color </span></td>
+	            <td valign="top">&nbsp;</td>
+	            <td valign='top'><span class="text"> This attribute lets you set a common background color for all the defined markers on the map. You can later over-ride individual marker colors by using SHAPE definitions. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"><span class="text"> markerBorderColor</span></td>
+	            <td valign="top"><span class="text"> Color </span></td>
+	            <td valign="top"><span class="text"> </span></td>
+	            <td valign='top'><span class="text">This attribute lets you set a common border color for all the defined markers on the map. You can later over-ride individual marker border colors by using SHAPE definitions. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top"><span class="text"> markerRadius</span></td>
+	            <td valign="top"><span class="text"> Number </span></td>
+	            <td valign="top"><span class="text">Pixels</span></td>
+	            <td valign='top'><span class="text">This attribute lets you set a common radius for all the defined markers on the map. You can later over-ride individual marker border colors by using SHAPE definitions. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"> <span class="text"> connectorColor</span></td>
+	            <td valign="top"> <span class="text"> Color</span></td>
+	            <td valign="top"> <span class="text"> Hex Code</span></td>
+	            <td valign='top'> <span class="text"> Sets the color of the marker connectors. Also, if </span><span class="codeInline">labelConnectorColor</span><span class="text"> is not set in XML/JSON data, the same color is applied to the label connector lines 
+	               (if any) on the map. </span></td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">
+	               <div class="text">markerConnColor <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Color</td>
+	            <td valign="top" class="text">Hex Code</td>
+	            <td valign='top' class="text">Sets the color of the marker connectors. 
+                <p class="highlightBlock">This attribute is deprecated. Use <span class="codeInline">connectorColor</span> instead.</p></td>
+             </tr>
+	         <tr>
+	            <td valign="top"> <span class="text"> connectorAlpha</span></td>
+	            <td valign="top"> <span class="text"> Number </span></td>
+	            <td valign="top"> <span class="text"> 0-100</span></td>
+	            <td valign='top'><span class="text">Sets the opacity of the marker connectors. Also, if </span><span class="codeInline">labelConnectorAlpha</span><span class="text"> is not set in XML/JSON data, the same opacity is applied to the label connector lines 
+	               (if any) on the map. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">
+	               <div class="text">markerConnAlpha <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-100</td>
+	            <td valign='top' class="text">Sets the opacity of the marker connectors
+                <p class="highlightBlock">This attribute is deprecated. Use <span class="codeInline">connectorAlpha</span>&nbsp;instead.</p></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">connectorThickness
+	               <p>or</p>
+	               <div class="text">markerConnThickness <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">Pixels</td>
+	            <td valign='top' class="text">If you've defined any marker connectors, this attribute lets you set the thickness of all those connectors. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">showConnectorToolTip
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Boolean</td>
+	            <td valign="top">0/1</td>
+	            <td valign="top">Whether to show or hide tooltip for all marker connectors present in a map. The default value is 1. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">connectorDashed
+	               <p>or</p>
+	               <div class="text">markerConnDashed <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether the marker connector line should appear as dashed? </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">connectorDashLen
+	               <p>or</p>
+	               <div class="text">markerConnDashLen <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">Pixels</td>
+	            <td valign='top' class="text">If marker connector line is to appear as dash, this attribute lets you set the dash length of each part of dash. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">connectorDashGap
+	               <p>or</p>
+	               <div class="text">markerConnDashGap <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">Pixels</td>
+	            <td valign='top' class="text">If marker connector line is to appear as dash, this attribute lets you set the dash gap of each part of dash.</td>
+             </tr>
+			  <tr class="trLightBlueBg">
+	            <td valign="top" class="text">autoScaleMarkers
+	              <div class="version-info">Since v3.2 SR-2</div>
+                </td><td valign="top">Boolean</td>
+	            <td valign="top">0/1</td>
+	            <td valign="top"><span class="text">This attribute lets you to scale the markers automatically with respect to the map dimensions. By default, this attribute is set to 0. </span></td>
+             </tr>
+			 <tr>
+        <td valign="top">markerFillColor
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Color </td>
+        <td valign="top" class="text">0/1</td>
+        <td valign='top' class="text">Using this attribute, you can specify the fill color for the marker    shape (hex code without #). If you specify a comma separated list of    hex codes (without #), FusionMaps XT will use those colors to form a    gradient. </td>
+      </tr>
+	  <tr class='trLightBlueBg'>
+        <td valign="top">markerFillAlpha
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text">0-100</td>
+        <td valign='top' class="text">Used to specify the fill alpha. In case of gradients, you'll need to specify a comma separated list of alpha. </td>
+      </tr>
+	  <tr>
+        <td valign="top">markerFillRatio
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text">Number</td>
+        <td valign="top" class="text">0-100</td>
+        <td valign='top' class="text">If you're using gradient fills for the marker, this attribute lets you    set the ratio (on a scale of 0-100) for the gradient component colors. </td>
+      </tr>
+	  <tr class='trLightBlueBg'>
+        <td valign="top">markerFillAngle
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text">0-360</td>
+        <td valign='top' class="text">If you're using gradient fills for the marker, this attribute lets you set the angle for the gradient. </td>
+      </tr>
+	  <tr>
+        <td valign="top">markerBorderAlpha
+          <div class="version-info">Since v3.2 SR-2</div>
+		  </td>
+        <td valign="top" class="text"> Number </td>
+        <td valign="top" class="text">0-100</td>
+        <td valign='top' class="text">Border alpha for the marker shape. </td>
+      </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /></a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	   
+	</tr><tr>
+	   
+	</tr><tr>
+	   </tr><tr>
+	   <td align="left">
+	      <table width="100%" align="center" cellpadding="2">
+	         <tr>
+	            <td class="header"><a name="Anchor8"></a> Tool-tip </td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>These attributes let you control the tool tip. You can set 
+	               the background color, border color, separator character and few other details.</p></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> showToolTip </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Boolean </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0/1 </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Whether to show tool tip 
+	               on map? When this attribute is set to 0, all the tooltips including entity tooltips, marker toolitps and connector tooltips are disabled.</span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> toolTipBgColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Background Color for tool 
+	               tip. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> toolTipBorderColor </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Border Color for tool tip. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> toolTipSepChar </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'> <span class="text"> The character specified 
+	               as the value of this attribute separates the name and value displayed in 
+	               tool tip. </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">showToolTipShadow</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether to show shadow for tool-tips on the map. </td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	   </tr><tr>
+	   <td align="left">
+	      <table width="100%" align="center" cellpadding="2">
+	         <tr>
+	            <td class="header"><a name="Anchor9"></a>Font Properties </td>
+             </tr>
+	         <tr>
+	            <td><p>Using the attributes below, you can define the generic font properties for the text on the map.</p></td>
+             </tr>
+	         <tr>
+	            <td>
+	               <table width="100%" align="center" class="table" cellpadding="4">
+	                  <tr class="trAttHeader">
+	                     <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	                     <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	                     <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	                     <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+                      </tr>
+	                  <tr>
+	                     <td width="25%" valign="top"><span class="text">baseFont</span></td>
+	                     <td width="15%" valign="top"><span class="text">String</span></td>
+	                     <td width="15%" valign="top"> <span class="text"> 	Font Name </span></td>
+	                     <td width='45%' valign='top'> <span class="text"> This attribute lets you set the font face (family) of all the text (data labels, values etc.) on map. </span></td>
+                      </tr>
+	                  <tr class='trLightBlueBg'>
+	                     <td width="25%" valign="top"><span class="text">baseFontSize</span></td>
+	                     <td width="15%" valign="top"><span class="text">Number</span></td>
+	                     <td width="15%" valign="top"> <span class="text">0-72 </span></td>
+	                     <td width='45%' valign='top'><span class="text">This attribute sets the         base font size of the map i.e., all the values and the names in the map         which lie on the canvas will be displayed using the font size provided here. </span></td>
+                      </tr>
+	                  <tr>
+	                     <td width="25%" valign="top"><span class="text">baseFontColor</span></td>
+	                     <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	                     <td width="15%" valign="top"> <span class="text"> </span></td>
+	                     <td width='45%' valign='top'> <span class="text"> 	This attribute sets the base font color of the map i.e., all the values and the names in the map which lie on the canvas will be displayed using the font color provided here. </span></td>
+                      </tr>
+	                  <tr align="center">
+	                     <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /></a></span></td>
+                      </tr>
+                   </table>
+	            </td>
+             </tr>
+	         <tr>
+	            <td>&nbsp;</td>
+             </tr>
+	         <tr>
+	            <td class="header"><a name="Anchor6"></a> Map Padding & Margins</td>
+             </tr>
+	         
+	         <tr>
+	            <td valign="top" class="text"><p>The following attributes help you control map 
+	               margins and paddings.</p></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top"> <span class="text"> legendPadding </span></td>
+	            <td valign="top"> <span class="text"> Number </span></td>
+	            <td valign="top"> <span class="text"> In Pixels </span></td>
+	            <td valign='top'> <span class="text"> Padding of legend from right/bottom 
+	               side of map</span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> mapLeftMargin </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> In Pixels </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Amount of empty space that 
+	               you want to put on the left side of your map. Nothing is rendered in this 
+	               space. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> mapRightMargin </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> In Pixels </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Amount of empty space that 
+	               you want to put on the right side of your map. Nothing is rendered in this 
+	               space. </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> mapTopMargin </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> In Pixels </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Amount of empty space that 
+	               you want to put on the top of your map. Nothing is rendered in this space. </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top"> <span class="text"> mapBottomMargin </span> </td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> In Pixels </span></td>
+	            <td width='45%' valign='top'> <span class="text"> Amount of empty space that 
+	               you want to put on the bottom of your map. Nothing is rendered in this space. </span></td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr><tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	   
+	</tr><tr>
+	   <td align="left">
+	      <table width="100%" align="center" cellpadding="2">
+	         <tr>
+	            <td class="header"><a name="Anchor18"></a>Attributes to allow exporting of map as image/PDF</td>
+             </tr>
+	         
+	         <tr>
+	            <td valign="top" class="text"><p>These attributes allow you to control the saving of map as image.</p></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"><span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"><span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"><span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"><span class="textbold"> Description </span></td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top" class="text">exportEnabled
+	               <p>or</p>
+	               <div class="text">imageSaveURL<span class="version-info">- deprecated</span></div>
+                </td>
+	            <td width="15%" valign="top" class="text">Boolean </td>
+	            <td width="15%" valign="top" class="text">(0/1)</td>
+	            <td width='45%' valign='top' class="text">Whether the map will allow exporting to images/PDFs? </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top" class="text">exportShowMenuItem</td>
+	            <td width="15%" valign="top" class="text">Boolean </td>
+	            <td width="15%" valign="top" class="text">(0/1)</td>
+	            <td width='45%' valign='top' class="text">Whether the menu items related to export (e.g., Save as JPEG etc.) will appear in the context menu of map. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">exportFormats</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">
+	               <p>List of formats that the map will show in context menu, along with label for each one.</p>
+	               <p>The attribute value should be a delimiter separated   key-value pair.  The delimiter character to be used is '|' (pipe   character). The syntax  for the attribute value is as follows:<br />
+	                  <em>KEY=Value</em>[<em>|KEY=Value</em>]*</p>
+	               <p>Example: The code required to enable PNG, JPG and PDF type  of export with custom context-menu message for PNG and PDF.</p>
+	               <p><em>exportType=&rdquo;PNG=Export as High Quality  Image;JPG;PDF=Export as PDF File&rdquo;</em></p>
+                </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">exportAtClient</td>
+	            <td valign="top" class="text">Boolean </td>
+	            <td valign="top" class="text">(0/1)</td>
+	            <td valign='top' class="text">Whether to use client side export handlers, or server side export handlers </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">exportHandler</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">
+	               <p>In case of server side exporting, this refers to the path of the   server-side export handler (the ready-to-use scripts that we provide).</p>
+	               <p>In case of client-side exporting, this refers to the DOM-Id   of FusionCharts Export component that is embedded in your web page, along   with the map. </p>
+                </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">exportAction</td>
+	            <td valign="top" class="text">String </td>
+	            <td valign="top" class="text">'save' or 'download' </td>
+	            <td valign='top' class="text">In case of server-side exporting, the action specifies whether the exported image will be sent back to client as download, or whether it'll be saved on the server. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">exportTargetWindow</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">'_self' or '_blank' </td>
+	            <td valign='top' class="text"> In case of server-side exporting and when using download as action, this lefts you configure whether the return image/PDF will open in same window (as an attachment for download), or whether it will open in a new window. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">exportCallback</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">
+	               <p>Name of JavaScript function that'll be called back when export process has finished in case of: </p>
+	               <ul>
+	                  <li>Client side export </li>
+	                  <li>Batch export </li>
+	                  <li>Server-side export using 'save' as action </li>
+                   </ul>
+                </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">exportFileName</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text"> Using this attribute you can specify the name (excluding the extension) of the output (export) file. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">showExportDialog</td>
+	            <td valign="top" class="text">Boolean </td>
+	            <td valign="top" class="text">(0/1)</td>
+	            <td valign='top' class="text"> Whether to show the export dialog during capture phase. If not, the map starts capturing process without the dialog visible. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">exportDialogMessage</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">The message to be shown in the dialog box. The default is &quot;Capturing Data : &quot; </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">exportDialogColor
+	               <p>or</p>
+	               <div class="text">imageSaveDialogColor <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Hex Color </td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">The message to be shown in the dialog box. The default is &quot;Capturing Data : &quot; </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">exportDialogBorderColor</td>
+	            <td valign="top" class="text">Hex Color </td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text"> Border color of dialog box. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">exportDialogFontColor
+	               <p>or</p>
+	               <div class="text">imageSaveDialogFontColor <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Hex Color </td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">Font color to be used for text in dialog. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">exportDialogPBColor</td>
+	            <td valign="top" class="text">Hex Color </td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text"> Color of progress bar in dialog. </td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /></a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	
+	<tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	<tr>
+	</tr>
+	         <tr>
+	            <td class="header"><a name="Anchor20"></a>Attributes for &lt;data&gt; ... &lt;entity&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;entity&gt;</span> element under <span class="codeInline">&lt;data&gt;</span> element is used to declare properties of the various entities on the map. Each <span class="codeInline">&lt;entity&gt;</span> element under the <span class="codeInline">&lt;data&gt;</span> element can have the following attributes:</p></td>
+             </tr>
+	         
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top"> value </td>
+	            <td width="15%" valign="top"> Number </td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'> Numeric value of the <span class="codeInline">&lt;entity&gt;</span>. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top"> <span class="text"> displayValue </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'> <span class="text"> If you want to display your custom value for each entity (apart from it's long name, short name or value), you can specify it here. </span></td>
+             </tr>
+	         <tr class='text'>
+	            <td width="25%" valign="top">toolText </td>
+	            <td width="15%" valign="top"> String</td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'>Lets you specify a custom tool text for the entity. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top"> <span class="text"> color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Color</span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code </span></td>
+	            <td width='45%' valign='top' class="text">Lets you specify a custom color for the entity. If color range is defined, each entity takes its color from the range it belongs to. However, if you need to force a color for an entity (over-riding the range value), you can specify the hex code here. </td>
+             </tr>
+	         <tr class='text'>
+	            <td valign="top">alpha</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-100</td>
+	            <td valign='top'>Custom alpha (transparency) for the entity </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> link </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top' class="text">If you want to link the entity to a URL, you can specify the URL in FusionCharts format. The link can open in same window, new window, pop-up, frames or as JavaScript functions.<br />
+	               <br />
+	               Please see the section &quot;Drill Down Maps&quot; to learn more about this. </td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top"> font </td>
+	            <td width="15%" valign="top"> String</td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'> If you want the label of this particular entity to appear in a different font (other from the one defined in STYLES/map element), specify the font face here. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top"> <span class="text"> fontSize </span></td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top"> <span class="text"> </span></td>
+	            <td width='45%' valign='top'><span class="text"> If you want the label of this particular entity to appear in a different font size (other from the one defined in STYLES/map element), specify the font size here. </span></td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top"> fontColor </td>
+	            <td width="15%" valign="top"> Boolean </td>
+	            <td width="15%" valign="top"> 0/1 </td>
+	            <td width='45%' valign='top'> If you want the label of this particular entity to appear in a different font color (other from the one defined in STYLES/map element), specify the font color here. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top" class="text">fontBold</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text"> 0/1 </td>
+	            <td valign='top' class="text"> If you want the label of this particular entity to appear bold (other from the one defined in STYLES/map element), set this as 1. </td>
+             </tr>
+	         <tr class="text">
+	            <td valign="top" class="text">showLabel</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether to show the label for this entity? This attribute over-rides the value specified for <span class="codeInline">showLabels</span> attribute for <span class="codeInline">&lt;map&gt;</span> element. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">showToolTip
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether to show tooltip for the entity. Default value is 1. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">labelConnectorColor
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top" class="text">Hex code</td>
+	            <td valign="top" class="text"></td>
+	            <td valign='top' class="text">Sets a color to the label connector line 
+                (if any). </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">labelConnectorAlpha
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-100</td>
+	            <td valign='top' class="text">Specifies the transparency of the   label connector line 
+                (if any). </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">useHoverColor <div class="version-info">Since v3.2</div></td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether to show hover color when user hovers mouse over entity. Set this attribute to 0 to disable hover color.</td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top">hoverColor <div class="version-info">Since v3.2</div></td>
+	            <td valign="top">Color</td>
+	            <td valign="top">Hex Code</td>
+	            <td valign='top'>When the end user hovers his mouse over the entity, it 
+	               changes its color. Using this attribute you can define that color.</td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr><td valign="top" class="text">&nbsp;</td></tr>
+	         <tr>
+	            <td class="header"><a name="Anchor21"></a>&lt;markers&gt; element </td>
+             </tr>
+	         
+         <td class="text"><p>FusionMaps XT allows user-defined markers on the map. Markers are points that you can define anywhere on the map to represent various locations like cities, junctions, houses, office locations, malls or any other entity that needs a point representation. All data pertinent to markers are defined within the <span class="codeInline">&lt;markers&gt;</span> element under <span class="codeInline">&lt;map&gt;</span> element. The <span class="codeInline">&lt;markers&gt;</span> element may contain the sub-elements <span class="codeInline">&lt;definition&gt;</span> and <span class="codeInline">&lt;application&gt;</span>.</p></td>
+   </tr>
+     
+	
+	         <tr>
+	            <td class="header">&lt;markers&gt; ... &lt;definition&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;definition&gt;</span> element is used to contain the definitions of the various elements. The <span class="codeInline">&lt;definition&gt;</span> tag contains a series of <span class="codeInline">&lt;marker&gt;</span> tags which define the individual markers.</p></td>
+             </tr>
+          
+	
+	         <tr>
+	            <td class="header">Attributes for &lt;markers&gt; ... &lt;definition&gt;...&lt;marker&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>To define a marker, you need to create <span class="codeInline">&lt;marker&gt;</span> element under <span class="codeInline">&lt;definition&gt;</span> element. Each <span class="codeInline">&lt;marker&gt;</span> element under <span class="codeInline">&lt;definition&gt;</span> element can have the following properties:</p></td>
+             </tr>
+          <tr><td valign="top" class="text">&nbsp;</td></tr>
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top">x</td>
+	            <td width="15%" valign="top"> Number </td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'>Relative X-position of the marker.</td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top">y</td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'>Relative Y-position of the marker.</td>
+             </tr>
+	         <tr class='text'>
+	            <td width="25%" valign="top">id</td>
+	            <td width="15%" valign="top"> Alphanumeric </td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'>Unique Id for the marker (alphanumeric). Each marker needs to be allotted a unique ID, by which it can be referenced in &lt;application&gt; element. ID of each marker can contain only alphabets and numbers. Special characters are not allowed. </td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top">label</td>
+	            <td width="15%" valign="top"> <span class="text"> String </span></td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top' class="text">Label that you want to display for the marker. This label will be shown along side the marker on the map.</td>
+             </tr>
+	         
+	         <tr class='text'>
+	            <td valign="top">labelPos</td>
+	            <td valign="top">String</td>
+	            <td valign="top">LEFT, RIGHT, CENTER, TOP, BOTTOM</td>
+	            <td valign='top'>Where the label for this marker should appear, w.r.t. marker position - left, right, center, top or bottom?</td>
+             </tr>
+			 <tr class="trLightBlueBg">
+               <td valign="top">shapeId
+			   <div class="version-info">Since v3.2 SR-2</div>
+			   </td>
+	           <td valign="top">String</td>
+	           <td valign="top">&nbsp;</td>
+	           <td valign='top'>Using this attribute, you can set the shape that this marker will  assume on the map. FusionMaps XT offers 4 default shapes - circle, arc,  triangle or diamond. You can also define your custom shapes and then  refer to those. </td>
+            </tr>
+			 <tr class='text'>
+	            <td valign="top">radius
+				<div class="version-info">Since v3.2 SR-2</div>
+				</td>
+	            <td valign="top">number</td>
+	            <td valign="top">In pixels </td>
+	            <td valign='top'>In case of arc, circle or polygon, this attribute lets you set the radius of the same. The value of the <span class="codeInline">radius</span> attribute in <span class="codeInline">&lt;shape&gt;</span> element overrides the value of this attribute. </td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr><td valign="top" class="text">&nbsp;</td></tr>
+	         <tr>
+	            <td class="header"><a name="Anchor22"></a>&lt;markers&gt; ... &lt;application&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;application&gt;</span> element is used to show defined markers on the map. The <span class="codeInline">&lt;application&gt;</span> tag contains a series of <span class="codeInline">&lt;marker&gt;</span> tags which show individual marker on the map.</p></td>
+             </tr>
+          
+	
+	         <tr>
+	            <td class="header">&lt;markers&gt; ... &lt;application&gt; ... &lt;apply&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;apply&gt;</span> element is shows individual markers using the following attributes.</p></td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class="text">
+	            <td width="25%" valign="top">id</td>
+	            <td width="15%" valign="top"> Alphanumeric</td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'>ID that matches the marker application to its definition. If you specify an ID which has not been defined previously, you'll see an error in the debug window.</td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top">shapeId</td>
+	            <td width="15%" valign="top">String</td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'>Using this attribute, you can set the shape that this marker will  assume on the map. FusionMaps XT offers 4 default shapes - circle, arc,  triangle or diamond. You can also define your custom shapes and then  refer to those.</td>
+             </tr>
+	         <tr class='text'>
+	            <td width="25%" valign="top">label</td>
+	            <td width="15%" valign="top">String</td>
+	            <td width="15%" valign="top">&nbsp;</td>
+	            <td width='45%' valign='top'>You can over-ride the labels for each marker during its application.  This label will over-ride the label specified during definition.</td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td width="25%" valign="top">labelPos</td>
+	            <td width="15%" valign="top">String</td>
+	            <td width="15%" valign="top">LEFT, RIGHT, CENTER, TOP, BOTTOM </td>
+	            <td width='45%' valign='top' class="text">Like label, you can also over-ride the label position for each marker during its application.</td>
+             </tr>
+	         <tr class='text'>
+	            <td valign="top">toolText</td>
+	            <td valign="top">String</td>
+	            <td valign="top">&nbsp;</td>
+	            <td valign='top'>If you need to provide custom tool text for a marker, you can do so using this attribute.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top">link</td>
+	            <td valign="top">String</td>
+	            <td valign="top">&nbsp;</td>
+	            <td valign='top'>If you need your marker to link to other pages, when clicked, define  the link here. The link can open in same window, new window, pop-up,  frames, throw events etc. Please see &quot;Drill Down Maps&quot;  section for more information on link format.</td>
+             </tr>
+	         <tr class='text'>
+	            <td valign="top">scale</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-5</td>
+	            <td valign='top'>If you're using the same shape (shapeId) to represent multiple markers  on the map, you can have them differ in size using this attribute. This  attributes set the scaling of a particular marker. Valid values are  floating numbers between 0 and 5.</td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr><tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	
+	         <tr>
+	            <td class="header"><a name="Anchor23"></a>&lt;markers&gt; ...&lt;shapes&gt;...&lt;shape&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;shape&gt;</span> element is used to declare custom shapes. It can have a lot of attributes as explained below.</p></td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> <span class="textbold"> Attribute Name </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class="trLightBlueBg">
+	            <td valign="top">id</td>
+	            <td valign="top">Alphanumeric</td>
+	            <td valign="top">&nbsp;</td>
+	            <td valign='top'>Each shape needs to be given a  unique Id. During application, you'll directly refer to the ID of each  shape to plot it on the map. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">type</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">CIRCLE, ARC, POLYGON, IMAGE </td>
+	            <td valign='top' class="text">Type specifies what kind of shape the marker will draw as. Valid values  are circle, arc, polygon or image. So, if you want to create a  pentagon, select polygon for this attribute and then later set sides to  5. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top">url</td>
+	            <td width="15%" valign="top">String</td>
+	            <td width="15%" valign="top">URL</td>
+	            <td width='45%' valign='top'>If you're using an image  marker shape, you necessarily need to specify it's URL. FusionMaps XT can  load GIF, JPEG and PNG files from the same sub-domain only (owing to  cross browser security restrictions). </td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top">sides</td>
+	            <td width="15%" valign="top">Number</td>
+	            <td width="15%" valign="top">3-20</td>
+	            <td width='45%' valign='top'>If you've opted to plot a polygon shaped marker, you can specify the  number of sides the polygon will have, using this attribute. Valid  values are 3-20. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top">alpha</td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100 </span></td>
+	            <td width='45%' valign='top'>This attribute lets you configure the alpha of the entire marker.</td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top">labelPadding</td>
+	            <td width="15%" valign="top">Number</td>
+	            <td width="15%" valign="top">In Pixels</td>
+	            <td width='45%' valign='top'>This attribute lets you set the distance (in pixels) between your marker shape and the marker label. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top">fillColor</td>
+	            <td width="15%" valign="top">Color</td>
+	            <td width="15%" valign="top"> <span class="text"> In Pixels </span></td>
+	            <td width='45%' valign='top'>Using this attribute, you can specify the fill color for the marker  shape (hex code without #). If you specify a comma separated list of  hex codes (without #), FusionMaps XT will use those colors to form a  gradient. </td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top">fillAlpha</td>
+	            <td width="15%" valign="top"> <span class="text"> Number </span></td>
+	            <td width="15%" valign="top"> <span class="text"> 0-100 </span></td>
+	            <td width='45%' valign='top'>Used to specify the fill alpha. In case of gradients, you'll need to specify a comma separated list of alpha. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top">fillRatio</td>
+	            <td width="15%" valign="top">Number</td>
+	            <td width="15%" valign="top">0-100</td>
+	            <td width='45%' valign='top'>If you're using gradient fills for the marker, this attribute lets you  set the ratio (on a scale of 0-100) for the gradient component colors. </td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top">fillAngle</td>
+	            <td width="15%" valign="top">Number</td>
+	            <td width="15%" valign="top">0-360</td>
+	            <td width='45%' valign='top'>If you're using gradient fills for the marker, this attribute lets you set the angle for the gradient. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top">fillPattern</td>
+	            <td width="15%" valign="top">String</td>
+	            <td width="15%" valign="top">LINEAR, RADIAL </td>
+	            <td width='45%' valign='top'>If you're using gradient fills for the marker, this attribute lets  you set the pattern for gradient - valid values are &quot;linear&quot; or  &quot;radial&quot;. </td>
+             </tr>
+	         <tr>
+	            <td width="25%" valign="top">showBorder</td>
+	            <td width="15%" valign="top">Boolean</td>
+	            <td width="15%" valign="top">0/1</td>
+	            <td width='45%' valign='top'>Whether to show border for the marker shape? </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td width="25%" valign="top">borderColor</td>
+	            <td width="15%" valign="top"> <span class="text"> Color </span></td>
+	            <td width="15%" valign="top"> <span class="text"> Hex Code </span></td>
+	            <td width='45%' valign='top'>Border color for the marker shape. </td>
+             </tr>
+	         <tr>
+	            <td valign="top">borderThickness</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">In Pixels</td>
+	            <td valign='top'>Border thickness for the marker shape.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top">borderAlpha</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-100</td>
+	            <td valign='top'>Border alpha for the marker shape. </td>
+             </tr>
+	         <tr>
+	            <td valign="top">radius</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">In Pixels </td>
+	            <td valign='top'>In case of arc, circle or polygon, this attribute lets you set the radius of the same.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top">innerRadius</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">In Pixels </td>
+	            <td valign='top'>In case of arc, this attribute lets you set the inner radius of the same. </td>
+             </tr>
+	         <tr>
+	            <td valign="top">startAngle</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-360</td>
+	            <td valign='top'>In case of arc or polygon, this attribute lets you set the starting draw angle.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top">endAngle</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-360</td>
+	            <td valign='top'>In case of arc, this attribute lets you set the ending draw angle.</td>
+             </tr>
+	         <tr>
+	            <td valign="top">xScale</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-1000</td>
+	            <td valign='top'>This attribute lets you dynamically re-scale the x-scale of your images after they've been loaded. Valid range is 0-1000. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top">yScale</td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-1000</td>
+	            <td valign='top'>This attribute lets you dynamically re-scale the y-scale of your images after they've been loaded. Valid range is 0-1000. </td>
+             </tr>
+	         <tr>
+	            <td valign="top">vAlign</td>
+	            <td valign="top">String</td>
+	            <td valign="top">TOP, MIDDLE, BOTTOM</td>
+	            <td valign='top'>When using an image marker, you can specify how the image will  vertically align with respect to the marker's y position using this  attribute. Valid values are &quot;top&quot;, &quot;middle&quot; and &quot;bottom&quot;. For markers  which are simple icons, you can use the middle vertical align. In that  case, the image will vertically be at the center position of the  marker. However, if you've an image icon like a pin-point or a needle  with its pointer faced downwards, you'll need to set the vertical  alignment position to &quot;top&quot;, so that the pointer exactly points to the  given marker location. Horizontally, the images are always aligned  centrally. </td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr><tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	
+	         <tr>
+	            <td class="header"><a name="Anchor24"></a>&lt;markers&gt; ... &lt;connectors&gt; ... &lt;connector&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;connector&gt;</span> element is used to connect two different marker points on the map. The <span class="codeInline">&lt;connector&gt;</span> element has the following attributes.</p></td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">from</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text"> Id of the marker from where the connector will start. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">to</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text"> Id of the marker where the connector will end. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">link</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">Each connector can also link to an external URL. For this attribute, you can specify the link for the connector in FusionCharts Link format.</td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">label</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">Each connector can have a visible text label. This attribute lets you set the text. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">toolText</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">If you want to set a custom tool text for the connectors, this attribute lets you do so. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">thickness</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-10</td>
+	            <td valign='top' class="text">Thickness of the connector line. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">color</td>
+	            <td valign="top" class="text">Color</td>
+	            <td valign="top" class="text">Hex Code </td>
+	            <td valign='top' class="text">Color of the connector line. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">alpha</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-100</td>
+	            <td valign='top' class="text">Alpha (transparency) of the connector line. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">dashed</td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether the connector line should appear as dashed? </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">dashLen</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-10</td>
+	            <td valign='top' class="text">If the connector line is to appear as dashed, this attribute defines the length of each dashed line. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">dashGap</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-10</td>
+	            <td valign='top' class="text">If the connector line is to appear as dashed, this attribute defines the gap between each dashed line.</td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">showToolTip
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top" class="text">Boolean</td>
+	            <td valign="top" class="text">0/1</td>
+	            <td valign='top' class="text">Whether to show tooltip for the connector. Default value is 1. </td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	   <tr><td valign="top" class="text">&nbsp;</td></tr>
+	
+	         <tr>
+	            <td class="header">&lt;entityDef&gt; element </td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>FusionMaps XT allows you to re-define the IDs of all the entities of the map. Apart from re-defining identities, it can also re-define the short name and long name of each identity. These re-definitions are contained within the <span class="codeInline">&lt;entityDef&gt;</span> element.</p></td>
+             </tr>
+          
+	
+	         <tr>
+	            <td class="header"><a name="Anchor25"></a>&lt;entityDef&gt; ... &lt;entity&gt; element</td>
+             </tr>
+	        
+	         <tr>
+	            <td class="text"><p>To re-define the marker, you need to create <span class="codeInline">&lt;entity&gt;</span> element under <span class="codeInline">&lt;entityDef&gt;</span> element. Each <span class="codeInline">&lt;entity&gt;</span> element under <span class="codeInline">&lt;entityDef&gt;</span> element can have the following attributes:</p></td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">internalId</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">The internal and default ID of any entity of the map.</td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">newId</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">The new ID of any entity of the map which overrides the internal ID.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">sName</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">The short descriptive name of an entity.</td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">lName</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">The long descriptive name of an entity.</td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	   <tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	
+	         <tr>
+	            <td class="header"><a name="Anchor26"></a>&lt;colorRange&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;colorRange&gt;</span> element within the <span class="codeInline">&lt;map&gt;</span> element helps to distinguish various entities based on their data. Essentially, the <span class="codeInline">&lt;colorRange&gt;</span> element is used to contain the various range definitions.</p></td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">gradient
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Boolean </td>
+	            <td valign="top">0/1</td>
+	            <td valign="top">Whether to show <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>. Default value is 0. </td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">minValue
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top"></td>
+	            <td valign="top">Sets the minimum value or the lower limit of the numeric range and <a href="../how_to_use/gradientlegend.html">Gradient Legend. </a></td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">code
+	               <div class="version-info">Since v3.2	            </div>
+	            </td>
+	            <td valign="top">Color </td>
+	            <td valign="top">Hex Code</td>
+	            <td valign="top">Specifies the starting color of the lower limit of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">alpha
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">Number</td>
+	            <td valign="top">0-100</td>
+	            <td valign="top">Starting opacity of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>. Default value is 100. </td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">startLabel
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">String</td>
+	            <td valign="top"></td>
+	            <td valign="top">Specifies the label for the lower limit of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">endLabel
+	               <div class="version-info">Since v3.2</div>
+                </td>
+	            <td valign="top">String</td>
+	            <td valign="top"></td>
+	            <td valign="top">Specifies the label for the upper limit of <a href="../how_to_use/gradientlegend.html">Gradient Legend</a>.</td>
+             </tr>
+          </table>
+	   </td>
+	   </tr><tr>
+	   <td align="left">&nbsp;</td>
+	   </tr>
+	
+	         <tr>
+	            <td class="header"><a name="Anchor27"></a>&lt;colorRange&gt; ... &lt;color&gt; element</td>
+             </tr>
+	         
+	         <tr>
+	            <td class="text"><p>The <span class="codeInline">&lt;color&gt;</span> element under <span class="codeInline">&lt;colorRange&gt;</span> element is used to define a single range. Each <span class="codeInline">&lt;color&gt;</span> element  under the <span class="codeInline">&lt;colorRange&gt;</span> element can have the following attributes:</p></td>
+             </tr>
+          
+	<tr>
+	   <td align="left">
+	      <table width="100%" align="center" class="table" cellpadding="4">
+	         <tr class="trAttHeader">
+	            <td width="25%" class="header"> Attribute Name </td>
+	            <td width="15%" class="header"> <span class="textbold"> Type </span></td>
+	            <td width="15%" class="header"> <span class="textbold"> Range </span></td>
+	            <td width='45%' class="header"> <span class="textbold"> Description </span></td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">minValue</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">Lower limit of range.</td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">maxValue</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">Upper limit of range.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">displayValue</td>
+	            <td valign="top" class="text">String</td>
+	            <td valign="top" class="text">&nbsp;</td>
+	            <td valign='top' class="text">Text representation of range (to be shown in legend).</td>
+             </tr>
+	         <tr>
+	            <td valign="top" class="text">code
+	               <div class="version-info">Since v3.2</div><p>or</p>
+	               <div class="text">color <span class="version-info">- deprecated</span></div>
+                </td>
+	            <td valign="top" class="text">Color</td>
+	            <td valign="top" class="text">Hex Code </td>
+	            <td valign='top' class="text">Hex color code (without #) for the range.</td>
+             </tr>
+	         <tr class='trLightBlueBg'>
+	            <td valign="top" class="text">alpha</td>
+	            <td valign="top" class="text">Number</td>
+	            <td valign="top" class="text">0-100</td>
+	            <td valign='top' class="text">Transparency (0-100) for the entities belonging to that range.</td>
+             </tr>
+	         <tr align="center">
+	            <td align="right" colspan="4" > <span class="back_to_top"><a href="#top">Back to top <img src="../Images/Top.gif" border="0" alt="Back to Top" width="16" height="16" /> </a></span></td>
+             </tr>
+          </table>
+	   </td>
+	   </tr>
+	<tr>
+	   <td align="left">
+          <p>The maps also accepts the following features, which have not been discussed here:</p>
+          <ul>
+             <li><a href="../export_data/ExportDataSetup.html">Exporting Map Data</a>: All the attributes pertinent to exporting of map data are discussed in the <strong>Exporting Map Data</strong> section.</li>
+             <li><a href="../Styles/Styles.html">Styles</a>: All the attributes  pertinent to Styles  are discussed in the <strong>Using  Styles</strong> section.</li>
+          </ul>
+          <br />
+	   </td>
+	   </tr>
+	</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("JSON Overview|JSONOverview.html","Guide for web developers - Using with Classic ASP|../CodeASPDXML.html|");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

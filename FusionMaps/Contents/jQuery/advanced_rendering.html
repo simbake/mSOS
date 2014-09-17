@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+<title>Using various map rendering methods in FusionCharts jQuery plugin</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and jQuery|overview.html", "Using various rendering methods" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using various map rendering methods in FusionCharts jQuery plugin</td>
+
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+	<p class="highlightBlock"> FusionMaps XT uses  FusionCharts jQuery plugin  that takes care of all the products of FusionCharts Suite XT including FusionMaps XT.</p>
+       <p>FusionCharts jQuery plugin provides you various methods using which you can render maps in HTML containers. There are three methods to choose from as listed below:</p>
+       <ul>
+         <li><span class="codeInline"><a href="#insert">insertFusionCharts</a></span>: Renders maps inside HTML elements replacing existing contents </li>
+         <li><span class="codeInline"><a href="#append">appendFusionCharts</a></span>: Renders and inserts maps at the end of  HTML elements preserving existing contents </li>
+         <li><span class="codeInline"><a href="#prepend">prependFusionCharts</a></span>: Renders and inserts maps at the beginning of  HTML elements preserving existing contents</li>
+       </ul> 
+       
+       <p class="highlightBlock">To aid your understanding of this section, we will recommend you to go through the <a href="overview.html"><strong>Overview</strong></a> page of FusionCharts jQuery plugin </p>
+       <p>In this page we will learn in details, how to use these methods. </p>
+       
+    </td>
+  </tr>
+    
+    <tr>
+    <td class="header"><a name="insert" id="insert"></a>Using <span class="codeInline">insertFusionCharts</span> method </td>
+    </tr>
+    <tr>
+      <td class="text">
+        <p>In the <a href="overview.html">previous page</a> we have learned how to use the <span class="codeInline">insertFusionCharts()</span> method to render map. The <span class="codeInline">insertFusionCharts</span> method is the basic method which renders maps inside HTML elements. The HTML elements  need to be selected using jQuery selector. In case, multiple HTML elements are selected using the jQuery selector, a map will be rendered inside each selected HTML element. All existing elements inside the selected elements will be replaced by the rendered maps. </p>
+        <p>An example can be as follows:</p>
+        <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First map using FusionMaps XT&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;<strong>Maps/FusionCharts.js&quot;</strong>&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;<strong>Maps/jquery.min.js&quot;</strong>&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;<strong>Maps/FusionCharts.jqueryplugin.js&quot;</strong>&gt;&lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+       
+      $(document).ready(function(){
+          $(&quot;#mapContainer&quot;).<strong>insertFusionCharts</strong>({
+               swfUrl: &quot;Maps/FCMap_World.swf&quot;, 
+               dataSource: &quot;Data.xml&quot;, 
+               dataFormat: &quot;xmlurl&quot;, 
+               width: &quot;400&quot;, 
+               height: &quot;300&quot;, 
+               id: &quot;myMapId&quot;
+         }); 
+
+       });
+<strong>      </strong>
+    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+        <p>As stated in the above code, the <span class="codeInline">insertFusionCharts</span> method takes a set of key (map setting) or value pairs containing  configuration properties of the rendered map. The detailed list of acceptable map-configurations are provided in the <a href="overview.html#chartparams">Overview</a> page and also stated below:</p>
+        <table width="99%" border="0" class="table text">
+           <tr>
+              <td width="250" valign="top" class="header"><a name="chartparams" id="chartparams"></a>Map configuration or property </td>
+              <td valign="top" class="header">Description and  acceptable value </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline">swfUrl</span> or <span class="codeInline">type</span></td>
+              <td valign="top"> Provide path (as string) to the map SWF file through <span class="codeInline">swfUrl</span> or  provide the map alias through <span class="codeInline">type</span> property. You can get the list of map SWF file names and map alias from <a href="../FirstMap/Images/pure_js.jpg">List of Maps</a> page.&nbsp;
+                 <p class="highlightBlock">JavaScript map are rendered when <span class="codeInline">type</span> property is used.</p>
+              </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline">id</span></td>
+              <td valign="top"> Sets the DOM ID of the map. The value is provided as string. (optional)</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">width</span></td>
+             <td valign="top">Width of the map &nbsp; (optional - default is 400). The value is provided as  number if the width is set in pixels or as string if the width is to be set in percentage (for example, &quot;50%&quot;) </td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">height</span></td>
+             <td valign="top">Height of the map (optional - default is 300). The value is provided as  number if the height is set in pixels or as string  if the height is to be set in percentage (for example, &quot;50%&quot;)</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">dataSource</span></td>
+             <td valign="top"> XML or JSON map data. It can be a URL for XML or JSON. It can also be a string containing XML or   JSON object</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">dataFormat</span></td>
+             <td valign="top">Defines the format of the dataSource.
+               <ul>
+                   <li> Set it to <span class="codeInline">xmlurl</span> when data source is a URL to XML data</li>
+                   <li>Set it to <span class="codeInline">xml</span> when the data source is an XML String</li>
+                 <li>Set it to <span class="codeInline">jsonurl</span> when data source is a URL to JSON data</li>
+                 <li>Set it to <span class="codeInline">json </span>when the data source is a JSON String or JSON object</li>
+               </ul>
+             </td>
+           </tr>
+           <tr valign="top">
+              <td valign="top"><span class="codeInline">renderer</span></td>
+              <td valign="top">Sets the map renderer engine. Acceptable values are  '<span class="codeInline">flash</span>' and <span class="codeInline"> 'javascript</span>'. The default value is automatically selected depending on the availability and support of Flash player. When set to <span class="codeInline">javascript</span>, FusionCharts JavaScript Class renders pure JavaScript maps. (optional)</td>
+           </tr>
+           <tr>
+              <td valign="top" class="codeInline">wmode</td>
+              <td valign="top"> Allows the map's base background to become transparent or opaque. The acceptable values and their usage are as follows:
+                 <ul>
+                    <li><span class="codeInline">transparent</span> - Renders the  map's base with a transparent background. Additionally, one needs to set <span class="codeInline">bgAlpha</span>&nbsp;attribute in map's XML/JSON to <span class="codeInline">'0'</span> to make the  map transparent.</li>
+                    <li><span class="codeInline">opaque</span> - Renders the  map's base to have an  opaque background. One can set color this opaque background using <span class="codeInline"><a href="#bgcolor">bgColor</a></span> property.</li>
+                    <li> <span class="codeInline">window</span> -&nbsp; Only for Flash  maps, this mode renders Flash  maps in a separate layout&nbsp;on top of a Web page.</li>
+                 </ul>
+                 <p class="highlightBlock"><strong>Note:</strong> <strong>Map's base background</strong> is the first background layer on which map messages are shown&nbsp;and all map objects are rendered. While rendering, another background layer is drawn on top of this base background whose cosmetic properties can be <a href="../advanced/ChartBG.html">customized through XML/JSON</a>.</p>
+                 <p>This property is optional and the  default value is <span class="codeInline">opaque</span>.</p>
+              </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline"><a name="bgcolor" id="bgcolor"></a>bgColor</span></td>
+              <td valign="top"> This sets the color of the  map's base background on which a  map is drawn. The color is passed as a string containing hex coded color value.
+                 <p>This property is optional and the  default value is &quot;#FFFFFF&quot;, that is, white. </p>
+                 <p class="highlightBlock"><strong>Note: Map's base background color</strong> is not same as the background color of a  map (set through XML/JSON). The base background color is visible while showing  map messages or when <span class="codeInline">wmode</span> is set to <span class="codeInline">opaque</span> and map's <span class="codeInline">bgAlpha</span> is set to less than 100.&nbsp; </p>
+              </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline">scaleMode</span></td>
+              <td valign="top">Flash player's mode of scaling a map. <span class="codeInline">NoScale</span> is the default value. There are other settings namely, <span class="codeInline"> showAll</span>, <span class="codeInline">ExactFit</span>, <span class="codeInline">noBorder</span>. But these are not supported and might result in distorted maps.&nbsp; (optional)</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">lang</span></td>
+             <td valign="top">Sets the language for map messages. It presently supports only English. The value is &quot;EN&quot;. (optional) </td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">detectFlashVersion</span></td>
+             <td valign="top">Set to &quot;1&quot; to make FusionCharts Class check whether Flash Player 8 is present in the Browser. (optional - Default value is &quot;0&quot; ) </td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">autoInstallRedirect</span></td>
+             <td valign="top">Set to &quot;1&quot; with <span class="codeInline">detectFlashVersion</span> set to &quot;1&quot; and FusionCharts redirects to Flash Player installation page of Adobe's Web site. (optional - default is &quot;0&quot; )</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">debugMode</span></td>
+             <td valign="top">Sets the map debug window on. Can take &quot;0&quot; or &quot;1&quot;. When set to &quot;1&quot;, the map shows a debug window over itself. (optional - default value is &quot;0&quot;)</td>
+           </tr>
+        </table>
+        <p>The <span class="codeInline">insertFusionCharts</span> method  returns a jQuery array containing the selected HTML elements where the maps render.</p>
+        <p class="highlightBlock"><a href="API.html#insertfusioncharts">Click here to read   API Reference guide of <span class="codeInline">insertFusionCharts()</span> method.</a></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td class="text"> </td>
+    </tr>
+    <tr>
+       <td valign="top" class="header">Using JSON as data source </td>
+    </tr>
+    <tr>
+       <td valign="top">
+          <p>Apart from XML you can also provide data in JSON format. You can provide JSON as JavaScript Object, as JSON string or as a URL. To provide data as JSON you will need to pass the JSON data source to <span class="codeInline">dataSource</span> property and set json or jsonurl to <span class="codeInline">dataFormat</span> property. </p>
+          <p>The code snippet below shows how you can pass JSON Object as data source: </p>
+          <pre class="code_container prettyprint">$(&quot;#mapContainer&quot;).<strong>insertFusionCharts</strong>({
+	swfUrl: &quot;Maps/FCMap_World.swf&quot;, 
+	width: &quot;400&quot;, 
+	height: &quot;300&quot;, 
+	id: &quot;myMapId&quot;,
+	
+	<strong>dataFormat: &quot;json&quot;, </strong>
+	dataSource: <strong>{
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "numbersuffix": "M",
+    "includevalueinlabels": "1",
+    "labelsepchar": ":",
+    "basefontsize": "9"
+  },
+  "data": [
+    { "id": "NA", "value": "515" },
+    { "id": "SA", "value": "373" },
+    { "id": "AS", "value": "3875" },
+    { "id": "EU", "value": "727" },
+    { "id": "AF","value": "885" },
+    { "id": "AU", "value": "32" }
+  ]
+}</strong>); </pre>
+          <p>The code snippet below shows how you can pass JSON string as data source: </p>
+<pre class="code_container prettyprint">$(&quot;#mapContainer&quot;).<strong>insertFusionCharts</strong>({
+	swfUrl: &quot;Maps/FCMap_World.swf&quot;, 
+	width: &quot;400&quot;, 
+	height: &quot;300&quot;, 
+	id: &quot;myMapId&quot;,
+	
+	<strong>dataFormat: &quot;json&quot;, </strong>
+	dataSource:<strong>'{ ' +
+ ' "map": { ' +
+  ' "bordercolor": "005879", ' +
+  ' "fillcolor": "D7F4FF", ' +
+  ' "numbersuffix": "M", ' +
+  ' "includevalueinlabels": "1", ' +
+  ' "labelsepchar": ":", ' +
+  ' "basefontsize": "9" ' +
+' }, ' +
+' "data": [ ' +
+ ' { "id": "NA", "value": "515" }, ' +
+ ' { "id": "SA", "value": "373" }, ' +
+ ' { "id": "AS", "value": "3875" }, ' +
+ ' { "id": "EU", "value": "727" }, ' +
+ ' { "id": "AF","value": "885" }, ' +
+ ' { "id": "AU", "value": "32" } ' +
+' ] ' +
+'}'</strong>}); </pre>
+          <p>The code snippet below shows how you can pass a URL containing JSON  as data source: </p>
+<pre class="code_container prettyprint">$(&quot;#mapContainer&quot;).<strong>insertFusionCharts</strong>({
+	swfUrl: &quot;Maps/FCMap_World.swf&quot;, 
+	width: &quot;400&quot;, 
+	height: &quot;300&quot;, 
+	id: &quot;myMapId&quot;,
+	
+	<strong>dataFormat: &quot;jsonurl&quot;, </strong>
+	<strong>dataSource: &quot;data.json&quot;</strong>
+}); </pre>
+          <p>Many web servers like IIS6, do not serve .json (no wildcard MIME type) files by default. You need to setup your web server to serve json files. In IIS6 you can do this using these steps:          </p>
+          <div class="highlightBlock">
+             <ul>
+              <li>Open the properties for the server in IIS Manager and click <strong>MIME Types</strong></li>
+              <li>Click <strong>New</strong>. Enter &quot;JSON&quot; for the extension and &quot;application/json&quot; for the MIME type</li>
+          </ul></div>
+          <p class="highlightBlock"><strong>NOTE</strong>: Many browsers restrict JavaScript from accessing local file system owing to security reasons. The JavaScript maps, when running locally, will not be able to access JSON data provided as a URL. If you run the files from a server, it will run absolutely fine, though. When running locally, however, if you provide the data as JavaScript Object or JSON String, it works fine. </p>
+       </td>
+    </tr>
+    
+    
+    
+
+    
+    <tr>
+      <td valign="top" class="header"><a name="append" id="append"></a>Inserting map at the end of HTML elements</td>
+    </tr>
+    <tr>
+      <td valign="top" class="text">
+        <p>Using <span class="codeInline">appendFusionCharts</span> method, you  can render and insert maps  at the end of selected HTML elements, thus preserving all existing elements inside the selected elements. An example code sample is shown below:</p>
+        
+        <pre class="code_container prettyprint">$(&quot;#mapContainer&quot;).<strong>appendFusionCharts</strong>({
+   swfUrl: &quot;Maps/FCMap_World.swf&quot;, 
+   dataSource: &quot;March.xml&quot;, 
+   dataFormat: &quot;xmlurl&quot;, 
+   width: &quot;400&quot;, 
+   height: &quot;300&quot;, 
+   id: &quot;myMapMarID&quot;
+}); </pre>
+        <p><span id="internal-source-marker_0.8308518259248712">The parameters accepted by <span class="codeInline">appendFusionCharts</span> method is same as that of the </span><span class="codeInline">insertFusionCharts</span> method. The detailed list of acceptable map-configurations are provided in the <a href="#chartparams">Map configurations</a> table above. </p>
+<p>The <span class="codeInline">appendFusionCharts</span> method  returns a jQuery array containing the selected HTML elements where the maps render.</p>
+        <p class="highlightBlock"><a href="API.html#appendfusioncharts">Click here to read   API Reference guide of <span class="codeInline">appendFusionCharts()</span> method</a></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td valign="top" class="header"><a name="prepend" id="prepend"></a>Inserting  map at the beginning of HTML elements </td>
+    </tr>
+    <tr>
+      <td valign="top" class="text">
+        <p>You can also render and insert maps at the beginning of selected HTML elements. This also preserves all the  elements already present in the selected elements. You will need to use the <span class="codeInline">prependFusionCharts</span> method to achieve this. An example code snippet is shown below:</p>
+        <pre class="code_container prettyprint">$(&quot;#mapContainer&quot;).<strong>prependFusionCharts</strong>({
+   swfUrl: &quot;Maps/FCMap_World.swf&quot;, 
+   dataSource: &quot;January.xml&quot;, 
+   dataFormat: &quot;xmlurl&quot;, 
+   width: &quot;400&quot;, 
+   height: &quot;300&quot;, 
+   id: &quot;myMapJanID&quot;
+}); </pre>
+        <p><span id="internal-source-marker_0.8308518259248712">The parameters accepted by the <span class="codeInline">prependFusionCharts</span> method is same as that of the </span><span class="codeInline">insertFusionCharts</span> method. The detailed list of acceptable map-configurations are provided in the <a href="#chartparams">Map configurations</a> table above. </p>
+<p>The <span class="codeInline">prependFusionCharts</span> method  returns a jQuery array containing the selected HTML elements where the maps render.</p>
+        <p class="highlightBlock"><a href="API.html#prependfusioncharts">Click here to read   API Reference guide of <span class="codeInline">prependFusionCharts()</span> method</a></p>
+      </td>
+    </tr>
+   
+    <tr>
+      <td valign="top" class="header"><a name="clone" id="clone"></a>Cloning a map </td>
+    </tr>
+    <tr>
+      <td valign="top" class="text">
+        <p>You can clone existing maps and pass the list of cloned maps to a function for further processing. To clone maps, you will need to use <span class="codeInline">cloneFusionCharts</span> method. This method looks for all the maps in jQuery selected elements and clones them. The example below clones all the maps present in a div with ID - &quot;leftPanel&quot; and renders them as JavaScript maps in a div with ID - &quot;rightPanel&quot;:</p>
+        <pre class="code_container prettyprint">$(&quot;#leftPanel&quot;).cloneFusionCharts( function() { $(&quot;#rightPanel&quot;).insertFusionCharts(this[0]); }, { renderer: &quot;javascript&quot; }  ); </pre>
+		 <p>In the above code <span class="codeInline">cloneFusionCharts</span> finds all the maps in HTML elements with id - &quot;leftPanel&quot;. It clones the maps present in that HTML element and passes the  array containing the cloned maps to the anonymous callback function defined as the first parameter. This function generates these cloned maps inside HTML elements having &quot;rightPanel&quot; as id.</p>
+<p>The second parameter also adds a new configuration (setting <span class="codeInline">renderer</span> to 'javascript' ) to the cloned maps. Hence, the cloned maps will be rendered using JavaScript rendering engine. </p>
+        <p><strong>Additional Notes:</strong></p>
+        <p><strong>Parameters:<br />
+        </strong>The <span class="codeInline">cloneFusionCharts</span> takes two parameters. </p>
+        <p> The first parameter contains the reference to a callback function. An   array of cloned maps (in <span class="codeInline">this</span> Array) is passed  to a callback function&nbsp;for further processing.</p>
+        <p>In the second parameter, you can optionally add various configurations to the cloned maps or over-write some configurations of the cloned maps. The  configurations are passed as a set of key/value pairs (JavaScript object). </p>
+        <p>The configurations which can be passed are  given in the list below: </p>
+        <table width="99%" border="0" class="table text">
+           <tr>
+              <td width="250" valign="top" class="header"><a name="cloneparams" id="cloneparams"></a>Map configuration or property </td>
+              <td valign="top" class="header">Description and  acceptable value </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline">swfUrl</span> or <span class="codeInline">type</span></td>
+              <td valign="top"> Provide path (as string) to the map SWF file through <span class="codeInline">swfUrl</span> or  provide the map alias through <span class="codeInline">type</span> property. You can get the list of map SWF file names and map alias from <a href="../FirstMap/Images/pure_js.jpg">List of Maps</a> page.&nbsp;
+                 <p class="highlightBlock">JavaScript map are rendered when <span class="codeInline">type</span> property is used.</p>
+              </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline">id</span></td>
+              <td valign="top"> Sets the DOM Id of the map. The value is provided as string. (optional)</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">width</span></td>
+             <td valign="top">Width of the map&nbsp; (optional - default is 400). The value is provided as  number if the width is set in pixels or as string  if the width is to be set in percentage (for example, &quot;50%&quot;) </td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">height</span></td>
+             <td valign="top">Height of the map (optional - default is 300). The value is provided as  number if the height is set in pixels or as string  if the height is to be set in percentage (for example, &quot;50%&quot;)</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">dataSource</span></td>
+             <td valign="top"> XML or JSON map data. It can be a URL for XML or JSON. It can also be a string containing XML or   JSON object</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">dataFormat</span></td>
+             <td valign="top">Defines the format of the dataSource.
+               <ul>
+                   <li> Set it to <span class="codeInline">xmlurl</span> when data source is a URL to XML data</li>
+                   <li>Set it to <span class="codeInline">xml</span> when the data source is an XML String</li>
+                 <li>Set it to <span class="codeInline">jsonurl</span> when data source is a URL to JSON data</li>
+                 <li>Set it to <span class="codeInline">json </span>when the data source is a JSON String or JSON object</li>
+               </ul>
+             </td>
+           </tr>
+           <tr valign="top">
+             <td valign="top"><span class="codeInline">renderer</span></td>
+             <td valign="top">Sets the map renderer engine. Acceptable values are  '<span class="codeInline">flash</span>' and <span class="codeInline"> 'javascript</span>'. The default value is automatically selected depending on the availability and support of Flash player.  When set to <span class="codeInline">javascript</span>, FusionCharts JavaScript Class renders pure JavaScript maps. (optional)</td>
+           </tr>
+           <tr>
+              <td valign="top" class="codeInline">wmode</td>
+              <td valign="top"> Allows the map's base background to become transparent or opaque. The acceptable values and their usage are as follows:
+                 <ul>
+                    <li><span class="codeInline">transparent</span> - Renders the  map's base with a transparent background. Additionally, one needs to set <span class="codeInline">bgAlpha</span>&nbsp;attribute in map's XML/JSON to <span class="codeInline">'0'</span> to make the  map transparent.</li>
+                    <li><span class="codeInline">opaque</span> - Renders the  map's base to have an  opaque background. One can set color this opaque background using <span class="codeInline"><a href="#bgcolor">bgColor</a></span> property.</li>
+                    <li> <span class="codeInline">window</span> -&nbsp; Only for Flash  maps, this mode renders Flash  maps in a separate layout&nbsp;on top of a Web page.</li>
+                 </ul>
+                 <p class="highlightBlock"><strong>Note:</strong> <strong>Map's base background</strong> is the first background layer on which map messages are shown&nbsp;and all map objects are rendered. While rendering, another background layer is drawn on top of this base background whose cosmetic properties can be <a href="../advanced/ChartBG.html">customized through XML/JSON</a>.</p>
+                 <p>This property is optional and the  default value is <span class="codeInline">opaque</span>.</p>
+              </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline"><a name="bgcolor" id="bgcolor"></a>bgColor</span></td>
+              <td valign="top"> This sets the color of the  map's base background on which a  map is drawn. The color is passed as a string containing hex coded color value.
+                 <p>This property is optional and the  default value is &quot;#FFFFFF&quot;, that is, white. </p>
+                 <p class="highlightBlock"><strong>Note: Map's base background color</strong> is not same as the background color of a  map (set through XML/JSON). The base background color is visible while showing  map messages or when <span class="codeInline">wmode</span> is set to <span class="codeInline">opaque</span> and map's <span class="codeInline">bgAlpha</span> is set to less than 100.&nbsp; </p>
+               </td>
+           </tr>
+           <tr>
+              <td valign="top"><span class="codeInline">scaleMode</span></td>
+              <td valign="top">Flash player's mode of scaling a map. <span class="codeInline">NoScale</span> is the default value. There are other settings namely, <span class="codeInline"> showAll</span>, <span class="codeInline">ExactFit</span>, <span class="codeInline">noBorder</span>. But these are not supported and might result in distorted maps.&nbsp; (optional)</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">lang</span></td>
+             <td valign="top">Sets the language for map messages. It presently supports only English. The value is &quot;EN&quot;. (optional) </td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">detectFlashVersion</span></td>
+             <td valign="top">Set to &quot;1&quot; to make FusionCharts Class check whether Flash Player 8 is present in the Browser. (optional - Default value is &quot;0' ) </td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">autoInstallRedirect</span></td>
+             <td valign="top">Set to &quot;1&quot; with <span class="codeInline">detectFlashVersion</span> set to &quot;1&quot; and FusionCharts redirects to Flash Player installation page of Adobe's website. (optional - default is &quot;0&quot;)</td>
+           </tr>
+           <tr>
+             <td valign="top"><span class="codeInline">debugMode</span></td>
+             <td valign="top">Sets the map debug window on. Can take &quot;0&quot; or &quot;1&quot;. When set to &quot;1&quot;, the map shows a debug window over itself. (optional - default value is &quot;0&quot;)</td>
+           </tr>
+        </table>
+        
+        <p class="highlightBlock"><a href="API.html#clonefusioncharts">Click here to read   API Reference guide of  <span class="codeInline">cloneFusionCharts()</span> method</a></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="text"></td>
+    </tr>
+    <tr>
+      <td valign="top" class="highlightBlock"><strong>FusionCharts jQuery plugin also  supports creating maps within elements that have not yet been added to the HTML document object. Such maps  will not be visible until the newly created elements are added to the document object.</strong></td>
+    </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("FusionMaps XT and jQuery &lt; Overview|overview.html","Updating data and properties|retrieve_update.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

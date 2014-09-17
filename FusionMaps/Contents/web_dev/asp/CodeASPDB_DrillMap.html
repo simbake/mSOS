@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with ASP - Drill-down Map</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with ASP", "Plotting from database", "Drill-down map" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Drill-down Map</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">Each entity of the main US map on click drills down to <span class="codeInline">Detailed.asp</span> page passing its Internal id and map SWF file name to it. In this section we will see the code in <span class="codeInline">Detailed.asp </span>and how the page handle these requests and renders map. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">Before moving further with the process of plotting data from database, we recommend  to go through the <a href="CodeASPDXML.html">Using Data String Method</a> and <a href="CodeASPDURL.html">Using Data URL Method</a> to know the basics about FusionMaps  XT generation procedure. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+     <td valign="top" class="highlightBlock">The code discussed here is present in <span class="codeInline">Download Package &gt; Code &gt; ASP &gt; DB_Drill  </span> folder. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The code of <span class="codeInline">Detailed.asp </span>file is as follows: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p>&lt;%@ LANGUAGE=&quot;VBScript&quot; %&gt;<br />
+      &lt;!-- #include file=&quot;../Includes/DBConn.asp&quot; --&gt;<br />
+      &lt;!-- #include file=&quot;../Includes/FusionCharts.asp&quot; --&gt;<br />
+      &lt;%<br />
+      <span class="codeComment">'This page is invoked when the user clicks on the population distribution map <br />
+      'contained in Index.asp. From there, we pass the internal id of the state and the<br />
+      'SWF name of the map which represents that state.</span><br />
+      <span class="codeComment">'Here, we show more details on that particular state.</span><br />
+      %&gt;<br />
+&lt;HTML&gt;<br />
+&lt;HEAD&gt;<br />
+&lt;TITLE&gt;FusionMaps  XT - Database Example&lt;/TITLE&gt;<br />
+&lt;%<br />
+        <span class="codeComment">'You need to include the following JS file to embed the map using JavaScript<br />
+        'Embedding using JavaScripts avoids the &quot;Click to Activate...&quot; issue in Internet Explorer<br />
+        'When you make your own maps, make sure that the path to this JS file is correct.<br />
+        'Else, you will get JavaScript errors.</span><br />
+        %&gt; <br />
+&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/SCRIPT&gt;<br />
+  <br />
+&lt;/HEAD&gt;<br />
+&lt;BODY&gt;</p>
+      <p>...<br />
+        &lt;% <br />
+        <span class="codeComment">'Variables to store XML Data and<br />
+        'strXML will be used to store the entire XML document generated <br />
+        </span>dim strXML<br />
+        <br />
+        <span class="codeComment">'strXML will be used to store the entire XML document generated<br />
+        'Generate the map element<br />
+        </span>strXML = strXML &amp; &quot;&lt;map showCanvasBorder='0' borderColor='FFFFFF' connectorColor='000000' fillAlpha='80' hoverColor='FFFFFF' showBevel='0' legendBorderColor='F1f1f1' hoverColor='FFFFFF' legendPosition='bottom'&gt;&quot;<br />
+        strXML = strXML &amp; &quot;&lt;colorRange&gt;&quot;<br />
+        strXML = strXML &amp; &quot;&lt;color minValue='0' maxValue='93' displayValue='0%25 to 93%25' color='D64646' /&gt;&quot;<br />
+        strXML = strXML &amp; &quot;&lt;color minValue='93' maxValue='94' displayValue='93%25 to 94%25' color='F6BD0F' /&gt;&quot;<br />
+        strXML = strXML &amp; &quot;&lt;color minValue='94' maxValue='95' displayValue='94%25 to 95%25' color='8BBA00' /&gt;&quot;<br />
+        strXML = strXML &amp; &quot;&lt;color minValue='95' maxValue='100' displayValue='95%25 or above' color='AFD8F8' /&gt;&quot;<br />
+        strXML = strXML &amp; &quot;&lt;/colorRange&gt;&quot;<br />
+        <span class="codeComment">'Start the &lt;data&gt; element<br />
+        </span>strXML = strXML &amp; &quot;&lt;data&gt;&quot;<br />
+        <br />
+        <span class="codeComment">'Fetch all entity records<br />
+        </span>strQuery =&quot;select a.Internal_Id,a.entity_id,sum(data) as datap from fcmap_distribution a group by a.Internal_Id,a.entity_id having a.Internal_Id='&quot; &amp; request(&quot;Internal_Id&quot;)  &amp; &quot;'&quot;<br />
+        <br />
+        set rs = Server.CreateObject(&quot;ADODB.Recordset&quot;)<br />
+        rs.open strQuery,oConn<br />
+        <br />
+        <span class="codeComment">'If we've records to iterate, proceed <br />
+        </span>if rs.bof=false then <br />
+        do while not rs.eof <br />
+        <span class="codeComment">'Get details for the region<br />
+        </span>strQuery =&quot;select a.Internal_Id,a.entity_id,b.group_name,sum(data) as datap from fcmap_distribution a, fcmap_group_master b where b.group_id=a.group_id  group by a.Internal_Id ,a.entity_id, b.group_name having a.Internal_Id='&quot; &amp; rs(&quot;Internal_Id&quot;)  &amp;  &quot;' and entity_id='&quot; &amp; rs(&quot;entity_id&quot;) &amp; &quot;'&quot;<br />
+        <br />
+        set rs2 = Server.CreateObject(&quot;ADODB.Recordset&quot;)<br />
+        rs2.open strQuery,oConn<br />
+        <span class="codeComment">'We'll create our custom tool text for each entity. So, create a place holder.<br />
+        </span>tooltext=&quot;&quot; <br />
+        <span class="codeComment">'Total counter<br />
+        </span>totEmp=0 <br />
+        dim StateValue,TotalStateValue,StatePer<br />
+        StateValue=0: TotalStateValue=0: StatePer=0<br />
+        do while not rs2.eof <br />
+        <span class="codeComment">'StateValue stores the total population of each group<br />
+        </span>StateValue=cdbl(rs2(&quot;datap&quot;))<br />
+        <span class="codeComment">'TotalStateValue stores the total population of each county/entity</span><br />
+        TotalStateValue=cdbl(rs(&quot;datap&quot;))<br />
+        <span class="codeComment">'Get percentage of populaiton of each group <br />
+        </span>StatePer=round((StateValue /  TotalStateValue) * 100,2)<br />
+        <br />
+        <span class="codeComment">'Add to tool text having gorup name and group percentage <br />
+        </span>tooltext = tooltext &amp; rs2(&quot;group_name&quot;) &amp; &quot;:&quot; &amp; StatePer &amp; &quot;%25 \n&quot;<br />
+        <span class="codeComment">'If it's not unemployed group<br />
+        </span>if rs2(&quot;group_name&quot;) &lt;&gt; &quot;Unemployed&quot; then<br />
+        totEmp = totEmp + StatePer<br />
+        end if<br />
+        rs2.movenext<br />
+        loop<br />
+        <br />
+        <span class="codeComment">'Generate &lt;entity id=&quot;..&quot; value=&quot;..&quot; /&gt; <br />
+        'Also append link to Charts.asp passing all required information (from querystring) and the database<br />
+        'We also add our custom tool text<br />
+        </span>strXML = strXML &amp; &quot;&lt;entity id='&quot; &amp; rs(&quot;entity_id&quot;) &amp; &quot;' value='&quot; &amp; totEmp &amp; &quot;'  link='Charts.asp?&quot; &amp; request.ServerVariables(&quot;QUERY_STRING&quot;) &amp; &quot;%26entity_id=&quot; &amp; rs(&quot;entity_id&quot;) &amp; &quot;' tooltext='&quot; &amp; tooltext &amp; &quot;' /&gt;&quot;<br />
+        rs.movenext <br />
+        loop<br />
+        end if<br />
+        <br />
+        <span class="codeComment">'Finally, close &lt;data&gt; element<br />
+        </span>strXML = strXML &amp; &quot;&lt;/data&gt;&quot;<br />
+        strXML  = strXML &amp; &quot;&lt;styles&gt;&lt;definition&gt;&lt;style type='animation' name='animX' param='_xscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animY' param='_yscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animAlpha' param='_alpha' start='0' duration='1' /&gt;&lt;style type='shadow' name='myShadow' color='FFFFFF' distance='1' /&gt;&quot;<br />
+        strXML  = strXML &amp; &quot;&lt;/definition&gt;&lt;application&gt;&lt;apply toObject='PLOT' styles='animX,animY' /&gt;&lt;apply toObject='LABELS' styles='myShadow,animAlpha' /&gt;&lt;/application&gt;&lt;/styles&gt;&quot;<br />
+        strXML = strXML &amp; &quot;&lt;/map&gt;&quot;<br />
+        <br />
+        <span class="codeComment">'Now, render the map using renderChart function present in FusionCharts.asp (include file)<br />
+        'Also, since we're using Data String method, we provide a &quot;&quot; value for Data URL here<br />
+        </span>Call renderChart(&quot;../../Maps/&quot; &amp; Request(&quot;map&quot;), &quot;&quot;, strXML, &quot;Map1Id&quot;, &quot;750&quot;, &quot;460&quot;, false, false) <br />
+        %&gt; <br />
+        &lt;/BODY&gt;<br />
+&lt;/HTML&gt;<br />
+&lt;%<br />
+       &nbsp;&nbsp; set rs=nothing<br />
+        &nbsp;&nbsp; set rs1=nothing<br />
+        &nbsp;&nbsp; set rs2=nothing<br />
+        &nbsp;&nbsp; oConn.close<br />
+        &nbsp;&nbsp; set oConn=nothing<br />
+      %&gt;</p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Let's discuss the process flow of this page in details: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Like the previous page we include <span class="codeInline">FusionCharts.asp</span>, <span class="codeInline">DBConn.asp </span>and <span class="codeInline">FusionCharts.js</span>. </li>
+      <li>We also create a variable - <span class="codeInline">strXML</span> to store map XML.</li>
+      <li>Next we initialize root map element and add color range settings in XML.</li>
+    
+      <li>Then using SQL we sum up the total population of each entity or county (represented by <span class="codeInline">entity_id</span>) of the selected state (represented by its <span class="codeInline">Internal_Id</span>). </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">&quot;<span class="codeInline">select a.Internal_Id,a.entity_id,sum(data) as datap from fcmap_distribution a   group by a.Internal_Id,a.entity_id having a.Internal_Id='&quot; &amp;   request(&quot;Internal_Id&quot;) &amp; &quot;'&quot;</span></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Now we iterate through each entity/county of the map/state and get details like percentage of employment in Business, in Service and percentage&nbsp;Unemployed population. </li>
+      <li>To achieve this, we create another recordset <span class="codeInline">rs2</span> using the following SQL: </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">select a.Internal_Id,a.entity_id,b.group_name,sum(data) as datap from fcmap_distribution a, fcmap_group_master b where b.group_id=a.group_id  group by a.Internal_Id ,a.entity_id, b.group_name having a.Internal_Id='&quot; &amp; rs(&quot;Internal_Id&quot;)  &amp;  &quot;' and entity_id='&quot; &amp; rs(&quot;entity_id&quot;) &amp; &quot;'&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Here, <span class="codeInline">rs2</span> stores records each having total of each group - Business, Service and Unemployed - in each record. So iterating through each, we calculate percentage of employment of each group and total employed population. This we did using the following calculation: </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">do while not rs2.eof <br />
+      <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"> 'StateValue stores the total population of each group<br />
+      </span><span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"></span> StateValue=cdbl(rs2(&quot;datap&quot;))<br />
+      <span class="codeComment">&nbsp;&nbsp; 'TotalStateValue stores the total population of each county/entity</span><br />
+      <span class="codeComment">&nbsp;&nbsp;</span><span class="codeComment"></span> TotalStateValue=cdbl(rs(&quot;datap&quot;))<br />
+<span class="codeComment">&nbsp;&nbsp; 'Get percentage of populaiton of each group <br />
+</span><span class="codeComment"> &nbsp;&nbsp;</span><span class="codeComment"></span> StatePer=round((StateValue /  TotalStateValue) * 100,2)<br />
+<br />
+<span class="codeComment">&nbsp; &nbsp;'Add to tool text having gorup name and group percentage <br />
+</span><span class="codeComment">&nbsp;&nbsp; </span><span class="codeComment"></span>tooltext = tooltext &amp; rs2(&quot;group_name&quot;) &amp; &quot;:&quot; &amp; StatePer &amp; &quot;%25 \n&quot;<br />
+<span class="codeComment">&nbsp;&nbsp; <br />
+&nbsp;&nbsp;
+'If it's not unemployed group</span><br />
+&nbsp;&nbsp;
+if rs2(&quot;group_name&quot;) &lt;&gt; &quot;Unemployed&quot; then<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+totEmp = totEmp + StatePer<br />
+&nbsp;&nbsp;&nbsp;end if<br />
+&nbsp;&nbsp;
+rs2.movenext<br />
+loop</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>The above code also shows that we also  generate custom tool-text for each entity to show Percentage of population in Business, Service and Percentage of Unemployed population for each district/entity of that state's map. We create a variable - <span class="codeInline">tooltext </span>and accumulate group name and corresponding percentage of each group in it. </li>
+      <li>Moreover we also keep a total of employment percentage in <span class="codeInline">totEmp </span>variable. This we did by skipping &quot;Unemployed&quot; group. </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="textBold">Providing map data </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Let's now discuss how to provide data to each entity of the map. In the above outer iteration through each entity we also add our code to add <span class="codeInline">&lt;entity&gt;</span> element. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeComment">'Start the &lt;data&gt; element<br />
+      </span><span class="codeInline">strXML =   strXML &amp; &quot;&lt;data&gt;&quot;</span><span class="codeComment"><br />
+      <br />
+      </span><span class="codeInline">...</span><span class="codeComment"><br />
+      <br />
+      'Generate &lt;entity id=&quot;..&quot; value=&quot;..&quot; /&gt; <br />
+      'Also append link to Charts.asp passing all required information <br />
+      '(from querystring) and the database<br />
+      'We also add our custom tool text<br />
+        </span>strXML = strXML &amp; &quot;&lt;entity id='&quot; &amp; rs(&quot;entity_id&quot;) &amp; &quot;' value='&quot; &amp; totEmp &amp; &quot;' link='Charts.asp?&quot; &amp; request.ServerVariables(&quot;QUERY_STRING&quot;) &amp; &quot;%26entity_id=&quot; &amp; rs(&quot;entity_id&quot;) &amp; &quot;' tooltext='&quot; &amp; tooltext &amp; &quot;' /&gt;&quot;<br />
+    <br />
+    <span class="codeInline">...</span><span class="codeComment"><br />
+    'Finally, close &lt;data&gt; element<br />
+    </span>strXML =   strXML &amp; &quot;&lt;/data&gt;&quot;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>As entity id we use the &quot;<span class="codeInline">entity_id</span>&quot; field from the first recordset - <span class="codeInline">rs</span>.</li>
+      <li>We give total employed percent stored in totEmp as value attribute of each entity.</li>
+      <li>We set <span class="codeInline">tooltext </span>attribute from <span class="codeInline">tooltext </span>variable. </li>
+      <li>We also create  links that drill-down to another page showing details of the clicked district/entity in maps.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Thus, we create entity data. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Finally we apply style like <span class="codeInline">XScale, YScale, alpha</span> &amp; <span class="codeInline">shadow</span> styles to the map using <span class="codeInline">&lt;styles&gt;</span> element and </li>
+      <li>Render the map using <span class="codeInline">renderChart() </span>function from <span class="codeInline">FusionMas.asp</span>.</li>
+      <li><span class="codeInline">Request(&quot;map&quot;) </span>gives the map SWF name. </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeComment">'Now, render the map using renderChart function present in FusionCharts.asp (include file)<br />
+'Also, since we're using Data String method, we provide a &quot;&quot; value for Data URL here<br />
+    </span>Call renderChart(&quot;../../Maps/&quot; &amp; Request(&quot;map&quot;), &quot;&quot;, strXML, &quot;Map1Id&quot;, &quot;750&quot;, &quot;460&quot;, false, false) </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Here is the snapshot of the detailed county map:</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><img src="../../Images/CodeASPDB2.jpg" width="447" height="531" class="imageBorder" /></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("US Population Map|CodeASPDB_USMap.html","Using with PHP - Using Data String Method|CodePHPDXML.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

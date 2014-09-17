@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<title>Changing map properties </title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and JavaScript|js_overview.html",  "Changing map properties" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Changing map properties </td>
+
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+	<p class="highlightBlock"> FusionMaps XT uses FusionCharts JavaScript Class that takes care of all the products of FusionCharts Suite XT including FusionMaps XT.</p>
+      <p>The FusionCharts JavaScript Class allows you to change various settings and properties of an existing map. You can  dynamically update map's root properties (also known as &quot;map attributes&quot; which are passed through the <span class="codeInline">&lt;map&gt;</span> element in map XML data or through <span class="codeInline">map</span> property in map's JSON data) on-the-fly. This feature will come handy when you wish to change the map titles, theme colors, number formatting or scaling setup and other functional and cosmetic features of an existing map. While the API allows you to update selective properties, internally, FusionCharts re-draws the entire map. </p>
+      <p>Moreover, you can also change map's width and height at run-time.</p>
+      <p class="highlightBlock">All the map attributes are listed in the <a href="../DataFormats/XML.html"><strong>XML Sheet</strong></a> section under <strong>FusionMaps  XT Data formats.</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="setchartattribute" id="setchartattribute"></a>Change map Attribute </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+				<p>You need to use the <span class="codeInline">setChartAttribute()</span> function to set a map attribute. All you need to do is  pass the name of the attribute and its new value to this function. This function is available in all the instances of FusionCharts JavaScript Class. If you wish to change more than one map attributes at one go, you can pass multiple attributes and their respective values as an Object. Each property name of the Object will take the name of the attribute. Value of each property will take the new value of the attribute. 
+	   </p>
+				  
+				  <p>Let's take some samples to illustrate the working of the function: </p>
+				<p><strong><a name="chartcaption" id="chartcaption"></a>Change entity color </strong></p>
+      <pre class="code_container prettyprint lang-js">myMap.setChartAttribute( &quot;fillColor&quot; , &quot;A9C2CA&quot; );</pre>
+      
+
+				<p>In the above code we pass the attribute name as the first parameter and the new value&nbsp; as the second parameter. </p>
+				<p>Let us create a small sample that changes background color of an existing  map as shown in the images below:</p>
+				<table width="630" border="0" cellspacing="0" cellpadding="0" >
+         <tr>
+            <td><img src="Images/setAttribute1.jpg" width="304" height="251" class="" /></td>
+            <td><img src="Images/setAttribute2.jpg" width="296" height="238" class="" /></td>
+         </tr>
+         <tr>
+            <td align="center" class="imageCaption">The map after rendered for the first time </td>
+            <td align="center" class="imageCaption">Map with changed theme</td>
+         </tr>
+      </table>
+            
+             
+    </td>
+</tr>
+<tr><td height="30"></td></tr>
+<tr>
+<td>
+   <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Update Map data&lt;/title&gt;
+    &lt;script type="text/javascript" src=&quot;../../Maps/FusionCharts.js&quot;&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;center&gt;
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      var myMap = new FusionCharts( &quot;../../Maps/FCMap_World.swf&quot;, 
+        &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+
+	  function changeAttribute()
+	  {
+		  // get map reference
+		  var mapReference = FusionCharts( "myMapId" ); 
+		  
+		  // change palette, palette colors and set glass effect to map
+		  mapReference.<strong>setChartAttribute( { "bgColor" : "ACBF72", bgAlpha : "50" } );</strong>
+	  }
+    // --&gt;
+    &lt;/script&gt;
+
+    &lt;input type=&quot;button&quot; onClick=&quot;<strong>changeAttribute</strong>();&quot; value=&quot;Change Map Background color&quot; &gt;
+    &lt;/center&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+		 <p>In the above code, we do the following:</p>
+				<ul>
+				   <li>Create a map </li>
+		           <li>Place a button that calls the <span class="codeInline">changeAttribute()</span>function</li>
+			      <li> Get map reference using the <span class="codeInline">FusionCharts(&quot;myMapId&quot;)</span><span class="text">function</span> </li>
+			      <li>Pass an object containing new attribute values to the <span class="codeInline">setChartAttribute()</span>function. The object contains two attributes as three properties - <span class="codeInline">bgColor</span>, <span class="codeInline">bgAlpha</span>. If you have to update multiple properties of the map at once, it is recommended to use the object notation as used in this code and pass all of them at once. This eliminates the need for multiple re-draws. </li>
+	      </ul>
+		  <p class="highlightBlock"> Note: If you've to update multiple properties of the map at once, it is recommended to use the object notation as used in the above code and pass all of them at once. This eliminates the need for multiple re-draws. </p>
+				<p class="highlightBlock">In case you wish to remove an attribute from the data, you can pass <span class="codeInline">null</span> as the value of the attribute. For example, <span class="codeInline">setChartAttribute( &quot;bgAlpha&quot; , null )</span> will remove the <span class="codeInline">bgAlpha</span> attribute from the data.</p>
+				<p class="header" style="padding:5px;">Other samples</p>
+				<p><strong><a name="chartsubcaption" id="chartsubcaption"></a>Change map border color </strong></p>
+				<pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+mapReference.setChartAttribute({&quot;borderColor&quot; : &quot;353840&quot;});</pre>
+                
+
+					<p>In the above code, we pass an object as the parameter. </p>
+					<p><strong><a name="numberformattingsettings" id="numberformattingsettings"></a>Change number formatting settings</strong></p>
+      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+mapReference.setChartAttribute({formatNumberScale : 1, decimals : 2, yAxisForceDecimals : 1});</pre>
+      
+
+      <p><strong><a name="gridsettings" id="gridsettings"></a>Display legend  </strong></p>
+						<pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+mapReference.setChartAttribute({&quot;showLegend&quot;,1});</pre>
+                        
+
+      <p><strong><a name="tooltipsoff" id="tooltipsoff"></a>Set  tooltips off</strong></p>
+						<pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+mapReference.setChartAttribute(&quot;showTooltip&quot;,0);</pre>
+                        
+
+				 <p><strong><a name="shadowoff" id="shadowoff"></a>Set off shadow</strong></p>
+						<pre class="code_container prettyprint lang-js">var mapReference = FusionCharts(&quot;myMapId&quot;); 
+mapReference.setChartAttribute({&quot;showShadow&quot; : &quot;0&quot;});</pre>
+                        
+						
+				  <p class="textBold"><a name="limitations" id="limitations"></a>Limitations:</p>
+				  <p>Listed below are the few limitations of the <span class="codeInline">setChartAttribute()</span>function: </p>
+				  <ul>
+				    <li><span class="codeInline">setChartAttribure()</span> works only using <a href="js_chart_instance.html#js">FusionCharts JavaScript Object</a> reference. This function is not available if you  use <a href="js_chart_instance.html#html">FusionCharts HTML Object </a>reference.</li>
+		      <li>You can update only those attribute which are available in &lt;map&gt; element of a map's XML data or &quot;map&quot; property of a map's JSON data. </li>
+				  </ul><br />
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">Please note that the map reloads itself with changed data when new attribute is set. During re-draw the map forces <span class="codeInline">animation='0'</span>. If you wish to re-animate after property change, explicitly specify &quot;animation&quot;: &quot;1&quot; in JSON update.</td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="changedimension" id="changedimension"></a>Change map width and height</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>FusionCharts JavaScript Class allows you to resize an existing map using the <span class="codeInline">resizeTo()</span> function. You can pass the new width and height of the map in pixels or percent parameters of&nbsp;the <span class="codeInline">resizeTo()</span>function. You can also  change the width and height properties of the map object and then call the <span class="codeInline">resizeTo()</span>function. The code samples below shows how you can do this:</p>
+        <p class="highlightBlock">Please note that the <span class="codeInline">resizeTo()</span>function, <span class="codeInline">width</span> and <span class="codeInline">height </span>properties only work using <a href="js_chart_instance.html#js"> FusionCharts JavaScript object</a>. It is not available in <a href="js_chart_instance.html#html">FusionCharts HTML Object</a>.</p>
+            <p><strong><a name="resizechartpixel" id="resizechartpixel"></a>Resize map using pixel values </strong></p>
+						      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts( &quot;myMapId&quot; ); 
+mapReference.resizeTo( &quot;500&quot;, &quot;350&quot; );</pre>
+                              
+
+            <p><strong><a name="resizechartpercent" id="resizechartpercent"></a>Resize map using percent values </strong></p>
+						      <pre class="code_container prettyprint">var mapReference = FusionCharts( &quot;myMapId&quot; ); 
+mapReference.resizeTo( &quot;80%&quot;, &quot;75%&quot; );</pre>
+                             
+
+            <p><strong><a name="resizechartwh" id="resizechartwh"></a>Resize map setting width and height properties </strong></p>
+						      <pre class="code_container prettyprint lang-js">var mapReference = FusionCharts( &quot;myMapId&quot; ); 
+mapReference.width = &quot;500&quot;;
+mapReference.height = &quot;80%&quot;;
+mapReference.resizeTo();</pre>
+
+            
+				             	</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Providing & updating data|js_change_data.html","Getting data back from map|js_data_back_from_chart.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

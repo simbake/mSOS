@@ -1,0 +1,10 @@
+<map animation='0' borderColor='005879' fillColor='D7F4FF' numberSuffix=' per sq. mile' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'>
+	<data>
+		<entity id='NA' value='32' />
+		<entity id='SA' value='73' />
+		<entity id='AS' value='203' />
+		<entity id='EU' value='134' />
+		<entity id='AF' value='65' />
+		<entity id='AU' value='6.4' />
+	</data>
+</map>

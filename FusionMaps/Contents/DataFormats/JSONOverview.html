@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>FusionMaps XT and JSON &gt; Overview</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT Data Formats", "JSON Overview" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">FusionMaps XT and JSON </td>
+
+  </tr>
+  <tr> 
+    <td class="text">
+       <p>FusionMaps XT can also build maps using JSON (JavaScript Object Notation) data format. JSON is a light-weight and simple data format 
+         that is easy to read and understand. Though derived from JavaScript, the data structure is language-independent, with encoders and parsers available for virtually every programming language. </p>
+       <p class="highlightBlock"><strong>Important:</strong> To use JSON data format with FusionMaps XT, you will need to embed the maps using FusionCharts JavaScript Class (<span class="codeInline">FusionCharts.js</span>), as the maps internally still use XML. The JavaScript class provides the bridge between JSON and XML.</p>
+       <p>Here are a few basic things to know about JSON data:</p>
+       <ul>
+        <li> JSON data is text based data consisting of key and value pairs in format <span class="codeInline">key : value</span> . The values have data associated with them</li>
+        <li>You can make up your own key-value pairs like <span class="codeInline">name : &quot;John Doe&quot; </span> 
+          to store data</li>
+        <li>Every JSON data is enveloped by curly brace and key:value pairs are comma separated, like <span class="codeInline">{ firstName : &quot;John&quot; , lastName: &quot;Doe&quot; }</span><span class="codetext">. In JavaScript, this format is called an Object</span></li>
+        <li>A key can be a value within single or double-quotes  e.g. <span class="codeInline">{ &quot;name&quot; : &quot;John Doe&quot; }</span></li>
+        <li>You can use Objects as values too. For example, <span class="codeInline">{ &quot;employee&quot; : { &quot;name&quot; :  &quot;John Doe&quot; , &quot;department&quot; : &quot;Project Manager&quot; , &quot;age&quot; : 35 }</span>  <span class="codeInline"> }</span></li>
+        <li>In JSON, the basic data types are:<ul><li><span class="codeInline">Number</span> (<span class="codeInline">integer </span><span class="text">or</span><span class="codeInline"> real</span>)</li>
+              <li class="codeInline"> String<span class="text"> (double-quoted Unicode with backslash escaping) </span></li>
+              <li class="codeInline">Boolean <span class="text">(</span>1<span class="text"> or</span> 0 in FusionCharts JSON<span class="text">)</span> </li>
+              <li class="codeInline">null</li>
+              <li class="codeInline">Array <span class="text">(an ordered sequence of values of Number, String, Boolean, null, Object or Array type, comma-separated and enclosed in square brackets). For example, </span>[ &quot;employees&quot; : [ &quot;Employees&quot; , { &quot;name&quot; : &quot;John Doe&quot; } , 35 ] </li>
+              <li class="codeInline">Object <span class="text">(a collection of key:value pairs, comma-separated and enclosed in curly braces. Value can be of Number, String, Boolean, null, Object or Array type). For example,  </span>{ &quot;employee&quot; : { &quot;name&quot; : &quot;John Doe&quot; , &quot;department&quot; : &quot;Project Manager&quot; , &quot;age&quot; : 35 } } </li>
+              </ul>
+        </li>
+      </ul>
+      <p>A  map is controlled by a single JSON data source, that is,  the same source contains data to plot, functional settings and cosmetic properties. There are many properties that you can define for each map 
+        type. However, it is not necessary to define all the properties for a given 
+        map. For example, if you do not want to change the default setting of 
+        the background (color, alpha, etc.), you don't have to define any property 
+        for the background - the default values will be assumed. Thus, each map 
+      can be generated using minimal properties. </p>
+		<p>All maps in FusionMaps XT pack follow  a common JSON format. The JSON structure for FusionMaps XT closely follows the XML format for FusionMaps XT. All the XML nodes are represented as JSON Objects, where as all the attributes are set as properties. Here is a sample XML vs JSON that will help you understand it quickly.</p>
+		<table width="100%" border="0" cellspacing="0" cellpadding="5" class="table2">
+        <tr>
+          <td class="header">XML</td>
+          <td class="header">JSON</td>
+        </tr>
+        <tr>
+          <td valign="top" width="50%" >
+            <pre class="code_container prettyprint" style="height:410px;">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;
+     &lt;data&gt;
+        &lt;entity id='NA' value='515' /&gt;
+        &lt;entity id='SA' value='373' /&gt;
+        &lt;entity id='AS' value='3875' /&gt;
+        &lt;entity id='EU' value='727' /&gt;
+        &lt;entity id='AF' value='885' /&gt;
+        &lt;entity id='AU' value='32' /&gt;
+     &lt;/data&gt;
+&lt;/map&gt;</pre></td>
+          <td valign="top" width="50%" style="padding:5px;">
+            <pre class="code_container prettyprint" style="height:410px;">{
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "numbersuffix": "M",
+    "includevalueinlabels": "1",
+    "labelsepchar": ":",
+    "basefontsize": "9"
+  },
+  "data": [
+    { "id": "NA", "value": "515" },
+    { "id": "SA", "value": "373" },
+    { "id": "AS", "value": "3875" },
+    { "id": "EU", "value": "727" },
+    { "id": "AF", "value": "885" },
+    { "id": "AU", "value": "32"}
+  ]
+}</pre>
+          </td>
+        </tr>
+      </table>
+		<p>The above comparison shows that the JSON data contains:</p>
+		<ul>
+		  <li><strong>A &quot;map&quot; Object which is equivalent to the <span class="codeInline">&lt;map&gt;</span> XML Node</strong></li>
+		  <li>All the <span class="codeInline">&lt;map&gt;</span> node XML attributes are provided as properties (like &quot;borderColor&quot;:&quot;005879&quot;, &quot;numberSuffix&quot;:&quot;M&quot;)of the &quot;map&quot; object in the JSON</li>
+		  
+		  
+		  <li>Similarly &quot;data&quot; is an Array which contains a list of Objects, each representing a <span class="codeInline">&lt;data&gt;</span> XML node</li>
+		  <li><strong>The collection of all <span class="codeInline">&lt;entity&gt;</span> nodes of a data reside as &quot;entity&quot; Array in the JSON</strong></li>
+		  
+      </ul>
+      <p>Since, the JSON format has close resemblance with the XML format, we will mostly use the term XML attribute (for JSON properties) and XML element/node (for JSON Object or Array) in the whole documentation. Likewise, the XML API page of each map will be the source for JSON Object and properties. Moreover, you can always use the <a href="../../Tools/FCDataConverter/index.html" target="_blank">FusionCharts Data Format Conversion Tool</a> to convert your XML to JSON and vice-versa </p>
+    </td>
+  </tr>
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("XML Overview|XMLOverview.html","FusionMaps XT XML Sheet|XML.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

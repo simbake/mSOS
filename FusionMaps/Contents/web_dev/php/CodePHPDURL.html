@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with PHP - Using Data URL Method</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with PHP", "Using Data URL method" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Data URL Method </td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">
+          <p>In this section we will see how to render a map using <span class="codeInline">Data URL</span> method - where the XML data is created in a file other than what we use to generate the map. The page that contains the code to render the map is referred to as <span class="codeInline">Map Container Page</span> and the other one which creates the XML data is called <span class="codeInline">Data Provider Page</span>. <br />
+              <br />
+            Let's look at the codes used in Map Container Page and Data Provider Page one by one. </p>
+    </td>
+  </tr>
+  <tr>
+      <td valign="top" class="highlightBlock">Before proceeding further, we recommend to go through the section <a href="../../how_fm_work/HowFCWorks.html">How FusionMaps  XT works?</a> for a better insight. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">All code discussed here is present in <span class="codeInline">Download Package &gt; Code &gt; PHP &gt;   BasicExample</span> folder. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Map Container Page </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+        <p>Map Container Page contains the following code. You can view this code in <span class="codeInline">BasicMapsURL.php</span> file.    </p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="codeBlock code_container"><p>&lt;HTML&gt;<br />
+      &lt;HEAD&gt;<br />
+  &lt;TITLE&gt;FusionMaps  XT XML Data Show&lt;/TITLE&gt;<br />
+  &lt;?php<br />
+      <span class="codeComment">/*<br />
+      We've included ../Includes/FusionCharts.js, which contains functions<br />
+      to help us easily embed the Maps.<br />
+      */</span><br />
+      include(&quot;../Includes/FusionCharts.php&quot;);<br />
+  <br />
+      <span class="codeComment"># We've included FusionCharts.js, which helps in <br />
+      # easy map rendering.</span><br />
+      ?&gt;<br />
+  &lt;script language=&quot;javascript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;<br />
+  &lt;/HEAD&gt;<br /><br />
+  &lt;BODY&gt;<br />
+  &lt;?php<br />
+          <br />
+          <span class="codeComment"># We define a $Data URL that contains the name of the Data Provider Page.(getURLdata.php)</span><br />
+        $DataURL =&quot;getURLdata.php&quot;;<br />
+          </p>
+      <p><span class="codeComment"># Finally Rendering the World8 Maps with renderChart() php function present in FusionCharts.php (which we have already included)<br />
+        # Since we're using Data URL method, we provide a &quot;&quot; value for Data String here</span><br />
+        print renderChart(&quot;../../Maps/FCMap_World8.swf&quot;,$DataURL,&quot;&quot;,&quot;UsaMaps&quot;, 750, 460,0,0);<br />
+        <br />
+        ?&gt;<br />
+        <br />
+&lt;/BODY&gt;<br />
+&lt;/HTML&gt;</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header1">Steps involved in this code: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>We included two files <span class="codeInline">FusionCharts.php</span> and <span class="codeInline">FusionCharts.js</span> which help to embed the map easily. </li>
+        <li>Then we declared a variable, $<span class="codeInline">DataURL</span> that contains the name of the Data Provider Page.</li>
+        <li>We passed <span class="codeInline">$DataURL</span> to <span class="codeInline">renderChart()</span> function which retrieves the XML and renders the map. </li>
+    </ul></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Now, let us discuss about the Data Provider Page <span class="codeInline">getURLdata.php</span> in details. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Data Provider Page </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+        <p>Here is the code used in the Data Provider Page, which is <span class="codeInline">getURLdata.php</span> in this example. </p>
+</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p>&lt;?php<br />
+        <span class="codeComment">/*<br />
+        </span><span class="codeComment"> Declare array to store world population<br />
+        we used world map with 8 entities/continents<br />
+        this 2 dimensional array will store 8 rows of data for each continent of the map<br />
+        first column of each row will store the Internal Id of each entity on the map<br />
+        second column will store population data of each entity<br />
+        */<br />
+        <br />
+        # Store population data<br />
+        # Declare array entity<br />
+        # array data assign <br />
+        <br />
+        # Internal ID of Asia   # Asia's population<br />
+        </span>$dataArray[0][1]=&quot;01&quot;; $dataArray[0][2]=&quot;3779000000&quot;;<br />
+        $dataArray[1][1]=&quot;02&quot;; $dataArray[1][2]=&quot;727000000&quot;;<br />
+        $dataArray[2][1]=&quot;03&quot;; $dataArray[2][2]=&quot;877500000&quot;;<br />
+        $dataArray[3][1]=&quot;04&quot;; $dataArray[3][2]=&quot;421500000&quot;;<br />
+        $dataArray[4][1]=&quot;05&quot;; $dataArray[4][2]=&quot;379500000&quot;;<br />
+        $dataArray[5][1]=&quot;06&quot;; $dataArray[5][2]=&quot;80200000&quot;;<br />
+        $dataArray[6][1]=&quot;07&quot;; $dataArray[6][2]=&quot;32000000&quot;;<br />
+        $dataArray[7][1]=&quot;08&quot;; $dataArray[7][2]=&quot;179000000&quot;;<br />
+        <br />
+        $strXML=&quot;&quot;;<br />
+        <br />
+        <span class="codeComment"># Opening MAP element</span><br />
+        $strXML = &quot;&lt;map showLabels='1' includeNameInLabels='1' borderColor='FFFFFF' fillAlpha='80' showBevel='0' legendPosition='Bottom' &gt;&quot;;<br />
+        <br />
+        <span class="codeComment"># Setting Color ranges : 4 color ranges for population ranges</span><br />
+        $strXML .= &quot;&lt;colorRange&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='1' maxValue='100000000' displayValue='Population : Below 100 M' color='CC0001' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='100000000' maxValue='500000000' displayValue='Population :100 - 500 M' color='FFD33A' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='500000000' maxValue='1000000000' displayValue='Population :500 - 1000 M' color='069F06' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='1000000000' maxValue='5000000000' displayValue='Population : Above 1000 M' color='ABF456' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;/colorRange&gt;&lt;data&gt;&quot;;<br />
+        <br />
+        <span class="codeComment"># Opening data element that will store map data<br />
+        # Using Data from array for each entity </span><br />
+        for($i=0;$i&lt;=7;$i++){<br />
+        $strXML .= &quot;&lt;entity id='&quot; . $dataArray[$i][1] . &quot;' value='&quot; . $dataArray[$i][2] . &quot;' /&gt;&quot;;<br />
+        }<br />
+        <span class="codeComment"># closing  data element </span><br />
+        $strXML .= &quot;&lt;/data&gt;&quot;;<br />
+        <br />
+        <span class="codeComment"># closing map element</span><br />
+        $strXML  .= &quot;&lt;/map&gt;&quot;;<br />
+        <br />
+        print $strXML;<br />
+        ?&gt;</p>    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>(Here we have used the same  code for XML creation that we used in the <span class="codeInline">Data String</span> example.)</p> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header1">Steps involved in this code </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>We declared a 2-dimensional array, <span class="codeInline">dataArray</span>, to store the population data and Internal IDs for 8 continents. </li>
+        <li>Then we stored data in the array, the first column was used to store Internal IDs and the second column stored the population value of respective continents.</li>
+        <li>Then we declared a variable <span class="codeInline">strXML</span> to store the  XML of this map.</li>
+        <li>After declaring the variable we set 4 color range to the <span class="codeInline">strXML</span>.</li>
+        <li>Then we stored the data from the <span class="codeInline">dataArray</span> to <span class="codeInline">strXML</span> by iterating through <span class="codeInline">dataArray</span>.</li>
+        <li>Finally, we sent this data to output stream without any HTML tags. </li>
+    </ul></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>Here is the snapshot of the final map:</p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top"><span class="text"><img src="../../Images/CodeASPDURL1.jpg" width="723" height="443" class="imageBorder" /></span></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Data String Method|CodePHPDXML.html","Using Data from Form|CodePHPForm.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

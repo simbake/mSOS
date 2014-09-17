@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Creating your First Map</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Creating your First Map </td>
+
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"> <p>To get you started with FusionMaps XT, we will show you how to build a World Map to show the Population           Distribution across continents. Once completed, the map will look as under (with animation and interactivity, which is not reflected by the image below):
+  </p>
+      <p> <img src="Images/first_chart.jpg" alt="First Chart - Weekly Sales" width="678" height="392" class="imageBorder" />      </p>
+	  <p class="highlightBlock">If you're a non-technical user and want to generate maps without using any programs or scripts, you can switch to the <strong>Quick Map Configuration &gt; <a href="../how_to_use/GUI.html">Using Visual Map Builder</a></strong> page, where we explain how to visually configure and generate a data-driven map, without getting into any programming.
+      </p><p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder.</p>
+      <p>Follow the steps below to get started:</p>
+      <ol>
+        <li>Create a folder <span class="codeInline">LearningFusionMapsXT</span> on your hard-drive. We will use this folder as the root folder for building all FusionMaps XT examples. </li>
+        <li>Create a folder named <span class="codeInline">MyFirstMap</span> inside the above folder. Inside the <span class="codeInline">MyFirstMap</span> folder, create a folder named<span class="codeInline"> Maps</span>. </li>
+        <li>Copy <span class="codeInline">FCMap_World.swf</span> and <span class="codeInline">FusionCharts.HC.world.js</span> from <span class="codeInline">Download Pack &gt; Maps </span>folder to <span class="codeInline">MyFirstMap &gt;</span> <span class="codeInline">Maps</span> folder.</li>
+        <li>Copy <span class="codeInline">FusionCharts.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js</span> and <span class="codeInline">jquery.min.js</span> files from <span class="codeInline">Download Pack &gt; Maps </span> folder to <span class="codeInline">MyFirstMap &gt; Maps </span> folder.</li>
+		
+		
+        <li>Create an <span class="msg_handler"><a>XML file</a> &raquo; </span><span class="msg_body veryLightYellowBg">(Creating an XML file is as easy as creating a text file using Windows Notepad or any other text editor. It is actually a plain text file with extension - xml)</span> in <span class="codeInline">MyFirstMap</span> folder with name <span class="codeInline">Data.xml</span>.</li>
+        <li> <a name="xml" id="xml"></a>Copy the code given below (left) to <span class="codeInline">Data.xml </span>file. It is the <em>XML-lized</em> form of the Population data shown in the table (right).  <br />
+          <br />
+          <table width="800" cellpadding="0"  border="0">
+            <tr>
+              <td class="text" valign="top" width="400"><pre class="code_container prettyprint lang-xml" >&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;
+     &lt;data&gt;
+        &lt;entity id='NA' value='515' /&gt;
+        &lt;entity id='SA' value='373'/&gt;
+        &lt;entity id='AS' value='3875' /&gt;
+        &lt;entity id='EU' value='727' /&gt;
+        &lt;entity id='AF' value='885' /&gt;
+        &lt;entity id='AU' value='32' /&gt;
+     &lt;/data&gt;
+&lt;/map&gt;</pre></td>
+              <td class="textBold" align="center" valign="middle" width="400"><table border="0" cellpadding="0" cellspacing="0" bordercolor="f1f1f1" class="table" width="400" height="294"> 
+        <tr> 
+         
+          <td width="200" valign="top" class="header">
+             <strong>Continents</strong></td>
+		  <td width="200" valign="top" class="header"><strong>Population (in 
+              Millions)</strong></td>
+        </tr>
+        <tr> 
+           
+          <td width="200" valign="top" class="text">North America </td>
+		  <td width="200" valign="top" class="text">515</td>
+        </tr>
+        <tr> 
+           
+           <td width="200" valign="top" class="text">South America </td>
+		   <td width="200" valign="top" class="text">373</td>
+        </tr>
+        <tr> 
+          
+          <td width="200" valign="top" class="text">Europe </td>
+		   <td width="200" valign="top" class="text">727</td>
+        </tr>
+        <tr> 
+           
+          <td width="200" valign="top" class="text">Asia </td>
+		  <td width="200" valign="top" class="text">3875</td>
+        </tr>
+        <tr> 
+           
+          <td width="200" valign="top" class="text">Africa </td>
+		   <td width="200" valign="top" class="text">885</td>
+        </tr>
+        <tr> 
+           
+          <td width="200" valign="top" class="text">Australia </td>
+		  <td width="200" valign="top" class="text">32</td>
+        </tr>
+      </table></td>
+            </tr>
+          </table>
+        </li><br />
+        <li><a name="html" id="html"></a>Create an HTML file (using a text editor like Notepad, TextMate etc. or the Web Development software you use) in <span class="codeInline">MyFirstMap</span> folder and  copy-paste the code given below and save it as <span class="codeInline">FirstMap.html</span>:<br />
+          <br />
+          <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+	 
+    var myMap = new FusionCharts (&quot;Maps/FCMap_World.swf&quot;, &quot;MyMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+      myMap.setXMLUrl (&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;); 
+    // --&gt; 
+    &lt;/script&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+		</li>
+      </ol>
+      <br />
+      And that completes the recipe!
+      <p>Open the file <span class="codeInline">FirstMap.html</span> in a <span class="msg_handler"><a>Web Browser</a> &raquo; </span><span class="msg_body veryLightYellowBg">Internet Explorer, Firefox,  Opera or Safari (Mac/iPhone/iPad/Windows)</span> and you will see an animated World Map similar to the one below:</p>
+      <p><img src="Images/first_chart.jpg" alt="First Chart - Weekly Sales" width="678" height="392" class="imageBorder" />
+      <br />
+      <br />
+      See it <a href="../../Code/MyFirstMap/MyFirstMap.html" target="_blank">live</a>!</p>
+	   <p class="highlightBlock"><strong>Rendering the map as JavaScript: </strong>The same code can render the map as JavaScript. You just have to remove the <span class="codeInline">.swf</span> from the file name and the path of the swf file from the existing code. The modified code will look like <span class="codeInline">var myMap = new FusionCharts (&quot;World&quot;, &quot;MyMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);</span>. This code will render a JavaScript World map. Click <a href="using_pure_JS.html#force"><strong>here</strong></a> to see the complete code and a live example.</p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="how_it_works"></a>How it works? </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>Now that you've already created a map, let's get behind the scenes and understand how FusionMaps XT renders maps in a web-page. Essentially, to create a map, you need the following four  items:</p>
+      <ol>
+        <li><strong>Map SWF files:</strong> Each map in FusionMaps  XT is an SWF file that creates a  specific type of map. So, if you want to create World Map, you'll need the SWF file called <span class="codeInline">FCMap_World.swf</span>. Similarly for creating an Asia Map you'll need <span class="codeInline">FCMap_Asia.swf</span>. For the complete list of map SWF  files, refer to the <a href="../introduction/MapsList.html">List of Maps</a>. The map SWF  file is loaded and rendered using Adobe Flash player plug-in that is installed on your machine (more specifically, browser). </li>
+        <li><strong>Map data:</strong> FusionMaps XT data file contains  both data for plotting and cosmetic/functional configuration for the map. FusionMaps XT accepts data in  <a href="../DataFormats/XMLOverview.html">XML</a> and <a href="../DataFormats/JSONOverview.html">JSON</a> format. The XML or JSON data document can either be produced manually or generated using server-side scripts that  are connected to your databases or live data sources. In the above example,  we have used a hand-coded  XML file for plotting the map. </li>
+        <li><strong>JavaScript class files:</strong> These are also present in the <span class="codeInline">Maps</span> folder in the root of the <span class="codeInline">Download Package</span>. The JavaScript class files help in rendering maps.</li>
+        <li><strong>HTML wrapper file (or a dynamic web page):</strong> The HTML wrapper file is where the maps are rendered. This file contains the code which integrates all other components (discussed above) to produce the maps.</li>
+      </ol>
+      <p class="highlightBlock"><strong>What happens if Flash player is not available?</strong><br />
+        <br/>
+        In case Flash Player is not available on certain devices (like iPad/iPhone), the FusionCharts JavaScript library automatically renders the same chart using JavaScript. For iPhone/iPad you do not need to modify anything to enable this. However, for other browsers without Flash Player or if you wish to use pure JavaScript-only maps, you can also <a href="using_pure_JS.html#force">explicitly render JavaScript maps</a>. </p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="understanding_data"></a>Explanation of  map data</td>
+  </tr>
+  <tr>
+    <td valign="top"  class="text"><p>Let&apos;s take a closer look at the data and its XML form:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="800"  cellpadding="0"  border="0">
+        <tr>
+          <td width="400"><pre class="code_container prettyprint lang-xml">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;
+     &lt;data&gt;
+        &lt;entity id='NA' value='515' /&gt;
+        &lt;entity id='SA' value='373'/&gt;
+        &lt;entity id='AS' value='3875' /&gt;
+        &lt;entity id='EU' value='727' /&gt;
+        &lt;entity id='AF' value='885' /&gt;
+        &lt;entity id='AU' value='32' /&gt;
+     &lt;/data&gt;
+&lt;/map&gt;</pre></td>
+          <td class="textBold" align="center" valign="middle" width="400"><table border="0" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table" width="400" height="294"> 
+        <tr> 
+         
+          <td width="200" valign="top" class="header">
+             <strong>Continents</strong></td>
+		  <td width="200" valign="top" class="header"><strong>Population (in 
+              Millions)</strong></td>
+        </tr>
+        <tr> 
+          
+          <td width="200" valign="top" class="text">North America </td>
+		  <td width="200" valign="top" class="text">515</td>
+        </tr>
+        <tr> 
+           
+           <td width="200" valign="top" class="text">South America </td>
+		   <td width="200" valign="top" class="text">373</td>
+        </tr>
+        <tr> 
+           
+          <td width="200" valign="top" class="text">Europe </td>
+		   <td width="200" valign="top" class="text">727</td>
+        </tr>
+        <tr> 
+           
+          <td width="200" valign="top" class="text">Asia </td>
+		  <td width="200" valign="top" class="text">3875</td>
+        </tr>
+        <tr> 
+          
+          <td width="200" valign="top" class="text">Africa </td>
+		   <td width="200" valign="top" class="text">885</td>
+        </tr>
+        <tr> 
+           
+          <td width="200" valign="top" class="text">Australia </td>
+		  <td width="200" valign="top" class="text">32</td>
+        </tr>
+      </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Basically, what we have done above can be listed in the following points:</p>
+      <ul>
+        <li>We have created the root <span class="codeInline">&lt;map&gt;</span> element.</li>
+        <li> A number of cosmetic attributes like border color of the map, fill color, number suffix (to be added at the end of every number), a flag to include data values in map labels, the label separator character and font size attributes are used.</li>
+        <li>Immediately inside the <span class="codeInline">&lt;map&gt;</span> element, we've defined <span class="codeInline">&lt;data&gt;</span>           element, whose child nodes contain the actual data for each continent.</li>
+        <li>To define data for each continent on the map, an <span class="codeInline">&lt;entity&gt;</span> element is added as <span class="codeInline">&lt;entity id='NA' value='515' /&gt;</span>.</li>
+        <li>The <span class="codeInline">id</span> here corresponds to the internal Id of the continent or entity. <p class="highlightBlock">Internal ID  helps in identifying each part of a map uniquely. Each map in FusionMaps  XT Pack is divided into a number of entities, representing a unit zone on the map. For this World map, each continent is an entity. Each entity in a map has an internal Id, using which, data (like tool tip, value, color etc.) related to that entity is passed. The internal Ids (along with name and short name) of all the entities of each map are listed in the section <a href="../MapSS/WorldMap.html"><strong>Map Specification Sheet</strong></a> as reference).</p> 
+            </li>
+        <li><span class="codeInline">value</span> denotes the  population which we want to show on the map.</li>
+      </ul>
+	  <p class="highlightBlock">A Map Specification sheet provides a complete list of the <strong>Internal Id</strong>, <strong>Short Names</strong> and the <strong>Long Names</strong> associated with a particular map. Click <a href="#specification">here</a> to view the map specification sheet of the world map. </p>  
+        Just as a measure to check if the XML document is structurally valid, open the file in your browser. You should be able to see the XML data document in a formatted way, without any errors. 
+      
+      <p class="highlightBlock">Note that you can also provide map data in JSON format. You can view an example of JSON data <a href="JSON_data.html">here</a>. Or, to learn more about FusionMaps  XT JSON data format, please go through <strong>FusionMaps XT data formats &gt; JSON</strong> section. </p>
+</td>
+  </tr>
+  <tr>
+    <td class="header"><a name="specification"></a>Map Specification Sheet for our World Map </td>
+  </tr>
+  <tr> 
+    <td><p class="text">The <span class="codeInline">Entities</span> table for the world Map is reproduced below 
+        (from the World Map Specification Sheet). </p></td>
+  </tr>
+  
+  <tr> 
+    <td class="highlightBlock">An entity for a map is the smallest item that we're dealing 
+        with on the map. For example, in a World Map showing continents, each 
+        continent is an entity. In a continent map showing countries, each country 
+        is referred to as an entity. Similarly, if a country map is showing states, 
+        each state is referred to as an entity.</td>
+  </tr>
+ <tr>
+ <td height="20"></td></tr>
+  <tr> 
+    <td><table border="0" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="197" valign="top" class="header"> <strong>Internal Id</strong></td>
+          <td width="197" valign="top" class="header">
+             <strong>Entity Short Name</strong></td>
+          <td width="197" valign="top" class="header">
+             <strong>Entity Long Name</strong></td>
+        </tr>
+        <tr> 
+           <td width="197" valign="top" class="text">NA</td>
+           <td width="197" valign="top" class="text">NA</td>
+          <td width="197" valign="top" class="text">North America </td>
+        </tr>
+        <tr> 
+           <td width="197" valign="top" class="text">SA</td>
+           <td width="197" valign="top" class="text">SA</td>
+           <td width="197" valign="top" class="text">South America </td>
+        </tr>
+        <tr> 
+           <td width="197" valign="top" class="text">EU</td>
+           <td width="197" valign="top" class="text">EU</td>
+          <td width="197" valign="top" class="text">Europe </td>
+        </tr>
+        <tr> 
+           <td width="197" valign="top" class="text">AS</td>
+           <td width="197" valign="top" class="text">AS</td>
+          <td width="197" valign="top" class="text">Asia </td>
+        </tr>
+        <tr> 
+           <td width="197" valign="top" class="text">AF</td>
+           <td width="197" valign="top" class="text">AF</td>
+          <td width="197" valign="top" class="text">Africa </td>
+        </tr>
+        <tr> 
+           <td width="197" valign="top" class="text">AU</td>
+           <td width="197" valign="top" class="text">AU</td>
+          <td width="197" valign="top" class="text">Australia </td>
+        </tr>
+      </table></td>
+  </tr>
+  
+  <tr> 
+    <td><p class="text">As you can see above, each entity on the map has three 
+        properties:</p>
+      <ul>
+        <li><strong class="codeInline">Internal Id (Entity Id)</strong> 
+          through which we refer to that entity in the <span class="codeInline">XML </span>data document.</li>
+        <li><strong class="codeInline">Short Name</strong> of the 
+          entity which gets displayed on the map.</li>
+        <li><strong class="codeInline">Full Name</strong> of the 
+          entity, which by default is shown as tool tip for the entity. You can 
+          also opt to show full name on the map instead of short name.</li>
+      </ul></td>
+  </tr>
+  <tr> 
+    <td><p class="highlightBlock">You can define your own<span class="codeInline"> IDs</span>, 
+        short names and long names for each entity. To know more click <a href="../how_to_use/CustomID.html">here</a>. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="understanding_html"></a>Explanation of HTML &amp; JavaScript code used to embed the map </td>
+  </tr>
+  <tr>
+    <td valign="top"><p>In the HTML wrapper file (or your web page), the shots are called by the included JavaScript class file <span class="codeInline">FusionCharts.js</span>. Let&apos;s take a second look at the HTML code to gain an understanding of how it works.</p>
+      <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+      var myMap = new FusionCharts (&quot;Maps/FCMap_World.swf&quot;, &quot;MyMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+      myMap.setXMLUrl (&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;); 
+    // --&gt; 
+    &lt;/script&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>In the very beginning, the JavaScript class file <span class="codeInline">FusionCharts.js</span> is included into the HTML using the code shown below. The <span class="codeInline">FusionCharts.js</span> is smart enough to automatically load the other required JavaScript files - <span class="codeInline">jquery.min.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js </span> and <span class="codeInline">FusionCharts.HC.world.js</span> on-demand.</p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" >
+      <pre class="code_container prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;Maps/<strong>FusionCharts.js</strong>&quot;&gt;&lt;/script&gt;</pre>
+      <p class="highlightBlock"><strong>Existing users</strong>: You might be wondering what happened to <span class="codeInline">FusionMaps.js</span> which you have been using in your application. Starting FusionMaps XT, use of <span class="codeInline">FusionMaps.js</span> is deprecated. Use <span class="codeInline">FusionCharts.js</span> instead. But, although deprecated, to ease your upgrade process to FusionMaps XT, we have provided a new <span class="codeInline">FusionMaps.js </span>in FusionMaps XT pack's &gt; <span class="codeInline">Maps</span> folder. This <span class="codeInline">FusionMaps.js</span> will help in loading <span class="codeInline">FusionCharts.js</span> (located in the same folder as <span class="codeInline">FusionMaps.js</span>) and all related JavaScript files in your application. <span style="margin-top:0;">However, we recommend that you  replace all  references to <span class="codeInline">FusionMaps.js</span> to <span class="codeInline">FusionCharts.js</span> in your code. </span></p>
+    </td>
+  </tr>
+  	
+  <tr>
+    <td valign="top" class="text">Next, an HTML DIV with id <span class="codeInline">mapContainer </span> is created in the  body of the page. </td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="text"><pre class="code_container prettyprint">&lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Now comes the essential part, which  instantiates the map. This is called the <span class="codeInline">map constructor</span>. <br />
+      </p></td>
+  </tr>
+  <tr>
+<td valign="top" class="text"><pre class="code_container prettyprint">var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; ); </pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>Here, <span class="codeInline">myMap</span> is the name of the JavaScript object (variable) that contains reference to the map.</p>
+      <p>The following parameters are passed on to the <span class="codeInline">myMap</span> object:</p>
+      <ol>
+        <li>URL of SWF file of the map type that we intend to use. <span class="codeInline">Maps/FCMap_World.swf</span> in this example as <span class="codeInline">FCMap_World.swf</span> is the name of SWF and it is contained in a relative path inside <span class="codeInline">Maps</span> folder. </li>
+        <li>ID of the map. You can give any ID for the map. Just make sure 
+          that if you're using multiple maps in the same HTML page, each map 
+          should have a unique ID. In our example above, we provide &quot;<span class="codeInline">myMapId</span>&quot; as the ID. 
+          <p class="highlightBlock">To provide cross-browser compatibility, we recommend you not to start the ID with a numerical value, nor use space as part of the ID. </p></li>
+        <li>Required width and height of the map. When providing in pixels, just give the numeric value (without px). </li>
+        <li><span class="codeInline">debugMode </span>parameter. The <span class="codeInline">debugMode</span> is set to &quot;0&quot; (off) normally except for when debugging is required. This has been explained in detail in the <a href="../javascript/API/methods.html#chartparams">Chart Parameters</a> section on the FusionCharts JavaScript API - Functions page.</li>
+      </ol>
+       <p class="highlightBlock"><strong>Existing users</strong>: You might be wondering what happened to the sixth parameter - <span class="codeInline">registerWithJS</span> that comes after <span class="codeInline">debugMode</span>. Starting FusionMaps XT, use of <span class="codeInline">registerWithJS</span> is deprecated. It is always set to 1 internally. Although deprecated, you can continue to use this parameter in your existing code without any problem.</p>
+       <p>The code below provides the reference (relative URL) of map data file (XML in this case). The path of the XML file is set using <span class="codeInline">setXMLUrl()</span> function as shown below:</p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="code_container prettyprint">myMap.setXMLUrl( &quot;Data.xml&quot; );</pre></td>
+  </tr>
+  <tr>
+    <td>
+      <p class="highlightBlock"> The code sample above uses URL of static XML file. Ideally, you would <strong>not</strong> use a physical data file. Instead you will have  	your own server side scripts to use dynamic data and build XML. You can always provide the URL of the script to virtually relay the dynamically built data.</p>
+      <p>Finally, the <span class="codeInline">render()</span> method is called and the ID of HTML DIV, where the map is meant to be rendered, is provided. This line of code  renders the desired map inside the DIV.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="code_container prettyprint">myMap.render( &quot;mapContainer&quot; );</pre></td>
+  </tr>
+  <tr>
+    <td height="23" class="text"><p class="highlightBlock"><strong>Important Note</strong>: The map ID as well as the ID of the DIV element (or any HTML element where a map is meant to be rendered) should be unique. Also, if you are using global variables to store the JavaScript references of maps, make sure that the name of each such variable is unique. The map ID, the HTML element ID and the JavaScript variable name should not conflict with each other.</p>
+      <p class="highlightBlock"><strong>Existing users</strong>: You might be wondering what happened to the functions like <span class="codeInline">setDataURL()</span>which you have already been using in your application. Yes - although deprecated, it will continue to work without any problem.</p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="shortcut_render"></a>Compact rendering method</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>Since FusionMaps XT, alternate methods of declaring and rendering a map using JavaScript are also available.</p>
+      <p>You can use a compact single-line of JavaScript (instead of the three lines we saw in the above sample) to render a map as shown below:</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionCharts JavaScript Class&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+<strong>        var myMap = FusionCharts.render( &quot;Maps/FCMap_World.swf&quot;, 
+            &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;mapContainer&quot;, &quot;Data.xml&quot; );
+</strong>      
+	   // --&gt; 
+	  &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+      <p>See it <a href="../../Code/MyFirstMap/MyFirstMapCompactRendering.html" target="_blank">live</a>!</p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The above code uses the static <span class="codeInline">render</span> function of the global <span class="codeInline">FusionCharts</span> object. This function takes all the required parameters to render a map like the map SWF , map ID, width &amp; height of map, div ID where map will be rendered and reference to map data.
+      <p>There are additional ways of rendering a map as well, which have been explained in <strong><a href="../javascript/js_create_chart.html">Creating maps</a> </strong>page in &quot;FusionMaps  XT and JavaScript&quot; section.</p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="trouble"></a>Troubleshooting</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text"><p>If for any reason, you do not see a map, run through the following checks:</p>
+        <p>If you see an endless loading progress bar in your browser, or if the 
+           right click menu (right click at the place where the map is supposed 
+           to be) shows &quot;<strong>Movie not loaded</strong>&quot;, 
+         check the following:</p>
+        <ul>
+           <li>Have you pasted the map SWF (<span class="codeInline">FCMap_World.swf</span>), map JavaScript file (<span class="codeInline">FusionCharts.HC.world.js</span>) and the other JavaScript files  (<span class="codeInline">FusionCharts.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js</span> and <span class="codeInline">jquery.min.js</span>) in the <span class="codeInline">Maps</span><span class="text"> folder of </span><span class="codeInline">MyFirstMap</span> folder?</li>
+           <li>Have you provided the SWF path properly in your<span class="codeInline"> FirstMap.html</span> page?</li>
+       </ul>
+        <p>If you get an &quot;<strong>Error in Loading Data</strong>.&quot; message, check the following:</p>
+        <ul>
+           
+           <li>Whether <span class="codeInline">Data.xml</span> is in the same folder 
+            as the <span class="codeInline">FirstMap.html</span> HTML file?</li>
+           <li>Whether <span class="codeInline">Data.xml</span> is named as <span class="codeInline">Data.xml</span> and not <span class="codeInline">Data.xml.txt</span> (as many basic 
+            text editors append .txt after the file name)</li>
+           <li>Whether your map files (SWF and JavaScript) and XML/JSON data are on the same sub-domain. Cross domain data loading is not allowed. </li>
+       </ul>
+        <p>If you get an &quot;<strong>Invalid Data.</strong>&quot; message, it means that the 
+         XML/JSON data is malformed. Check it again for common errors like:</p>
+        <ul>
+           <li>Presence of duplicate attributes in the XML/JSON.</li>
+           <li>Difference in case of tags. <span class="codeInline">&lt;map&gt;</span> should end with <span class="codeInline">&lt;/map&gt;</span> and <strong>not</strong> <span class="codeInline">&lt;/Map&gt;</span> or<span class="codeInline"> &lt;/MAP&gt;</span>.</li>
+           <li>Missing opening/closing quotation marks for any attributes. e.g., <span class="codeInline">&lt;map borderColor=005879'</span>should 
+            be <span class="codeInline">&lt;map borderColor='005879'</span>.</li>
+           <li>Missing closing tag for any element.</li>
+       </ul>
+        <p>To check whether your final XML is ok, open it in your browser and you'll see the error.</p>
+        <p>If  only the text &quot;<strong>FusionMaps  XT will load here!</strong>&quot; is displayed, check with the following:</p>
+        <ul>
+           <li>Have you pasted the <span class="codeInline">FusionCharts.js</span>, <span class="codeInline">jquery.min.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js</span>and <span class="codeInline">FusionCharts.HC.world.js</span> files in <span class="codeInline">Maps</span> folder of <span class="codeInline">MyFirstMap</span> folder?</li>
+           <li>Have you included and provided the path of <span class="codeInline">FusionCharts.js</span> properly in your <span class="codeInline">FirstMap.html</span> page?</li>
+           <li>Are there any JavaScript syntax or runtime errors that might have halted the execution of FusionCharts APIs?</li>
+           <li>Have you given unique names for the map's JavaScript variable, map's ID&nbsp;and the HMTL DIV's ID?
+		   <p class="highlightBlock">To provide cross-browser compatibility, we recommend you not to start the ID with a numerical value, nor use space as part of the ID. </p>
+		   </li>
+      </ul></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Upgrading to XT|../introduction/UpgradingXT.html","Creating maps in JavaScript|using_pure_JS.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

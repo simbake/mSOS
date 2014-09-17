@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>
+	FusionMaps Client-side Export Sample
+	</title>
+	<script language="JavaScript" src="../../../Maps/FusionCharts.js"></script>
+	<script language="JavaScript" src="../../../Maps/FusionChartsExportComponent.js"></script>
+	<script type="text/javascript">
+		//This event is raised when the map has finished capture phase and passed the data to 
+		//Export Component for further processing
+		function FC_ExportReady(DOMId){
+			alert("The map with DOM ID as " + DOMId + " has finished capture mode. It's now ready to be downloaded");
+		}		
+
+		//This event is raised when the map has been successfully saved on user's disk (post click of button)
+		function myFN(objRtn){
+			if (objRtn.statusCode=="1"){
+				alert("The map was successfully saved. Its DOM Id is " + objRtn.DOMId);
+			} else{
+				alert("There was an error saving the map. Error message: " + objRtn.statusMessage + ". Its DOM Id is " + objRtn.DOMId);
+			}
+		}
+		
+	</script>
+</head>
+
+<body bgcolor="#ffffff">
+
+<div id="mapdiv" align="center">The map will appear within this DIV. This text will be replaced by the map.</div>
+   <script type="text/javascript">
+   	//Create the map.
+	//Note that you necessarily need to set the registerWithJS attribute as 1, as JavaScript is used for client-
+	//side communication between the map and FusionMaps Exporter Component.
+	var myMap = new FusionCharts("../../../Maps/FCMap_World.swf", "myMapId", "500", "266", "0", "1");
+	myMap.setXMLUrl("Callback.xml");
+	myMap.render("mapdiv");
+   </script>
+
+	<!-- We also create a DIV to contain the FusionMaps client-side exporter component -->
+	<div id="fcexpDiv" align="center">FusionMaps Export Handler Component</div>
+	<script type="text/javascript">
+    //Render the export component in this
+	//Note: fcExporter1 is the DOM ID of the DIV and should be specified as value of exportHandler
+	//attribute of map XML.
+    var myExportComponent = new FusionChartsExportObject("fcExporter1", "../../../Maps/FCExporter.swf");
+
+    //Render the exporter SWF in our DIV fcexpDiv
+    myExportComponent.Render("fcexpDiv");
+  </script>
+
+</body>
+</html>

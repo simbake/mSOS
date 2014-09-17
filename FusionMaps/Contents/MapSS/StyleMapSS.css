@@ -1,0 +1,66 @@
+.pageHeader{
+	COLOR: #333333;
+	FONT-FAMILY: Verdana;
+	FONT-SIZE: 12pt;
+	font-weight:bold;
+}
+.tableGreyBorder
+{
+	BORDER: 1px solid #f1f1f1;
+}
+.trGreyBg
+{
+	BACKGROUND: #F1f1f1;
+}
+.trDarkGreyBg
+{
+	BACKGROUND: #999999;
+}
+td, .text
+{
+	COLOR: #333333;
+	FONT-FAMILY: Verdana;
+	FONT-SIZE: 8pt;
+	
+}
+.textbold
+{
+	COLOR: #333333;
+	FONT-FAMILY: Verdana;
+	FONT-SIZE: 8pt;
+	FONT-WEIGHT: bold;
+}
+.textError
+{
+	COLOR: #FF0000;
+	FONT-FAMILY: Verdana;
+	FONT-SIZE: 8pt;	
+}
+
+table, table.table {
+	border-collapse: collapse;
+}
+table, table.table, 
+table th, table.table th, 
+table td, table.table td {
+	border: 1px solid #e3e2e2;
+}
+table td, 
+table.table td {
+	font: normal 10pt/14pt "Trebuchet MS",Helvetica,sans-serif;
+	color: #333333;
+	padding: 5px;
+}
+
+table td strong
+table.table td strong {
+	font-weight: bold;
+}
+
+table td.header
+table.table td.header {
+	background: #f1f1f6 !important;
+	font: bold 10pt/17pt "Trebuchet MS",Helvetica,sans-serif;
+	font-weight: bold !important;
+	color: #5d5d5d !important;
+}

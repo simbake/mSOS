@@ -1,0 +1,700 @@
+@charset "utf-8";
+/* CSS Document */
+html, body{
+    height:100%;
+}
+body {
+    overflow:hidden;    
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    
+
+}
+ul, li, ol, img {
+    border: none;
+    padding: 0;
+    margin: 0 0 0 10px;
+}
+a:focus {
+    outline: none;
+}
+
+
+.clear {
+    clear: both;
+    padding: 0;
+    margin: 0;
+    font-size: 0px;
+    line-height: 0px;
+    height:0px;
+}
+
+#wrapper
+{
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    background-color:#FFF;
+    overflow: hidden;
+}
+
+#wrapper #header, #wrapper #body{
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    overflow: hidden;
+}
+
+#wrapper #header{
+    background-color:transparent;
+    height:50px;
+    overflow: hidden;
+}
+#wrapper #body{
+    background-color:transparent;
+    min-width: 780px;
+    bottom:0;
+    right:0;
+    overflow: hidden;
+}
+
+#wrapper #body #right, 
+#wrapper #body #left,
+#wrapper #body #middle{
+    height:100%;
+}
+
+
+#wrapper #body #middle{
+    position:absolute;
+    left: -10px;
+    right: -10px;
+    
+}
+#wrapper #body #left{
+    position:absolute;
+    left: -10px;
+    width:25%;
+    max-width: 310px;
+
+}
+
+.ie6 #wrapper #body #left,
+.ie7 #wrapper #body #left,
+.ie8 #wrapper #body #left{
+    left: -16px;
+}
+
+#wrapper #body #right{
+    position:absolute;
+    right: -10px;
+    width:20%;
+    max-width: 220px;
+    
+}
+
+.ie6 #wrapper #body #right,
+.ie8 #wrapper #body #right{
+    position:absolute;
+    right: -10px;
+    width: 10%;
+    min-width: 50px;
+    max-width: 220px;
+}
+
+
+#wrapper #body #content{
+    position:relative;
+    margin-top:50px;
+    height:100%;
+}
+
+.ie6 #wrapper #body #content,
+.ie7 #wrapper #body #content {
+   height: expression((this.parentNode.clientHeight -60) + "px");
+}
+
+
+#wrapper #body #content #container
+{
+    position:absolute;
+    top:5px;
+    left:0;
+    right:0;
+    bottom:10px;
+    padding:15px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    box-shadow:1px 1px 5px #999;
+    -webkit-box-shadow:1px 1px 5px #999;
+    -moz-box-shadow:1px 1px 5px #999;
+
+    background-color:#FFF;
+    overflow:hidden;
+
+}
+
+.ie6 #wrapper #body #content #container,
+.ie7 #wrapper #body #content #container,
+.ie8 #wrapper #body #content #container,
+.ie9c #wrapper #body #content #container{
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=5, Direction=0),
+    progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=5, Direction=90),
+    progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=5, Direction=180),
+    progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=5, Direction=270);
+}
+
+
+
+
+#wrapper #body #left #content #container
+{
+    left:10px;
+    -webkit-border-radius: 0 10px 10px 0;
+    -moz-border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
+}
+
+#wrapper #body #right #content #container
+{
+    right:10px;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
+
+}
+
+#wrapper #body #left #content #swap{
+    position:absolute;
+    bottom:0;
+    top:0;	
+    width:20px;
+    padding:20px 0;
+    cursor:pointer;
+}
+
+
+#wrapper #body #right #content #swap{
+    position:absolute;
+    bottom:0;
+    top:0;	
+    width:20px;
+    padding:20px 0;
+    cursor:pointer;
+
+}
+#wrapper #body #left #content #swap.goin {
+    background: transparent url('../img/swapleft.png') no-repeat center center;
+    right:-3px;
+}
+
+#wrapper #body #left #content #swap.goout {
+    background: transparent url('../img/swapleftout.png') no-repeat center center; 
+    right:-3px;
+}
+#wrapper #body #right #content #swap.goin {
+    background: transparent url('../img/swapright.png') no-repeat center center; 
+    left:-3px;
+}
+#wrapper #body #right #content #swap.goout {
+    background: transparent url('../img/swaprightout.png') no-repeat center center;
+    left:-3px;
+}
+
+.ie6 #wrapper #body #left #content #swap.goin,
+.ie7 #wrapper #body #left #content #swap.goin,
+.ie8 #wrapper #body #left #content #swap.goin,
+.ie6 #wrapper #body #left #content #swap.goout,
+.ie7 #wrapper #body #left #content #swap.goout,
+.ie8 #wrapper #body #left #content #swap.goout {
+    right:-9px;
+}
+
+.ie6 #wrapper #body #right #content #swap.goin,
+.ie7 #wrapper #body #right #content #swap.goin,
+.ie8 #wrapper #body #right #content #swap.goin,
+.ie6 #wrapper #body #right #content #swap.goout,
+.ie7 #wrapper #body #right #content #swap.goout,
+.ie8 #wrapper #body #right #content #swap.goout {
+    left:0;
+}
+
+
+#mapContainer, #mapDataContainer, #mapList, #configbody{
+    position:absolute;
+    top:30px;
+    bottom:15px;
+
+}
+
+#mapDetails, 
+#mapListHeading,
+#configHeading
+{
+    position:absolute;
+    top:10px;
+    right:10px;
+    left:10px;
+    height:20px;
+    font-size:80%;
+    overflow: hidden;
+}
+
+#configHeading {
+    left:20px;
+}
+
+#hoverDetails{
+    position:absolute;
+    top:10px;
+    height:20px;
+    text-align: right;
+    overflow: hidden;
+    font-size:70%;
+}
+
+
+#mapList {
+    left:10px;
+    right:20px;
+    overflow:hidden;
+}
+#configbody {
+    right:10px;
+    left:20px;
+    overflow:auto;
+    font-size:80%;
+}
+
+
+#mapContainer, #mapDataContainer,
+#mapDetails, 
+#hoverDetails {
+    position:absolute;
+    left:15px;
+    right:15px;
+
+}
+
+#hoverDetails {
+    right:30px;
+    padding-top:3px;
+}
+
+
+#fullscreenbtn {
+  position:absolute;
+  right: 10px;
+  top: 6px;
+  width:15px;  
+  height:20px;
+}
+
+.gofull {
+    cursor: pointer;
+    opacity:.4;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+    background:url('../img/tofullscreenbtn.gif') no-repeat center center;
+    display:inline-block;
+    width:14px;
+    height:20px; 
+}
+.outfull {
+    cursor: pointer;
+    opacity:.5;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+    background:url('../img/fromfullscreenbtn.gif') no-repeat center center;
+    display:inline-block;
+    width:14px;
+    height:20px;   
+}
+.gofull:hover,
+.outfull:hover{
+   opacity:1;
+   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+   
+}
+ 
+#mapDataContainer {
+    background-color: #fff;
+    opacity:.9;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=90);
+    display:none;
+}
+
+#mapDataContainer #mapDataContainerContent {
+    width: 100%;
+    height:100%;
+    
+}
+
+#mapDataContainer #mapDataContainerContent div#titlebar {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    padding-left:10px;
+    line-height:30px;
+}
+
+#mapDataContainer #mapDataContainerContent div#titlebar #close {
+    position: absolute;
+    top:0;
+    right:8px;
+    width: 14px;
+    height:30px;
+    cursor: pointer;
+    background: url('../img/close.gif') no-repeat right center;
+}
+
+#mapDataContainer #mapDataContainerContent #mapData {
+   position: absolute;
+    top:31px;
+    right:0;
+    left:0;
+    bottom:0; 
+    
+    overflow:auto;
+}
+
+#mapDataContainer #mapDataContainerContent #mapData pre{
+    margin: 5px !important;
+    white-space: normal !important;
+    border:none !important;
+    position: absolute;
+    top:0;  
+    right:0;
+    left:0;
+
+}
+
+#mapDataContainer #mapDataContainerContent #mapData table {
+    margin:0 0 0 -1px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#mapDataContainer #mapDataContainerContent #mapData table td {
+    margin:0;
+    padding: 5px;   
+}
+
+#mapDataContainer #mapDataContainerContent #mapData table thead td {
+    font-size: 80%;
+    
+}
+
+#mapDataContainer #mapDataContainerContent #mapData table tbody td {
+    font-size: 75%;
+}
+
+/******* header ***********/
+#header #content #container{
+	background:url('../img/fusionmaps-xt.png') no-repeat -20px 5px;
+}
+#header #content #container span.title {
+    font-size:16px;
+    line-height: 58px;
+    padding-left: 190px;
+	
+	
+}
+
+
+
+/********************
+map list css
+*/
+
+.closedfolder{
+    background:url('../img/plus.gif') no-repeat 15px 8px;
+}
+
+.openedfolder{
+    background:url('../img/minus.gif') no-repeat 15px 8px;
+}
+
+.rootmaplist{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.rootmaplist #searchthismap{
+    width: 30%;
+    min-width: 100px;
+    max-width: 280px;
+    height: 15px;
+    line-height: 15px;
+    padding-left: 15px;
+    font-size: 11px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.rootmaplist div.rootecall {
+    position: absolute;
+    top: 3px;
+    right:3px;
+    width: 25px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.srootmaplist{
+
+    cursor: pointer;
+}
+
+
+.accordiantitle{
+    /*cursor: pointer;*/
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    
+    height: 30px;
+    
+    border-bottom: 1px solid #FFF;    
+    font-size:100%;
+    line-height: 180%;
+    padding-left: 5px;
+
+}
+
+.accordianbody{
+
+}
+.accordianitems {
+    position: absolute;
+    top:31px;
+    left:0;
+    right:0;
+    bottom:0;
+    overflow: auto; 
+}
+
+.maplist{
+
+}
+.mcontainer{
+
+}
+.saccordianbody {
+
+}
+.saccordianitems {
+    display: none;
+}
+.saccordiantitle {
+    font-size:95%;
+    line-height: 150%;
+    padding-left: 10px;
+    border-bottom: 1px solid #FFF;
+
+}
+.mgroupbody {
+    
+}
+.mgrouptitle {
+    cursor: pointer;
+    
+    font-size:80%;
+    line-height: 190%;
+    padding-left: 28px;
+}
+
+
+.maplistitems {
+    display: none;
+}
+.maplistitem {
+    font-size:75%;
+    padding-left: 35px;
+    line-height: 150%;
+    background:url('../img/right-arrow.gif') no-repeat 25px 6px;
+    cursor:pointer;
+
+}
+
+
+/********************
+map list css
+
+*/
+
+/****** CONFIG FORM *****/
+
+#configbody {
+    padding:15px;
+}
+#configbody label {
+    line-height: 200%;
+}
+
+.longbtn {
+    cursor: pointer;
+    opacity:.85;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=85);
+    margin:5px 0;
+    display:inline-block;
+    width:137px;
+    height:27px;
+    line-height: 27px;
+    background:url('../img/btn.gif') no-repeat center center;
+    text-align: center;
+    color:#000;
+}
+
+.longbtn:hover {
+    opacity:1;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+#configbody .showJSBtn, 
+#configbody .showFlashBtn {
+    text-align: left;
+}
+
+
+#configbody .showFlashBtn span{
+    padding-left: 24px;
+    background:url('../img/flashbtn.gif') no-repeat left center;
+}
+#configbody .showJSBtn span{
+    padding-left: 24px;
+    background:url('../img/jsbtn.gif') no-repeat left center; 
+}
+
+
+.configgroup {
+    margin:10px 0;
+}
+
+
+.themes {
+    cursor:pointer;
+    display: inline-block;
+    width: 28px;
+    height: 22px;
+    opacity:.7;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+    margin:0;
+    
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;    
+    
+}
+
+.ie6 .themes,
+.ie7 .themes {
+   margin-right: 5px;
+}
+
+
+.themes:hover {
+    opacity:1;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+    
+
+}
+
+#themebtn0 {
+    background: url('../img/silverthemebtn.gif') no-repeat transparent;
+}
+#themebtn1 {
+    background: url('../img/bluethemebtn.gif') no-repeat transparent;
+}
+#themebtn2 {
+    background: url('../img/greenthemebtn.gif') no-repeat transparent;
+}
+#themebtn3 {
+    background: url('../img/redthemebtn.gif') no-repeat transparent;
+}
+
+#basefont {
+    width:100px;
+}
+
+#basefontsize {
+    width:70px;    
+}
+
+
+.higlightbutton {
+    -moz-box-shadow: 0px 0px 3px #666;
+    -webkit-box-shadow: 0px 0px 3px #666;
+    box-shadow: 0px 0px 3px #666;
+}
+.ie6 .higlightbutton,
+.ie7 .higlightbutton,
+.ie8 .higlightbutton {
+    zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=1, Direction=0),
+    progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=1, Direction=90),
+    progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=1, Direction=180),
+    progid:DXImageTransform.Microsoft.Shadow(Color=#cccccc, Strength=1, Direction=270);
+    
+}
+
+
+.disabledinput {
+    
+    text-decoration: line-through;
+}
+
+div#searchResultBox {
+    position: absolute;
+    z-index: 1000;
+    top: 110px;
+    left: 28px;
+    width: 100px;
+    height: 1px;
+    padding: 0;
+    display: none;
+    min-height: 1px;
+    overflow: auto;
+
+
+}
+
+div#searchResultBox div.searchedItem a {
+    display: block;
+    font-size:70%;
+    line-height: 150%; 
+    cursor: pointer;
+    padding: 2px;
+}
+
+
+.ie6 div#searchResultBox {
+    top: 115px;
+    left: 27px;
+    
+}
+.ie7 div#searchResultBox {
+    top: 115px;
+    left: 27px;
+    
+}
+.ie8 div#searchResultBox {
+    top: 111px;
+    left: 22px;
+    
+}
+.ie9 div#searchResultBox {
+    top: 111px;
+    left: 28px;
+    
+}

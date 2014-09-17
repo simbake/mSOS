@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>FusionMaps Client-side Export Sample</title>
+<script language="JavaScript" src="../../../Maps/FusionCharts.js"></script>
+<script language="JavaScript" src="../../../Maps/FusionChartsExportComponent.js"></script>
+<script type="text/javascript">	
+	//Define a function, which will be invoked when user clicks the batch-export-initiate button
+	function initiateExport(){
+		myExportComponent.BeginExport();
+	}
+  </script>
+</head>
+<body bgcolor="#ffffff">
+<table align='center'>
+<tr>
+  <td>
+  <div id="map1div" align="center">The map will appear within this DIV. This text will be replaced by the map.</div>
+    <script type="text/javascript">
+   //Build the map. Make sure to have registerWithJS as 1
+	var myMap1 = new FusionCharts("../../../Maps/FCMap_World.swf", "myMapId1", "500", "266", "0", "1");
+	myMap1.setXMLUrl("SimpleExample.xml");
+	myMap1.render("map1div");
+   </script>
+  </td>
+  <td>
+  <div id="map2div" align="center">The map will appear within this DIV. This text will be replaced by the map.</div>
+    <script type="text/javascript">
+   //Build the map. Make sure to have registerWithJS as 1
+	var myMap2 = new FusionCharts("../../../Maps/FCMap_World.swf", "myMapId2", "500", "266", "0", "1");
+	myMap2.setXMLUrl("SimpleExample_1.xml");
+	myMap2.render("map2div");
+   </script>
+  </td>
+</tr>
+<tr>
+  <td>
+  <div id="map3div" align="center">The map will appear within this DIV. This text will be replaced by the map.</div>
+    <script type="text/javascript">
+   //Build the map. Make sure to have registerWithJS as 1
+	var myMap3 = new FusionCharts("../../../Maps/FCMap_World.swf", "myMapId3", "500", "266", "0", "1");
+	myMap3.setXMLUrl("SimpleExample_2.xml");
+	myMap3.render("map3div");
+   </script>
+  </td>
+  <td align='center'>
+  	<input type='button' onClick="javascript:initiateExport();" value="Begin batch export" />
+	<br /><br />
+  	<!-- We also create a DIV to contain the FusionMaps batch exporter component -->
+    <div id="fcexpDiv" align="center">FusionMaps Export Handler Component</div></td>
+	<script type="text/javascript">
+	//Initialize Batch Exporter with DOM Id as fcBatchExporter
+	var myExportComponent = new FusionChartsExportObject("fcBatchExporter", "../../../Maps/FCExporter.swf");	
+	
+	//Add the maps to queue. The maps are referred to by their DOM Id.
+	myExportComponent.sourceCharts = ['myMapId1','myMapId2','myMapId3'];
+	
+	//------ Export Component Attributes ------//
+	//Set the mode as full mode
+	myExportComponent.componentAttributes.fullMode='1';
+	//Set saving mode as both. This allows users to download individual maps/ as well as download all maps as a single file.
+	myExportComponent.componentAttributes.saveMode='both';
+	//Show allowed export format drop-down
+	myExportComponent.componentAttributes.showAllowedTypes = '1';
+	//Cosmetics	
+	//Width and height
+	myExportComponent.componentAttributes.width = '380';
+	myExportComponent.componentAttributes.height = '160';
+	//Message - caption of export component
+	myExportComponent.componentAttributes.showMessage = '1';
+	myExportComponent.componentAttributes.message = 'Click on button above to begin export of maps. Then save from here.';
+	//Render the exporter SWF in our DIV fcexpDiv
+    myExportComponent.Render("fcexpDiv");	
+  </script>
+</tr>
+</table></body>
+</html>

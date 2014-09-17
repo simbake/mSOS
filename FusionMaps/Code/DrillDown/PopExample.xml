@@ -1,0 +1,10 @@
+<map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'>
+	<data>
+		<entity id='NA' value='515' link='P-detailsPopUp,width=400,height=300,toolbar=no, scrollbars=no,resizable=no-DemoLinkPages/DemoLink1.html'/>
+		<entity id='SA' value='373' link='P-detailsPopUp,width=400,height=300,toolbar=no, scrollbars=no,resizable=no-DemoLinkPages/DemoLink2.html'/>
+		<entity id='AS' value='3875' link='P-detailsPopUp,width=400,height=300,toolbar=no, scrollbars=no,resizable=no-DemoLinkPages/DemoLink3.html'/>
+		<entity id='EU' value='727' link='P-detailsPopUp,width=400,height=300,toolbar=no, scrollbars=no,resizable=no-DemoLinkPages/DemoLink4.html'/>
+		<entity id='AF' value='885' link='P-detailsPopUp,width=400,height=300,toolbar=no, scrollbars=no,resizable=no-DemoLinkPages/DemoLink5.html'/>
+		<entity id='AU' value='32' link='P-detailsPopUp,width=400,height=300,toolbar=no, scrollbars=no,resizable=no-DemoLinkPages/DemoLink6.html'/>
+	</data>	
+</map>

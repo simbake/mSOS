@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with ASP - Goal</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with ASP", "Plotting from database", "Goal" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Goal</td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">In this section, we will see how to plot data from database on a map and how to use drill down feature on maps. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">For this, we will take help of an example where we will show US population distribution per state and then employment details of each county through  drill down maps. Let us note down what we want to display: </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ol>
+      <li>First, we will show state wise population distribution in US. In this map, each state shows its population share in percentage against total US population.<br />
+        <br /></li>
+      <li>If we click on any state in the US Population Map, it opens the map of that state which shows percentage of population of each county for these employment groups: 
+	    <ul>
+	  <li>Business</li> 
+	  <li>Service</li> 
+	  <li>Unemployed</li>
+	    </ul><br />
+	    This data will be displayed as tool-tip inside the map.<br />
+	    <br /></li>
+	    
+    </ol></td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="text">We will try this out with MS Access database. We will get to know more about the database structure in the following section. Note that you can always use any other database supported by your ASP like MS SQL, Oracle, mySQL  etc. </td>
+  </tr>
+ 
+  <tr>
+    <td valign="top" class="text"><p class="highlightBlock">The code examples contained in this section are present in   <span class="codeInline">Download Package &gt; Code &gt; ASP &gt; DB_Drill</span>   folder. The Access database is present in <span class="codeInline">Download   Package &gt; Code &gt; ASP &gt; DB_Drill &gt; DB</span>. </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using Data from Form|CodeASPForm.html","Database Structure|CodeASPDB_Structure.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

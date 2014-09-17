@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Dynamically resizable world map showing page visits</title>
+        <script type="text/javascript" src="../../../Maps/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../Maps/FusionCharts.js"></script>
+		<style type="text/css">
+			html, body, table {
+				padding: 0;
+				margin: 0;
+				height: 100%;
+				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+				font-size:80%;
+			}
+			#mapdiv {
+				width: 100%;
+				height: 100%;
+			}
+			#dimmer {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background-color: #fff;
+				opacity: .3;
+				filter: alpha(opacity = 30);
+				font-size: 24px;
+				text-align:center;
+			}
+			
+			#titlecontainer {
+			    -webkit-border-radius: 0 0 10px 0;
+			    -moz-border-radius: 0 0 10px 0;
+			    border-radius: 0 0 10px 0;
+				box-shadow:1px 1px 5px #999;
+				-webkit-box-shadow:1px 1px 5px #999;
+				-moz-box-shadow:1px 1px 5px #999;				
+				position: absolute;
+				top: -50px;
+				left: 0;
+				min-height: 25px;
+				max-width: 90%;
+				min-width: 200px;
+				background: #FFF;
+				opacity: .5;
+				filter: alpha(opacity = 50);
+				font-size: 140%;
+				line-height: 150%;
+				padding:5px 30px 2px 10px;
+				color: #081E03;
+			}
+			#titlecontainer span {
+				font-size: 85%;
+			}
+		</style>
+		<script type="text/javascript">
+			var CONST_MIN = 0;
+			var CONST_MAX = 5000000;
+			var map;
+			
+			$(document).ready ( function() {
+				
+				
+				$("#dimmer").html( "<table width='100%' height='100%'><tr><td height='100%' align='center' valign='middle' style='font-size:200%; color:#999;'>Wait,<br/>Loading map data...</td></tr></table>") ;
+            	
+				map = new FusionCharts("../../../Maps/FCMap_WorldwithCountries.swf", "MapId", "100%", "100%", "0", "0");
+				map.configure( { 
+				    "PBarLoadingText" : " " ,
+				    "XMLLoadingText" : " " ,
+				    "ParsingDataText" : " " ,
+				    "ChartNoDataText" : " " ,
+				    "RenderingChartText" : " " 
+				});
+
+				
+				map.setXMLData( '<map animation="0" showShadow="0" showBevel="0" borderAlpha="20" fillAlpha="70" hoverColor="E0FFD4" fillColor="F1f1f1" showLabels="0" legendShadow="0" legendPadding="0" legendBgAlpha="0" legendBorderAlpha="0" legendAllowDrag="0"  legendScaleLineAlpha="60" legendIconScale=".7" showCanvasBorder="0" />' );		   	   
+				map.render("mapdiv");
+				map.addEventListener( "rendered", function () {
+					var eList = map.ref.getEntityList();
+					showTitle();
+					map.setXMLData( getHitXMLData(eList, CONST_MIN, CONST_MAX) );
+					$("#dimmer").fadeOut( 2000 );
+					
+					
+				});
+			
+            });	
+			
+			function getHitXMLData (eList, randomMin, randomMax) {
+				var randomHits = getRandomHitData(eList, randomMin, randomMax);
+				return buildMapXML(randomHits, randomMin, randomMax);
+			}
+			
+			function getRandomHitData (eList, randomMin, randomMax) {
+				var data = {};
+				for (var i in eList) {
+					if (eList[i]) {
+						data[ eList[i]["id"] ] = Math.round (randomMin + Math.random()*(randomMax - randomMin));
+					}
+				}	
+				
+				return data;
+			}
+			
+			function buildMapXML(data, randomMin, randomMax) {
+				var xml = '<map animation="1" mapTopMargin="25" showShadow="0" showBevel="0" borderAlpha="40" hoverColor="E0FFD4" fillColor="F1f1f1" showLabels="0" legendShadow="0" legendPadding="0" legendBgAlpha="0" legendBorderAlpha="0" legendAllowDrag="0"  legendScaleLineAlpha="60" legendIconScale=".7" tooltipBgColor="267114" tooltipBorderColor="267114" showCanvasBorder="0" >';
+
+				xml += '<colorRange gradient="1" minValue="'+ randomMin + '" code="EDF2EB"><color maxValue="'+ randomMax + '" code="267114" /></colorRange>';
+				
+				xml += '<data>';
+				for (var i in data) {
+					xml += '<entity id="'+ i + '" value="'+ data[i] + '" />';
+				}
+				
+				xml += '</data>';
+				xml += getStyleXML ();
+				xml += "</map>";				
+
+				return xml;
+
+			}
+			
+			function getStyleXML() {
+				return '<styles><definition>\n\
+						<style name="ToolTipStyle" type="font" bgColor="267114" borderColor="267114" color="E0FFD4"/>\n\
+				  </definition>\n\
+				  <application>\n\
+					   <apply toObject="TOOLTIP" styles="ToolTipStyle" />\n\
+				  </application>\n\
+				  </styles>';
+			}
+				
+			function showTitle() {
+				
+				$("#titlecontainer").html(
+					"Global Page Visits - <span>Drag pointers on the scale below the map and select a range to hide or show the countries falling under the selected range.</span>"
+				).animate( { "top" : "0" } , 2000 );
+			}			
+		</script>
+    </head>
+
+    <body>
+		<div id="mapdiv" align="center"> FusionMaps </div>
+		<div id="titlecontainer"></div>	
+		<div id="dimmer"></div>	
+    </body>
+</html>

@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <title>FusionMaps XT - Map Explorer</title>
+        <script type="text/javascript" >
+            window.MAPEXPLORER_MAPPATH = "../Maps/";
+          
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="resources/css/prettify.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/theme.css" />
+        <script type="text/javascript" src="resources/js/jquery.min.js"></script>
+        <script type="text/javascript" src="resources/js/prettify.js"></script>
+        <script type="text/javascript" src="resources/js/vkbeautify.0.98.01.beta.js"></script>
+        <script type="text/javascript" src="resources/js/json2.js"></script>
+
+        <script type="text/javascript" src="../Maps/FusionCharts.js"></script>
+
+        <script type="text/javascript" src="resources/js/helper.js"></script>
+        <script type="text/javascript" src="resources/js/lib.js"></script>
+        <script type="text/javascript" src="resources/js/theme.js"></script>
+        <script type="text/javascript" src="resources/js/maplist-core-pack.js"></script>
+
+    </head>
+    
+    
+   <!--[if lt IE 7 ]>   <body class="ie6 theme0">          <![endif]-->
+   <!--[if IE 7 ]>      <body class="ie7 theme0">          <![endif]-->
+   <!--[if IE 8 ]>      <body class="ie8 theme0">          <![endif]-->
+   <!--[if IE 9 ]>      <body class="ie9 theme0">              <![endif]-->
+   <!--[!(IE)]><!-->    <body class="theme0">              <!--<![endif]-->    
+       
+        <div id="wrapper">
+
+            <div id="header">
+                <div id="content">
+                    <div id="container"><span class="title"> - Map Explorer</span></div>
+                </div>
+            </div>
+
+            <div id="body">
+                
+                <div id="left" ><div id="content" >
+                        <div id="container">
+                            <div id="mapList"></div>
+                            <div id="mapListHeading"><nobr>Select a map</nobr></div>
+                        </div>
+                        <div id="swap" class="goin"></div>
+                    </div>
+                </div>
+
+
+                <div id="right"><div id="content">
+                        <div id="container">
+                            <div id="configbody">
+                                <div class="swapRendererBtn">
+                                    <a class="showJSBtn longbtn"><span>View in JavaScript</span></a><a class="showFlashBtn longbtn"><span>View in Flash</span></a>
+                                </div>
+                                <div class="configgroup">
+                                    <div><nobr><label><input type="checkbox" id="showlabels" checked="checked"/>Show labels</label></nobr></div>
+                                    <div><nobr><label><input type="checkbox" id="showtooltip" checked="checked"/>Show tooltip</label></nobr></div>
+                                    <div><nobr><label><input type="checkbox" id="showshadow" checked="checked"/>Apply shadow</label></nobr></div>
+                                    <div><nobr><label><input type="checkbox" id="showbevel"/>Use bevel effect</label></nobr></div>
+                                </div>
+                                <div  class="configgroup"><nobr><label>Font
+                                            <select id="basefont" >
+                                                <option value='Arial'>Arial</option>
+                                                <option value='Tahoma'>Tahoma</option>
+                                                <option value='Times New Roman'>Times New Roman</option>
+                                                <option value='Verdana' selected="selected">Verdana</option>
+                                                <option value='Trebuchet MS' >Trebuchet MS</option>
+                                            </select></label></nobr> 
+                                    <nobr>
+                                        <br/><label>
+                                            &nbsp;Font size						
+                                            <select id='basefontsize' >
+                                                <option value='8'>8</option>
+                                                <option value='9'>9</option>
+                                                <option value='10' selected="selected">10</option>
+                                                <option value='11'>11</option>
+                                                <option value='12'>12</option>
+                                                <option value='13'>13</option>
+                                                <option value='14'>14</option>
+                                                <option value='15'>15</option>
+                                                <option value='16'>16</option>
+                                                <option value='17'>17</option>
+                                                <option value='18'>18</option>
+                                                <option value='19'>19</option>
+                                                <option value='20'>20</option>
+                                            </select>
+
+
+                                        </label>
+                                    </nobr>
+
+                                </div>
+                                <div  class="configgroup"> 
+                                    <a id="themebtn0" class="themes"></a>
+                                    <a id="themebtn1" class="themes"></a>
+                                    <a id="themebtn2" class="themes"></a>
+                                    <a id="themebtn3" class="themes"></a> 
+                                </div>
+
+                                <div  class="configgroup">
+                                    <div><a class="longbtn" id="printmapBtn">Print Map</a></div>
+                                    <div><a class="longbtn" id="viewXMLBtn">View data as XML</a></div>
+                                    <div><a class="longbtn" id="viewJSONBtn">View data as JSON</a></div>
+                                    <div><a class="longbtn" id="viewCSVBtn">View Data as CSV</a></div>
+                                    <div><a class="longbtn" id="viewSSBtn">Specification Sheet</a></div>
+                                </div>
+                            </div>
+                            <div id="configHeading">Configure the map</div>
+
+                        </div>
+                        <div id="swap" class="goin" ></div>
+                    </div>
+                </div>
+
+
+
+                <div id="middle">
+                    <div id="content">
+                        <div id="container">
+                            <div id="mapContainer"></div>
+                            <div id="mapDataContainer">
+                                <div id="mapDataContainerContent">
+                                    <div id="mapData"></div>
+                                    <div id="titlebar">
+                                        <div id="title">&nbsp;</div>
+                                        <div id="close">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mapDetails">Preview of <b><span id="name"></span></b></div>
+                            <div id="hoverDetails"></div>
+                            <div id="fullscreenbtn" ><a class="outfull"></a></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+       
+       <div id="searchResultBox"></div>
+                
+    </body>
+</html>

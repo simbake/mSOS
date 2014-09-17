@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Display sales data across multiple regions using JavaScript map</title>
+        <link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../../assets/ui/css/prettify.css" />
+        <script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../assets/ui/js/json2.js"></script>
+        <script type="text/javascript" src="../../assets/ui/js/prettify.js"></script>
+        <script type="text/javascript" src="../../../Maps/FusionCharts.js"></script>
+        <script type="text/javascript" src="../lib/lib.js"></script>
+
+
+        <!--[if IE 6]>
+        <script type="text/javascript" src="../../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+          
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+
+
+    </head>
+    <body>
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- header -->
+            <div id="header">
+                <div class="logo" title= "FusionMaps XT ">
+                    <a href="http://www.fusioncharts.com/products/suite/fusionmaps/" target="_blank">
+
+                    </a>
+                </div>
+                <h1 class="logo-text">Display sales data across multiple regions using JavaScript map</h1>
+                
+            </div>
+            <!-- content area -->
+            <div class="content-area">
+                <div id="content-area-inner-main">
+                    
+                    
+
+                    <p></p>
+                    <div id="messageBox" style="margin-left:100px; margin-right:100px; display:none;"></div>
+                    <p class="small">&nbsp;</p>
+
+
+                    <div class="clear"></div>
+
+                    <div class="gen-chart-render">
+	<div id="mapdiv" align="center"> 
+        FusionMaps.
+	</div>
+
+    <script type="text/javascript">
+
+            $(document).ready(function() {
+		            $("#toggleView").remove();
+		            $(".qua-button-holder").css({  "width":"330px"  });
+			});
+			
+			
+	
+	
+	   FusionCharts.setCurrentRenderer('javascript');
+	   
+	   var map = new FusionCharts("World", "MapId", "750", "500", "0", "0");
+	   map.setXMLData( "<map includeValueInLabels='1' labelSepChar=': ' baseFontSize='9' fillAlpha='70' showBevel='0' showLabels='1' numberPrefix='$' hoverColor='EEEEEE' legendPosition='Bottom' showCanvasBorder='1'>\n\
+            <colorRange>\n\
+				<color minValue='3500000' maxValue='10000000' displayValue='High Sales Region' color='008200' />\n\
+				<color minValue='2500000' maxValue='3500000' displayValue='Moderate Sales Region' color='FFCC33' />\n\
+				<color minValue='0' maxValue='2500000' displayValue='Low Sales Region' color='B80000' />\n\
+            </colorRange>\n\
+            <data>\n\
+			   <entity id='NA' value='6921900' />\n\
+			   <entity id='SA' value='3087120' />\n\
+			   <entity id='AS' value='2434120' />\n\
+			   <entity id='EU' value='5093230' />\n\
+			   <entity id='AF' value='1032900' />\n\
+			   <entity id='AU' value='3461230' />\n\
+            </data>\n\
+</map>");
+ 
+	   map.render("mapdiv");
+	</script>
+
+                        <p class="small" align="center">&nbsp;</p>
+
+                        <!-- action buttons -->
+                        <div class="qua-button-holder">
+                        </div>
+
+                        <!-- data viewer -->
+                        <div class="show-code-block">
+                        </div>	
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="underline-dull"></div>  
+                    <p class="small">&nbsp;</p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </body>
+	
+	
+
+</html>

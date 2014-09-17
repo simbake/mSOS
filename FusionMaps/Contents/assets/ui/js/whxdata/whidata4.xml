@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="server" >
+  <key name="Creating maps using various server side scripts" >
+    <topic name="Creating maps using various server side scripts" url="../../../FirstMap/server_side_scripts.html" />
+  </key>
+  <key name="Server-side export - Configuring export dialog cosmetics" >
+    <topic name="Exporting maps as PDF/Images - Server-side export - Configuring export dialog cosmetics" url="../../../ExportingImage/Server/ECExportDialog.html" />
+  </key>
+  <key name="Server-side export - Configuring output formats and context menu" >
+    <topic name="Exporting maps as PDF/Images - Server-side export - Configuring output formats and context menu" url="../../../ExportingImage/Server/ECServerFormats.html" />
+  </key>
+  <key name="Server-side export - Overview" >
+    <topic name="Exporting Maps as PDF or Images - Server-side export - Overview" url="../../../ExportingImage/Server/ECServerOverview.html" />
+  </key>
+  <key name="Server-side export - Returning the exported output as download" >
+    <topic name="Exporting Maps as PDF or Images - Server-side export - Returning the exported output as download" url="../../../ExportingImage/Server/ECServerDownload.html" />
+  </key>
+  <key name="Server-side export - Saving exported output on server disk" >
+    <topic name="Exporting Maps as PDF or Images - Server-side export - Saving exported output on server disk" url="../../../ExportingImage/Server/ECServerSave.html" />
+  </key>
+</key>
+
+</indexdata>

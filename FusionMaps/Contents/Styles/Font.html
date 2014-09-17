@@ -1,0 +1,392 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Font Style Type Parameters</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Using Styles|Styles.html", "Font style type"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td><span class="pageHeader">Font Style Type Parameters</span><br /><br /></td>
+  </tr>
+  <tr> 
+    <td><span class="text">As you already know, using the<span class="codeInline"> 
+      font </span>style type, you can control the visual properties of all the 
+      text on the map. The following properties are extended by the<span class="codeInline"> 
+    font</span> type.</span></td>
+  </tr>
+  <tr> 
+    <td><p>Detailed explanations with code samples follow:</p>
+	<table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="header"><strong>Attribute</strong></td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="header"> <strong>Brief 
+              Description</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"> <strong>Sample 
+              or Valid values</strong></td>
+        </tr>
+        <tr> 
+           <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">font</td>
+           <td width="506" valign="top" bordercolor="f1f1f1" class="text">Sets 
+              the font family for the text.</td>
+           <td width="293" valign="top" bordercolor="f1f1f1" class="text">Verdana, 
+             Arial .. </td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">size</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">Specifies 
+             the font size</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text">10, 
+              12 .. </td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">Color</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">Sets 
+             the font color, should be hex color code without #</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text">FF0000, 
+              FFFFDD </td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">Bold</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">Flag 
+              indicating whether font should be bold or not</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text"><strong>1</strong> 
+            for Yes, <strong>0</strong> for No</td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">Italic</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">Flag 
+              indicating whether font should be italics or not</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text"><strong>1</strong> 
+            for Yes, <strong>0</strong> for No</td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">Underline</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">Flag 
+              indicating whether font should be underlined</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text"><strong>1</strong> 
+            for Yes, <strong>0</strong> for No</td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">bgColor</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">Sets 
+              the background color for a text box, should be hex color code without 
+              #</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text">FF0000, 
+              FFFFDD </td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">borderColor</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">If 
+              you need a border around your text, you can use this parameter</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">isHTML</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">Helps 
+              you set whether the text should be rendered as HTML or plain text.</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">leftMargin</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">The 
+              left margin of the text, in points</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="79" valign="top" bordercolor="f1f1f1" class="codeInline">letterSpacing</td>
+          <td width="506" valign="top" bordercolor="f1f1f1" class="text">The 
+              amount of space that is uniformly distributed between characters 
+              of the text</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="text">&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td class="highlightBlock">Note: In JavaScript maps,  only  <span class="codeInline">font</span>, <span class="codeInline">color</span>, <span class="codeInline">size</span>, <span class="codeInline">bold</span> and <span class="codeInline">italic</span> attributes are supported. Support for rest of the attributes is browser specific. </td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td></tr>
+  <tr> 
+    <td class="header">Font family, size &amp; color</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td class="text">The basic attributes of the font are its<span class="codeInline"> 
+      font family, size and color</span> which can be set using 
+      the aforementioned attributes. 
+      <p><strong>Example:</strong></p></td></tr>
+      <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='MyFirstFontStyle' type='font' font='Verdana' size='12' color='FF0000' /&gt;</pre> </td>
+  </tr>
+  <tr> 
+    <td height="20"></td>
+  </tr>
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="293" valign="top" class="header"><strong>Attribute</strong></td>
+          <td width="293" valign="top" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" class="codeInline">Font</td>
+          <td width="293" valign="top" class="codeInline">font=<span class="codeInline">'fontfamily' 
+              </span></td>
+          <td width="293" valign="top" class="codeInline">font=<span class="codeInline">'Verdana' 
+              </span></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" class="codeInline">Size</td>
+          <td width="293" valign="top" class="codeInline">size=<span class="codeInline">'fontsize' 
+              </span></td>
+          <td width="293" valign="top" class="codeInline">size=<span class="codeInline">'12' 
+              </span></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" class="codeInline">Color</td>
+          <td width="293" valign="top" class="codeInline">color=<span class="codeInline">'HexCode 
+              (without #)'</span></td>
+          <td width="293" valign="top" class="codeInline">color=<span class="codeInline">'FF0000'</span></td>
+        </tr>
+      </table></td>
+  </tr>
+  
+  <tr> 
+    <td>
+        <p class="text">Here,<span class="codeInline"> font</span> should refer 
+        to a font family which is present on the end users system (else the default 
+        system font will be used to draw text). Color should be in <span class="codeInline">Hex 
+        code</span> without any<span class="codeInline"> #.</span></p></td>
+  </tr>
+  <tr>
+     <td class="header"><a name="align"></a>align</td>
+  </tr>
+  <tr>
+     <td class="text">
+        <p>Text align setting is only allowed in map's caption and sub-caption Objects. You can use either &quot;right&quot; or &quot;left&quot; as alignment value. By default, the value is &quot;center&quot;. An example can be: </p></td></tr>
+		<tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='MyCaptionFontStyle' type='font' font='Verdana' size='22' <strong>align =&quot;left&quot;</strong> /&gt;</pre></td></tr>
+	
+	<tr><td><p>And the resultant map caption will be like the image as under:</p>
+        <p class="highlightBlock"><strong>Note</strong>: Controlling alignment of caption and sub-caption is not supported in JavaScript maps. </p>
+      </td>
+  </tr>
+  <tr> 
+    <td class="header">bold, italic &amp; underline</td>
+  </tr>
+  <tr><td height="20"></td></tr>
+  <tr> 
+    <td><span class="text">To decorate your text, you can use any of the above 
+      parameters as under:<br />
+      <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='MyFirstFontStyle' type='font' font='Verdana' size='12' color='FF0000' <strong>bold='1' italic='1' underline='1'</strong> /&gt;</pre></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+ 
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Attribute</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">Bold</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">bold=<span class="codeInline">'Logicalvalue' 
+              </span></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">bold=<span class="codeInline">'1'</span> 
+            or bold=<span class="codeInline">'0' </span></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">Italic</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">italic=<span class="codeInline">'Logicalvalue' 
+              </span></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">italic=<span class="codeInline">'1'</span> 
+            italic=<span class="codeInline">'0' </span></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">Underline</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">underline=<span class="codeInline">'Logicalvalue' 
+              </span></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">underline='1' or underline=<span class="codeInline">'0'</span></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td><p class="text">The above code will make sure that your font appears as 
+        <span class="codeInline">bold, italicized and underlined.</span></p></td>
+  </tr>
+ 
+  <tr> 
+    <td class="header">bgColor and borderColor</td>
+  </tr>
+  
+  <tr> 
+    <td class="text"><p>If you intend to put a <span class="codeInline">border color </span>or a<span class="codeInline"> background color</span>  for your text boxes on the map, you can use the above two parameter to define hex color code (without <span class="codeInline">#</span>) as under:</p> </td>
+  </tr>
+      <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='MyFirstFontStyle' type='font' font='Verdana' size='12' color='FF0000' <strong>bgColor='FFFFDD' borderColor='666666'</strong> /&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Attribute</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">bgColor</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">bgColor='value' 
+          </td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">bgColor='FFFFDD' 
+          </td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">borderColor</td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">borderColor='value 
+              ' </td>
+          <td width="293" valign="top" bordercolor="f1f1f1" class="codeInline">borderColor='666666' 
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+  
+  <tr> 
+    <td>
+        <p class="text">This style when applied to a text field on map (e.g., 
+      caption), will give an output as under:</p>
+    </td>
+  </tr>
+  <tr> 
+    <td class="header"><a name="ishtml"></a>isHTML</td>
+  </tr>
+  <tr> 
+    <td class="text">
+	<p>This attribute is particularly useful, when you have <span class="codeInline">HTML</span> characters as a part of your text e.g., <span class="codeInline">"&lt; 5" or "&gt; 5" </span>etc. By default, FusionMaps XT renders all text as <span class="codeInline">HTML</span> and as such <span class="codeInline">"&lt; 5"</span> will be treated as a non-closing <span class="codeInline">HTML</span> tag and will not be displayed at all.</p>
+	<p>For example, if you've to display<span class="codeInline"> "&lt; 5"</span> for a color range value, you will use:</p>
+	</td></tr>
+        <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;color displayValue='&amp;lt; 5' ... /&gt;</pre></td></tr>
+    <tr><td class="text"><p>(Note that <span class="codeInline">&amp;lt</span>; is the encoded form of <span class="codeInline">&lt;, </span>which is used in <span class="codeInline">XML </span>data documents).</p>
+        <p>The style is to  be defined as under:</p></td></tr>
+      <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='LegendFont' type='font' font='Arial' size='10' <strong>isHTML='0' </strong>/&gt;</pre></td></tr>
+      <tr><td class="text"><p>And, applied as under:</p></td></tr>
+    <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;apply toObject='Legend' styles='LegendFont' /&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  
+  <tr> 
+    <td class="text"><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="293" valign="top" class="header"><strong>Attribute</strong></td>
+          <td width="293" valign="top" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" class="codeInline">isHTML</td>
+          <td width="293" valign="top" class="codeInline">isHTML 
+              ='Logicalvalue' </td>
+          <td width="293" valign="top" class="codeInline">isHTML 
+              ='1' or isHTML ='0' </td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="header">leftMargin and letterSpacing</td>
+  </tr>
+  <tr> 
+    <td class="text"><p><span class="codeInline">leftMargin </span>lets you set the left margin of the text (in points) and<span class="codeInline"> letterSpacing </span>allows you to control the space that is uniformly distributed between characters - the value specifies the number of pixels that are added to the space after each character. A negative value condenses the space between characters. </p>
+	<p><strong>Example</strong></p></td></tr>
+	<tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='MyFirstFontStyle' type='font' font='Verdana' size='12' color='FF0000' bgColor='FFFFDD' borderColor='666666' <strong>leftMargin='10' letterSpacing='3'</strong>/&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="text"><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="293" valign="top" class="header"><strong>Attribute</strong></td>
+          <td width="293" valign="top" class="header"><strong>Format</strong></td>
+          <td width="293" valign="top" class="header"><strong>Example</strong></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" class="codeInline">leftMargin </td>
+          <td width="293" valign="top" class="codeInline">leftMargin=<span class="codeInline">'value 
+              in pixels' </span></td>
+          <td width="293" valign="top" class="codeInline">leftMargin=<span class="codeInline">'10' 
+              </span></td>
+        </tr>
+        <tr> 
+          <td width="293" valign="top" class="codeInline">letterSpacing </td>
+          <td width="293" valign="top" class="codeInline">letterSpacing=<span class="codeInline">'value 
+              in pixels' </span></td>
+          <td width="293" valign="top" class="codeInline">letterSpacing=<span class="codeInline">'3' 
+              </span></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("How to Use?|HowToUse.html","Animation Style type|Animation.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

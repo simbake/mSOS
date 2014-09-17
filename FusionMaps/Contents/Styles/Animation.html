@@ -1,0 +1,467 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Animation Style Type Parameters</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Using Styles|Styles.html", "Animation style type"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="text"><span class="pageHeader">Animation Style Type Parameters</span></td>
+  </tr>
+  <tr> 
+    <td class="text"><p>One of the best things about FusionMaps XT is the animated sequences that users get to relish. Using the <span class="codeInline">Animation 
+        Style Type</span>, you can animate different objects of the map.</p>
+      <p>The live map shown below shows a very basic animation. In case you missed it you can reload the animation clicking on the button below saying - &quot;Click here to animate the map above&quot;.</p>
+	  
+      <p class="text">You can define custom animation styles and apply them to various 
+        objects of the map. Each map object has a list of supported animation 
+        properties that can be set through <span class="codeInline">Animation 
+      Style Type.</span></p>
+    </td>
+  </tr>
+  
+  <tr> 
+    <td class="text">Before we get to the parameters supported 
+        by the animation style type, let's quickly glance through the properties 
+        of map objects that we can animate using <span class="codeInline">Animation 
+        Style Type.</span> The animation style type helps you with the animation 
+        of following properties:</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td class="text"><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="127" valign="top" class="header">Property</td>
+          <td width="751" valign="top" class="header">Description</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" bordercolor="f1f1f1" class="codeInline">_x</td>
+          <td width="751" valign="top" bordercolor="f1f1f1" class="text">Helps 
+              animate the <span class="codeInline">x</span> position of the given 
+              map object</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" bordercolor="f1f1f1" class="codeInline">_y</td>
+          <td width="751" valign="top" bordercolor="f1f1f1" class="text">Helps 
+              animate the <span class="codeInline">y</span> position of the given 
+              map object.</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" bordercolor="f1f1f1" class="codeInline">_xScale</td>
+          <td width="751" valign="top" bordercolor="f1f1f1" class="text">Using 
+              this property, you can animate the <span class="codeInline">x-scale 
+              </span>(horizontal scale) of the given map object</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" bordercolor="f1f1f1" class="codeInline">_yScale</td>
+          <td width="751" valign="top" bordercolor="f1f1f1" class="text">Like 
+            <span class="codeInline">xScale</span>, this animates the <span class="codeInline">y-scale.</span></td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" bordercolor="f1f1f1" class="codeInline">_alpha</td>
+          <td width="751" valign="top" bordercolor="f1f1f1" class="text">Helps 
+            <span class="codeInline">alpha</span> transition (transparency fading) 
+              animation effect</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+  <td class="highlightBlock">Note: In JavaScript maps, customized <span class="codeInline">animation</span> styles are not available.</td></tr>
+  <tr> 
+    <td class="text"><p class="text">Not all parameters can be applied to all 
+        map objects. For example, text fields cannot be <span class="codeInline">x-scaled</span> 
+        or <span class="codeInline">y-scaled</span>. The list of animation 
+        parameters for each map object is given in Overview page of this section<span class="codeInline">.</span></p></td>
+  </tr>
+  
+  <tr> 
+    <td class="text">Multiple animations in combination or multiple animations 
+        in sequence can also be applied to any map object. For example, you 
+        can opt to <span class="codeInline">y-scale</span> and <span class="codeInline">alpha-fade</span> 
+        the <span class="codeInline">plot </span>or you might go for <span class="codeInline">x-scale</span> and        <span class="codeInline"> y-scale</span>.</td>
+  </tr>
+ 
+  <tr> 
+    <td class="text"><p>Let's now get to the attributes that<span class="codeInline"> 
+        Animation Style Type </span>exposes to help us control the functionalities:</p></td>
+  </tr>
+  <tr> 
+    <td class="text"><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+          <td width="127" valign="top" class="header">Attribute</td>
+          <td width="751" valign="top" class="header">Description</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" class="codeInline">param</td>
+          <td width="751" valign="top" class="text">This attribute lets you specify the 
+              property of map object which you want to animate e.g., <span class="codeInline">_x, 
+              _y, _xscale</span> etc</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" class="codeInline">start</td>
+          <td width="751" valign="top" class="text">The <span class="codeInline">start</span> 
+            value of animation e.g., if you're animating the map plot for fade 
+            in alpha effect, the start value of <span class="codeInline">alpha</span> 
+            will be 0</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" class="codeInline">Duration</td>
+          <td width="751" valign="top" class="text">Using this, you can control the <span class="codeInline">duration</span> 
+            of animation in seconds</td>
+        </tr>
+        <tr> 
+          <td width="127" valign="top" class="codeInline">Easing</td>
+          <td width="751" valign="top" class="text">This attribute lets you specify the 
+              pattern of animation easing. Valid values are<span class="codeInline"> 
+              "elastic", "bounce", "regular", "strong" or "none".</span></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td class="text"><p>For the<span class="codeInline"> Animation Style Type</span>, 
+        except <span class="codeInline">Easing</span>, all the above attributes 
+    are <strong>mandatory</strong></p>      
+      <p>Before getting to detailed explanations, let's quickly 
+        cruise through a quick animation sample. Let's try and animate our plot (map drawing) so that it scales up after the map is loaded. </p>    
+      <p class="text">To do so, we first need to define our custom style. Since 
+        scaling up involves increment of both<span class="codeInline"> 
+        _xScale </span>and<span class="codeInline"> _yScale</span>, we'll now 
+        need to define two animation styles and then apply them to Plot object. 
+    The style definition goes as under:</p></td>
+  </tr>
+  
+  <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;styles&gt;
+     &lt;definition&gt;
+        &nbsp;&nbsp; &lt;style name='MyXAnim' type='animation' param='_xScale' start='0' duration='1' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;style name='MyYAnim' type='animation' param='_yScale' start='0' duration='1' /&gt;
+     &lt;/definition&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ... More XML Here ....
+&lt;/styles&gt;</pre></td>
+  </tr>
+  
+  <tr> 
+    <td><p class="text">In the above code, we name the two styles as<span class="codeInline"> 
+        MyXAnim</span> and<span class="codeInline"> MyYAnim </span>with 
+        their param (animation parameter) as<span class="codeInline"> _xscale</span> 
+        and<span class="codeInline"> _yscale</span> respectively. We set start 
+        value as 0, we want the plot to scale up from 0 to 100 (remember that 
+        scales are always from 0-100 in FusionMaps XT). We also specify the duration 
+        as 1 for the animation sequence.</p></td>
+  </tr>
+  
+  <tr> 
+    <td class="text">To apply this animation style to plot, the following code 
+      is used:</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td><pre class="code_container prettyprint" >&lt;styles&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;... More XML Here ....
+    &lt;application&gt;
+        <strong>&nbsp;&nbsp;&nbsp;&lt;apply toObject='Plot' styles='MyXAnim,MyYAnim' /&gt;</strong>
+    &lt;/application&gt; 
+&lt;/styles&gt;</pre></td>
+  </tr>
+  <tr> 
+    <td><p class="text">If you run the above code against any map, you'll see that the map scales up from 0 size to full size, 
+        before the data is animated and rendered. Bingo! Exactly what we needed! 
+    Let's move on to the attributes in details now.</p></td>
+  </tr>
+  
+ 
+  <tr> 
+    <td class="header"><span class="codeInline">param</span> attribute</td>
+  </tr>
+  <tr> 
+    <td><p class="text">The<span class="codeInline"> param </span><span class="text">attribute</span> 
+        specifies the property of map object, which is to be animated. As earlier 
+        discussed, it can take one of the following values, depending on the map 
+        object:</p>
+      <ul>
+        <li class="codeInline">_x </li>
+        <li class="codeInline">_y</li>
+        <li class="codeInline">_xScale </li>
+        <li class="codeInline">_yScale</li>
+        <li class="codeInline">_alpha</li>
+        <li class="codeInline">_rotation</li>
+      </ul>      <p class="text">We reiterate that not all map objects support all the 
+      above properties. </p></td>
+  </tr>
+  
+ 
+  <tr> 
+    <td class="header">Setting the start position of animation object</td>
+  </tr>
+  <tr> 
+    <td><p class="text">In our above example, where we were scaling the plot 
+        from 0 to 100, we had set the start value of animation to 0, as we want 
+        the plot to scale from 0 to 100. You always need to set a start value 
+        for any animation style. The end value is decided by FusionMaps XT based 
+        on the map object and animation parameter.</p>      
+      <p class="text">For example, if you want to animate the<span class="codeInline"> 
+        x </span>position of <span class="codeInline">plot </span> from 0 
+        to their final position, you need to set 
+        start position to 0. But since you do not know the end position of individual 
+      <span class="codeInline">map entity</span>, it's automatically set by FusionMaps XT.</p>      </td>
+  </tr>
+  <tr>
+  <td class="header"><a name="macro"></a>Macros in start values</td></tr>
+  <tr> 
+    <td class="text"><p>Often, you might want to specify the start <span class="codeInline">x</span> and <span class="codeInline">y 
+        </span>position for the animation as the start, center, or end position of 
+        the canvas or map. FusionMaps XT introduces <span class="codeInline">Macros</span> 
+        to bail you out of this trouble. <span class="codeInline">Macros</span> 
+        are pre-defined variables which assume values at run time. For example, 
+        <span class="codeInline">$canvasStartY</span> represents the start <span class="codeInline">y 
+        </span>position of the canvas, and it assumes a value at run-time only. 
+      So, if you need to animate the <span class="codeInline">y</span> position from <span class="codeInline">canvas start Y</span> to their final actual positions, all you need to do is:</p> 
+    </td></tr>
+	  <tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='DivYAnim' type='ANIMATION' duration='1' start='$canvasStartY' param=&quot;_y&quot; /&gt;</pre></td></tr>
+	<tr>
+              <td class="text">
+                 <p>FusionMaps XT, at run-time, will automatically calculate 
+        and assign the value for this <span class="codeInline">macro </span>and 
+        you will see the animation sequence starting from <span class="codeInline">start Y 
+        </span>Position of canvas. So, now even if you resize the map or opt 
+        to modify any map object, you never need to keep a tab 
+        on the <span class="codeInline">y</span> position of canvas. FusionMaps 
+         XT does that for you. </p>      
+                <p class="text">FusionMaps XT supports the following <span class="codeInline">Macro</span> 
+       values for <span class="codeInline">Animation Style Type</span>:</p></td>
+  </tr>
+  <tr> 
+    <td><table border="0" cellpadding="3" cellspacing="0" class="table">
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartStartX</td>
+          <td width="578" valign="top" class="text"><span class="codeInline">Chart 
+              Start X </span>Position. It's 0 if you are loading the map in an 
+              HTML page. However, if you are loading the map in another Flash 
+              movie, it will take the given<span class="codeInline"> X </span>position.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartStartY</td>
+          <td width="578" valign="top" class="text"><span class="codeInline">Chart 
+              Start Y</span> Position. It's 0 if you are loading the map in an 
+              HTML page. However, if you are loading the map in another Flash 
+              movie, it will take the given<span class="codeInline"> Y </span>position.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartWidth</td>
+          <td width="578" valign="top" class="text">Width 
+              of the map.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartHeight</td>
+          <td width="578" valign="top" class="text">Height 
+              of the map.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartEndX</td>
+          <td width="578" valign="top" class="text">End 
+            <span class="codeInline">X Position</span> of the map. Same as 
+              width of map if you are loading the map in an HTML page.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartEndY</td>
+          <td width="578" valign="top" class="text">End<span class="codeInline"> 
+            Y Position </span>of the map. Same as height of map if you are 
+              loading the map in an HTML page.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartCenterX</td>
+          <td width="578" valign="top" class="text"><span class="codeInline">Center 
+              X </span>Position of the map.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$chartCenterY</td>
+          <td width="578" valign="top" class="text"><span class="codeInline">Center 
+              Y </span>Position of the map.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasStartX</td>
+          <td width="578" valign="top" class="text"><span class="codeInline">Canvas 
+              Start X</span> Position (from left), that is, <span class="codeInline"> 
+              x</span> co-ordinate of left side of the canvas.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasStartY</td>
+          <td width="578" valign="top" class="text"><span class="codeInline">Canvas 
+              Start Y </span>Position (from top), that is,  <span class="codeInline">y</span> 
+            co-ordinate of the top of canvas.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasWidth</td>
+          <td width="578" valign="top" class="text">Width 
+              of canvas.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasHeight</td>
+          <td width="578" valign="top" class="text">Height 
+              of canvas.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasEndX</td>
+          <td width="578" valign="top" class="text">End 
+            <span class="codeInline">X</span> Position of Canvas, that is,  <span class="codeInline">x</span> 
+            co-ordinate of right side of canvas.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasEndY</td>
+          <td width="578" valign="top" class="text">End 
+            <span class="codeInline">Y</span> Position of Canvas, that is, <span class="codeInline"> 
+            y</span> co-ordinate of bottom of canvas.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasCenterX</td>
+          <td width="578" valign="top" class="text">Center 
+            <span class="codeInline">X</span> Position of canvas.</td>
+        </tr>
+        <tr> 
+          <td width="145" valign="top" class="codeInline">$canvasCenterY</td>
+          <td width="578" valign="top" class="text">Center 
+            <span class="codeInline">Y </span>Position of canvas.</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td><p class="highlightBlock"><strong>Macro names are case-sensitive. </strong>As 
+        such, you need to make sure that you are providing the <span class="codeInline">macro</span> 
+        names in proper case, that is, <span class="codeInline">$canvasstarty </span>will not  
+        work and it will log an error in debug window. You will need to correctly 
+    specify it as<span class="codeInline"> $canvasStartY.</span></p></td>
+  </tr>
+  <tr>
+    <td class="textBold">More Example using Macros:</td></tr>
+	<tr>
+	<td height="20"></td></tr>
+	<tr> 
+    <td valign="top"><pre class="code_container prettyprint" >&lt;style name='LabelsAnim' type='ANIMATION' duration='1' start='$canvasCenterX' param=&quot;_x&quot; /&gt;
+&lt;style name='YValuesAnim' type='ANIMATION' duration='1' start='$canvasCenterY' param=&quot;_y&quot; /&gt;</pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+    <td class="header"><a name="createmacro"></a>Creating Macro Expressions </td>
+  </tr>
+  <tr>
+    <td class="text"><p>You can also add numeric (integer) values to pre-defined macros to offset the animation when using macros. For example, if you wanted to animate the div lines from 10 pixels above canvas starting Y position, you could use: </p></td></tr>
+	<tr><td valign="top"><pre class="code_container prettyprint lang-xml" >&lt;style name='DivYAnim' type='ANIMATION' duration='1' start='<strong>$canvasStartY-10</strong>' param=&quot;_y&quot; /&gt;</pre></td></tr>
+	<tr>
+    <td class="text"><p>Or, if you wanted to animate from 10 pixels below the canvas start position, you could use:</p></td></tr>
+	<tr><td valign="top"><pre class="code_container prettyprint" >&lt;style name='DivYAnim' type='ANIMATION' duration='1' start='<strong>$canvasStartY+10</strong>' param=&quot;_y&quot; /&gt;</pre></td></tr>
+	<tr>
+    <td class="text">
+    <p>Currently, FusionMaps  XT allows only + (addition) and - (subtraction) operation in Macro expressions. </p></td>
+  </tr>
+  <tr> 
+    <td class="header"><a name="easing"></a>Specifying the easing for animation</td>
+  </tr>
+  <tr> 
+    <td class="text"><p><span class="codeInline">Easing</span> refers to gradual 
+        acceleration or deceleration during an animation. For example, a map 
+        object might gradually increase its speed near the beginning of an animation, 
+        but slow down right at the end of the animation before it arrives at a 
+        full stop. There are many different equations for the acceleration and 
+        deceleration, which change the easing animation accordingly. Easing helps 
+        your animations appear more realistic. </p>
+        <p>FusionMaps  XT supports the following easing methods:</p></td>
+  </tr>
+  <tr> 
+    <td><table border="0" cellpadding="3" cellspacing="0" class="table">
+        <tr> 
+          <td width="187" valign="top" class="header">Methods</td>
+          <td width="691" valign="top" class="header">Description</td>
+        </tr>
+        <tr> 
+          <td width="187" valign="top" class="codeInline">Elastic</td>
+          <td width="691" valign="top" class="text">Adds 
+              an elastic effect that falls outside the transition range at one 
+              or both ends. The amount of elasticity is unaffected by the duration.</td>
+        </tr>
+        <tr> 
+          <td width="187" valign="top" class="codeInline">Bounce</td>
+          <td width="691" valign="top" class="text">Adds 
+              a bouncing effect within the transition range at one or both ends. 
+              The number of bounces relates to the duration&mdash;longer durations 
+              produce more bounces.</td>
+        </tr>
+        <tr> 
+          <td width="187" valign="top" class="codeInline">Strong</td>
+          <td width="691" valign="top" class="text">Adds 
+              slower movement at one or both ends. This effect is similar to Regular 
+              easing, but it's more pronounced.</td>
+        </tr>
+        <tr> 
+          <td width="187" valign="top" class="codeInline">Regular</td>
+          <td width="691" valign="top" class="text">Adds 
+              slower movement at one or both ends. This feature enables you to 
+              add a speeding-up effect, a slowing-down effect, or both.</td>
+        </tr>
+        <tr> 
+          <td width="187" valign="top" class="codeInline">None</td>
+          <td width="691" valign="top" class="text">Adds 
+              an equal movement from start to end without effects, slowing, or 
+              speeding up. This transition is also referred to as a linear transition.</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td class="text">
+       <p>For any of the above easing method, FusionMaps  XT provides 
+        the easing effect at the end of the transition. For example, if you animate 
+        the plots from <span class="codeInline">0 _yscale</span> to <span class="codeInline">100 
+        _yscale</span>, you'll see that the plots animated very fast in the 
+        start (they grow up very soon) but the animation at the end part is slow.</p>
+      <p>You can use any of the above easing methods for any animation 
+      style that you define.</p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Font Style type|Font.html","Shadow Style type|Shadow.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

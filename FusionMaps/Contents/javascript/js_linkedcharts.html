@@ -1,0 +1,1269 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+<title>Creating LinkedCharts</title></head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "FusionMaps XT and JavaScript|js_overview.html",  "Creating <em>LinkedCharts</em>" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Creating <i>LinkedCharts</i> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p><em>LinkedCharts</em> is a new and smart drill-down feature introduced  in FusionMaps XT that allows you to create unlimited level of  drill-down maps using a single data source. All the links originate  from a parent map and its data, which comprehensively contains data  or data URL for all descendant (child, grand-child) maps. Upon  clicking the data plot items of the parent map,  users can drill-down into descendant maps. The descendant maps (or  children maps) can either replace the parent map with an option to  drill-up, or can be opened in new dialogs or frames. </p>
+      <p>Let's  consider a simple scenario with a single level of drill-down. We will  build a parent map that shows  sales data, which when clicked will  open respective continent maps. Let's build the parent map as the World map.  <em>LinkedCharts</em> allows you to build these kinds of scenarios (and much more  complex) without having to write any additional line of code.</p>
+      <p>To use <em>LinkedCharts, </em>you need to follow these steps:</p>
+      <ul>
+        <li>First,  create the XML/JSON data for <strong>parent map  </strong>. This is called the <strong>parent data source</strong> and comprehensively contains data String or data URL for all descendant maps. </li>
+        <li>Next, append the <strong>data string </strong>or <strong>data URL </strong>for all the <strong>descendant maps </strong>(also called child map) within the parent data source. If the <strong>data string</strong> method is used, data for each descendant map is embedded within the <strong>parent data source</strong> and linked using <strong>unique data identifiers</strong>.</li>
+        <li>You are done. Yes, no additional code is required! </li>
+      </ul>
+      <p>The <i>LinkedChart</i> feature of FusionCharts JavaScript Class will take care of the rest. It does the following: </p>
+      <ul>
+        <li> Automatically creates and shows a detailed child map when a data plot item <span class="msg_handler"><a>link</a>  &raquo; </span><span class="veryLightYellowBg msg_body"> (specially defined links using newchart prefix) </span> in the parent map is clicked </li>
+        <li>Clones all map configuration settings from the parent map to create the child map or the <em>LinkedChart</em></li>
+        <li><span class="msg_handler">Allows you to configure specific properties for the descendant <a>maps</a> &raquo; </span><span class="veryLightYellowBg msg_body"> e.g., type of map, width, height, where the maps will be shown etc. </span>using <span class="codeInline">configureLink()</span><span class="msg_handler"></span> function </li>
+        <li>Notifies your code by way of <a href="API/events.html#linkedcharts">events</a> when a link is invoked,  when link item is opened and when link item is closed</li>
+        <li>Allows you to drill-down to unlimited numbers of levels </li>
+      </ul>
+      <p>The images below shows how a simple <em>LinkedCharts</em> implementation works (here, we have shown only one level of drill-down): </p>
+      <table cellpadding="0" cellspacing="0" width="680"><tr>
+      <td><img src="../FirstMap/Images/linkedMap1.jpg" width="498" height="283" class="imageBorder" /></td>
+   <td align="center"><img src="../FirstMap/Images/linkedMap2.jpg" width="498" height="283" class="imageBorder" /></td>
+   </tr>
+		
+   </table>
+      
+      <div class="highlightBlock">
+		In this page we will learn how <i>LinkedCharts</i> work with the items  listed below:<br />
+<br />
+      <ul>
+         <li><a href="#basic">Create a basic <i>LinkedChart</i> which loads descendant (map) maps replacing the parent map. The data of the child maps come from data URL. </a></li>
+         <li><a href="#basicembed">Create <i>LinkedCharts</i> with data for all descendant maps embedded inside the parent map data source</a></li>
+         <li><a href="#config">Configure various aspects of <i>LinkedCharts. </i>Here, we will change the style and color of the &quot;Back&quot; button</a></li>
+         <li><a href="#container">Open descendant maps in a separate HTML container</a></li>
+         <li><a href="#events">Listen to events </a></li>
+         <li><a href="#jqdialog">Open descendant maps inside jQuery dialog</a></li>
+         <li><a href="#prettyphoto">Open </a><a href="#jqdialog">descendant maps </a><a href="#prettyphoto"> inside jQuery PrettyPhoto </a></li>
+         <li><a href="#highslide">Open</a><a href="#jqdialog"> descendant maps </a><a href="#highslide"> inside HighSlide lightbox </a></li>
+         <li><a href="#extjs">Open </a><a href="#jqdialog">descendant maps </a><a href="#extjs"> inside ExtJS window </a></li>
+      </ul></div>
+      
+      <p>Let's now find out how this is implemented in the code shown below: </p>
+    </td>
+  </tr>
+  
+  <tr class="">
+     <td valign="top" class="header"><a name="basic" id="basic"></a>A very basic <i>LinkedChart</i> sample</td>
+  </tr>
+  <tr class="">
+    <td valign="top" class="text"><p><strong> HTML </strong></p>
+      <p>Let's see the code for a simple <em>LinkedChart</em> that renders a world map with links:</p>
+      <pre class="code_container prettyprint">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using LinkedCharts feature&lt;/title&gt; 
+    &lt;script type="text/javascript" src="Maps/FusionCharts.js"&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id="mapContainer"&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type="text/javascript"&gt;&lt;!--
+      var myMap = new FusionCharts ("Maps/FCMap_World.swf", "MyMapId", "700", "400", "0");
+      myMap.setXMLUrl ("Linked-Data.xml");
+      myMap.render("mapContainer"); 
+    // --&gt; 
+    &lt;/script&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+      <p>In the above HTML we have created only the parent map. The map takes data from an xml file, <span class="codeInline">Linked-Data.xml</span>. This map, in junction with <em>LinkedCharts</em> functionality defined in <span class="codeInline">FusionCharts.js</span>, will drive drill-down maps; without you having to write any additional line of code. </p>
+      <p><strong> Data </strong></p>
+      <p>The XML/JSON data is what drives the entire <em>LinkedCharts</em> drill-down functionality. In this example, we will use <em>Data URL method</em> to specify URL of descendant maps. In context of XML data, it is <span class="codeInline"> xmlurl</span> data format. For JSON, it is <span class="codeInline">jsonurl</span>. Given below is the XML/JSON data specifying <em>LinkedChart</em> for each continent.</p>
+      <div class="container">
+        <ul class="tabs">
+          <li><a href="#mainxml">XML</a></li>
+          <li><a href="#mainjson">JSON</a></li>
+        </ul>
+        <div class="tab_container">
+          <div id="mainxml" class="tab_content">
+            <pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9'&gt;
+      
+      &lt;data&gt;
+        &lt;entity id="NA" value="6921900" link='newchart:FCMap_NorthAmerica.swf-xmlurl-NorthAmerica.xml' /&gt;
+        &lt;entity id="SA" value="3087120" link='newchart:FCMap_SouthAmerica.swf-xmlurl-SouthAmerica.xml' /&gt;
+        &lt;entity id="AS" value="2434120" link='newchart:FCMap_Asia-xmlurl.swf-Asia.xml' /&gt;
+        &lt;entity id="EU" value="5093230" link='newchart:FCMap_Europe.swf-xmlurl-Europe.xml' /&gt;
+        &lt;entity id="AF" value="1032900" link='newchart:FCMap_Africa.swf-xmlurl-Africa.xml' /&gt;
+        &lt;entity id="AU" value="3461230" link='newchart:FCMap_Australia.swf-xmlurl-Australia.xml' /&gt;
+      &lt;/data&gt;
+&lt;/map&gt;</pre>
+          </div>
+          <div id="mainjson" class="tab_content">
+            <pre class="prettyprint code_container">{
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "numberPrefix": "$",
+    "includevalueinlabels": "1",
+    "basefontsize": "9"
+  },
+  "data": [
+    {
+      "id": "NA",
+      "value": "6921900",
+      "link": "newchart:FCMap_NorthAmerica.swf-jsonurl-NorthAmerica.json"
+    },
+    {
+      "id": "SA",
+      "value": "3087120",
+      "link": "newchart:FCMap_SouthAmerica.swf-jsonurl-SouthAmerica.json"
+    },
+    {
+      "id": "AS",
+      "value": "2434120",
+      "link": "newchart:FCMap_Asia.swf-jsonurl-Asia.json"
+    },
+    {
+      "id": "EU",
+      "value": "5093230",
+      "link": "newchart:FCMap_Europe.swf-jsonurl-Europe.json"
+    },
+    {
+      "id": "AF",
+      "value": "1032900",
+      "link": "newchart:FCMap_Africa.swf-jsonurl-Africa.json"
+    },
+    {
+      "id": "AU",
+      "value": "3461230",
+      "link": "newchart:FCMap_Australia.swf-jsonurl-Australia.json"
+    }
+  ]
+}</pre>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both; height:10px;"></div>
+      <p>In the above data we define link attribute for each <span class="codeInline">entity</span> element. Note how link for each continent is defined as <span class="codeInline">newchart:FCMap_NorthAmerica.swf-xmlurl-NorthAmerica.xml</span>. The link can be broken down into: </p>
+      <ul>
+          <li><span class="codeInline">newChart</span> prefix: used to indicate that it must invoke <em>LinkedChart</em>. </li>
+          <li>The type of map or the name of the map SWF file is added separated by a colon (:). </li>
+          <li><span class="codeInline">xmlurl</span> indicates that <em> </em>URL method is used to specify data for linked map; in case of JSON data, <span class="codeInline">jsonurl</span> is used. </li>
+          <li><span class="codeInline">NorthAmerica.xml</span> is the URL specifying the data path for the linked map that opens when this entity is clicked. </li>
+      </ul>
+      <p class="highlightBlock"><strong>Note</strong>: You can create <em>LinkedCharts</em> using the<span class="codeInline"> link</span> attribute or the <span class="codeInline">clickURL</span> attribute of the <span class="codeInline"></span>map. </p>
+      <p>As per the above XML, the data for the North America child maps is <span class="codeInline"> NorthAmerica.xml</span>; for South America it is <span class="codeInline">SouthAmerica.xml</span> etc. As per the above JSON, the data  for the North America child maps is <span class="codeInline"> NorthAmerica.json</span>; for South America it is <span class="codeInline">SouthAmerica.json</span>  and so on.</p>
+      
+      <p>The XML/JSON for a child map (say, Australia)  is as follows:</p>
+	  
+	   <p class="highlightBlock"><strong>Note:</strong> Considering the data format for the child maps are same, here we will show data for only Australia.  In actual implementation, data will be required for all the continent maps.</p>
+	   <div class="container">
+        <ul class="tabs">
+          <li><a href="#ausxml">XML</a></li>
+          <li><a href="#ausjson">JSON</a></li>
+        </ul>
+        <div class="tab_container">
+          <div id="ausxml" class="tab_content">
+            <pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+      &lt;data&gt;
+          &lt;entity id='WA'  value=&quot;200050&quot; /&gt;
+          &lt;entity id='NT'  value=&quot;1509800&quot; /&gt;
+          &lt;entity id='QU'  value=&quot;8034800&quot; /&gt;
+          &lt;entity id='SA'  value=&quot;123000&quot; /&gt;
+          &lt;entity id='SW'  value=&quot;548000&quot; /&gt;
+          &lt;entity id='VI'  value=&quot;182000&quot; /&gt;
+          &lt;entity id='TA'  value=&quot;94900&quot; /&gt;
+     &lt;/data&gt;
+&lt;/map&gt;</pre>
+          </div>
+          <div id="ausjson" class="tab_content">
+            <pre class="prettyprint code_container">     {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        },
+        "data": [
+          {
+            "data": [
+              {
+                "id": "WA",
+                "value": "200050"
+              },
+              {
+                "id": "NT",
+                "value": "1509800"
+              },
+              {
+                "id": "QU",
+                "value": "8034800"
+              },
+              {
+                "id": "SA",
+                "value": "123000"
+              },
+              {
+                "id": "SW",
+                "value": "548000"
+              },
+              {
+                "id": "VI",
+                "value": "182000"
+              },
+              {
+                "id": "TA",
+                "value": "94900"
+              }
+            ]
+          }
+        ]
+      }</pre>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both; height:10px;"></div>
+	  
+	  
+  
+      <p> The page first loads the parent map, a World Map. When a continent is clicked the parent map is replaced by a detailed child map of that continent. There is a Back overlay button at the top right corner of the map. This button when clicked leads us back to the main map. </p>
+      <p>This is a very basic sample in which the parent map is replaced by the child map. However, there are a lot of things that you can configure, like:</p>
+      <ul>
+          <li>Make the descendant maps open in a separate container. </li>
+          <li> Extend the functionality to open the descendant maps in jQuery dialogs, light-boxes etc. using event listeners. </li>
+          <li>Modify various aspects (like size, attribute etc.) of the parent and descendent maps. </li>
+          </ul>
+      <p>Possibilities are endless. We will explore some of the possibilities in the coming sections of this page. </p>
+      <div class="highlightBlock"> <strong><a name="link" id="link"></a>Pointers on the XML's link attribute to implement <i>LinkedCharts</i> </strong>:
+          <p>The format of the <span class="codeInline">link </span>attribute's value is - &quot;<span class="codeInline">newchart:mapSWFname-dataformat-datasource</span>&quot;. The format is explained below:</p>
+          <ul>
+              <li>Each link starts with a constant,  <span class="codeInline">newchart</span> to declare that the link will invoke&nbsp;LinkedCharts</li>
+              <li><span class="codeInline">newchart</span>  is followed by a colon (:) and then the SWF filename of the child map is specified.  If you are rendering only JavaScript maps, you can provide <a href="../introduction/MapsList.html">JavaScript map alias</a> instead. 
+                  <p class="highlightBlock"><strong>Note:</strong> Do not set the complete path of the map SWF file here. FusionCharts JavaScript Class is smart enough to pick it up from the path of the parent map. However, if required, you can also configure the path of the child map SWF files - which we will <a href="#otherfolder">soon see</a>.</p>          
+              </li>
+              <li><span class="msg_handler"><a>dataformat</a> &raquo; </span><span class="msg_body veryLightYellowBg"> ( i.e., value after <span class="codeInline">newchart</span> prefix and a hyphen (-) ) </span> is the format in which data for the child map is provided. Data format can be of 4 types:
+                  <ol>
+                      <li><span class="codeInline">xmlurl</span> - This defines that the data for the new map will come from an XML URL. This is automatically loaded by the child map </li>
+                      <li><span class="codeInline">jsonurl</span> - This defines that the data for the new map will come from a JSON URL. This is automatically loaded by the child map </li>
+                      <li><span class="codeInline">xml</span> - This defines that the data for the new map will come from XML embedded inside the XML for the parent map (parent data source) </li>
+                      <li><span class="codeInline">json</span> - This defines that the data for the new map will come from JSON embedded inside the JSON for the parent map (parent data source)<br />
+                          <br />
+                          </li>
+                      </ol>
+                  </li>
+              <li><span class="msg_handler"><a>datasource</a> &raquo; </span><span class="msg_body veryLightYellowBg"> (the rest of the value, after a hyphen (-) again) </span>defines the value for data source (either URL or Data String itself) for the descendant map as per the <span class="codeInline">dataformat</span> set:
+                  <ol>
+                      <li>When <span class="codeInline">xmlurl</span> is set as the <span class="codeInline">dataformat</span>, the <span class="codeInline">datasource</span> value will be a URL of the XML file </li>
+                      <li>When <span class="codeInline">jsonurl</span> is set as the <span class="codeInline">dataformat</span>, the <span class="codeInline">datasource</span> value will be a URL of the JSON file </li>
+                      <li>When <span class="codeInline">xml</span> is set as the <span class="codeInline">dataformat</span>, the <span class="codeInline">datasource</span> assumes value of the unique data identifier which refers to data embedded inside <span class="codeInline">&lt;linkeddata&gt;</span> node (that contains data for all descendant maps) in the parent data source for the descendant map </li>
+                      <li>When <span class="codeInline">json</span> is set as the <span class="codeInline">dataformat</span>, the <span class="codeInline">datasource</span> assumes value of the unique data identifier which refers to data embedded inside the Array <span class="codeInline">linkeddata</span> (that contains data for all descendant maps) in the parent data source for the descendant map </li>
+                      </ol>
+                  </li>
+              </ul>
+  </div></td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p class="highlightBlock">For detailed information of the XML/JSON structure of  the <i>LinkedCharts</i>' data, please go through  Drill Down Maps &gt; LinkedCharts &gt; <a href="../DrillDown/LinkedCharts/XMLFormat.html" >XML data format</a> and <a href="../DrillDown/LinkedCharts/JSONFormat.html" >JSON data format</a> pages. </p></td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="basicembed" id="basicembed"></a><a name="embedded" id="embedded"></a><em>LinkedChart</em> sample with descendant data embedded in parent data (Data String method) </td>
+  </tr>
+  
+  
+    <tr>
+    <td valign="top" class="text"><p>You can embed the descendant Data String in the parent data source. This is called <em>Data String method</em> in context of <em>LinkedCharts</em>. Each entity item in parent map is then linked to a descendant map data (embedded in parent data source) by means of a unique data identifier. A sample XML and equivalent JSON is given below: </p>
+	 <p class="highlightBlock">Note: To make the sample data light weight for this demonstration, we have  placed data for only Australia map. In actual implementation, data will be required.</p>
+	</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><div class="container">
+        <ul class="tabs">
+          <li><a href="#tabXML_LC1">XML</a></li>
+          <li><a href="#tabJSON_LC1">JSON</a></li>
+        </ul>
+        <div class="tab_container">
+          <div id="tabXML_LC1" class="tab_content">
+            <pre class="code_container prettyprint lang-xml" style="height:300px;">&lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9'&gt;
+      
+      &lt;data&gt;
+        &lt;entity id="NA" value="6921900" link='newchart:FCMap_NorthAmerica.swf-xml-NorthAmerica' /&gt;
+        &lt;entity id="SA" value="3087120" link='newchart:FCMap_SouthAmerica.swf-xml-SouthAmerica' /&gt;
+        &lt;entity id="AS" value="2434120" link='newchart:FCMap_Asia.swf-xml-Asia' /&gt;
+        &lt;entity id="EU" value="5093230" link='newchart:FCMap_Europe.swf-xml-Europe' /&gt;
+        &lt;entity id="AF" value="1032900" link='newchart:FCMap_Africa.swf-xml-Africa' /&gt;
+        &lt;entity id="AU" value="3461230" link='newchart:FCMap_Australia.swf-xml-Australia' /&gt;
+      &lt;/data&gt;
+          
+     &lt;linkeddata id="Australia"&gt;
+      &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+			&lt;data&gt;
+                &lt;entity id='WA'  value=&quot;200050&quot; /&gt;
+                &lt;entity id='NT'  value=&quot;1509800&quot; /&gt;
+                &lt;entity id='QU'  value=&quot;8034800&quot; /&gt;
+                &lt;entity id='SA'  value=&quot;123000&quot; /&gt;
+                &lt;entity id='SW'  value=&quot;548000&quot; /&gt;
+                &lt;entity id='VI'  value=&quot;182000&quot; /&gt;
+                &lt;entity id='TA'  value=&quot;94900&quot; /&gt;
+        &lt;/data&gt;
+    &lt;/map&gt;
+  &lt;/linkeddata&gt;
+
+  &lt;linkeddata id="NorthAmerica"&gt;
+    &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+    &lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id="SouthAmerica"&gt;
+  &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id="Europe"&gt;
+  &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id="Africa"&gt;
+  &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+&lt;/map&gt;
+</pre>
+          </div>
+          <div id="tabJSON_LC1" class="tab_content"  >
+            <pre id="pre-datajson" class="prettyprint lang-js code_container" style="height:300px; ">{
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "includevalueinlabels": "1",
+    "numberprefix": "$",
+    "basefontsize": "9"
+  },
+  "data": [
+    {
+      "id": "NA",
+      "value": "6921900",
+      "link": "newchart:FCMap_NorthAmerica.swf-json-NorthAmerica"
+    },
+    {
+      "id": "SA",
+      "value": "3087120",
+      "link": "newchart:FCMap_SouthAmerica.swf-json-SouthAmerica"
+    },
+    {
+      "id": "AS",
+      "value": "2434120",
+      "link": "newchart:FCMap_Asia.swf-json-Asia"
+    },
+    {
+      "id": "EU",
+      "value": "5093230",
+      "link": "newchart:FCMap_Europe.swf-json-Europe"
+    },
+    {
+      "id": "AF",
+      "value": "1032900",
+      "link": "newchart:FCMap_Africa.swf-json-Africa"
+    },
+    {
+      "id": "AU",
+      "value": "3461230",
+      "link": "newchart:FCMap_Australia.swf-json-Australia"
+    }
+  ],
+  "linkeddata": [
+    {
+      "id": "Australia",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        },
+        "data": [
+              {
+                "id": "WA",
+                "value": "200050"
+              },
+              {
+                "id": "NT",
+                "value": "1509800"
+              },
+              {
+                "id": "QU",
+                "value": "8034800"
+              },
+              {
+                "id": "SA",
+                "value": "123000"
+              },
+              {
+                "id": "SW",
+                "value": "548000"
+              },
+              {
+                "id": "VI",
+                "value": "182000"
+              },
+              {
+                "id": "TA",
+                "value": "94900"
+              }
+          ]
+      }
+    },
+    {
+      "id": "NorthAmerica",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "SouthAmerica",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "Asia",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "Europe",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    },
+    {
+      "id": "Africa",
+      "linkedmap": {
+        "map": {
+          "bordercolor": "005879",
+          "fillcolor": "D7F4FF",
+          "includevalueinlabels": "1",
+          "numberprefix": "$",
+          "basefontsize": "9"
+        }
+      }
+    }
+  ]
+}</pre>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+   	    </td>
+  </tr>
+
+  <tr>
+     <td valign="top" class="text">
+        <p class="highlightBlock">For detailed information of the XML/JSON structure of  the <i>LinkedCharts</i>' data, please read FusionMaps  XT data formats &gt; <a href="http://www.fusioncharts.com/docs/?DataFormats/XML/LinkedCharts.html" target="_blank">XML</a> and <a href="http://www.fusioncharts.com/docs/?DataFormats/JSON/LinkedCharts.html" target="_blank">JSON</a> pages. </p>
+     </td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="config" id="config"></a>Configuring <i>LinkedCharts</i></td>
+  </tr>
+  <tr>
+     <td valign="top" class="text">
+        <p>Till now, we have seen how to use the standard <em>LinkedCharts</em> feature provided by FusionMaps XT. Here, the descendant maps used the  same configuration  as the parent map. However,  FusionCharts JavaScript Class allows you to configure each aspect of  the descendant  <em>LinkedCharts</em> using the function <a href="../javascript/API/methods.html#configurelink">configureLink() </a>for each map instance. Using this function, you can pass all your desired configurations for the descendant maps.</p>
+        <p> You can pass all the properties that a <a href="../javascript/API/methods.html#chartparams">FusionCharts constructor</a> accepts. Additionally, you can also configure the overlay button using the <a href="../javascript/API/methods.html#overlaybutton">overlayButton</a> property. In the sample JavaScript code given below we will  set custom colors for  overlay-buttons. Note that for this example we will use the same data  files that we have used in our basic <em>LinkedChart</em> sample above. The images below show how it  works:</p>
+        <table width="680" cellpadding="0" cellspacing="0">
+           <tr>
+              <td> <img src="../FirstMap/Images/linkedMap1.jpg" width="498" height="283" class="imageBorder"/></td>
+              <td  align="center"><img src="../DrillDown/Images/configure_button.jpg" width="498" height="283" class="imageBorder" /></td>
+           </tr>
+         
+        </table>
+		</td></tr><tr>
+		<td height="25"></td></tr>
+		<tr>
+		<td>
+       
+        <pre class="prettyprint code_container">var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;,
+    &quot;myMapId&quot;, &quot;320&quot;, &quot;250&quot;, &quot;0&quot;, &quot;1&quot; );
+  myMap.setXMLUrl(&quot;LinkedMap.xml&quot;);
+  myMap.render(&quot;MapContainer&quot;);
+  
+  <strong>FusionCharts(&quot;myMapId&quot;).configureLink</strong> (
+  {
+    <strong>overlayButton</strong>:
+    {    
+      message: 'close',
+      fontColor : '880000',
+      bgColor:'FFEEEE',
+      borderColor: '660000'
+    }
+  }, 0 );</pre>
+        <p>In the above code:</p>
+        <p>In the above code we've done the following:</p>
+        <ul>
+            <li>Created a parent map with ID <span class="codeInline">myMapId</span>. We've provided it the XML data that we had built earlier. </li>
+            <li>Called <span class="codeInline">configureLink</span> function to configure the descendant maps. </li>
+            <li>Two parameters are passed to this function:</li><br />
+            <ol>
+                <li> The first parameter contains another property, <span class="codeInline">overlayButton</span> to configure <a href="API/methods.html#overlaybutton">overlay button</a>.</li>
+                <li>Passed the drill-down level to configure as the second parameter of the function (zero here). Zero denotes the  first level of drill-down. The level value keeps increasing by one for subsequent levels of drill-down.</li>
+                </ol>
+            <p>In the first parameter of the configureLlink function we have:</p>
+        </ul>
+        <ul>
+            <li>Setup the overlay button using the <span class="codeInline">overlayButton</span> property. The settings are passed as an Object with possible properties as <span class="codeInline">message, font, fontColor, fontSize, bold, padding, bgColor and borderColor</span>.  				Here we:
+                <ul>
+                    <li>Set a new message &quot;close&quot; which replaces the default &quot;Back&quot; text of the button</li>
+                    <li>Set red as <span class="codeInline">fontColor</span> and a similar <span class="codeInline">borderColor</span> and <span class="codeInline">bgColor</span> (background color)</li>
+                    </ul>
+            </li>
+    </ul>
+        <p class="highlightBlock">Note that you can pass all the properties that a <a href="API/methods.html#constructor">FusionCharts constructor</a> accepts as the property of the parameter of <span class="codeInline">configureLink</span> function. To know the properties for overlayButton read <a href="API/methods.html#overlaybutton">overlayButton</a> property list.</p>
+    </td>
+  </tr>
+  <tr>
+     <td valign="top" class="header"><a name="container" id="container"></a>Opening the <i>LinkedCharts</i> in a separate HTML container</td>
+  </tr>
+  <tr>
+     <td valign="top">
+        <p>Now let's modify the above code and the HTML a bit so that we can  render the descendant maps in a separate HTML container. This will  help us retain the parent map as well as show the child maps  separately. The changes are as follows:</p>
+        <p>In the HTML we added a new DIV with &quot;<span class="codeInline">linkedchart-container</span>&quot; as id just below the existing map container DIV. This new DIV will be  the container for the <em>LinkedCharts. </em></p>
+        <pre class="code_container prettyprint">&lt;div id=&quot;mapContainer&quot;&gt;Parent map will load here&lt;/div&gt;
+
+<strong>&lt;div id=&quot;linkedchart-container&quot; &gt;LinkedCharts will load here&lt;/div&gt;</strong></pre>
+        <br />
+        <pre class="prettyprint code_container"><strong>FusionCharts(&quot;myMapId&quot;).configureLink</strong> (
+  {
+    <strong>&quot;renderAt&quot; : &quot;linkedchart-container&quot;,</strong>
+    overlayButton: { show : false }
+  });</pre>
+        <p>We have modified JavaScript's configureLink function  as described below:</p>
+        <ul>
+           <li>Added the <span class="codeInline">renderAt</span> property and set the value to &quot;<span class="codeInline">linkedchart-container</span>&quot; where the <em>LinkedCharts </em>will be generated</li>
+           <li>Set the overlay button off by setting the <span class="codeInline">show</span> property to <span class="codeInline">false</span></li>
+        </ul>
+        <p>Once run, the functionality will work somehow like the image shown below: </p>
+        <p><img src="../DrillDown/Images/linkedcharts_renderat.jpg" width="910" height="256" class="imageBorder" /></p>
+        
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="otherfolder" id="otherfolder"></a>Opening the <i>LinkedCharts</i> from a different folder</td>
+  </tr>
+  
+  <tr>
+    <td valign="top">
+      <p>By default, the child map file (Flash SWF file) loads from the same location where the parent map file resides. However, you may have a requirement to put map files in separate folders. For instance, you group map files based on hierarchy and have folders like &quot;world', &quot;continent&quot;, &quot;county&quot;, &quot;state&quot; etc. Here, we we will see how to configure <em>LinkedCharts</em> to open child maps from a different folder. Consider the scenario where the   map SWF file  of the child map is located in a different folder from that of the parent map. For example, the name of the folder where the SWF files of the child maps are located is &quot;<strong>Continent</strong>&quot;. In that case you need to specify the relative path of the child map within the <span class="codeInline">configureLink()</span> function through the <span class="codeInline">swfSrcPath</span> property.. The configuration is shown in the code below: </p>
+      
+     
+      <pre class="prettyprint code_container"><strong>FusionCharts("myMapId").configureLink</strong> (
+  {
+    <strong>&quot;swfSrcPath&quot; : &quot;Continent/&quot;,</strong>
+    overlayButton: { show : false }
+  }, 0 );</pre> 
+  <p class="highlightBlock"><strong>Note</strong>: The path should be relative to the HTML or the web page.</p>    
+      </td>
+  </tr>
+  
+    <tr>
+     <td valign="top" class="header"><a name="events" id="events"></a>Listening to <i>LinkedChart</i> events </td>
+    </tr>
+    <tr>
+      <td valign="top" class="text">
+        <p>The FusionCharts JavaScript Class raises  a number of events when <i>LinkedCharts</i> are in action. Each link-invoking map instance (that is, the parent map) can listen to the events and can add more functionality to the implementation. The  events are as follows:</p>
+        <ol>
+          <li><span class="codeInline">BeforeLinkedItemOpen </span>: Fires before a <em>LinkedChart</em> item (descendant map) is created </li>
+          <li><span class="codeInline">LinkedItemOpened</span> : Fires after a <em>LinkedChart</em> item or descendant map is created</li>
+          <li><span class="codeInline">BeforeLinkItemClose</span> : Fires before a <em>LinkedChart</em> item or descendant map is closed </li>
+          <li><span class="codeInline">LinkedItemClosed</span> : Fires after a <em>LinkedChart</em> item or descendant map is closed</li>
+        </ol>
+        <p class="highlightBlock">The events can be listened using <span class="codeInline">addEventListener</span> on the link invoking master map. You can also trap the events globally for all maps. For this you need to use the<span class="codeInline"> FusionCharts.addEventListener()</span> static function. For details on each event, please go through the <a href="API/events.html">Events</a> page. For basic implementation example of events, read <a href="js_event_overview.html">Listening to events</a> page. </p>
+        <p>Here, we will create a small example which listens to the <span class="codeInline">LinkItemOpened</span> and <span class="codeInline">LinkItemClosed</span> events and shows alert message when each event fires. The code will be as under: </p>
+        
+        
+        
+         <pre class="prettyprint code_container">var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+    "myMapId", "740", "400", "0", "1" );
+  myMap.setXMLUrl("LinkedMap.xml");
+  myMap.render("mapContainer");
+
+  FusionCharts("myMapId").addEventListener(
+    "<strong>LinkedItemOpened</strong>", function (eo, ao) { 
+	   alert( 'Successfully drilled-down to a detailed map.'); 
+    } 
+  );
+  FusionCharts("myMapId").addEventListener(
+    "<strong>LinkedItemClosed</strong>", function (eo, ao) { 
+	   alert( 'Closed a detailed drilled-down map and return to parent map.'); 
+	 }
+  );</pre>
+  
+		  <p>In the above code we have done the following:</p>
+		  <ul>
+		     <li>We have used the <span class="codeInline">addEventListener</span> function to listen to the two events - <span class="codeInline">LinkItemOpened</span> and <span class="codeInline">LinkItemClosed</span></li>
+	        <li>For each event's listener, we have declared an anonymous function that call JavaScript alerts and shows pertinent message </li>
+		  </ul>
+      </td>
+  </tr>
+    <tr>
+       <td valign="top" class="text">&nbsp;</td>
+    </tr>
+    <tr>
+       <td valign="top" class="header"><a name="jqdialog" id="jqdialog"></a>Opening <i>LinkedCharts</i> in jQuery dialog</td>
+    </tr>
+    <tr>
+       <td class="text">
+          <p>You can render the <em>LinkedCharts</em>&nbsp;in a jQuery dialog. A live implementation of this will resemble the image below:</p>
+          <p><img src="Images/linkedChartsJQDialog.jpg" alt="Link chart in JQuery window" width="838" height="447" /></p>
+          <p>Watch it  <a href="../../Code/JavaScript/Basics/UsingLinkedCharts/jqdialog.html" target="_blank">live</a>!</p>
+          
+			 <div class="imageBorder" style="padding:10px;">
+          <div class="msg_handler_slider"><strong>Click <a>here</a> to see the full implementation code and brief explanation.</strong></div>
+			 <div class="msg_body" >
+          <pre class="prettyprint code_container lang-xml">&lt;html&gt;
+  &lt;head&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+
+    &lt;link href=&quot;resources/jquery.ui/jquery-ui.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+    &lt;script src=&quot;resources/jquery.ui/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;resources/jquery.ui/jquery-ui.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+  
+        var dialog;
+				
+        $(document).ready(function() {
+
+          dialog = $('#linkedchart-container').dialog({
+            autoOpen: false,
+            width: 750, 
+            height: 400,
+            title : 'LinkedCharts in jQuery Dialog'
+          });
+        });
+    // --&gt;&lt;/script&gt;
+
+  &lt;/head&gt;
+
+  &lt;body&gt;
+      &lt;div id=&quot;mapContainer&quot;&gt;Parent map will load here&lt;/div&gt;
+      &lt;div id=&quot;linkedchart-container&quot;&gt;LinkedCharts will load here&lt;/div&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+  
+        var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+          "myMapId", "750", "400", "0", "1" );
+        myMap.setXMLUrl("LinkedMap.xml");
+        myMap.render("mapContainer");
+        
+       FusionCharts("myMapId").configureLink
+       (
+         {
+           width : '100%',
+           height: '100%',
+           id: 'linked-chart',
+           renderAt : "linkedchart-container",
+           overlayButton: { show : false }
+          },0
+       );
+        
+       FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+         function() {
+           dialog.dialog('open');
+          }
+        );
+     
+
+    // --&gt;&lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+          <p class="highlightBlock">In order to render the link maps in a jQuery dialog, you do not have to make any changes to the XML. For the above example we have used the same XML as discussed previously in this page.</p>
+          <p>Through the above code, we do the following:</p>
+          <ul>
+             <li>Include the jQuery UI library files </li>
+             <pre class="code_container prettyprint">&lt;link href=&quot;resources/jquery.ui/jquery-ui.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;resources/jquery.ui/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/jquery.ui/jquery-ui.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+</pre> <br />
+             <li>Include  <span class="codeInline">FusionCharts.js</span> class file</li>
+             <pre class="prettyprint code_container">&lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;</pre> 
+             <br />
+             <li>Declare two divs in the body with ids <span class="codeInline">mapContainer</span> and <span class="codeInline">linkedchart-container,</span> respectively</li>
+             <pre class="prettyprint code_container">&lt;div id=&quot;mapContainer&quot;&gt;Parent map will load here&lt;/div&gt;
+&lt;div id=&quot;linkedchart-container&quot;&gt;LinkedCharts will load here&lt;/div&gt;</pre> 
+             <br />
+             <li>In body load event we construct  a jQuery dialog and set &quot;linkedchart-container&quot; DIV to be the body of the dialog.</li>
+             <pre class="prettyprint code_container">dialog = $('#linkedchart-container').dialog({
+  autoOpen: false,
+  width: 750, 
+  height: 400,
+  title : 'LinkedCharts in jQuery Dialog'
+});</pre> <br />
+             <li>Render the master map and configure the <em>LinkedCharts</em> to load in &quot;linkedchart-container&quot; DIV. Also we turn-off the overlay button. </li>
+             <pre class="prettyprint code_container">var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+  "myMapId", "750", "400", "0", "1" );
+myMap.setXMLUrl("LinkedMap.xml");
+myMap.render("mapContainer");
+        
+FusionCharts("myMapId").configureLink(
+  {
+    width : '100%',
+    height: '100%',
+    id: 'linked-chart',
+    renderAt : "linkedchart-container",
+    overlayButton: { show : false }
+  },0
+);</pre> 
+             <br />
+             <li>Add an event listener function to the <span class="codeInline">BeforeLinkedItemOpen</span> event, this function shows the jQuery dialog which contains the <i>LinkedChart</i></li>
+             <pre class="prettyprint code_container">FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+  function() {
+    <strong>dialog.dialog('open');</strong>
+  }
+);</pre>
+          </ul>
+    </div></div>
+       </td>
+    </tr>
+    <tr>
+       <td valign="top">&nbsp;</td>
+    </tr>
+    
+    <tr>
+       <td valign="top" class="header"><a name="prettyphoto" id="prettyphoto"></a>Opening <i>LinkedCharts</i> in jQuery PrettyPhoto </td>
+    </tr>
+    <tr>
+       <td valign="top">
+          <p><img src="Images/linkedChartsPrettyPhoto.jpg" width="677" height="418" alt="Link chart in JQuery window" /></p>
+          <p>Watch it <a href="../../Code/JavaScript/Basics/UsingLinkedCharts/jqprettyphoto.html" target="_blank">live</a>!</p>
+         <div class="imageBorder" style="padding:10px;">
+          <div class="msg_handler_slider"><strong>Click <a>here</a> to see the full implementation code and brief explanation.</strong></div>
+			 <div class="msg_body" >
+          <pre class="prettyprint code_container lang-xml">&lt;html&gt;
+  &lt;head&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;        
+
+    &lt;link href=&quot;resources/jquery.ui/jquery-ui.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+    &lt;script src=&quot;resources/jquery.ui/jquery.min.js&quot; type=&quot;text/javascript&quot; &gt;&lt;/script&gt;
+    &lt;script src=&quot;resources/jquery.ui/jquery-ui.min.js&quot; type=&quot;text/javascript&quot; &gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;resources/prettyPhoto/css/prettyPhoto.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; charset=&quot;utf-8&quot; /&gt;
+    &lt;script src=&quot;resources/prettyPhoto/js/jquery.prettyPhoto.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+    &lt;style type=&quot;text/css&quot;&gt;
+      #prettyphoto-container {
+        display: none;
+        height: 300px;
+        width: 550px;
+      }
+    &lt;/style&gt;
+
+	 &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+      $(document).ready(function() {
+        $('#linkedchart-container').prettyPhoto( {
+          opacity: 0.35,
+          showTitle: true, 
+          allowresize: true
+        });
+      });
+    // --&gt;&lt;/script&gt;
+
+    &lt;/head&gt;
+
+    &lt;body&gt;
+      &lt;div id=&quot;mapContainer&quot;&gt;Parent map will load here&lt;/div&gt;
+      &lt;div id=&quot;prettyphoto-container&quot;&gt;
+        &lt;div id=&quot;linkedchart-container&quot; &gt;&lt;/div&gt;
+      &lt;/div&gt;
+		
+		&lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+  
+        var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+          "myMapId", "750", "400", "0", "1" );
+        myMap.setXMLUrl("LinkedMap.xml");
+        myMap.render("mapContainer");
+        
+       FusionCharts("myMapId").configureLink
+       (
+         {
+           width : '500',
+           height: '300',
+           id: 'linked-chart',
+           renderAt : "linkedchart-container",
+           overlayButton: { show : false }
+          },0
+       );
+        
+       FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+         function() {
+           $.prettyPhoto.open("#prettyphoto-container",'LinkedCharts in PrettyPhoto','FusionMaps XT');
+          }
+        );
+
+    // --&gt;&lt;/script&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+          <p class="highlightBlock">In order to render the <em>linkedcharts</em> in a jQuery PrettyPhoto, you do not have to make any changes to the XML. For the above example we have used the same XML as discussed previously in this page.</p>
+          <p>Through the above code, we do the following:</p>
+          <ul>
+             <li>Include the jQuery UI and PrettyPhoto library files </li>
+             <pre class="code_container prettyprint">&lt;link href=&quot;resources/jquery.ui/jquery-ui.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;script src=&quot;resources/jquery.ui/jquery.min.js&quot; type=&quot;text/javascript&quot; &gt;&lt;/script&gt;
+&lt;script src=&quot;resources/jquery.ui/jquery-ui.min.js&quot; type=&quot;text/javascript&quot; &gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;resources/prettyPhoto/css/prettyPhoto.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; charset=&quot;utf-8&quot; /&gt;
+&lt;script src=&quot;resources/prettyPhoto/js/jquery.prettyPhoto.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</pre> <br />
+             <li>Include  <span class="codeInline">FusionCharts.js</span> class file</li>
+             <pre class="prettyprint code_container">&lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;</pre> 
+             <br />
+             <li>Declare a div in the body with id <span class="codeInline">chartContainer</span> which will contain the parent map.&nbsp; Create <span class="codeInline">prettyphoto-container </span>DIV&nbsp; which will contain the PrettyPhoto. Inside it another DIV <span class="codeInline">linkedchart-container</span> is declared which will contain the <em>LinkedChart</em> </li>
+             <pre class="prettyprint code_container">&lt;div id=&quot;mapContainer&quot;&gt;Parent map will load here&lt;/div&gt;
+&lt;div id=&quot;prettyphoto-container&quot;&gt;
+  &lt;div id=&quot;linkedchart-container&quot; &gt;&lt;/div&gt;
+&lt;/div&gt;</pre> <br />
+             <li>In body load event we construct  a PrettyPhoto object on &quot;linkedchart-container&quot; DIV and define style for prettyPhoto </li>
+             <pre class="prettyprint code_container"> $('#linkedchart-container').prettyPhoto( {
+  opacity: 0.35,
+  showTitle: true, 
+  allowresize: true
+});
+
+
+&lt;style type=&quot;text/css&quot;&gt;
+  #prettyphoto-container { 
+    display: none; 
+    height: 300px;
+    width: 550px;
+  }
+&lt;/style&gt;
+</pre> <br />
+             <li>Render the master map and configure the <em>LinkedCharts</em> to load in &quot;linkedchart-container&quot; DIV. Also we turn-off the overlay button. </li>
+             <pre class="prettyprint code_container">var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+  "myMapId", "750", "400", "0", "1" );
+myMap.setXMLUrl("LinkedMap.xml");
+myMap.render("mapContainer");
+        
+FusionCharts("myMapId").configureLink(
+  {
+    width : '500',
+    height: '300',
+    id: 'linked-chart',
+    renderAt : "linkedchart-container",
+    overlayButton: { show : false }
+  },0
+);</pre> <br />
+             <li>Add an event listener function to the <span class="codeInline">BeforeLinkedItemOpen</span> event, this function shows the PrettyPhoto dialog which contains the <i>LinkedChart</i></li>
+             <pre class="prettyprint code_container">FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+  function() {
+    <strong>$.prettyPhoto.open(&quot;#prettyphoto-container&quot;,'LinkedCharts in PrettyPhoto','FusionMaps XT');</strong>
+  }
+);</pre>
+          </ul>
+    </div>
+	     </div>
+       </td>
+    </tr>
+    <tr>
+       <td valign="top">&nbsp;</td>
+    </tr>
+    <tr>
+       <td valign="top" class="header"><a name="highslide" id="highslide"></a>Opening <i>LinkedCharts</i> in Highslide lightbox</td>
+    </tr>
+    <tr>
+       <td valign="top">
+          <p><img src="Images/linkedChartsHighSlide.jpg" alt="Link chart in JQuery window" width="701" height="404" class="imageBorder" /></p>
+         <p>Watch it <a href="../../Code/JavaScript/Basics/UsingLinkedCharts/highslide.html" target="_blank">live</a>!</p>
+          <div class="imageBorder" style="padding:10px;">
+          <div class="msg_handler_slider"><strong>Click <a>here</a> to see the full implementation code and brief explanation.</strong></div>
+			 <div class="msg_body" >
+          <pre class="prettyprint code_container lang-xml">&lt;html&gt;
+  &lt;head&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot; src=&quot;resources/highslide-4.1.9/highslide/highslide-full.packed.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;resources/highslide-4.1.9/highslide/highslide.css&quot; /&gt;
+    &lt;script src=&quot;resources/jquery.ui/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+      &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+				
+        $(document).ready(function() {
+          hs.graphicsDir = 'resources/highslide-4.1.9/highslide/graphics/';
+          hs.outlineType = 'rounded-white';
+        });
+      // --&gt;&lt;/script&gt;
+
+    &lt;/head&gt;
+
+    &lt;body&gt;
+      &lt;div id=&quot;mapContainer&quot;&gt;Parent map will load here&lt;/div&gt;
+
+      &lt;div class="highslide-html-content" id="highslide-html" style="height: 400px; width: 750px" &gt;
+      &lt;div class="highslide-header" &gt;
+        &lt;ul &gt;
+          &lt;li class="highslide-move" &gt;
+            &lt;a href="#" onclick="return false" &gt;Move&lt;/a &gt;
+          &lt;/li &gt;
+          &lt;li class="highslide-close" &gt;
+            &lt;a href="#" onclick="return hs.close(this)" &gt;Close&lt;/a &gt;
+          &lt;/li &gt;
+        &lt;/ul &gt;
+      &lt;/div &gt;
+
+      &lt;div class="highslide-body" style="height: 100%; width: 100%" &gt;
+        &lt;div id="linkedchart-container"  style="height: 100%; width: 100%" &gt;LinkedChart will load here &lt;/div &gt;
+      &lt;/div &gt;
+
+      &lt;div class="highslide-footer" &gt;
+        &lt;div &gt;
+          &lt;span class="highslide-resize" title="Resize" &gt;
+            &lt;span &gt;&lt;/span &gt;
+          &lt;/span &gt;
+        &lt;/div &gt;
+      &lt;/div &gt;
+    &lt;/div &gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+  
+        var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+          "myMapId", "750", "400", "0", "1" );
+        myMap.setXMLUrl("LinkedMap.xml");
+        myMap.render("mapContainer");
+        
+       FusionCharts("myMapId").configureLink
+       (
+         {
+           width : '100%',
+           height: '100%',
+           id: 'linked-chart',
+           renderAt : "linkedchart-container",
+           overlayButton: { show : false }
+          },0
+       );
+        
+       FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+         function() {
+           hs.htmlExpand(null, {  contentId : 'highslide-html' } );
+          }
+        );
+		  
+        hs.Expander.prototype.onAfterClose = function() {
+          $('#linkedchart-container').remove();
+          return false;
+        };    
+
+    // --&gt;&lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+          <p class="highlightBlock">In order to render the link charts in a Highslide, you do not have to make any changes to the XML. For the above example we have used the same XML as discussed previously in this page.</p>
+          <p>Through the above code, we do the following:</p>
+          <ul>
+             <li>Include the Highslide and jQuery library files </li>
+             <pre class="code_container prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;resources/highslide-4.1.9/highslide/highslide-full.packed.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;resources/highslide-4.1.9/highslide/highslide.css&quot; /&gt;
+&lt;script src=&quot;resources/jquery.ui/jquery.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</pre> <br />
+             <li>Include  <span class="codeInline">FusionCharts.js</span> class file</li>
+             <pre class="prettyprint code_container">&lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;</pre> 
+             <br />
+             <li>Declare parent chart container DIV <span class="codeInline">- mapContainer</span> and Highslide container DIVs which contains a DIV having id : <span class="codeInline">linkedchart-container</span> where the <em>LinkedChart</em> will be loaded</li>
+             <pre class="prettyprint code_container">&lt;div id=&quot;<strong>mapContainer</strong>&quot;&gt;Parent map will load here&lt;/div&gt;
+
+&lt;div class="highslide-html-content" id="highslide-html" style="height: 400px; width: 750px" &gt;
+  &lt;div class="highslide-header" &gt;
+    &lt;ul&gt;
+       &lt;li class="highslide-move" &gt;
+          &lt;a href="#" onclick="return false" &gt;Move&lt;/a &gt;
+        &lt;/li &gt;
+        &lt;li class="highslide-close" &gt;
+          &lt;a href="#" onclick="return hs.close(this)" &gt;Close&lt;/a &gt;
+        &lt;/li &gt;
+    &lt;/ul &gt;
+  &lt;/div &gt;
+
+  &lt;div class="highslide-body" style="height: 100%; width: 100%" &gt;
+    &lt;div id="<strong>linkedchart-container</strong>"  style="height: 100%; width: 100%" &gt;LinkedChart will load here&lt;/div &gt;
+  &lt;/div &gt;
+
+  &lt;div class="highslide-footer" &gt;
+    &lt;div&gt;
+      &lt;span class="highslide-resize" title="Resize" &gt;
+        &lt;span &gt;&lt;/span &gt;
+      &lt;/span &gt;
+    &lt;/div &gt;
+  &lt;/div &gt;
+&lt;/div &gt;</pre> 
+             <br />
+             <li>In body load event, we setup Highslide <pre class="prettyprint code_container">hs.graphicsDir = 'resources/highslide-4.1.9/highslide/graphics/';
+hs.outlineType = 'rounded-white';</pre> <br />
+             </li>
+             <li>Render the master chart and configure the <em>LinkedCharts</em> to load in &quot;linkedchart-container&quot; DIV. Also we turn-off the overlay button. </li>
+             <pre class="prettyprint code_container">var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+  "myMapId", "750", "400", "0", "1" );
+myMap.setXMLUrl("LinkedMap.xml");
+myMap.render("mapContainer");
+        
+FusionCharts("myMapId").configureLink(
+  {
+    width : '100%',
+    height: '100%',
+    id: 'linked-chart',
+    renderAt : "linkedchart-container",
+    overlayButton: { show : false }
+  },0
+);</pre> 
+             <br />
+             <li>Add an event listener function to the <span class="codeInline">BeforeLinkedItemOpen</span> event, this function shows the Highslide light box which contains the <i>LinkedChart</i>. Additionally, we add <span class="codeInline">onAfterClose</span> eventListener to remove the <em>LinkedChart</em> </li>
+             <pre class="prettyprint code_container">FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+  function() {
+    <strong> hs.htmlExpand(null, {  contentId : 'highslide-html' } );</strong>
+  }
+);
+
+hs.Expander.prototype.onAfterClose = function() {
+  $('#linkedchart-container').remove();
+  return false;
+};</pre>
+          </ul>
+    </div>
+			 
+		 </div>
+       </td>
+    </tr>
+    
+    <tr>
+       <td valign="top">&nbsp;</td>
+    </tr>
+    <tr>
+       <td valign="top" class="header"><a name="extjs" id="extjs"></a>Opening <i>LinkedCharts</i> in ExtJS window </td>
+    </tr>
+    <tr>
+       <td valign="top">
+          <p><img src="Images/linkedChartsExtJS.jpg" alt="Link chart in JQuery window" width="717" height="390" class="imageBorder" /></p>
+          <p>Watch it <a href="../../Code/JavaScript/Basics/UsingLinkedCharts/ExtJs.html" target="_blank">live</a>!</p>
+          <div class="imageBorder" style="padding:10px;">
+          <div class="msg_handler_slider"><strong>Click <a>here</a> to see the full implementation code and brief explanation.</strong></div>
+			 <div class="msg_body" >
+          <pre class="prettyprint code_container lang-xml">&lt;html&gt;
+    &lt;head&gt;
+      &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;        
+      &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;resources/ext-js/resources/css/ext-all.css&quot; /&gt;
+      &lt;script type=&quot;text/javascript&quot; src=&quot;resources/ext-js/js/ext-base.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot; src=&quot;resources/ext-js/js/ext-all.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot; src=&quot;resources/jquery.ui/jquery.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+        // Global win variable
+        var win;
+         $(document).ready( function() {
+ 
+           // create the window on the first click and reuse on subsequent clicks
+           if(!win) {
+             win = new Ext.Window({
+               applyTo:'extjs-container',
+               layout:'fit',
+               width:750,
+               height:400,
+               closeAction:'hide',
+               plain: true,
+
+               items: new Ext.TabPanel({
+                 applyTo: 'linkedchart-container',
+                 autoTabs:true,
+                 activeTab:0,
+                 deferredRender:false,
+                 border:false
+               }),
+
+               buttons: [{
+                 text: 'Close',
+                 handler: function(){
+                   win.hide();
+                 }
+               }]
+           });
+         }
+      });      
+
+    // --&gt;&lt;/script&gt;
+
+    &lt;/head&gt;
+
+    &lt;body&gt;
+      &lt;div id=&quot;mapContainer&quot;&gt;Parent map will load here&lt;/div&gt;
+      &lt;div id=&quot;extjs-container&quot; class=&quot;x-hidden&quot;&gt;
+          &lt;div class=&quot;x-window-header&quot;&gt;LinkedCharts in ExtJS window&lt;/div&gt;
+          &lt;div id=&quot;linkedchart-container&quot; style=&quot;height: 100%&quot;&gt;LinkedChart will render here&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+  
+        var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+          "myMapId", "750", "400", "0" );
+        myMap.setXMLUrl("LinkedMap.xml");
+        myMap.render("mapContainer");
+        
+       FusionCharts("myMapId").configureLink
+       (
+         {
+           width : '100%',
+           height: '100%',
+           id: 'linked-chart',
+           renderAt : "linkedchart-container",
+           overlayButton: { show : false }
+          },0
+       );
+        
+       FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+         function() {
+           win.show(this);
+          }
+        );
+     
+
+    // --&gt;&lt;/script&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+          <p class="highlightBlock">In order to render the link charts in a ExtJS window, you do not have to make any changes to the XML. For the above example we have used the same XML as discussed previously in this page.</p>
+          <p>Through the above code, we do the following:</p>
+          <ul>
+             <li>Include the Ext JS base library files </li>
+             <pre class="code_container prettyprint">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;resources/ext-js/resources/css/ext-all.css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;resources/ext-js/js/ext-base.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;resources/ext-js/js/ext-all.js&quot;&gt;&lt;/script&gt;</pre>
+             <li>Include  <span class="codeInline">FusionCharts.js</span> class file</li>
+             <pre class="prettyprint code_container">&lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;</pre> 
+             <br />
+             <li>Declare two divs in the body with ids <span class="codeInline">map-container</span> and <span class="codeInline">linkedchart-container,</span> respectively. The <span class="codeInline">linkedchart-container</span> div is inside another div with id : <span class="codeInline">extjs-container</span>. This div acts as the ExtJS window</li>
+             <pre class="prettyprint code_container">&lt;div id=&quot;map-container&quot;&gt;Parent map will load here&lt;/div&gt;
+
+&lt;div id=&quot;extjs-container&quot; class=&quot;x-hidden&quot;&gt;
+  &lt;div class=&quot;x-window-header&quot;&gt;LinkedCharts in ExtJS window&lt;/div&gt;
+  &lt;div id=&quot;linkedchart-container&quot; style=&quot;height: 100%&quot;&gt;LinkedChart will render here&lt;/div&gt;
+&lt;/div&gt;</pre> 
+             <br />
+             <li>In page load event we setup the ExtJS window and apply to  <span class="codeInline">extjs-container</span>. We also  set <span class="codeInline">linkedchart-container</span> to be an ExtJS panel </li>
+             <pre class="prettyprint code_container">if(!win) {
+  win = new Ext.Window({
+    applyTo:'extjs-container',
+    layout:'fit',
+    width:750,
+    height:400,
+    closeAction:'hide',
+    plain: true,
+    
+    items: new Ext.TabPanel({
+      applyTo: 'linkedchart-container',
+      autoTabs:true,
+      activeTab:0,
+      deferredRender:false,
+      border:false
+    }),
+    
+    buttons: [{
+      text: 'Close',
+      handler: function(){
+        win.hide();
+      }
+    }]
+  });
+}</pre> <br />
+             <li>Render the master chart and configure the <em>LinkedCharts</em> to load in &quot;linkedchart-container&quot; DIV. Also we turn-off the overlay button. </li>
+             <pre class="prettyprint code_container">var myMap = new FusionCharts( "Maps/FCMap_World.swf",
+  "myMapId", "750", "400", "0" );
+myMap.setXMLUrl("LinkedMap.xml");
+myMap.render("mapContainer");
+        
+FusionCharts("myMapId").configureLink(
+  {
+    width : '100%',
+    height: '100%',
+    id: 'linked-chart',
+    renderAt : "linkedchart-container",
+    overlayButton: { show : false }
+  },0
+);</pre> <br />
+             <li>Add an event listener function to the <span class="codeInline">BeforeLinkedItemOpen</span> event, this function shows the ExtJS Window which  contains the <i>LinkedChart</i></li>
+             <pre class="prettyprint code_container">FusionCharts("myMapId").addEventListener('BeforeLinkedItemOpen', 
+  function() {
+    win.show(this);
+  }
+);</pre>
+          </ul>
+    </div>
+			 
+		 </div>
+       </td>
+    </tr>
+    
+
+    <tr>
+      <td valign="top" class="text">&nbsp;</td>
+    </tr>
+
+  
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Capturing mouse events|js_event_mouse.html","Managed Print for Mozilla|js_print_manager.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

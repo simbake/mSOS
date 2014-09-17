@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Exporting Maps as PDF or Images - How it works? </title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Exporting as Image/PDF|ECOverview.html", "How it works?" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">How it works? </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>The entire export process of FusionMaps XT is a multi-step process involving various elements, including:</p>
+      <ul>
+        <li>The map itself - This is the SWF file that you embed in your page to generate the map. The map is responsible to take its own snapshot so that further processes can take place.</li>
+        <li>FusionCharts JavaScript Class (<span class="codeInline">FusionCharts.js</span>) - The JavaScript class used to embed the map. </li>
+        <li>FusionCharts Export Handlers (Server-side)- In case of server-side export, these server-side scripts accept and convert the bitmap snapshot of maps into images/PDFs.</li>
+        <li>FusionCharts Export Component (Client-side) - In case of client-side export, FusionCharts Export Component accepts the bitmap snapshot of map and converts into the required export format. This is present as a Flash 10 SWF file. </li>
+        <li>FusionCharts Export Component JavaScript class (<span class="codeInline">FusionChartsExportComponent.js</span>) - This JavaScript class helps you  initiate the FusionCharts Export Component object and to set the JavaScript communication channel between the map and FusionCharts Export Component. It has additional logic for cross-browser compatibility and error handling. </li>
+        </ul>
+      <p class="highlightBlock"><strong>Existing users</strong>: Starting FusionMaps XT, use of <span class="codeInline">FusionMapsExportComponent.js</span> is deprecated.  Use <span class="codeInline">FusionChartsExportComponent.js</span> instead. It is recommended that you  replace all  references <span class="codeInline">FusionMapsExportComponent</span><span class="codeInline">.js</span> to <span class="codeInline">FusionChartsMapsExportComponent.js</span> in your code. </p>
+<p>These elements when combined, provide an elegant approach that allow you to export maps as images. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="header"><a name="fcimage"></a>FusionMaps XT is Flash or JavaScript. So how does it generate an image?  </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>Yes - we agree that FusionMaps XT renders maps in Flash or JavaScript. Flash uses Adobe Flash Player to do the same. Remember that all of this happens in your browser - the SWF and JavaScript files are downloaded, XML is downloaded and then parsed and finally rendered as a map.</p>
+      <p>So, after the map has rendered in your browser, you can now invoke the export process of FusionMaps XT using either context menu of map, or JavaScript API. This is called the <strong>Trigger phase</strong>. When you do this, the following processes take place:</p>
+      <ol>
+        <li>First, the map reads the export process related parameters from the XML data. These parameters help you configure whether to export at client-side, or server-side. You can also configure cosmetic properties of the Export map dialog box.</li>
+        <li>The map now enters into what is called the <strong>Capture Phase</strong>. In this phase, the map takes a bitmap snapshot of itself. This takes a few seconds depending on the size of the map. During this time, the map displays a &quot;Capturing data&quot; dialog box, the cosmetics of which are totally customizable.</li>
+        <li>Once the &quot;Capture Phase&quot; is over, the map now sends this data to <strong>FusionCharts Export handlers</strong>, as explained later. This is the start of <strong>Process Phase</strong>.</li>
+        <li> The Export handlers accept the data, process it, and finally return an image/PDF based on the choice of user, which marks the end of Process Phase.</li>
+        <li>In the  final phase called <strong>Callback phase</strong>, the export handler can now invoke callback JavaScript functions to notify you that the export process has completed.</li>
+      </ol>
+      <p>The entire process can be visualized as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/ECTCPCModel.jpg" width="570" height="565" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p class="highlightBlock">We wish to lay emphasis on one point again - Whenever a map needs to export as image/PDF (either server-side or client-side), it first <strong>necessarily </strong>needs to render itself in browser. Once it has rendered in the browser, you can then invoke the JavaScript API to automatically start the export process, without needing any user action.</p>
+      <p>While the list looks scary at the first sight, let us assure you that setting up all these things is just a matter of minutes, involving just copying-pasting some files here and there, and configuring your XML for export related parameters. You do NOT need to write any of your own code to handle any of this - we've done the hard work so that you can relish it! </p>
+    <p>With that assurance, let's first quickly learn the various terminologies associated with FusionMaps Export process for once and for all! </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Overview|ECOverview.html","Terminologies|ECTerminology.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

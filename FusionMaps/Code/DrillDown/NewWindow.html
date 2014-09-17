@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Drill Down Example</title>
+<script language="JavaScript" src="../../Maps/FusionCharts.js"></script>
+</head>
+
+<body>
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td valign="top" class="text" align="center">
+	<div id="mapdiv" align="center"> 
+        FusionMaps.
+	</div>
+        <script type="text/javascript">
+	   var map = new FusionCharts("../../Maps/FCMap_World.swf", "Map1Id", "750", "400", "0", "0");
+	   map.setXMLUrl("NewWindow.xml");		   
+	   map.render("mapdiv");
+	</script>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

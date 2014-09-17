@@ -1,0 +1,34 @@
+<map> 
+	<markers>
+	   <shapes>
+	       <shape id='myCustomShape' type='circle' fillColor='FFFFFF,333333' fillPattern='radial' showBorder='0' radius='4'/>
+		    <shape id='newCustomShape' type='circle' fillColor='FFFFFF,000099' fillPattern='radial' showBorder='0' radius='3'/>
+		</shapes>   
+		<definition>
+			<marker id='PP' x='262.11' y='208.44' label='Port-Au-Prince'  />
+			<marker id='01' x='200.92' y='33.18' label='Port-de-Paix' labelPos='left'  />
+			<marker id='02' x='274.55' y='53.92' label='Cap-Haitien'  />
+			<marker id='03' x='220.62' y='94.37' label='Gonaives'  />
+			<marker id='04' x='219.59' y='135.85' label='Saint-Marc'  />
+			<marker id='05' x='300.48' y='135.85' label='Hinche'  />
+			<marker id='06' x='43.29' y='197.03' label='Jeremie'  />
+			<marker id='08' x='194.7' y='225.03' label='Miragoane'  />
+			<marker id='10' x='237.22' y='245.77' label='Jacmel'  />
+			<marker id='11' x='95.14' y='246.81' label='Les Cayes'  />
+
+		</definition>
+		<application>
+			<marker id='PP' shapeId='myCustomShape'  />
+			<marker id='01' shapeId='newCustomShape'  />
+			<marker id='02' shapeId='newCustomShape'  />
+			<marker id='03' shapeId='newCustomShape'  />
+			<marker id='04' shapeId='newCustomShape'  />
+			<marker id='05' shapeId='newCustomShape'  />
+			<marker id='06' shapeId='newCustomShape'  />
+			<marker id='08' shapeId='newCustomShape'  />
+			<marker id='10' shapeId='newCustomShape'  />
+			<marker id='11' shapeId='newCustomShape'  />
+
+		</application>
+	</markers>
+</map>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Markers </title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|../how_to_use/BasicUsage.html", "Markers overview" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Markers overview </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+    <p>FusionMaps XT uses the concept of user-defined Markers on the map. Markers are points that you can define anywhere on the map to represent various locations like cities, junctions, houses, office locations, malls or any other entity that needs a point representation. </p>
+    <p>For example, if you see the map below, you'll see that we've defined 3 office locations on the world map. </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/MarkerWorldMap.jpg" width="600" height="325" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The following three markers have been defined on this map:</p>
+      <ul>
+        <li>Head Office</li>
+        <li>Sales, &amp; </li>
+        <li>Production Center</li>
+      </ul>
+    <p>The XML for the above map can be written as under (we'll explain it coming sections): </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="prettyprint code_container">&lt;map animation='0' showLabels='0' showMarkerLabels='1' fillColor='F1f1f1' borderColor='CCCCCC' baseFont='Verdana' baseFontSize='11' baseFontColor='333333' markerBorderColor='333333' markerBgColor='CCCCFF' markerRadius='7' legendPosition='bottom' useHoverColor='0' showToolTip='0' showMarkerToolTip='1'  &gt;
+&nbsp;&nbsp;&nbsp;&lt;data&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU'  /&gt;
+&nbsp;&nbsp;&nbsp;&lt;/data&gt;
+&nbsp;&nbsp;<strong>&nbsp;&lt;markers&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;definition&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='HO' x='140.09' y='165.19' label='Head Office'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='PF' x='533.37' y='182.25' label='Production Center'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SA' x='447.04' y='106.57' label='Sales'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/definition&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;application&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='HO' shapeId='circle'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='PF' shapeId='arc'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;marker id='SA' shapeId='triangle'  /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/application&gt;
+&nbsp;&nbsp;&nbsp;&lt;/markers&gt;</strong>
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>As you can see above (in the bold block), we've first defined the three markers on the map. Post that, we've applied all the markers, so that they're visible on the map. The <span class="codeInline">&lt;definition&gt;</span> block contains marker definitions and the <span class="codeInline">&lt;application&gt;</span> block contains the list of markers that we need to show on this map. Both are enclosed within the <span class="codeInline">&lt;markers&gt;</span> element to indicate that they're part of markers.</p>
+      <p class="highlightBlock">You do not need to manually set the X and Y Positions for the markers. Instead, you can use our <a href="../../Tools/GUI/FusionMapsGUI.html" target="_blank">Visual Map Builder</a> to efficiently build your markers. </p>
+    <p>FusionMaps XT allows you to define any number of markers on each map and then show only a few of them. This is especially useful in cases where you want to build a central marker repository indicating all markers for a certain map, and then show only particular markers based on your requirements. For example, if you've to show hits received by cities within a particular country, you can define markers for all the cities for that map, and later opt to show only those marker points from which hits have actually been received. This lets you create far more filtered views of your data. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header">Features of Markers </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>FusionMaps XT offers the following key features for markers:</p>
+      <ul>
+        <li>&quot;Sticky&quot; Markers i.e., the markers on FusionMaps XT are size independent. So, irrespective of whatever size you choose for your map and whatever size the markers were defined using, they will always show up at the right location. </li>
+        <li>Easy defining of markers using the Visual Map Builder. You can visually click on the map and add additional information to generate the markers.</li>
+        <li>Custom shapes for markers, with support for various cosmetics attributes. If you do not want to create custom shapes, you can also use one of the four inbuilt shapes - circle, arc, triangle or diamond. </li>
+        <li>Option to show markers using images, instead of geometric shapes. These images can be dynamically loaded at run-time. Also, you can change the alignment of images to better pin-point locations. </li>
+        <li>Option to customize marker labels, label alignment, tool tip text etc. </li>
+        <li>When using same shape to show different markers, scaling concept can be applied to efficiently show data distribution. </li>
+        <li>Customizable border &amp; background colors for markers. </li>
+        <li>Customizable font properties for marker labels. </li>
+        <li>Animation and effects supported for both markers and marker labels. </li>
+      </ul>
+      <p class="highlightBlock">To make your lives easier, we've created marker definitions for important cities in the most of the maps and provided them as XML/JSON to you. You can re-use the definitions from those XML/JSON files present in <span class="codeInline">Download Package &gt; MarkerData</span> folder. </p>
+      <p>Now that you're acquainted with the basic concepts, let's see how to create markers as shown in the above example. </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Defining Custom IDs|../how_to_use/CustomID.html","Markers - Usage|MarkerUsage.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

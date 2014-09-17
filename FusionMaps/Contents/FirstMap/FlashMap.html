@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Creating Flash Maps</title>
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../Introduction/Overview.html", "Creating Flash Maps" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Creating Flash Maps </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"> 
+      <p>In the <a href="first_chart.html">previous example</a>, we have seen how to build your first map in JavaScript. Here, we will discuss about how to create maps in Flash using FusionMaps XT. We will use the same example of World Map to show the Population           Distribution across continents. Once done, it should look   as under, although with animation and interactivity when you view it   live.</p>
+      <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder</p>
+      
+      <p><img src="Images/first_map_flash.jpg" alt="First Chart - Weekly Sales" width="679" height="384" class="imageBorder" /></p>
+      <p>For this example, create a copy of <span class="codeInline">FirstMap.html</span> and save it as <span class="codeInline">FirstMap-flash.html</span> in the same folder. Finally, edit the HTML code and replace the JavaScript alias <span class="codeInline">World</span> with  the map SWF file <span class="codeInline">Maps/FCMap_World.swf</span>. Let's see how the change is incorporated in the HTML code (in your web page).</p>
+      
+     <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionMaps XT - Using Flash&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+	 
+      var myMap = new FusionCharts (&quot;<strong>Maps/FCMap_World.swf</strong>&quot;, &quot;MyMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+      myMap.setXMLUrl (&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;); 
+    
+	// --&gt; 
+    &lt;/script&gt;
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+        
+      <p>And that completes the recipe!</p>
+      <p>Open the file <span class="codeInline">FirstMap.html</span> in a <span class="msg_handler"><a>Web Browser</a> &raquo; </span><span class="msg_body veryLightYellowBg">Internet Explorer, Firefox,  Opera, Chrome or Safari (Mac, iPhone, iPad, and Windows)</span> and you will see an animated animated world map similar to the one below:</p>
+      <img src="Images/first_map_flash.jpg" alt="First Chart - Weekly Sales" width="679" height="384" class="imageBorder" />
+      <p>See it <a href="../../Code/MyFirstMap/MyFirstMap-Flash.html" target="_blank">live</a>!</p>
+      
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header"><a name="how_it_works"></a>How it works? </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+      <p>Now that you have already rendered a map, let's get behind the scenes and understand how FusionMaps XT renders maps in a Web page. Essentially, to create a map, you need the following four  items:</p>
+      <ol>
+        <li><strong>Map SWF files:</strong> If you want to create World Map in Flash, you will need the SWF file called <span class="codeInline">FCMap_World.swf</span>. Similarly for creating an Asia Map you'll need <span class="codeInline">FCMap_Asia.swf</span>. For the complete list of map SWF  files, refer to the <a href="../introduction/MapsList.html">List of Maps</a>. The map SWF  file is loaded and rendered using Adobe Flash player plug-in that is installed on your machine (more specifically, browser). </li>
+        <li><strong>Map data:</strong> FusionMaps XT data file contains  both data for plotting, and cosmetic/functional configuration for the map. FusionMaps XT accepts data in  <a href="../DataFormats/XMLOverview.html">XML</a> and <a href="../DataFormats/JSONOverview.html">JSON</a> format. The XML or JSON data document can either be produced manually or generated using server-side scripts that  are connected to your databases or live data sources. In the above example,  we have used a hand-coded  XML file for plotting the map. </li>
+        <li><strong>JavaScript class files:</strong> These are present in the <span class="codeInline">Maps</span> folder in the root of the <span class="codeInline">Download Package</span>. The JavaScript class files help in embedding the map SWF into a web page, and also help in rendering JavaScript (HTML5) fallback maps. Additionally, it  provides a JavaScript interface for controlling the map. </li>
+        <li><strong>HTML wrapper file (or a dynamic web page):</strong> The HTML wrapper file is where the maps are rendered. This file contains the code which integrates all other components (discussed above) to produce the maps.</li>
+      </ol>
+      
+    </td>
+  </tr>
+  <tr>
+  <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+ <tr>
+       <td class="header"><a name="force" id="force"></a>Explicitly render Flash maps</td>
+  </tr>
+    <tr>
+      <td class="text">
+          <p>In the <a href="first_chart.html">previous example</a> you have learnt to create your first map in JavaScript. You may wish to render Flash maps only using the same HTML code that has been used in the previous example. To do so, keeping the HTML code intact, you  just have to add a line of code as shown below: </p>
+          <pre class="prettyprint lang-js code_container">FusionCharts.setCurrentRenderer('flash')</pre>
+          <p>This code will ask FusionCharts renderer to skip JavaScript rendering and create Flash maps. </p>
+          <p class="highlightBlock">This setting gets applied to all the maps rendered after this line. Hence, if you declare this at the beginning, all the maps in the page will be rendered using Flash. You will not need to declare the same for each map in the page. </p>
+          <p>The modified code will look like the following:</p>
+
+      <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionMaps XT - Using Flash&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      <strong>FusionCharts.setCurrentRenderer('flash');</strong>
+
+      var myMap = new FusionCharts( &quot;World&quot;, 
+		    &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+<p>Each map in FusionMaps XT is an SWF file that creates a  specific type of map. The JavaScript class files help in embedding the map SWF files into a web page. These files (JavaScript class files and the map SWF file) are present in the <span class="codeInline">Maps</span> folder in the root of the <span class="codeInline">Download Package</span>. The FusionCharts JavaScript class expects the map SWF file to reside in the same folder where <span class="codeInline">FusionCharts.js</span> is present. However, you may wish to keep the SWF file in a different folder (say <span class="codeInline">Flash</span>). For this, you need to explicitly specify the path of the map SWF file through <span class="codeInline">swfSrcPath</span> relative to the path of <span class="codeInline">FusionCharts.js</span> which is present in the <span class="codeInline">Maps</span> folder.</p>
+<p class="highlightBlock"><strong>Note:</strong> Use <span class="codeInline">FusionCharts.options.swfSrcPath</span> property to set the path for the map SWF file relative to the path of <span class="codeInline">FusionCharts.js</span>.</p>
+<p>The modified code for the above scenario is given below:</p>
+<pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 
+    &lt;title&gt;My First map using FusionMaps XT - Using Flash&lt;/title&gt; 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+     <strong>FusionCharts.options.swfSrcPath = "../Flash/";</strong>		
+    &lt;/script&gt;  
+  &lt;/head&gt; 
+  &lt;body&gt; 
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt; 
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      var myMap = new FusionCharts( &quot;World&quot;, 
+		    &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );
+      myMap.setXMLUrl(&quot;Data.xml&quot;);
+      myMap.render(&quot;mapContainer&quot;);
+
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+<p>In the above code, we have declared the relative path of the map SWF file explicitly using the following property: </p>
+<pre class="lang-html prettyprint code_container"><strong>FusionCharts.options.swfSrcPath = &quot;../Flash/&quot;</strong></pre>
+<p class="highlightBlock"><strong>Important</strong>: The above mentioned property needs to be declared before rendering of  any map in the  page. To be safe, we have placed this&nbsp;declaration just after including <span class="codeInline">FusionCharts.js</span> in the HTML page.</p>
+
+</td></tr>
+
+<tr>
+    <td valign="top" class="header"><a name="trouble"></a>Troubleshooting</td>
+  </tr>
+  <tr>
+     <td valign="top" class="text"><p>If for any reason, you do not see a map, run through the following checks:</p>
+        <p>If you see an endless loading progress bar in your browser, or if the 
+           right click menu (right click at the place where the map is supposed 
+           to be) shows &quot;<strong>Movie not loaded</strong>&quot;, 
+         check the following:</p>
+        <ul>
+           <li>Have you pasted the map JavaScript files  (<span class="codeInline">FusionCharts.js</span>, <span class="codeInline">FusionCharts.HC.js</span>, <span class="codeInline">FusionCharts.HC.Maps.js </span> and <span class="codeInline">jquery.min.js</span>) in the <span class="codeInline">Maps</span><span class="text"> folder of </span><span class="codeInline">MyFirstMap</span> folder?</li>
+      
+          <li>Have you pasted the map SWF  in the <span class="codeInline">Maps</span> folder of <span class="codeInline">MyFirstMap</span> folder?</li>
+          <li>Have you provided the SWF path properly in your<span class="codeInline"> FirstMap.html</span> page?</li>
+       </ul>
+        <p>If you get an &quot;<strong>Error in Loading Data</strong>.&quot; message, check the following:</p>
+        <ul>
+           
+           <li>Whether <span class="codeInline">Data.xml</span> is in the same folder 
+            as the <span class="codeInline">FirstMap.html</span> HTML file?</li>
+           <li>Whether <span class="codeInline">Data.xml</span> is named as <span class="codeInline">Data.xml</span> and not <span class="codeInline">Data.xml.txt</span> (as many basic 
+            text editors append .txt after the file name)</li>
+           <li>Whether your JavaScript files (SWF files, in case you are using Flash) and XML/JSON data are on the same sub-domain. Cross domain data loading is not allowed. </li>
+       </ul>
+        <p>If you get an &quot;<strong>Invalid Data.</strong>&quot; message, it means that the 
+         XML/JSON data is malformed. Check it again for common errors like:</p>
+        <ul>
+           <li>Presence of duplicate attributes in the XML/JSON.</li>
+           <li>Difference in case of tags. <span class="codeInline">&lt;map&gt;</span> should end with <span class="codeInline">&lt;/map&gt;</span> and <strong>not</strong> <span class="codeInline">&lt;/Map&gt;</span> or<span class="codeInline"> &lt;/MAP&gt;</span>.</li>
+           <li>Missing opening/closing quotation marks for any attributes. e.g., <span class="codeInline">&lt;map borderColor=005879'</span>should 
+            be <span class="codeInline">&lt;map borderColor='005879'</span>.</li>
+           <li>Missing closing tag for any element.</li>
+       </ul>
+        <p>To check whether your final XML is ok, open it in your browser and you'll see the error.</p>
+        <p>If  only the text &quot;<strong>FusionMaps  XT will load here!</strong>&quot; is displayed, check with the following:</p>
+        <ul>
+           <li>Have you pasted the <span class="codeInline">FusionCharts.js</span>, <span class="codeInline">jquery.min.js</span>, <span class="codeInline">FusionCharts.HC.js</span> and <span class="codeInline">FusionCharts.HC.Maps.js</span> files in <span class="codeInline">Maps</span> folder of <span class="codeInline">MyFirstMap</span> folder?</li>
+           <li>Have you included and provided the path of <span class="codeInline">FusionCharts.js</span> properly in your <span class="codeInline">FirstMap.html</span> page?</li>
+           <li>Are there any JavaScript syntax or runtime errors that might have halted the execution of FusionCharts APIs?</li>
+           <li>Have you given unique names for the map's JavaScript variable, map's ID&nbsp;and the HMTL DIV's ID?
+		   <p class="highlightBlock">To provide cross-browser compatibility, we recommend you not to start the ID with a numerical value, nor use space as part of the ID. </p>
+		   </li>
+      </ul></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating your first map|first_chart.html","Using JSON as data source|JSON_data.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+//]]></script>
+</body>
+</html>

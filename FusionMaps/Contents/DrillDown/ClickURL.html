@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Drill down - Full Map as a hotspot</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Drill-Down maps|Simple.html", "Full map as hotspot"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Full Map as a hotspot</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>You can also set 
+        the full map as a single hotspot. This is useful, when you want to show 
+        a small thumbnail of the map, which when clicked opens a detailed bigger 
+        map. </p>
+      <p>To set the entire map as a hotspot, just specify the target link in 
+        <span class="codeInline">clickURL</span> attribute of <span class="codeInline">&lt;map&gt;</span> 
+        element as under:</p>
+      <p class="codeInline">&lt;map ... clickURL='DetailedMap.html' ...&gt;</p>
+      <p>You can again specify the link in five ways:</p>
+      <ol>
+        <li>Simple link opening in same window</li>
+        <li>Simple link opening in new window</li>
+        <li>Link to another frame</li>
+        <li>Link opening in a new pop-up window</li>
+        <li>Existing JavaScript functions (on the same page) to be invoked as 
+          links</li>
+      </ol>
+      <p>If you set the entire map as hotspot, the other links on the map 
+        (individual links for entities) will not work. </p></td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text">Example XML:</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" ><pre class="code_container prettyprint">&lt;map <strong>clickURL='n-http://www.InfoSoftGlobal.com'</strong> borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+&nbsp;&nbsp;&nbsp;&lt;data&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA' value='515' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA' value='373' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS' value='3875' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU' value='727' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF' value='885' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU' value='32' /&gt;
+&nbsp;&nbsp;&nbsp;&lt;/data&gt;
+&lt;/map&gt;</pre></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Links in pop-up windows|PopUps.html","JavaScript functions as links|JavaScript.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<chart  showBorder='0' bgColor='FFFFFF' palette='1'
+shownames='1' showvalues='1' decimals='0' useRoundEdges='1'>
+<categories>
+<category label='Expiries'  />
+<category label='Stock Outs' />
+</categories>
+<dataset seriesName='Not Affected' color='FF654' showValues='0'>
+<set value='56.34' link='/dp_facility_list/get_facility_list' />
+<set value='50.82' />
+</dataset>
+<dataset seriesName='Affected' color='FF654F' showValues='0'>
+<set value='4.85' />
+<set value='10.19' />
+</dataset>
+</chart>

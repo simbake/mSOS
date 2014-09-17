@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Using JSON as data source </title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "JSON Data Format" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using JSON as data source </td>
+
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+       <p>Apart from XML, FusionMaps XT can also accept JSON data format. It can use a JSON URL or feed, a JSON Object (in JavaScript) or JSON String. This functionality is provided by FusionCharts JavaScript Class. </p>
+       <p>In this page, we will see how to pass JSON data to map in various forms. We will again convert our <a href="first_chart.html">first sample</a> <span class="codeInline">FirstMap.html</span> to implement this.</p>
+         <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder.</p>
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="header"><a name="url" id="url"></a>Providing JSON data using Url method</td>
+    </tr>
+    <tr>
+       <td class="text"><p>Create a copy of <span class="codeInline">FirstMap.html</span> and rename it to <span class="codeInline">FirstMap-json-url.html</span>. Then punch in the following code:</p> </td>
+    </tr>
+    
+  <tr> 
+    <td valign="top" class="text">
+       <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First map using FusionMaps XT - JSON data URL&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!-- 	
+
+      var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+		   &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );
+      <strong>myMap.setJSONUrl(&quot;Data.json&quot;);</strong>
+      myMap.render(&quot;mapContainer&quot;);
+      
+    // --&gt;     
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+       <p>See it <a href="../../Code/MyFirstMap/MyFirstMap-JSON-URL.html" target="_blank">live</a>!</p>
+  <div class="highlightBlock">Many web servers like IIS6, do not serve .json (no wildcard MIME type) files by default. You need to setup your web server to serve json files. In IIS6 you can do this using these steps:
+        <ul>
+          <li>Open the properties for the server in IIS Manager and click <strong>MIME Types</strong></li>
+          <li>Click <strong>New</strong>. Enter &quot;JSON&quot; for the extension and &quot;application/json&quot; for the MIME type</li>
+        </ul>
+      </div>
+			
+		 <div class="highlightBlock" style="margin-top:20px;">
+          Many browsers restrict JavaScript from accessing local file system owing   to security reasons. The JavaScript maps, when running locally, will not be able to access data provided as a URL. If you run the files from a server, it will run   absolutely fine, though. When running locally, however, if you provide   the JSON data as JSON object (embedded in the same page or in a JavaScript file) or JSON as String, it works fine. We call this <a href="../how_fm_work/DataXMLExp.html">Data String method</a>.<br />
+      <span class="msg_handler_slider"><a href="#">Click here to see the code using the Data String method</a> &raquo; </span>
+	  <div class="msg_body">
+	  <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt; 	
+    &lt;title&gt;My First map using FusionMaps XT - JSON data&lt;/title&gt; 	
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;   
+  &lt;body&gt;     
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here!&lt;/div&gt;          
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+		<strong>var myMap = new FusionCharts( &quot;Maps/FCMap_World.swf&quot;, 
+		    &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot; );
+
+		myMap<strong>setJSONData({
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "numbersuffix": "M",
+    "includevalueinlabels": "1",
+    "labelsepchar": ":",
+    "basefontsize": "9"
+  },
+            
+     "data": [
+    		{"id": "NA", "value": "515"},
+    		{"id": "SA", "value": "373"},
+    		{"id": "AS", "value": "3875"},
+    		{"id": "EU", "value": "727"},
+    		{"id": "AF", "value": "885"},
+    		{"id": "AU", "value": "32"}
+  ]
+});</strong>
+
+		myMap.render(&quot;mapContainer&quot;);</strong>      
+    // --&gt;  
+    &lt;/script&gt; 	   
+  &lt;/body&gt; 
+&lt;/html&gt;</pre>
+      See it <a href="../../Code/MyFirstMap/MyFirstMap-JSON-Object.html" target="_blank">live</a>!
+</div>
+</div>
+    </td>
+  </tr>
+  
+  <tr>
+     <td  class="text">
+        <p>In the above code, we have provided a JSON data (compatible with World map) to the map using the <span class="codeInline">setJSONUrl()</span> function. The data stored in the JSON file is as follows:</p> </td>
+  </tr>
+  
+  <tr>
+     <td  class="text">
+        <pre class="code_container prettyprint lang-js">{<br />  &quot;map&quot;: {<br />    &quot;bordercolor&quot;: &quot;005879&quot;,<br />    &quot;fillcolor&quot;: &quot;D7F4FF&quot;,<br />    &quot;numbersuffix&quot;: &quot;M&quot;,<br />    &quot;includevalueinlabels&quot;: &quot;1&quot;,<br />    &quot;labelsepchar&quot;: &quot;:&quot;,<br />    &quot;basefontsize&quot;: &quot;9&quot;<br />  },<br />  &quot;data&quot;: [<br />    {&quot;id&quot;: &quot;NA&quot;, &quot;value&quot;: &quot;515&quot;},<br />    {&quot;id&quot;: &quot;SA&quot;, &quot;value&quot;: &quot;373&quot;},<br />    {&quot;id&quot;: &quot;AS&quot;, &quot;value&quot;: &quot;3875&quot;},<br />    {&quot;id&quot;: &quot;EU&quot;, &quot;value&quot;: &quot;727&quot;},<br />    {&quot;id&quot;: &quot;AF&quot;, &quot;value&quot;: &quot;885&quot;},<br />    {&quot;id&quot;: &quot;AU&quot;, &quot;value&quot;: &quot;32&quot;}<br />  ]<br />}</pre>     </td>
+  </tr>
+  <tr>
+     <td>
+        <p  class="highlightBlock">To know more on FusionMaps XT JSON data format, please go through <strong>FusionMaps XT data formats </strong>&gt; <strong><a href="../DataFormats/JSONOverview.html">JSON</a></strong> section. You can take help of <a href="../../Tools/FCDataConverter/index.html" target="_blank">FusionMaps  XT Data Converter</a> tool to convert map XML to JSON (or vice-versa) and use it.</p> 
+     </td>
+  </tr>
+  <tr>
+     <td class="header"><a name="object" id="object"></a>Providing JSON Object embedded in HTML</td>
+  </tr>
+  <tr>
+     <td class="text"><p>You can also provide JSON embedded in the HTML itself. Since JSON format is derived from JavaScript, you can also pass a JavaScript Object as data for the map. This is possible using the <span class="codeInline">setJSONData()</span> function as shown below: </p></td>
+  </tr>  
+  <tr>
+     <td valign="top" class="text">
+        <pre class="code_container prettyprint lang-js"><span class="nocode">...</span><strong>   
+		myMap.setJSONData(
+		{
+  "map": {
+    "bordercolor": "005879",
+    "fillcolor": "D7F4FF",
+    "numbersuffix": "M",
+    "includevalueinlabels": "1",
+    "labelsepchar": ":",
+    "basefontsize": "9"
+  },
+  "data": [
+    {"id": "NA", "value": "515"},
+    {"id": "SA", "value": "373"},
+    {"id": "AS", "value": "3875"},
+    {"id": "EU", "value": "727"},
+    {"id": "AF", "value": "885"},
+    {"id": "AU", "value": "32"}
+  ]
+}
+	);</strong>
+<span class="nocode">...</span></pre>
+      
+    
+    <p>See it <a href="../../Code/MyFirstMap/MyFirstMap-JSON-Object.html" target="_blank">live</a>!</p></td>
+  </tr>
+  <tr>
+     <td  class="header"><a name="string" id="string"></a>Providing JSON String embedded in HTML</td>
+  </tr>
+  <tr>
+     <td  class="text"><p>Additionally, you can also pass  JSON data, stored as a String. In many cases, AJAX feed comes as JSON String, so you do not have to convert the string to JSON. FusionMaps XT  takes care of that as shown below:</p> </td>
+  </tr>
+  
+  
+  <tr>
+    <td  class="text">
+       <pre class="code_container prettyprint"><span class="nocode">...</span>
+   
+myMap.setJSONData ( '{ '+<br />' &quot;map&quot;: { '+<br />   ' &quot;bordercolor&quot;: &quot;005879&quot;, '+<br />   ' &quot;fillcolor&quot;: &quot;D7F4FF&quot;, '+<br />   ' &quot;numbersuffix&quot;: &quot;M&quot;, '+<br />   ' &quot;includevalueinlabels&quot;: &quot;1&quot;, '+<br />   ' &quot;labelsepchar&quot;: &quot;:&quot;, '+<br />   ' &quot;basefontsize&quot;: &quot;9&quot; '+<br /> ' }, '+<br />  ' &quot;data&quot;: [ '+<br />  ' {&quot;id&quot;: &quot;NA&quot;, &quot;value&quot;: &quot;515&quot;}, '+<br />  ' {&quot;id&quot;: &quot;SA&quot;, &quot;value&quot;: &quot;373&quot;}, '+<br />  ' {&quot;id&quot;: &quot;AS&quot;, &quot;value&quot;: &quot;3875&quot;}, '+<br />  ' {&quot;id&quot;: &quot;EU&quot;, &quot;value&quot;: &quot;727&quot;}, '+<br />  ' {&quot;id&quot;: &quot;AF&quot;, &quot;value&quot;: &quot;885&quot;}, '+<br />  ' {&quot;id&quot;: &quot;AU&quot;, &quot;value&quot;: &quot;32&quot;} '+<br /> ' ] '+<br />' }'
+    );
+<span class="nocode">...</span></pre>
+       <p>See it <a href="../../Code/MyFirstMap/MyFirstMap-JSON-String.html" target="_blank">live</a>!</p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Creating maps in JavaScript|using_pure_JS.html","Using XML embedded in the page|DataXML.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

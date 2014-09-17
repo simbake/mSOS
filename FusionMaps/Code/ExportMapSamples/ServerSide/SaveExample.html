@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title>
+	FusionCharts Server-side Export Sample - Saving exported image/PDF on server disk
+	</title>
+	<script language="JavaScript" src="../../../Maps/FusionCharts.js"></script>
+	<script type="text/javascript">
+		//Callback handler method which is invoked after the chart has saved image on server.
+		//It's only parameter is an object which contains data returned from server. It consists of:
+		//statusCode - 1 (success) or 0 (failure)
+		//statusMessage - Any message passed from server to client
+		//fileName - HTTP reference to the generated image
+		//width - width of generated image (0 in case of failure).
+		//height - height of generated image (0 in case of failure)
+		function FC_Exported(objRtn){		
+			if (objRtn.statusCode=="1"){
+				alert("The map with DOM Id " + objRtn.DOMId + " was successfully saved on server. The file can be accessed from " + objRtn.fileName);
+			}else{
+				alert("The map with DOM Id " + objRtn.DOMId + " could not be saved on server. There was an error. Description : " + objRtn.statusMessage);
+			}
+		}
+	</script> 
+</head>
+
+<body bgcolor="#ffffff">
+
+<div id="mapdiv" align="center">The map will appear within this DIV. This text will be replaced by the chart.</div>
+   <script type="text/javascript">
+   	//Create the map.
+	var myMap = new FusionCharts("../../../Maps/FCMap_World.swf", "myMapId", "500", "266", "0", "1");
+	myMap.setXMLUrl("SaveData.xml");
+	myMap.render("mapdiv");
+   </script>
+
+
+</body>
+</html>

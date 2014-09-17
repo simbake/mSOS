@@ -1,0 +1,62 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="suffix" >
+  <key name="Using Special Punctuation on Map" >
+    <topic name="Using Special Punctuation on Map" url="../../../advanced/special_chars/SpPunctuation.html" />
+  </key>
+</key>
+<key name="tooltip" >
+  <key name="Showing Custom Labels and tool tips for entities" >
+    <topic name="Showing Custom Labels and tool tips for entities" url="../../../how_to_use/CustomLabels.html" />
+  </key>
+  <key name="Tooltip in multiple lines" >
+    <topic name="Tooltip in multiple lines" url="../../../advanced/MultilineTT.html" />
+  </key>
+</key>
+<key name="troubleshooting" >
+  <key name="Advanced Troubleshooting" >
+    <topic name="Advanced Troubleshooting" url="../../../Debug/Advanced.html" />
+  </key>
+  <key name="Basic Troubleshooting" >
+    <topic name="Basic Troubleshooting" url="../../../Debug/Basic.html" />
+  </key>
+  <key name="Creating your First Map" >
+    <topic name="Creating your First Map" url="../../../FirstMap/first_chart.html" />
+  </key>
+  <key name="Debug Mode (Window)" >
+    <topic name="Debug Mode (Window)" url="../../../Debug/Window.html" />
+  </key>
+  <key name="Debugging using JavaScript" >
+    <topic name="Debugging using JavaScript" url="../../../Debug/JS.html" />
+  </key>
+  <key name="Exporting Charts as PDF or Images - Troubleshooting" >
+    <topic name="Exporting Charts as PDF or Images - Troubleshooting" url="../../../ExportingImage/ECTroubleshooting.html" />
+  </key>
+  <key name="Handling errors using FusionCharts JavaScript Class" >
+    <topic name="Handling errors using FusionCharts JavaScript Class" url="../../../javascript/js_errors.html" />
+  </key>
+</key>
+<key name="Visual Map Builder" >
+  <key name="Quick Map Configuration" >
+    <topic name="Quick Map Configuration" url="../../../how_to_use/overview.html" />
+  </key>
+  <key name="Using Visual Map Builder to create maps" >
+    <topic name="Using Visual Map Builder to create maps" url="../../../how_to_use/GUI.html" />
+  </key>
+</key>
+<key name="XML" >
+  <key name="FusionMaps and XML overview" >
+    <topic name="FusionMaps and XML &gt; Overview" url="../../../DataFormats/XMLOverview.html" />
+  </key>
+  <key name="LinkedCharts XML data format" >
+    <topic name="LinkedCharts XML data format" url="../../../DrillDown/LinkedCharts/XMLFormat.html" />
+  </key>
+  <key name="Map XML Sheet" >
+    <topic name="Map XML Sheet" url="../../../DataFormats/XML.html" />
+  </key>
+  <key name="Using XML data embedded in  HTML page" >
+    <topic name="Using XML data embedded in  HTML page" url="../../../FirstMap/dataXML.html" />
+  </key>
+</key>
+
+</indexdata>

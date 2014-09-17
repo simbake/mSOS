@@ -1,0 +1,70 @@
+<map borderColor="FFFFFF" connectorColor="000000" fillAlpha="70" hoverColor="FFFFFF" showBevel="0">
+	<colorRange>
+		<color minValue="0" maxValue="80" displayValue="Poor" color="CC0001" />
+	        <color minValue="80" maxValue="90" displayValue="Average" color="FFCC33" />
+        	<color minValue="90" maxValue="100" displayValue="Good" color="069F06" />
+	</colorRange>
+
+	<data>
+		<entity id="AL" value="80.3" />
+		<entity id="AK" value="91" />
+		<entity id="AZ" value="83.8" />
+		<entity id="AR" value="81" />
+		<entity id="CA" value="80.1" />
+		<entity id="CO" value="88.7" />
+		<entity id="CT" value="87.9" />
+		<entity id="DE" value="85.6" />
+		<entity id="FL" value="84.6" />
+		<entity id="GA" value="82.8" />
+		<entity id="HI" value="88.1" />
+		<entity id="ID" value="86.7" />
+		<entity id="IL" value="85.7" />
+		<entity id="IN" value="85.3" />
+		<entity id="IA" value="89.6" />
+		<entity id="KS" value="88.7" />
+		<entity id="KY" value="79" />
+		<entity id="LA" value="80.5" />
+		<entity id="ME" value="89" />
+		<entity id="MD" value="87" />
+		<entity id="MA" value="88" />
+		<entity id="MI" value="87" />
+		<entity id="MN" value="90.9" />
+		<entity id="MS" value="78.5" />
+		<entity id="MO" value="85" />
+		<entity id="MT" value="90.7" />
+		<entity id="NE" value="89.5" />
+		<entity id="NV" value="82.8" />
+		<entity id="NH" value="89.9" />
+		<entity id="NJ" value="86.3" />
+		<entity id="NM" value="82" />
+		<entity id="NY" value="84.3" />
+		<entity id="NC" value="82.3" />
+		<entity id="ND" value="88.2" />
+		<entity id="OH" value="86.3" />
+		<entity id="OK" value="84.3" />
+		<entity id="OR" value="87.5" />
+		<entity id="PA" value="86.7" />
+		<entity id="RI" value="83.5" />
+		<entity id="SC" value="81.7" />
+		<entity id="SD" value="88.6" />
+		<entity id="TN" value="81.2" />
+		<entity id="TX" value="78.8" />
+		<entity id="UT" value="90.1" />
+		<entity id="VT" value="89.5" />
+		<entity id="VA" value="85.4" />
+		<entity id="WA" value="88.8" />
+		<entity id="WV" value="81.2" />
+		<entity id="WI" value="88.8" />
+		<entity id="WY" value="91.3" />
+		<entity id="DC" value="83.6" />
+	</data>
+	<styles>
+		<definition>
+			<style type="animation" name="animX" param="_xscale" start="0" duration="1" />
+			<style type="animation" name="animY" param="_yscale" start="0" duration="1" />
+		</definition>	
+		<application>
+			<apply toObject="PLOT" styles="animX,animY" />
+		</application>
+	</styles>
+</map>

@@ -1,0 +1,4 @@
+<chart palette='2' caption='Actual expired Commodity '>
+  <set label="Good Condition" value="10" /> 
+  <set label="Expired" value="5" color='FF654F' /> 
+</chart>

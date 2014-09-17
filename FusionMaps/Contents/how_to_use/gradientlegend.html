@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<title>Gradient legend</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|BasicUsage.html", "Gradient legend" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Gradient legend</td>
+
+  </tr>
+ <tr>
+  
+  
+  </tr><tr> 
+    <td valign="top" class="text"><p>Gradient legend is a pane of blended colors derived from the <span class="codeInline">&lt;colorRange&gt;</span> definitions. A linear scale is drawn with two drag-able pointers. Each color defined for a numeric range blends with the next color, thus forming a gradient strip. Each point on the gradient scale represents a unique color and value. So, entities with different values will appear in unique   colors as per the position of the value on the gradient scale. A map with gradient legend will look as under: <br />
+        <br />
+	<img src="../advanced/images/gradient-legend1.jpg" width="441" height="352" class="imageBorder" /></p>
+	  <p>   The data for the above displayed gradient legend is given below:</p>
+      
+</td>
+</tr>
+	
+	<tr>
+	   <td valign="top"> <div class="container">
+	    <ul class="tabs">
+   	    <li><a href="#tab1">XML</a></li>
+      	 <li><a href="#tab2">JSON</a></li>
+	    </ul>
+   	 <div class="tab_container">
+    		<div id="tab1" class="tab_content"><pre class="prettyprint code_container">
+&lt;map ...&gt;
+   &lt;colorRange <strong>gradient="1" minValue="70" code="CC0001" startlabel="Bad" endLabel="Very Good"</strong>&gt;
+      &lt;color <strong>maxValue="80"</strong> displayValue="Poor" code="FF0000" /&gt;
+      &lt;color <strong>maxValue="90"</strong> displayValue="Average" code="FFCC33" /&gt;
+      &lt;color <strong>maxValue="100"</strong> code="069F06" /&gt;
+   &lt;/colorRange&gt; 
+   &lt;data&gt;
+   ...
+   &lt;/data&gt;
+&lt;/map&gt;
+</pre></div>
+			<div id="tab2" class="tab_content"><pre class="prettyprint code_container">{
+  "map": {
+   ...
+  },
+  "colorrange": {
+    "gradient": "1",
+    "minvalue": "70",
+    "code": "CC0001",
+    "startlabel": "Bad",
+    "endlabel": "Very Good",
+    "color": [
+      {
+        "maxvalue": "80",
+        "displayvalue": "Poor",
+        "code": "FF0000"
+      },
+      {
+        "maxvalue": "90",
+        "displayvalue": "Average",
+        "code": "FFCC33"
+      },
+      {
+        "maxvalue": "100",
+        "code": "069F06"
+      }
+    ]
+  },
+  "data": [
+    ...
+  ]
+
+}</pre></div>
+		 </div>
+	  </div>
+	  <div style="clear:both"></div>
+</td>
+  </tr>
+<tr>
+<td> <p>In the above data, the attributes used to define the numeric range and to set the colors are: </p>
+     <ul>
+	 <li><span class="codeInline">gradient</span> attribute in the <span class="codeInline">&lt;colorRange&gt;</span> element is set to '1' to show gradient legend</li>
+	 <li><span class="codeInline">minValue</span> and  <span class="codeInline">maxValue</span> attribute in the <span class="codeInline">&lt;colorRange&gt;</span> element  attribute is used to set the upper limits and the intervals in the gradient scale of each numeric range through the <span class="codeInline">&lt;color&gt;</span> elements</li>
+	 <li><span class="codeInline">code</span> attribute in the <span class="codeInline">&lt;colorRange&gt;</span> element is used to specify the color at the beginning of the gradient scale. The same attribute is used to set the colors for each numeric range through the <span class="codeInline">&lt;color&gt;</span> elements</li>
+	 </ul>
+<p> In the <span class="codeInline">&lt;colorRange&gt;</span> element we are defining the start value of the numeric range or the gradient scale as '70'. The starting color for the gradient scale is set as <strong>CC0001</strong>.</p>
+<p> In the first <span class="codeInline">&lt;color&gt;</span> element, the <span class="codeInline">code</span> attribute is used to define the second color in the gradient scale which blends with the first and the third color. The color applied is FF0000. The <span class="codeInline">maxValue</span> attribute is used to set the upper limit of the first numeric range. So, any number greater than or equals to 70 and less than 80 will appear in the colors having a blend of deep red and light red. The blending will depend on the numeric value and its position on the gradient scale.</p>
+<p> In the second <span class="codeInline">&lt;color&gt;</span> element, the upper limit is set to '90' and '80' becomes the lower limit for the second numeric range. The color defined for the range is FFCC33.
+</p><p> In the last <span class="codeInline">&lt;color&gt;</span> element, the upper limit of the gradient scale and the last numeric range is set to '100' and '90' becomes the lower limit. The color set for the range is 069F06. </p>
+<p>The table below shows the equation of the above explanation:</p>
+<table width="400" border="0" class="table">
+      <tr>
+        <td class="header">Numeric Range </td>
+        <td class="header">Label</td>
+        <td class="header">Color Hex code </td>
+      </tr>
+      <tr>
+        <td>70 &lt;= value &lt;80</td>
+        <td> Bad </td>
+        <td>CC0001 (Red) </td>
+      </tr>
+      <tr>
+        <td>80 &lt;= value &lt;90</td>
+        <td>Average</td>
+        <td>FFCC33 (Yellow) </td>
+      </tr>
+      <tr>
+        <td>90 &lt;= value &lt;= 100</td>
+        <td>Good</td>
+        <td>069F06 (Green) </td>
+      </tr>
+    </table>
+<p> The gradient scale shows a tick mark with labels for each upper and lower limit. The labels for the upper and lower limit of the gradient scale are set using the <span class="codeInline">startLabel</span> and <span class="codeInline">endLabel</span> attributes in the <span class="codeInline">&lt;colorRange&gt;</span> element. The labels for the numeric ranges are set using the <span class="codeInline">label</span> attribute through the <span class="codeInline">&lt;color&gt;</span> elements. The label for the last numeric range is taken from the <span class="codeInline">endLabel</span> attribute.
+    </p></td> 
+ </tr>
+ <tr>      
+      <td class="header">Single Color gradient legend </td>
+  </tr>
+  <tr>
+  <td><p> You can also customize the gradient legend as per your requirement. For example, a single color gradient legend can also be used. The XML data is shown below:</p></td></tr>
+  <tr>
+    <td valign="top"> <div class="container">
+	    <ul class="tabs">
+   	    <li><a href="#tab3">XML</a></li>
+      	<li><a href="#tab4">JSON</a></li>
+	    </ul>
+   	 <div class="tab_container">
+    		<div id="tab3" class="tab_content">
+    		  <pre class="prettyprint code_container">
+&lt;map ... &gt;
+  &lt;colorRange gradient='1' code='00CCFF' startlabel='Very Bad' endLabel='Very Good'/&gt;
+&lt;/map&gt;
+</pre>
+    		</div>
+			<div id="tab4" class="tab_content">
+			  <pre class="prettyprint code_container">{
+  "map":{
+...
+  },
+...
+  "colorrange":{
+    "gradient":"1",
+    "code":"00CCFF",
+    "startlabel":"Very Bad",
+    "endlabel":"Very Good"
+  }
+}</pre>
+			</div></div></div>
+<div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+  <td class="text"><p>In this instance, only one color is used to draw the gradient scale. So, the scale will appear in the darkest shade of the color (lower limit) to the brightest shade of the color (upper limit). In this example, the map will  automatically decide the numeric range taking the lowest data value present as the lower limit and the highest data value as the upper limit. There is no scope of setting the upper limit using the <span class="codeInline">maxValue</span> attribute but you can use the <span class="codeInline">minValue</span> attribute in the <span class="codeInline">&lt;colorRange&gt;</span> element to set the lower limit of the numeric range. The legend will look like as under:</p> 
+  <p><img src="Images/gradientlegend2.jpg" width="503" height="72" class="imageBorder"/></p></td>
+  </tr>
+ 
+   
+  
+  
+	   <tr>      
+      <td class="header">Interactivity </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p> <strong>Hide or Show data values</strong></p>
+	   <p>Gradient legend is highly interactive and allows you to show a certain range of numbers and hide rest of the data plots or cell. Click and hold the cursor on any of the scale pointers and drag it to a particular point on the scale to set the numeric range that is to be shown. For example, in a numeric range 0-100, you may want to show the numbers between  80 and 90. To do this, click on the lower limit pointer and drag it to 80 and release. Then, click on the upper limit pointer and drag it to 90 and release. The map will only display the entities residing in the range between 80 and 90. The rest of the entities will hide. A map (with hidden entities) using the interactive legend is shown below: </p>
+    </td></tr>
+    <tr>
+  <td valign="top"><img src="Images/hidedataplots.jpg" width="589" height="445" class="imageBorder"/></td>
+  </tr>
+  
+	<tr>
+	<td>
+	    <p><strong> Snap to tick</strong></p>
+	    <p class="highlightBlock"><strong>Important:</strong> This feature is not supported in JavaScript maps.</p>
+	    <p>All the lower and upper limits in the gradient scale are marked with ticks. Sometime, it gets very difficult to place the pointers exactly on the ticks. The map  allows you to &quot;Snap to tick&quot; for gradient legend to ease the process. &quot;Snap to tick&quot; allows the pointer to get placed automatically on the tick if it is released on a position close to the tick. For example, a pointer will automatically get placed on the tick mark of  the position 90 if it is released on 90.42 or 89.78. To turn this feature off, you can set the <span class="codeInline">snapLegendPointers</span> attribute to '0' or right click on the map and click on &quot;Disable legend snapping&quot;.  You can also set the snapping range of the pointers by using the <span class="codeInline">legendSnapRange</span> attribute. The value of this attribute is calculated in percentage with respect to the total numeric range. The maximum value that can be used for the attribute is 5. </p>
+	<p> Let us see an example of how to set the snapping range of the legend pointers. The data is show below:</p>
+	</td></tr>
+	<tr>
+    <td valign="top"> <div class="container">
+	    <ul class="tabs">
+   	    <li><a href="#tab7">XML</a></li>
+      	<li><a href="#tab8">JSON</a></li>
+	    </ul>
+   	 <div class="tab_container">
+    		<div id="tab7" class="tab_content">
+    		  <pre class="prettyprint code_container">
+&lt;map ... <strong>legendSnapRange='5'</strong> &gt;
+...
+&lt;/map&gt;
+</pre>
+    		</div>
+			<div id="tab8" class="tab_content">
+			  <pre class="prettyprint code_container">{
+  "map":{
+    <strong>"legendSnapRange":"5"</strong>,
+    ...
+  },
+...
+}</pre>
+			</div></div></div>
+<div style="clear:both"></div>
+</td>
+  </tr>
+  <tr>
+  <td>
+<p>In the above data, the attribute<span class="codeInline"> legendSnapRange</span> is set to '5'. The numeric range defined in the <span class="codeInline">&lt;colorRange&gt;</span> element is 70-100. Hence, the snapping range of the gradient pointers is 5. In the images below we are snapping the upper limit pointer on the tick mark of 90. The first image shows that the pointer is released on 85.61. The second image shows that the pointer is snapped on the tick mark of 80. </p>
+<table width="570" border="0">
+  <tr>
+    <td><img src="Images/legendSnapping1.jpg" width="466" height="67" class="imageBorder"/></td>
+    <td><img src="Images/legendSnapping2.jpg" width="463" height="68" class="imageBorder"/></td>
+  </tr>
+</table>
+<p>To disable this feature right click on the map and select &quot;Disable Legend Snapping&quot;.</p>
+<img src="Images/disablelegendsnapping.jpg" width="402" height="181" class="imageBorder"/>
+<p> You can also disable this feature from the XML/JSON data by using the <span class="codeInline">snapLegendPointers</span> attribute. The data is shown below:</p>
+	</td></tr><tr>
+    <td valign="top"> <div class="container">
+	    <ul class="tabs">
+   	    <li><a href="#tab9">XML</a></li>
+      	<li><a href="#tab10">JSON</a></li>
+	    </ul>
+   	 <div class="tab_container">
+    		<div id="tab9" class="tab_content">
+    		  <pre class="prettyprint code_container">
+&lt;map <strong>snapLegendPointers='0'</strong> ... &gt;
+...
+&lt;/map&gt;
+</pre>
+    		</div>
+			<div id="tab10" class="tab_content">
+			  <pre class="prettyprint code_container">{
+  "map":{
+    <strong>"snapLegendPointers":"0"</strong>,
+	...
+  },
+}</pre>
+			</div></div></div>
+<div style="clear:both"></div>
+</td>
+  </tr>
+
+  
+  <tr>
+  <td class="text" height="20"></td></tr>
+ 
+   <tr>
+       <td valign="top" class="header">Cosmetic configuration of Gradient legend</td>
+   </tr>
+   <tr> 
+    <td valign="top" class="text"> 
+        <p>Cosmetics properties of Gradient Legend can be set in the <span class="codeInline">&lt;map&gt;</span> element of XML data (or <span class="codeInline">map</span> object in JSON data). The related properties  are discussed below:             
+        </p>
+</td>
+</tr>
+ <tr>
+    <td valign="top" class="text">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table">
+      <tr>
+        <td width="120" class="header">Attribute Name</td>
+        <td width="100" class="header">Type/Range</td>
+        <td class="header">Description</td>
+        <td width='320' class="header">Screenshot</td>
+      </tr>
+      <tr>
+        <td class="codeInline">LegendScaleLinecolor</td>
+        <td>Hex Code</td>
+        <td>Sets the color for the gradient scale. In the image beside, the color is set to FF3F00 (Orange).</td>
+        <td><img src="Images/ScaleLine.jpg" width="318" height="65" /></td>
+      </tr>
+      <tr>
+        <td class="codeInline">LegendScaleAlpha</td>
+        <td>0-100</td>
+        <td>Sets the transparency of the gradient scale. In the image beside, the alpha is set to '50'.</td>
+        <td><img src="Images/ScaleAlpha.jpg" /></td>
+      </tr>
+      <tr>
+        <td class="codeInline">LegendScaleLineThickness</td>
+        <td>Numeric value</td>
+        <td>Sets the thickness of the gradient scale. In the image beside, the thickness is set to 2.</td>
+        <td><img src="Images/ScaleThickness.jpg" /></td>
+      </tr>
+      <tr>
+        <td class="codeInline">LegendPointerWidth</td>
+        <td>Numeric Value</td>
+        <td>Sets the width of the gradient pointers. The width is set to '20' in the image beside.</td>
+        <td><img src="Images/PointerWidth.jpg" /></td>
+      </tr>
+      <tr>
+          <td class="codeInline">LegendPointerHeight</td>
+          <td>Numeric Value</td>
+          <td>Sets the height of the gradient pointers. The height is set to '25' in the image beside.</td>
+          <td><img src="Images/PointerHeight.jpg" /></td>
+      </tr>
+      </table>
+    </td></tr><tr>
+        <td height="20"></td></tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Defining range based data|ColorRange.html","Defining Custom IDs|CustomID.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

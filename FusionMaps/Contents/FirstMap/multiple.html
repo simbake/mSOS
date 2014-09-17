@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Embedding multiple maps in a page </title>
+</head>
+
+<body>
+
+  <!-- breadcrumb starts here -->
+
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Creating multiple maps in a page" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Embedding multiple maps in a page </td>
+
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+       <p>Using FusionMaps XT, you  can easily embed any number of maps in a single HTML page (or web page). You can even combine charts from <a href="http://www.fusioncharts.com" target="_blank">FusionCharts XT</a>, <a href="http://www.fusioncharts.com/PowerCharts" target="_blank">PowerCharts XT</a> and gauges from <a href="http://www.fusioncharts.com/widgets" target="_blank">FusionWidgets XT</a>, which we will see in the <a href="maps_charts.html">next page</a>. </p>
+       <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder.</p>
+       <p>In this example, we will add two maps. Two maps  showing population of world and Australia. The page will look like the image below: </p>
+       <p><img src="Images/multiple_maps.jpg" width="860" height="310" /></p>
+       <p>The process of embedding multiple maps is similar to that of embedding a single map. You just need to take care of the following:</p>
+       <ul>
+      <li>Each  map on the page should have a unique DOM-Id (which is specified in the JavaScript  constructor).</li>
+        <li>Each map       should be denoted by a unique JavaScript variable name (example, <span class="codeInline">var WorldMap = new FusionCharts (...); var AusMap = new       FusionCharts(...);</span> ).</li>
+        <li>Each  map should be rendered in a separate HTML container (DIV, SPAN etc), each container having unique id. The  map embedding code must contain a reference to the ID of the container where the  map is to be rendered ( <span class="codeInline">render(&quot;mapContainerWorld&quot;) ; .. render(&quot;mapContainerAus&quot;);</span> ). </li>
+    </ul><br />
+    The following sample code embeds two maps into a single HTML page (<span class="codeInline">FirstMap-multiple-maps.html</span>):
+    <br />
+    <br /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First map using FusionMaps XT - multiple maps&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;span id=&quot;mapContainerWorld&quot;&gt;World map will load here&lt;/span&gt;
+    &lt;span id=&quot;mapContainerAus&quot;&gt;Australia map will load here&lt;/span&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      var WorldMap = new FusionCharts(&quot;Maps/FCMap_World.swf&quot;, &quot;WorldMapId&quot;,
+        &quot;400&quot;, &quot;300&quot;, &quot;0&quot;);
+      WorldMap.setXMLUrl(&quot;Data.xml&quot;);
+      WorldMap.render(&quot;mapContainerWorld&quot;);
+     
+      var AusMap = new FusionCharts(&quot;Maps/FCMap_Australia.swf&quot;, &quot;AusMapId&quot;, 
+        &quot;400&quot;, &quot;300&quot;, &quot;0&quot;);
+      AusMap.setXMLUrl(&quot;AustraliaPopulation.xml&quot;);
+      AusMap.render(&quot;mapContainerAus&quot;);
+
+    // --&gt;
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+       <p>
+       See it <a href="../../Code/MyFirstMap/first-map-multiple-maps-dataurl.html" target="_blank">live</a>!</p>
+    
+       <p>In the above code we have embedded two maps  in a single page - World map and the Australia map, each having  unique DOMIds - <span class="codeInline">WorldMapId and AusMapId</span>. Each FusionCharts JavaScript object has a unique name - <span class="codeInline">WorldMap and AusMap</span>. There are two HTML containers (SPAN elements) where each of the two maps are rendered. Each element also has unique ID - <span class="codeInline">mapContainerWorld </span>and<span class="codeInline"> mapContainerAus</span>.</p>
+       <p>We've used the same XML data  for the World Map from our <a href="first_chart.html#xml">first map example</a> and also built a new XML for the map of Australia. We've not shown the XML here, as we'll cover it in the XML structure of the map later. </p>
+       <p>When you finally view the HTML page (with some formatting applied to above code), you'll get a result as shown under: </p>
+      <p><img src="Images/multiple_maps.jpg" width="860" height="310" /></p>
+       <div class="highlightBlock"><strong>What happens if Flash player is not available?</strong><br />
+           <br/>
+         In case Flash Player is not available on certain devices (like iPad and iPhone), FusionCharts JavaScript library automatically renders the same map using JavaScript. If you are running the sample from local file system, please note that you will need to provide the data using the <a href="../how_fm_work/DataXMLExp.html">Data String method</a>, that is, passing the data (XML/JSON) to the map as String or JSON Object. Many browsers restrict JavaScript from accessing local file system owing   to security reasons. In the above example, since you had provided data   as a URL, the JavaScript maps will not be able to access the same,   when running locally. If you run the files from a server, it will run   absolutely fine, though. When running locally, however, if you provide   the data as string (using the <a href="dataXML.html">Data String method</a>), it works fine.<br />
+         <br />
+         
+		 <span class="msg_handler_slider"><a href="#">Click here to view the above code snippet modified to use Data String method</a> &raquo; </span>
+		 <div class="msg_body">
+	  <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First map using FusionMaps XT - multiple maps&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;span id=&quot;mapContainerWorld&quot;&gt;World map will load here&lt;/span&gt;
+    &lt;span id=&quot;mapContainerAus&quot;&gt;Australia map will load here&lt;/span&gt;
+    
+
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+		var WorldMap = new FusionCharts("Maps/FCMap_World.swf", "WorldMapId", "400", "300", "0");
+		WorldMap.setXMLData(&quot;&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='Mill.' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;&quot;+
+     &quot;&lt;data&gt;&quot;+
+     &quot;&lt;entity id='NA' value='515' /&gt;&quot;+
+     &quot;&lt;entity id='SA' value='373'/&gt;&quot;+
+     &quot;&lt;entity id='AS' value='3875' /&gt;&quot;+
+     &quot;&lt;entity id='EU' value='727' /&gt;&quot;+
+     &quot;&lt;entity id='AF' value='885' /&gt;&quot;+
+     &quot;&lt;entity id='AU' value='32' /&gt;&quot;+
+     &quot;&lt;/data&gt;&quot;+
+&lt;/map&gt;&quot;);
+		WorldMap.render("mapContainerWorld");
+		
+		
+		var AusMap = new FusionCharts("Maps/FCMap_Australia.swf", "AusMapId", "400", "300", "0");
+		AusMap.setXMLData(&quot;&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' baseFontSize='9'&gt;&quot;+
+     &quot;&lt;data&gt;&quot;+
+     &quot;&lt;entity id='WA' value='679' /&gt;&quot;+
+     &quot;&lt;entity id='NT' value='300'/&gt;&quot;+
+     &quot;&lt;entity id='QU' value='579' /&gt;&quot;+
+     &quot;&lt;entity id='SA' value='200' /&gt;&quot;+
+     &quot;&lt;entity id='SW' value='250' /&gt;&quot;+
+     &quot;&lt;entity id='VI' value='98' /&gt;&quot;+
+     &quot;&lt;entity id='TA' value='45' /&gt;&quot;+
+     &quot;&lt;/data&gt;&quot; +
+&lt;/map&gt;&quot;);
+		
+    // --&gt;
+    &lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+
+
+
+
+
+	  <br />
+	  See it <a href="../../Code/MyFirstMap/first-map-multiple-maps-dataxml.html" target="_blank">live</a>!
+	  </div>
+	  </div>   
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Changing map dimensions|change_size.html","Creating maps and charts in a page|maps_charts.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

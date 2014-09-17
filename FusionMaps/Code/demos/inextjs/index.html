@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Wold map with sales data in ExtJS window</title>
+        <link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../../assets/ext-js/resources/css/ext-all.css" />
+        <script type="text/javascript" src="../../assets/ext-js/js/ext-base.js"></script>
+        <script type="text/javascript" src="../../assets/ext-js/js/ext-all.js"></script>
+
+        <script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../Maps/FusionCharts.js"></script>
+
+
+        <script type="text/javascript" src="../lib/lib.js"></script>
+        <script type="text/javascript" src="../lib/datafromtable.js" ></script>
+
+        <!--[if IE 6]>
+        <script type="text/javascript" src="../../assets/ui/js/DD_belatedPNG_0.0.8a-min.js"></script>
+        <script>
+          /* select the element name, css selector, background etc */
+          DD_belatedPNG.fix('img');
+          
+          /* string argument can be any CSS selector */
+        </script>
+        <![endif]-->
+
+        <style type="text/css">
+            html, body, #wrapper {
+                height:100%;	
+            }
+            html, body, table  {
+                font-size: 100%;
+                line-height: 120%;	
+            }
+
+
+            .headerbg, .headerbg td , .headerbg th{ background-color:#dbe67c; color:#000 !important;}
+
+        </style>
+        <script type="text/javascript">
+            jQuery.noConflict();
+            var map;
+            // Global win variable
+            var win;
+			
+
+			
+            jQuery(document).ready(function() {
+                
+                //global var win to store the ExtJs html element
+                // create the window on the first click and reuse on subsequent clicks
+                if(!win) {
+                    win = new Ext.Window({
+                        applyTo:'extjs-container',
+                        layout:'fit',
+                        width:700,
+                        height:350,
+                        closeAction:'hide',
+                        plain: true,
+                        close : function ()  { jQuery(".showChart").show(); },
+
+                        items: new Ext.TabPanel({
+                            applyTo: 'map-container',
+                            autoTabs:true,
+                            activeTab:0,
+                            deferredRender:false,
+                            border:false
+                        }),
+
+                        buttons: [{
+                                text: 'Close',
+                                handler: function(){
+                                    jQuery(".showChart").show();
+                                    win.hide();
+
+                                }
+                            }]
+                    });
+
+                    /*
+                        // Un-comment this code for fast resize
+                        win.addListener('resize', function (anda, w, h) {
+                            FusionCharts('linked-chart').resizeTo(w -16, h - 71);
+                        });
+                     */
+                }
+					
+				
+                jQuery(".showChart").click ( function () {
+						
+                    
+                    
+                    jQuery(".showChart").hide();
+                    win.show(this);
+
+				   
+                    var dataString = formMapDataXML(  getDataFromTable ( jQuery("#myDataTable") ) )  || "<map/>";							
+		
+                    if (FusionCharts("MapId") && FusionCharts("MapId").dispose) {
+                        FusionCharts("MapId").dispose ();
+                    }
+	
+                    map = new FusionCharts("../../../Maps/FCMap_World.swf", "MapId", "100%", "100%", "0", "0");
+                    map.setXMLData( dataString );		   
+                    map.render("map-container");
+	
+                    showConditionalMessage( "Your browser does not seem to have Flash Player support. JavaScript map is rendered instead", isJSRenderer(map) );
+ 
+			
+
+                });
+					
+	
+	
+					
+					
+            });
+					
+	
+        </script>
+
+    </head>
+    <body>
+        <!-- wrapper -->
+        <div id="wrapper">
+            <!-- header -->
+            <div id="header">
+                <div class="logo" title= "FusionMaps XT ">
+                    <a href="http://www.fusioncharts.com/products/suite/fusionmaps/" target="_blank">
+
+                    </a>
+                </div>
+                <h1 class="logo-text">Wold map with sales data in ExtJS window</h1>
+
+            </div>
+            <!-- content area -->
+            <div class="content-area">
+                <div id="content-area-inner-main">
+                    <p align="center">Click the button below the table to create a map (in a  window) showing the data present in the table</p>
+
+
+                    <div id="messageBox" style="margin-left:100px; margin-right:100px; display:none;"></div>
+                    <p class="small">&nbsp;</p>
+
+
+                    <div class="clear"></div>
+                    <p>&nbsp; </p>
+                    <div class="gen-chart-render">
+                        <table class="table" id="myDataTable" border="0" align="center" cellpadding="5" cellspacing="0">
+                            <tr class="headerbg">
+                                <td width="100" align="left"><strong>Continent</strong></td>
+                                <td width="100" align="right"><strong>North America</strong></td>
+                                <td width="100" align="right"><strong>South America </strong></td>
+                                <td width="80" align="right"><strong>Europe</strong></td>
+                                <td width="80" align="right"><strong>Africa</strong></td>
+                                <td width="80" align="right"><strong>Asia</strong></td>
+                                <td width="80" align="right"><strong>Australia</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="headerbg" align="left"><strong>Sales</strong></td>
+                                <td align="right">27400</td>
+                                <td align="right">24500</td>
+                                <td align="right">23200</td>
+                                <td align="right">26700</td>
+                                <td align="right">26200</td>
+                                <td align="right">27800</td>
+                            </tr>
+                        </table>
+
+
+                        <p>&nbsp;</p>
+
+                        <div id="extjs-container" class="x-hidden">
+                            <div class="x-window-header">FusionMaps in ExtJS Window</div>
+                            <div id="map-container" style="height: 100%;">FusionMaps will render here</div>
+                        </div>
+
+                        <p align="center" style="width:250px; margin:0 auto;"><a class="qua qua-button showChart" href="javascript:void(0)" style="width:250px;"><span>Create map with the above data</span></a></p>
+                        <div class="clear"></div>
+                        <p class="small" align="center">&nbsp;</p>
+
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="underline-dull"></div>  
+                    <p class="small" style="height:400px;">&nbsp;</p>
+                    
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

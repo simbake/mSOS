@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>LinkedCharts XML data format</title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html","Drill-Down maps|../Simple.html", "<i>LinkedCharts</i>|Overview.html", "XML Data Format"] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+<tr>
+<td valign="top" class="pageHeader"><i>LinkedCharts</i> XML Data Format</td>
+</tr>
+<tr>
+<td valign="top" class="text">
+   <p>FusionMaps XT introduces <i>LinkedCharts</i>, which is a smart and efficient method  of creating drill-down maps. <i>LinkedCharts</i> are not special map types. Any map can be used as a <i>LinkedChart</i>. You can create a master summarized map which, when clicked, will  create detailed maps. You can define the data-string or data-url of the detailed maps <a href="#embedded">within the data-source of the master map</a>. </p>
+   <p>This section shows how  to create a single XML data source using data-string for rendering <i>LinkedCharts</i>. For better  understanding, we'll create an XML for a world map. Clicking on a continent (say, Australia) will bring up another  map showing Australia map(see image below).</p>
+   <table cellpadding="0" cellspacing="0" border="0"><tr><td><img src="../../FirstMap/Images/linkedMap1.jpg" width="498" height="283" class="imageBorder" /></td>
+   <td  align="center"><img src="../../FirstMap/Images/linkedMap2.jpg" width="498" height="283" class="imageBorder" /></td>
+   </tr>
+		<tr>
+		   <td align="center"><span class="imageCaption">Parent map when the continent Australia is clicked </span></td>
+		   <td align="center"><span class="imageCaption"><i>LinkedChart</i> displaying Australia map </span></td>
+		</tr>
+   </table>
+   <p>Watch it <a href="../../../Code/MyFirstMap/linkedcharts-data-string.html" target="_blank">live</a>!</p>
+   <p class="highlightBlock">To learn  how <i>LinkedCharts</i> work,  read FusionMaps XT and JavaScript &gt; <a href="../../javascript/js_linkedcharts.html">Using <i>LinkedCharts</i></a> page. </p>
+   <p class="header"><a name="embedded" id="embedded"></a> Embedded data-string of <i>LinkedCharts</i> in data of master map </p>
+   <p>Following  XML data  contains data for <i>LinkedChart</i>s:</p>
+   <div id="tabXML_LC1">
+     <pre class="code_container prettyprint lang-xml" style="height:300px; overflow:auto">&lt;map BORDERCOLOR='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+      &lt;data&gt;
+        &lt;entity id='NA' value='6921900' link='newchart:FCMap_NorthAmerica.swf-xml-NorthAmerica' /&gt;
+        &lt;entity id='SA' value='3087120' link='newchart:FCMap_SouthAmerica.swf-xml-SouthAmerica' /&gt;
+        &lt;entity id='AS' value='2434120' link='newchart:FCMap_Asia.swf-xml-Asia' /&gt;
+        &lt;entity id='EU' value='5093230' link='newchart:FCMap_Europe.swf-xml-Europe' /&gt;
+        &lt;entity id='AF' value='1032900' link='newchart:FCMap_Africa.swf-xml-Africa' /&gt;
+        &lt;entity id='AU' value='3461230' link='newchart:FCMap_Australia.swf-xml-Australia' /&gt;
+      &lt;/data&gt;
+  &lt;linkeddata id='Australia'&gt;
+ &lt;map BORDERCOLOR='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+        &lt;data&gt;
+                &lt;entity id='WA'  value='200050' /&gt;
+                &lt;entity id='NT'  value='1509800' /&gt;
+                &lt;entity id='QU'  value='8034800' /&gt;
+                &lt;entity id='SA'  value='123000' /&gt;
+                &lt;entity id='SW'  value='548000' /&gt;
+                &lt;entity id='VI'  value='182000' /&gt;
+                &lt;entity id='TA'  value='94900' /&gt;
+        &lt;/data&gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+	&lt;linkeddata id='NorthAmerica'&gt;
+    &lt;map BORDERCOLOR='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+	&lt;data&gt;
+		&lt;entity id='001' value='210000' /&gt;
+		&lt;entity id='002' value='130000' /&gt;
+		&lt;entity id='003' value='180000' /&gt;
+		&lt;entity id='004' value='150000' /&gt;
+		&lt;entity id='005' value='289823' /&gt;
+		&lt;entity id='006' value='120979' /&gt;
+		&lt;entity id='007' value='120000' /&gt;
+		&lt;entity id='008' value='234232' /&gt;
+		&lt;entity id='009' value='100000' /&gt;
+		&lt;entity id='010' value='120000' /&gt;
+		&lt;entity id='011' value='820000' /&gt;
+		&lt;entity id='012' value='450000' /&gt;
+		&lt;entity id='013' value='570000' /&gt;
+		&lt;entity id='014' value='110000' /&gt;
+		&lt;entity id='015' value='100000' /&gt;
+		&lt;entity id='016' value='430000' /&gt;
+		&lt;entity id='017' value='180000' /&gt;
+		&lt;entity id='018' value='150000' /&gt;
+		&lt;entity id='019' value='80000' /&gt;
+		&lt;entity id='020' value='450000' /&gt;
+		&lt;entity id='021' value='660000' /&gt;
+		&lt;entity id='022' value='800000' /&gt;
+		&lt;entity id='023' value='100000' /&gt;
+		&lt;entity id='024' value='20000' /&gt;
+		&lt;entity id='025' value='46866' /&gt;
+		&lt;entity id='026' value='300000' /&gt;
+	&lt;/data&gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id='SouthAmerica'&gt;
+  &lt;map BORDERCOLOR='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+	&lt;data&gt;
+		&lt;entity id='001'  value='200000' /&gt;
+		&lt;entity id='002'  value='120000' /&gt;
+		&lt;entity id='003'  value='300000' /&gt;
+		&lt;entity id='004'  value='400000' /&gt;
+		&lt;entity id='005'  value='320000' /&gt;
+		&lt;entity id='006'  value='98690' /&gt;
+		&lt;entity id='007'  value='402000' /&gt;
+		&lt;entity id='008'  value='70000' /&gt;
+		&lt;entity id='009'  value='30000' /&gt;
+		&lt;entity id='010'  value='55000' /&gt;
+		&lt;entity id='011'  value='520000' /&gt;
+		&lt;entity id='012'  value='251000' /&gt;
+		&lt;entity id='013'  value='125000' /&gt;
+		&lt;entity id='014'  value='85000s' /&gt;
+		&lt;entity id='015'  value='40000' /&gt;
+		&lt;entity id='016'  value='70430' /&gt;
+	&lt;/data&gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id='Asia'&gt;
+  &lt;map BORDERCOLOR='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+	&lt;data&gt;
+		&lt;entity id='001'  value='42000' /&gt;
+		&lt;entity id='002'  value='31000' /&gt;
+		&lt;entity id='003'  value='12000' /&gt;
+		&lt;entity id='005'  value='31000' /&gt;
+		&lt;entity id='006'  value='25000' /&gt;
+		&lt;entity id='007'  value='82200' /&gt;
+		&lt;entity id='008'  value='125000' /&gt;
+		&lt;entity id='009'  value='305000' /&gt;
+		&lt;entity id='010'  value='421597' /&gt;
+		&lt;entity id='012'  value='122160' /&gt;
+		&lt;entity id='013'  value='22000' /&gt;
+		&lt;entity id='014'  value='27060' /&gt;
+		&lt;entity id='015'  value='34000' /&gt;
+		&lt;entity id='016'  value='32000' /&gt;
+		&lt;entity id='019'  value='40000' /&gt;
+		&lt;entity id='021'  value='31000' /&gt;
+		&lt;entity id='022'  value='15000' /&gt;
+		&lt;entity id='023'  value='18000' /&gt;
+		&lt;entity id='025'  value='50000' /&gt;
+		&lt;entity id='026'  value='30000' /&gt;
+		&lt;entity id='028'  value='21000' /&gt;
+		&lt;entity id='030'  value='25000' /&gt;
+		&lt;entity id='031'  value='31000' /&gt;
+		&lt;entity id='033'  value='14000' /&gt;
+		&lt;entity id='034'  value='21000' /&gt;
+		&lt;entity id='036'  value='22000' /&gt;
+		&lt;entity id='038'  value='25000' /&gt;
+		&lt;entity id='039'  value='20000' /&gt;
+		&lt;entity id='041'  value='18000' /&gt;
+		&lt;entity id='042'  value='19000' /&gt;
+		&lt;entity id='044'  value='30000' /&gt;
+		&lt;entity id='046'  value='40000' /&gt;
+		&lt;entity id='047'  value='22000' /&gt;
+		&lt;entity id='049'  value='50000' /&gt;
+		&lt;entity id='050'  value='33000' /&gt;
+		&lt;entity id='051'  value='21000' /&gt;
+		&lt;entity id='052'  value='45669' /&gt;
+		&lt;entity id='053'  value='44736' /&gt;
+		&lt;entity id='054'  value='43822' /&gt;
+		&lt;entity id='055'  value='42927' /&gt;
+		&lt;entity id='056'  value='42050' /&gt;
+		&lt;entity id='057'  value='41191' /&gt;
+		&lt;entity id='058'  value='40349' /&gt;
+		&lt;entity id='059'  value='39525' /&gt;
+		&lt;entity id='060'  value='38717' /&gt;
+		&lt;entity id='061'  value='37926' /&gt;
+		&lt;entity id='062'  value='37151' /&gt;
+		&lt;entity id='063'  value='36392' /&gt;
+		&lt;entity id='064'  value='35648' /&gt;
+	&lt;/data&gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id='Europe'&gt;
+  &lt;map BORDERCOLOR='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+	&lt;data&gt;
+ 	   &lt;entity id='001'  value='150000' /&gt;
+		&lt;entity id='002'  value='160000' /&gt;
+		&lt;entity id='003'  value='120000' /&gt;
+		&lt;entity id='004'  value='45000' /&gt;
+		&lt;entity id='005'  value='42000' /&gt;
+		&lt;entity id='006'  value='80000' /&gt;
+		&lt;entity id='007'  value='250000' /&gt;
+		&lt;entity id='008'  value='320000' /&gt;
+		&lt;entity id='009'  value='152000' /&gt;
+		&lt;entity id='010'  value='210000' /&gt;
+		&lt;entity id='011'  value='320000' /&gt;
+		&lt;entity id='012'  value='100000' /&gt;
+		&lt;entity id='013'  value='120000' /&gt;
+		&lt;entity id='014'  value='80000' /&gt;
+		&lt;entity id='015'  value='70000' /&gt;
+		&lt;entity id='016'  value='40000' /&gt;
+		&lt;entity id='017'  value='100000' /&gt;
+		&lt;entity id='018'  value='42000' /&gt;
+		&lt;entity id='019'  value='55000' /&gt;
+		&lt;entity id='020'  value='22000' /&gt;
+		&lt;entity id='021'  value='33000' /&gt;
+		&lt;entity id='022'  value='11000' /&gt;
+		&lt;entity id='023'  value='50000' /&gt;
+		&lt;entity id='024'  value='32000' /&gt;
+		&lt;entity id='025'  value='37230' /&gt;
+		&lt;entity id='026'  value='40000' /&gt;
+		&lt;entity id='027'  value='80000' /&gt;
+		&lt;entity id='028'  value='41000' /&gt;
+		&lt;entity id='029'  value='28000' /&gt;
+		&lt;entity id='030'  value='110000' /&gt;
+		&lt;entity id='031'  value='120000' /&gt;
+		&lt;entity id='032'  value='200000' /&gt;
+		&lt;entity id='033'  value='100000' /&gt;
+		&lt;entity id='034'  value='89000' /&gt;
+		&lt;entity id='035'  value='51000' /&gt;
+		&lt;entity id='036'  value='41000' /&gt;
+		&lt;entity id='037'  value='32000' /&gt;
+		&lt;entity id='038'  value='80000' /&gt;
+		&lt;entity id='039'  value='110000' /&gt;
+		&lt;entity id='040'  value='42000' /&gt;
+		&lt;entity id='041'  value='50000' /&gt;
+		&lt;entity id='042'  value='265000' /&gt;
+		&lt;entity id='043'  value='422000' /&gt;
+		&lt;entity id='044'  value='342000' /&gt;
+		&lt;entity id='045'  value='120000' /&gt;
+		&lt;entity id='046'  value='89000' /&gt;
+	&lt;/data&gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+  &lt;linkeddata id='Africa'&gt;
+  &lt;map BORDERCOLOR='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+	&lt;data&gt;
+		&lt;entity id='001'  value='10000' /&gt;
+		&lt;entity id='002'  value='23000' /&gt;
+		&lt;entity id='003'  value='12000' /&gt;
+		&lt;entity id='004'  value='8000' /&gt;
+		&lt;entity id='005'  value='5000' /&gt;
+		&lt;entity id='006'  value='11000' /&gt;
+		&lt;entity id='007'  value='12000' /&gt;
+		&lt;entity id='008'  value='13000' /&gt;
+		&lt;entity id='009'  value='14000' /&gt;
+		&lt;entity id='010'  value='12000' /&gt;
+		&lt;entity id='011'  value='19000' /&gt;
+		&lt;entity id='012'  value='11000' /&gt;
+		&lt;entity id='013'  value='2000' /&gt;
+		&lt;entity id='014'  value='3000' /&gt;
+		&lt;entity id='015'  value='4000' /&gt;
+		&lt;entity id='016'  value='5000' /&gt;
+		&lt;entity id='017'  value='8000' /&gt;
+		&lt;entity id='018'  value='1200' /&gt;
+		&lt;entity id='019'  value='6000' /&gt;
+		&lt;entity id='020'  value='43000' /&gt;
+		&lt;entity id='021'  value='32000' /&gt;
+		&lt;entity id='022'  value='14000' /&gt;
+		&lt;entity id='023'  value='16000' /&gt;
+		&lt;entity id='024'  value='19000' /&gt;
+		&lt;entity id='025'  value='18000' /&gt;
+		&lt;entity id='026'  value='19000' /&gt;
+		&lt;entity id='027'  value='21000' /&gt;
+		&lt;entity id='028'  value='20000' /&gt;
+		&lt;entity id='029'  value='40000' /&gt;
+		&lt;entity id='030'  value='21000' /&gt;
+		&lt;entity id='032'  value='32000' /&gt;
+		&lt;entity id='033'  value='12000' /&gt;
+		&lt;entity id='034'  value='43000' /&gt;
+		&lt;entity id='035'  value='71000' /&gt;
+		&lt;entity id='036'  value='10000' /&gt;
+		&lt;entity id='038'  value='41000' /&gt;
+		&lt;entity id='040'  value='4980' /&gt;
+		&lt;entity id='041'  value='12000' /&gt;
+		&lt;entity id='042'  value='8560' /&gt;
+		&lt;entity id='043'  value='22000' /&gt;
+		&lt;entity id='044'  value='51000' /&gt;
+		&lt;entity id='045'  value='32000' /&gt;
+		&lt;entity id='046'  value='45000' /&gt;
+		&lt;entity id='047'  value='25000' /&gt;
+		&lt;entity id='048'  value='23000' /&gt;
+		&lt;entity id='049'  value='21000' /&gt;
+		&lt;entity id='051'  value='11000' /&gt;
+		&lt;entity id='052'  value='18000' /&gt;
+		&lt;entity id='053'  value='13000' /&gt;
+		&lt;entity id='054'  value='30000' /&gt;
+		&lt;entity id='055'  value='8000' /&gt;
+		&lt;entity id='056'  value='14000' /&gt;
+		&lt;entity id='057'  value='12160' /&gt;
+		&lt;entity id='058'  value='18000' /&gt;
+		&lt;entity id='059'  value='13000' /&gt;
+	&lt;/data&gt;
+&lt;/map&gt;
+  &lt;/linkeddata&gt;
+&lt;/map&gt;</pre>
+<p>The  initial part of the XML defines the data for the master map, and rest of the XML is a group of <span class="codeInline">&lt;linkeddata&gt; </span><span class="text">nod</span>es, each of which contains data for a specific <i>LinkedChart</i>. The  XML data for the master map is as shown follows: </p>
+<pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9'&gt;
+&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &lt;data&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id=&quot;NA&quot; value=&quot;6921900&quot; link='newchart:FCMap_NorthAmerica.swf-xml-NorthAmerica' /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id=&quot;SA&quot; value=&quot;3087120&quot; link='newchart:FCMap_SouthAmerica.swf-xml-SouthAmerica' /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id=&quot;AS&quot; value=&quot;2434120&quot; link='newchart:FCMap_Asia.swf-xml-Asia' /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id=&quot;EU&quot; value=&quot;5093230&quot; link='newchart:FCMap_Europe.swf-xml-Europe' /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id=&quot;AF&quot; value=&quot;1032900&quot; link='newchart:FCMap_Africa.swf-xml-Africa' /&gt;
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;entity id=&quot;AU&quot; value=&quot;3461230&quot; link='newchart:FCMap_Australia.swf-xml-Australia' /&gt;
+&nbsp; &nbsp; &nbsp; &lt;/data&gt;
+  . . .</pre>
+   </div>
+  <p>Note, that every <span class="codeInline">&lt;entity&gt;</span> element contains the <span class="codeInline">link</span> attribute. The value of this attribute follows the syntax given below: </p>
+  <pre class="prettyprint code_container"><a name="linkwithid" id="linkwithid"></a>link="newchart:MapSWFFileName or Map Alias-xml-id"</pre>
+  <br />
+
+
+<ul>
+<li><span class="codeInline">newchart</span> - indicates that the click action on the map entity will lead to rendering of a new <i>LinkedChart</i></li>
+<li><span class="codeInline">MapSWFFileName or Map Alias</span> is the SWF filename of the child map. This is separated by a colon (:) from <span class="codeInline">newchart </span>
+<p class="highlightBlock"><strong>Note:</strong> Do not set the complete path of the map SWF file here. FusionCharts JavaScript Class is smart enough to pick it up from the path of the parent map. However, if required, you can also <a href="Overview.html#otherfolder">configure the path of the child map SWF files</a>.</p>     
+</li>
+<li><span class="codeInline">xml</span> - indicates that the new map will use XML data embedded&nbsp;in the same XML</li>
+<li><span class="codeInline">id</span> -&nbsp; this can be any string. This id will be searched in the<span class="codeInline"> id </span><span class="text">a</span>ttribute of<span class="codeInline"> &lt;linkeddata&gt; </span>nodes later in the XML. Once matched, the map data present in that node will be used as the data for the <i>LinkedChart</i>, which renders when a particular link is clicked. </li>
+</ul>
+<p>Next, separate&nbsp;nodes of map XML data for each <i>LinkedChart</i> are declared under the <span class="codeInline">&lt;linkeddata&gt;</span> element. Following XML shows one of the nodes, which provides  data for a drill-down map, which renders when   the Australia continent&nbsp;of the master map is clicked:</p>
+<pre class="code_container prettyprint lang-xml">&lt;linkeddata id=&quot;Australia&quot;&gt;   
+ &lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9' &gt;
+	&lt;data&gt;
+		&lt;entity id='WA'  value=&quot;200050&quot; /&gt;
+		&lt;entity id='NT'  value=&quot;1509800&quot; /&gt;
+		&lt;entity id='QU'  value=&quot;803480&quot; /&gt;
+		&lt;entity id='SA'  value=&quot;123000&quot; /&gt;
+		&lt;entity id='SW'  value=&quot;548000&quot; /&gt;
+		&lt;entity id='VI'  value=&quot;182000&quot; /&gt;
+		&lt;entity id='TA'  value=&quot;94900&quot; /&gt;
+	&lt;/data&gt;
+ &lt;/map&gt;
+&lt;/linkeddata&gt;</pre>
+
+  <p>The XML data for drill-down maps is specified under separate <span class="codeInline">&lt;linkeddata&gt;</span> element, and each data node is mapped to its parent map by means of a unique id (which is specified in the individual <span class="codeInline">&lt;entity&gt;</span> element of the master map). In the above XML the<span class="codeInline"> id</span> of this node is &quot;<span class="codeInline">Australia</span>&quot;.&nbsp; This id matches with the id passed through the first  link attribute in the XML of the master map  : <span class="codeInline">link=&quot;newchart:FCMap_Australia.swf-xml-<strong>Australia</strong>&quot;</span>. Hence, when Australia is clicked, the map that opens up will take data from this node. </p>
+   <p class="highlightBlock"><strong>Note</strong>: You can create <em>LinkedCharts</em> using the<span class="codeInline"> link</span> attribute of an entity or the <span class="codeInline">clickURL</span> attribute of the <span class="codeInline"></span>map.</p>
+</td>
+</tr>
+
+<tr>
+   <td valign="top" class="header"><a name="url" id="url"></a>Providing URL of <em>LinkedChart</em> XML in the data-source of the master map </td>
+</tr>
+<tr>
+   <td valign="top" class="text">
+      <p>Instead of embedding the data of  <i>LinkedCharts</i> inside the data-source of the master map, you can also specify the data source URL of the <i>LinkedCharts</i>. See the XML below:</p>
+      <pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' includeValueInLabels='1' numberPrefix='$' baseFontSize='9'&gt;
+      
+      &lt;data&gt;
+        &lt;entity id=&quot;NA&quot; value=&quot;6921900&quot; link='newchart:FCMap_NorthAmerica.swf-xmlurl-NorthAmerica.xml' /&gt;
+        &lt;entity id=&quot;SA&quot; value=&quot;3087120&quot; link='newchart:FCMap_SouthAmerica.swf-xmlurl-SouthAmerica.xml' /&gt;
+        &lt;entity id=&quot;AS&quot; value=&quot;2434120&quot; link='newchart:FCMap_Asia-xmlurl.swf-Asia.xml' /&gt;
+        &lt;entity id=&quot;EU&quot; value=&quot;5093230&quot; link='newchart:FCMap_Europe.swf-xmlurl-Europe.xml' /&gt;
+        &lt;entity id=&quot;AF&quot; value=&quot;1032900&quot; link='newchart:FCMap_Africa.swf-xmlurl-Africa.xml' /&gt;
+        &lt;entity id=&quot;AU&quot; value=&quot;3461230&quot; link='newchart:FCMap_Australia.swf-xmlurl-Aus.xml' /&gt;
+      &lt;/data&gt;
+&lt;/map&gt;</pre>
+		<p>Note, here also, every <span class="codeInline">&lt;entity&gt;</span> element contains the <span class="codeInline">link</span> attribute. The value of this attribute follows the syntax: </p>
+        <pre class="prettyprint code_container"><a name="linkwithurl" id="linkwithurl"></a>link='newchart:FCMap_NorthAmerica.swf-xmlurl-NorthAmerica.xml'</pre>
+        
+
+<br />
+      <ul>
+         <li><span class="codeInline">newchart</span> - indicates that the click action on the map entity will lead to rendering of a new <i>LinkedChart</i></li>
+         <li><span class="codeInline">FCMap_NorthAmerica.swf</span> - indicates the name of the map that will open when clicked on the respective entity 
+         <p class="highlightBlock"><strong>Note:</strong> Do not set the complete path of the map SWF file here. FusionCharts JavaScript Class is smart enough to pick it up from the path of the parent map. However, if required, you can also <a href="Overview.html#otherfolder">configure the path of the child map SWF files</a>.</p>     
+         </li>
+         <li><span class="codeInline">xmlurl</span> - indicates that the new map will get xml data from a URL </li>
+         <li><span class="codeInline">NorthAmerica.xml</span> - sets the url/path of the xml data source</li>
+      </ul>
+      <p>When the first dataplot is clicked,  a map is rendered based on data obtained from the file <span class="codeInline">NorthAmerica.xml</span>. </p>
+   </td>
+</tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("<em>LinkedCharts</em> - Overview|Overview.html", "JSON Data Format|JSONFormat.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

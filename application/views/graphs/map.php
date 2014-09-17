@@ -1,0 +1,1 @@
+<div id="mapshow" style="margin-left: 0px;"> <?php echo $map['html']; ?></div>

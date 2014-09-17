@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Exporting Charts as PDF or Images - Batch export - Setting JavaScript callback </title>
+<link rel="stylesheet" href="../../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../../introduction/overview.html", "Exporting as Image/PDF|../ECOverview.html", "Batch exporting maps |ECBatchOverview.html", "Setting JavaScript callback" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Setting JavaScript callback </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>When exporting maps using batch export component, the component raises 3 events (calls JavaScript methods) during the total course of action:</p>
+      <ul>
+        <li><span class="codeInline">FC_ExportReady(string DOMId)</span> - This is raised when individual maps in the queue have finished the capture process and have passed their data to the export component.  Between initiation of the map export and till the time <span class="codeInline">FC_ExportReady</span> event is raised, you might show a waiting message/alert to the user that the map is in processing stage. </li>
+        <li><span class="codeInline">FC_Exported(Object objRtn)</span> - This is raised when the user selects an individual map from UI to be saved on his disk (not possible when <span class="codeInline">saveMode</span> is set as <span class="codeInline">batch</span>). This method name can be changed by specifying the same in individual map's XML as <span class="codeInline">exportCallback</span> attribute. </li>
+        <li><span class="codeInline">FC_BatchExported (Object objRtn)</span> - This is raised when the entire batch was saved as a single file on user's disk. </li>
+      </ul>
+      <p>To handle these events, you need to define this function in your JavaScript code. In case of <span class="codeInline">FC_Exported(objRtn)</span> or <span class="codeInline">FC_BatchExported(objRtn)</span>, <span class="codeInline">objRtn</span> contains the following parameters (returned from Export Component):</p>
+      <ul>
+      <li><span class="codeInline">statusCode</span> - Has the value of 1 in case of success, and 0 in case of failure.</li>
+      <li><span class="codeInline">statusMessage</span> - In case of  failure, this parameter contains a string description of the error (returned by server)</li>
+      <li><span class="codeInline">fileName</span> - If saving was successful, this parameter contains the HTTP reference to the image/PDF file saved on server</li>
+      <li><span class="codeInline">width</span> &amp; <span class="codeInline">height</span> - If saving was successful, these parameters contain the width/height of saved image. Else, they contain 0. </li>
+      <li><span class="codeInline">DOMId</span> - In case of Save-All, this parameter contains a list of DOMId of the maps in queue that were successfully exported separated by comma. In case of individual map saving, it contains that map's DOM Id. </li>
+    </ul>
+    <p>Let's  quickly see an example code where all the callback functions have been  implemented. In this example, we just track the events and show messages using JavaScript alert. </p></td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <pre class="prettyprint code_container">&lt;html&gt;
+   &lt;head&gt;
+      &lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+      &lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionChartsExportComponent.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt; 
+             //Define a function, which will be invoked when user clicks the batch-export-initiate button
+             function initiateExport(){
+                myExportComponent.BeginExport();
+             }
+             //This event is raised when the map has finished capture phase and passed the data to 
+             //Export Component for further processing
+             function FC_ExportReady(DOMId){
+                alert(&quot;The map with DOM ID as &quot; + DOMId + &quot; has finished capture mode. It's now ready to be downloaded individually&quot;);
+             } 
+            //This event is raised when an individual map has been successfully saved on user's disk (post click of button)
+            function FC_Exported(objRtn){
+              if (objRtn.statusCode==&quot;1&quot;){
+                alert(&quot;The map was successfully saved. Its DOM Id is &quot; + objRtn.DOMId);
+              } else{
+                alert(&quot;There was an error saving the map. Error message: &quot; + objRtn.statusMessage + &quot;. Its DOM Id is &quot; + objRtn.DOMId);
+              }
+            }
+            //This event is invoked when the user clicked on Save-All button and all the maps were saved on user's disk
+            //as a single file.
+            function FC_BatchExported(objRtn){
+              if (objRtn.statusCode==&quot;1&quot;){
+                alert(&quot;The batch was exported and saved as a single file named '&quot; + objRtn.fileName + &quot;'. The maps processed were &quot; + objRtn.DOMId);
+              }else{
+                alert(&quot;There was an error saving the map. Error message: &quot; + objRtn.statusMessage);
+              }
+            }
+      &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body bgcolor=&quot;#ffffff&quot;&gt;
+    &lt;div id=&quot;map1div&quot; align=&quot;center&quot;&gt;The map will appear within this DIV. This text will be replaced by the map.&lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+            var myMap1 = new FusionCharts(&quot;../../Maps/FCMap_World.swf&quot;, &quot;myMapId1&quot;, &quot;500&quot;, &quot;266&quot;, &quot;0&quot;, &quot;1&quot;);
+            myMap1.setXMLUrl(&quot;WP-2000-2010.xml&quot;);
+            myMap1.render(&quot;map1div&quot;);
+    &lt;/script&gt;
+    &lt;div id=&quot;map2div&quot; align=&quot;center&quot;&gt;The map will appear within this DIV. This text will be replaced by the map.&lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;  
+            var mymap2 = new FusionCharts(&quot;../../Maps/FCMap_World.swf.swf&quot;, &quot;myMapId2&quot;, &quot;500&quot;, &quot;266&quot;, &quot;0&quot;, &quot;1&quot;);
+            myMap2.setXMLUrl(&quot;WP-1990-2000.xml&quot;);
+            myMap2.render(&quot;map2div&quot;);
+    &lt;/script&gt;
+    &lt;div id=&quot;map3div&quot; align=&quot;center&quot;&gt;The map will appear within this DIV. This text will be replaced by the map.&lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+            var myMap3 = new FusionCharts(&quot;../../Maps/FCMap_World.swf&quot;, &quot;myMapId3&quot;, &quot;500&quot;, &quot;266&quot;, &quot;0&quot;, &quot;1&quot;);
+            myMap3.setXMLUrl(&quot;WP-1980-1990.xml&quot;);
+            myMap3.render(&quot;map3div&quot;);
+    &lt;/script&gt;
+&lt;input type='button' onClick=&quot;javascript:initiateExport();&quot; value=&quot;Begin batch export&quot; /&gt;
+    &lt;div id=&quot;fcexpDiv&quot; align=&quot;center&quot;&gt;FusionCharts Export Handler Component&lt;/div&gt;&lt;/td&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+            var myExportComponent = new FusionChartsExportObject(&quot;fcBatchExporter&quot;, &quot;../../Maps/FCExporter.swf&quot;);
+            //Add the maps to queue. The maps are referred to by their DOM Id.
+            myExportComponent.sourceCharts = ['myMapId1','myMapId2','myMapId3'];
+            //------ Export Component Attributes ------//
+             //Set the mode as full mode
+            myExportComponent.componentAttributes.fullMode='1';
+            //Set saving mode as both. This allows users to download individual maps/ as well as download all maps as a single file.
+            myExportComponent.componentAttributes.saveMode='both';
+            //Show allowed export format drop-down
+            myExportComponent.componentAttributes.showAllowedTypes = '1';
+            //Cosmetics 
+            //Width and height
+            myExportComponent.componentAttributes.width = '380';
+            myExportComponent.componentAttributes.height = '160';
+            //Message - caption of export component
+            myExportComponent.componentAttributes.showMessage = '1';
+            myExportComponent.componentAttributes.message = 'Click on button above to begin export of maps. Then save from here.';
+            //Render the exporter SWF in our DIV fcexpDiv
+            myExportComponent.Render(&quot;fcexpDiv&quot;);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>     
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>See it <a href="../../../Code/ExportMapSamples/BatchExport/Callback.html" target="_blank">live</a>! 
+      <p>This code, when run, will show you all the events generated for the export.</p> 
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Setting it up|ECBatchSetup.html","Over-riding export parameters|ECBatchOverride.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

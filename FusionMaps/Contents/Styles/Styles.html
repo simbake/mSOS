@@ -1,0 +1,333 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using Styles</title>
+
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+
+
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Using Styles", "Overview"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr>
+    <td class="pageHeader">Using Styles </td>
+  </tr>
+  <tr> 
+    <td class="text">
+       <p>FusionMaps  XT uses <span class="codeInline">Styles</span> 
+        concept from FusionCharts XT to help you apply font, effects and animations to objects of the 
+        map. <span class="codeInline">Styles </span>lends a simple mechanism 
+        using which you can easily control the visual layout of map. </p></td>
+  </tr>
+  <tr> 
+    <td>To use <span class="codeInline">Styles</span>, all you 
+        need to do is:<br /><br />
+      <ul>
+        <li>Define your own style attributes in the <span class="codeInline">XML</span> 
+          data document, and</li>
+        <li>Associate (i.e., apply) them with defined <span class="codeInline">Objects</span> 
+          of the map.</li>
+      </ul></td>
+  </tr>
+  
+  
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="header">Defined Objects for the Map </td>
+  </tr>
+  <tr> 
+    <td><p>Each FusionMaps XT map has the following list of defined Objects for direct association with style definitions. 
+        For example, the background of the map is termed as <span class="codeInline">BACKGROUND</span>. 
+        Similarly, the plot on the map is named 
+        as <span class="codeInline">PLOT</span>. This enables you to associate 
+        each style to multiple map objects or associate multiple map objects 
+        to a particular style.</p></td>
+  </tr>
+  <tr> 
+    <td valign="top"><table width="98%" align="left" cellpadding="4" cellspacing="2" class="table">
+      <tr>
+        <td width="15%" valign="top" class="greyTr"><span class="textBold"> Object Name </span> </td>
+        <td width="35%" valign="top" class="greyTr"><span class="textBold"> Description </span> </td>
+        <td width="25%" valign="top" class="greyTr"><span class="textBold"> Features Supported </span> </td>
+        <td width="25%" valign="top" class="greyTr"><span class="textBold"> Animation Parameters Supported </span> </td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top"><span class="text"> BACKGROUND </span> </td>
+        <td width="35%" valign="top"><span class="text"> BACKGROUND refers to the entire background of the map. </span> </td>
+        <td width="25%" valign="top"><ul><li><span class="text">Animation
+          </span>
+          </li><li><span class="text">Shadow
+            </span>
+          </li><li><span class="text">Glow
+            </span>
+          </li><li><span class="text">Bevel
+            </span>
+          </li><li><span class="text">Blur
+          </span></li></ul></td>
+        <td width="25%" valign="top"><ul><li><span class="text">_alpha
+          </span>
+          </li><li><span class="text">_x
+            </span>
+          </li><li><span class="text">_y
+            </span>
+          </li><li><span class="text">_xScale
+            </span>
+          </li><li><span class="text">_yScale
+          </span></li></ul></td>
+      </tr>
+      <tr >
+        <td width="15%" valign="top" class="greyTr"><span class="text"> PLOT </span> </td>
+        <td width="35%" valign="top" class="greyTr"><span class="text"> Plot refers to the actual map entities on the map i.e., individual city/state/county drawings. </span></td>
+        <td width="25%" valign="top" class="greyTr"><ul><li><span class="text">Animation
+          </span>
+          </li><li><span class="text">Shadow
+            </span>
+          </li><li><span class="text">Glow
+            </span>
+          </li><li><span class="text">Bevel
+            </span>
+          </li><li><span class="text">Blur
+          </span></li></ul></td>
+        <td width="25%" valign="top" class="greyTr"><ul><li><span class="text">_alpha
+          </span>
+          </li><li><span class="text">_x
+            </span>
+          </li><li><span class="text">_y
+            </span>
+          </li><li><span class="text">_xScale
+            </span>
+          </li><li><span class="text">_yScale
+          </span></li></ul></td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top"><span class="text"> LABELS </span> </td>
+        <td width="35%" valign="top"><span class="text"> LABELS refers to all the labels of individual entities. </span></td>
+        <td width="25%" valign="top"><ul><li><span class="text">Animation
+          </span>
+          </li><li><span class="text">Font
+            </span>
+          </li><li><span class="text">Shadow
+            </span>
+          </li><li><span class="text">Glow
+            </span>
+          </li><li><span class="text">Bevel
+            </span>
+          </li><li><span class="text">Blur
+          </span></li></ul></td>
+        <td width="25%" valign="top"><ul><li><span class="text">_alpha
+          </span>
+          </li><li><span class="text">_x
+            </span>
+          </li><li><span class="text">_y
+          </span></li></ul></td>
+      </tr>
+      <tr>
+        <td valign="top" class="greyTr"><span class="text"> MARKERLABELS </span> </td>
+        <td valign="top" class="greyTr"><span class="text">MARKERLABELS refers to the labels of the defined markers on the map. </span></td>
+        <td valign="top" class="greyTr"><ul>
+          <li><span class="text">Animation</span>
+          </li><li><span class="text">Font</span>
+          </li><li><span class="text">Shadow</span>
+          </li><li><span class="text">Glow</span>
+          </li><li><span class="text">Bevel</span>
+          </li><li><span class="text">Blur</span>
+              </li></ul> </td>
+        <td valign="top" class="greyTr"><ul>
+          <li><span class="text">_alpha</span>
+              </li></ul> </td>
+      </tr>
+      
+      <tr>
+        <td valign="top"><span class="text"> MARKERS </span> </td>
+        <td valign="top"><span class="text"> MARKERS refers to all the defined markers on the map. </span></td>
+        <td valign="top"><ul><li><span class="text">Animation </span>
+            
+            </li><li><span class="text">Shadow
+              </span>
+            </li><li><span class="text">Glow
+              </span>
+            </li><li><span class="text">Bevel
+              </span>
+            </li><li><span class="text">Blur
+          </span></li></ul></td>
+        <td valign="top"><ul><li><span class="text">_alpha
+            </span>
+            </li><li><span class="text">_x
+              </span>
+            </li><li><span class="text">_y</span>
+            </li><li><span class="text">_xscale</span>
+            </li><li><span class="text">_yscale
+          </span></li></ul></td>
+      </tr>
+      <tr>
+        <td valign="top" class="greyTr"><span class="text"> LEGEND </span> </td>
+        <td valign="top" class="greyTr"><span class="text"> LEGEND is the object in which the names of defined color ranges for the map show up. </span> </td>
+        <td valign="top" class="greyTr"><ul>
+          <li><span class="text">Animation</span>
+          </li><li><span class="text">Font</span>
+          </li><li><span class="text">Shadow</span>
+          </li><li><span class="text">Glow</span>
+          </li><li><span class="text">Bevel</span>
+          </li><li><span class="text">Blur</span>
+          </li></ul> </td>
+        <td valign="top" class="greyTr"><ul>
+          <li><span class="text">_alpha</span>
+          </li></ul> </td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top"><span class="text"> TOOLTIP </span> </td>
+        <td width="35%" valign="top"><span class="text"> TOOLTIP refers to the tool tip shown when mouse is hovered over the entities. </span> </td>
+        <td width="25%" valign="top"><ul><li><span class="text">Font
+        </span></li></ul></td>
+        <td width="25%" valign="top"><span class="text"> </span> </td>
+      </tr>
+      <tr>
+        <td valign="top" class="greyTr"><span class="text"> MARKERCONNECTORS </span> </td>
+        <td valign="top" class="greyTr"><span class="text"> MARKERCONNECTORS  refers to any defined connectors between markers and the connector labels (if defined). </span></td>
+        <td valign="top" class="greyTr"><ul>
+          <li><span class="text">Animation</span>
+          </li><li><span class="text">Font</span>
+          </li><li><span class="text">Shadow</span>
+          </li><li><span class="text">Glow</span>
+          </li><li><span class="text">Bevel</span>
+          </li><li><span class="text">Blur</span>
+              </li></ul> </td>
+        <td valign="top" class="greyTr"><ul>
+          <li><span class="text">_alpha</span></li><li><span class="text">_xscale</span></li><li><span class="text">_yscale</span>
+                            </li></ul> </td>
+      </tr>
+
+    </table>      </td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="header">Advantages of using Style</td>
+  </tr>
+  <tr>
+  <td class="text" height="25"></td></tr>
+  <tr> 
+    <td>
+	<ul>
+        <li>Better control over map look &amp; feel.</li>
+        <li>You can precisely define custom animations and effects 
+          according to your own taste.</li>
+        <li>Your formatting (cosmetic) attributes are grouped together 
+          in one element in the<span class="codeInline"> XML</span> document, 
+          thereby separating data from visual formatting.</li>
+        <li>You can store the entire style definition in a central 
+          location in your application, so that all maps within application 
+          can utilize it.</li>
+        <li>Easy re-use of style definitions. Each style can be applied 
+          to multiple map objects or vice versa.</li>
+      </ul></td>
+  </tr>
+  <tr> 
+    <td class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td class="header">Style Types</td>
+  </tr>
+  <tr>
+  <td class="text" height="25"></td></tr>
+  <tr> 
+    <td class="text">Before we delve into more details, let's briefly skim over 
+      the different style type options that are present in FusionMaps XT.</td>
+  </tr>
+  <tr>
+  <td class="text" height="25"></td></tr>
+  <tr> 
+    <td><table class="table" cellpadding="3" cellspacing="0" bordercolor="f1f1f1">
+        <tr> 
+          <td width="103" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Font</span></td>
+          <td width="487" valign="top" bordercolor="f1f1f1" class="text">The<span class="codeInline"> 
+            Font</span> style allows you to control text properties for all 
+              the text on the map. Using this, you can set the font family, 
+              color, size, background color, border color, spacing etc. of individual 
+              text elements on the map </td>
+        </tr>
+        <tr> 
+          <td width="103" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Animation</span></td>
+          <td width="487" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Animation</span> 
+            style type allows you to define your custom animations for your background, plot, legend and text. Each of the above object can have multiple animation properties (like x, y, xscale, 
+            yscale, alpha etc.) and each sequence can have its own duration</td>
+        </tr>
+        <tr> 
+          <td width="103" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Shadow</span></td>
+          <td width="487" valign="top" bordercolor="f1f1f1" class="text">To 
+              apply <span class="codeInline">shadow</span> effect to any object 
+              on the map, use this style type with configurable properties</td>
+        </tr>
+        <tr> 
+          <td width="103" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Glow</span></td>
+          <td width="487" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Glow</span> 
+            Style type lets you apply glow effects to objects on the map.</td>
+        </tr>
+        <tr> 
+          <td width="103" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Bevel</span></td>
+          <td width="487" valign="top" bordercolor="f1f1f1" class="text">To 
+              apply<span class="codeInline"> bevel</span> effect for any of the 
+              map objects, use this style type.</td>
+        </tr>
+        <tr> 
+          <td width="103" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Blur</span></td>
+          <td width="487" valign="top" bordercolor="f1f1f1" class="text"><span class="codeInline">Blur</span> 
+            Style type helps to create a blur effect for any object on the map. 
+            The amount and distance of blur are configurable.</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+  <td class="highlightBlock">Note: In JavaScript maps, customized <span class="codeInline">animation</span>, <span class="codeInline">shadow</span>, <span class="codeInline">glow</span>, <span class="codeInline">bevel </span>and <span class="codeInline">blur</span> style types are not available. JavaScript maps provide limited support for customized <span class="codeInline">Font</span> style. </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Exporting Map Data - Using JavaScript API|../export_data/ExportDataJS.html","How to Use?|HowToUse.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with ASP.NET (VB.NET) - US Population Map</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with ASP.NET (VB)", "Plotting from database", "US population map" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">US Population Map </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">In this page we will see the code used to achieve the Goal 1. Below is the important part of the code. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">Before moving further with the process of plotting data from database, we recommend  to go through <a href="CodeASPVBDXML.html">Using Data String Method</a> and <a href="CodeASPVBDURL.html">Using Data URL Method</a> to know the basics about FusionMaps  XT generation procedure. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">The code discussed here is present in <span class="codeInline">Download Package &gt; Code &gt; VB_NET &gt; DrillDown  </span> folder. </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">The code to create the US map and plot data from database contained in <span class="codeInline">Default.aspx</span> is listed as under : </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="codeBlock code_container"><p>&lt;%@ Page Language=&quot;VB&quot; AutoEventWireup=&quot;false&quot; CodeFile=&quot;Default.aspx.vb&quot; Inherits=&quot;FusionMapsDBExample_DrillDown&quot; %&gt;<br />
+        &lt;html&gt;<br />
+        &nbsp;&nbsp; &lt;head&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;FusionMaps XT - Database Example&lt;/title&gt;<br />
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;script language=&quot;Javascript&quot; src=&quot;../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;<br />
+&nbsp;&nbsp; &lt;/head&gt;<br />
+  &nbsp;&nbsp; &lt;body&gt;<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &lt;form id='form1' name='form1' method='post' runat=&quot;server&quot;&gt;<br />
+          <br />
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;% <span class="codeComment">'Show USA Map'</span> %&gt;<br />
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&lt;asp:Literal ID=&quot;USMap&quot; runat=&quot;server&quot; /&gt;</strong><br />
+          <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br />
+  &nbsp;&nbsp; &lt;/body&gt;<br />
+  &lt;/html&gt;</p>        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">In the above code, we first include <span class="codeInline">FusionCharts.js</span> file to enable us embed the map using   JavaScript. The USA map loads in Literal USMap through the following code behind script (<span class="codeInline">Default.aspx.vb</span>).</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr class="codeBlock code_container">
+    <td valign="top" class="codeBlock code_container"><p>Imports InfoSoftGlobal</p>
+      <p>Partial Class FusionMapsDBExample_DrillDown<br />
+       &nbsp;&nbsp; Inherits System.Web.UI.Page</p>
+      <p> &nbsp;&nbsp; Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load</p>
+      <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; ' Define DataURL variable </span><br />
+      &nbsp;&nbsp;&nbsp; &nbsp; Dim DataURL As String<br />
+        <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp;</span><br />
+     &nbsp;&nbsp; &nbsp;&nbsp; DataURL = &quot;DataGen.aspx?op=GetUSMapDetails&quot;</p>
+      <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; ' Create the Map with data contained in Data URL <br />
+      &nbsp;&nbsp; &nbsp;&nbsp; ' and embed the map rendered as HTML into Literal - USMap<br />
+      &nbsp;&nbsp; &nbsp;&nbsp; ' We use FusionCharts class of InfoSoftGlobal namespace (FusionCharts.dll in BIN folder)<br />
+      &nbsp;&nbsp; &nbsp;&nbsp; ' RenderChart() generates the necessary HTML needed to render the map</span><br />
+       <br />
+      &nbsp;&nbsp; &nbsp;&nbsp; Dim mapHTML As String = <strong>FusionCharts.RenderChart(&quot;../Maps/FCMap_USA.swf&quot;, DataURL, &quot;&quot;, &quot;mapid&quot;, &quot;600&quot;, &quot;400&quot;, False, False)</strong><br />
+      <br />
+      <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' embed the map rendered as HTML into Literal - USMap</span><br />
+      &nbsp;&nbsp; &nbsp;&nbsp; USMap.Text = mapHTML<br />
+        <br />
+       &nbsp;&nbsp; End Sub<br />
+        <br />
+    End Class</p>    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>In the above code we do the following : </p>
+        <ul>
+            <li>We create a Data URL to fetch map XML from <span class="codeInline">DataGen.aspx (whose code behind page is DataGen.aspx.vb)</span>. </li>
+            <li>We call <span class="codeInline">RenderChart</span>() function from <span class="codeInline">FusionCharts class </span>of <span class="codeInline">InfosoftGlobal </span>assembly which renders map of USA after passing the Data URL to it. </li>
+        </ul></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Let's now go thorough the code of <span class="codeInline">DataGen.aspx.vb</span> that fetches data and forms map XML. </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="codeBlock code_container"><p><strong>Imports DataConnection</strong> <span class="codeComment">'contains the connection parameters to connect to database. </span><br/>
+        Imports System.Text</p>
+  <p>Partial Class  DrillDown_dataGen<br />
+             &nbsp;&nbsp;&nbsp; Inherits System.Web.UI.Page</p>
+          <p> <span class="codeComment">&nbsp;&nbsp; ' This program call different function using &quot;op&quot; type<br />
+             &nbsp;&nbsp; ' The functions generate XML and relay to map using Data URL method<br />
+              </span>&nbsp;&nbsp; Protected Sub Page_Load(ByVal ob As Object, ByVal e As EventArgs) Handles Me.Load<br />
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dim op As String<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;op = Request(&quot;op&quot;)<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;' Depending on op calling function</span><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select Case op<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case &quot;<strong>GetUSMapDetails</strong>&quot;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;GetUSMapDetails</strong>() <span class="codeComment">' Calling GetUSMapDetails</span></p>
+          <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case &quot;GetStateDetails&quot;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetStateDetails()    <span class="codeComment">' Calling GetStateDetails</span></p>
+          <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case &quot;getChartEmpStat&quot;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getChartEmpStat()   <span class="codeComment">' Calling getChartEmpStat </span></p>
+          <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Select&nbsp;&nbsp;&nbsp;<br />
+             &nbsp;&nbsp; End Sub<br />
+        </p>
+        <p>...</p>
+        <p> <span class="codeComment"> &nbsp;' This program shows USA Map and link with State. and showing <br />
+&nbsp;' total population<br />
+        </span>&nbsp;Public Sub <strong>GetUSMapDetails</strong>()</p>
+        <p class="codeComment"> &nbsp;&nbsp; 'In this example, we show how to connect FusionMaps  XT to a database.<br />
+       &nbsp;&nbsp; 'You can connect to any database. Here, we've shown MSSQL/Access.</p>
+        <p class="codeComment"> &nbsp;&nbsp; 'strXML will be used to store the entire XML document generated<br />
+       &nbsp;&nbsp; <span class="codeInline">Dim strXML As New StringBuilder</span></p>
+        <p> <span class="codeComment">&nbsp;&nbsp; 'Variable to store SQL Queries</span><br />
+       &nbsp;&nbsp; Dim strQuery As String</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; 'Variable to store total Population</span><br />
+       &nbsp;&nbsp; Dim sumdata As Double</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; 'Generate the map element </span><br />
+          <span class="codeComment">&nbsp;&nbsp; 'Create the opening &lt;map&gt; element and add the attributes that we need.</span><br />
+         &nbsp;&nbsp; strXML.Append(&quot;&lt;map borderColor='FFFFFF' fillAlpha='80' showBevel='0' numberSuffix='% of total US population' legendBorderColor='F1f1f1' hoverColor='FFFFFF' legendPosition='bottom'&gt;&quot;)<br />
+          <span class="codeComment"><br />
+         &nbsp;&nbsp; 'Define color ranges</span><br />
+         &nbsp;&nbsp; strXML.Append(&quot;&lt;colorRange&gt;&quot;)<br />
+         &nbsp;&nbsp; strXML.Append(&quot;&lt;color minValue='0' maxValue='0.50' displayValue='0% to 0.50% of total' color='D64646' /&gt;&quot;)<br />
+         &nbsp;&nbsp; strXML.Append(&quot;&lt;color minValue='0.50' maxValue='1' displayValue='0.50% to 1% of total' color='F6BD0F' /&gt;&quot;)<br />
+         &nbsp;&nbsp; strXML.Append(&quot;&lt;color minValue='1' maxValue='3' displayValue='1% to 3% of total' color='8BBA00' /&gt;&quot;)<br />
+         &nbsp;&nbsp; strXML.Append(&quot;&lt;color minValue='3' maxValue='10' displayValue='3% or above of total' color='AFD8F8' /&gt;&quot;)<br />
+       &nbsp;&nbsp; strXML.Append(&quot;&lt;/colorRange&gt;&quot;)</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; ' store the sql query</span><br />
+         &nbsp;&nbsp; strQuery = &quot;select sum(data) as datap from fcmap_distribution&quot;<br />
+          <span class="codeComment">&nbsp;&nbsp; ' Create datareader object</span><br />
+       &nbsp;&nbsp; Dim Rs As New DbConn(strQuery)</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; ' Initialize sum container</span><br />
+         &nbsp;&nbsp; sumdata = 0<br />
+          <span class="codeComment">&nbsp;&nbsp; ' Check if we've records to show</span><br />
+         &nbsp;&nbsp; If Rs.ReadData.HasRows = True Then<br />
+          <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Read first record</span><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs.ReadData.Read()<br />
+          <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Store sum </span><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumdata = Convert.ToDouble(Rs.ReadData(&quot;datap&quot;))<br />
+         &nbsp;&nbsp; End If<br />
+         <br />
+          <span class="codeComment">&nbsp;&nbsp; ' Close the reader </span><br />
+         &nbsp;&nbsp; Rs.ReadData.Close()<br />
+        </p>
+        <p> <span class="codeComment">&nbsp;&nbsp; ' Fetch all Internal id and data sum </span><br />
+       &nbsp;&nbsp; strQuery = &quot;select  Internal_Id, (sum(data) / &quot; &amp; sumdata &amp; &quot;)*100  as datap from fcmap_distribution group by Internal_Id&quot;</p>
+        <p> &nbsp;&nbsp; Dim Rs1 As New DbConn(strQuery)<br />
+        </p>
+        <p> <span class="codeComment">&nbsp;&nbsp; ' Add map data element</span><br />
+       &nbsp;&nbsp; strXML.Append(&quot;&lt;data&gt;&quot;)</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; ' Check if we've records to show</span><br />
+       &nbsp;&nbsp; If Rs1.ReadData.HasRows = True Then</p>
+        <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Iterate through the database</span><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; While Rs1.ReadData.Read()<br />
+          <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Create query string </span><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; strQuery = &quot;select map_swf from fcmap_master where Internal_Id='&quot; + Rs1.ReadData(&quot;Internal_Id&quot;).ToString() + &quot;'&quot;<br />
+          <span class="codeComment"><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Open fcmap_master table to get map SWF names</span><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dim Rs2 As New DbConn(strQuery)<br />
+          <span class="codeComment"><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Read first record</span><br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs2.ReadData.Read()</p>
+        <p> <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' The link will in format StateDetails.aspx?Internal_Id=Int_Id&amp;map=map_swf.swf </span><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Dim LinkURL As String<br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; LinkURL = &quot;StateDetails.aspx?Internal_Id=&quot; &amp; Rs1.ReadData(&quot;Internal_Id&quot;).ToString() &amp; &quot;&amp;map=&quot; &amp; Rs2.ReadData(&quot;map_swf&quot;).ToString()</p>
+        <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; ' Generate &lt;entity id=&quot;..&quot; value=&quot;..&quot; /&gt; and also add link to it </span><br />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; strXML.Append(&quot;&lt;entity id='&quot; &amp; Rs1.ReadData(&quot;Internal_Id&quot;) &amp; &quot;' value='&quot; &amp; Math.Round(Convert.ToDouble(Rs1.ReadData(&quot;datap&quot;)), 2) &amp; &quot;'  link='&quot; &amp; LinkURL &amp; &quot;'  /&gt;&quot;)<br />
+         &nbsp;&nbsp;&nbsp;&nbsp; <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs2.ReadData.Close()<br />
+          <br />
+         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; End While<br />
+          <br />
+         &nbsp;&nbsp;&nbsp; End If<br />
+          <span class="codeComment">&nbsp;&nbsp;&nbsp; <br />
+         &nbsp;&nbsp;&nbsp; ' Close reader </span><br />
+       &nbsp;&nbsp;&nbsp; Rs1.ReadData.Close()</p>
+        <p> <span class="codeComment">&nbsp;&nbsp;&nbsp; ' Finally, close &lt;map&gt; element and add</span><br />
+       &nbsp;&nbsp;&nbsp; strXML.Append(&quot;&lt;/data&gt;&quot;)</p>
+        <p> <span class="codeComment">&nbsp;&nbsp;&nbsp; ' If needed, you can append additional XML tags here - like STYLE or MARKERS</span><br />
+         &nbsp;&nbsp;&nbsp; strXML.Append(&quot;&lt;styles&gt;&lt;definition&gt;&lt;style type='animation' name='animX' param='_xscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animY' param='_yscale' start='0' duration='1' /&gt;&lt;style type='animation' name='animAlpha' param='_alpha' start='0' duration='1' /&gt;&lt;style type='shadow' name='myShadow' color='FFFFFF' distance='1' /&gt;&lt;/definition&gt;&quot;)<br />
+          <br />
+         &nbsp;&nbsp;&nbsp; strXML.Append(&quot;&lt;application&gt;&lt;apply toObject='PLOT' styles='animX,animY' /&gt;&lt;apply toObject='LABELS' styles='myShadow,animAlpha' /&gt;&lt;/application&gt;&lt;/styles&gt;&quot;)<br />
+         <br />
+         <span class="codeComment">&nbsp;&nbsp;&nbsp; ' Close Map element</span><br />
+       &nbsp;&nbsp;&nbsp; strXML.Append(&quot;&lt;/map&gt;&quot;)</p>
+        <p> <span class="codeComment">&nbsp;&nbsp;&nbsp; ' Set Proper output content-type</span><br />
+       &nbsp;&nbsp;&nbsp; Response.ContentType = &quot;text/xml&quot;</p>
+        <p> <span class="codeComment">&nbsp;&nbsp;&nbsp; ' Just write out the XML data<br />
+       &nbsp;&nbsp;&nbsp; ' NOTE THAT THIS PAGE DOESN'T CONTAIN ANY HTML TAG, WHATSOEVER</span><br />
+         &nbsp;&nbsp;&nbsp; Response.Write(strXML.ToString())<br />
+          <br />
+          
+         &nbsp; End Sub<br />
+          <br />
+         ...<br />
+          <br />
+          End Class</p>        </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Let's discuss the steps involved in the above code :</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">The first part of the code is executed when the page is loaded:</td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="codeBlock code_container"><p>&nbsp;op = Request(&quot;op&quot;)<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="codeComment">&nbsp;' Depending on op calling function</span><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select Case op<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case &quot;<strong>GetUSMapDetails</strong>&quot;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;GetUSMapDetails</strong>() <span class="codeComment">' Calling GetUSMapDetails</span></p>
+          <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case &quot;GetStateDetails&quot;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetStateDetails() <span class="codeComment">' Calling GetStateDetails</span></p>
+          <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case &quot;getChartEmpStat&quot;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getChartEmpStat() <span class="codeComment">' Calling getChartEmpStat </span></p>
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Select&nbsp;&nbsp;&nbsp;</p></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">The file <span class="codeInline">getDetails.aspx</span> is passed a querystring - <span class="codeInline">?op=GetUSMapDetails</span>. The above code retrieves this querystring value in variable -<span class="codeInline">op</span>. Depending on the value of <span class="codeInline">op </span>the code calls related subroutines using <span class="codeInline">select case</span> statement. Hence, when op's value is <span class="codeInline">GetUSMapDetails,</span> it calls <span class="codeInline">GetUSMapDetails</span>() subroutine, which in turn builds and returns the world map XML as Data URL.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">Now,  we will dive deep into  the <span class="codeInline">GetUSMapDetails</span>() subroutine. </td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>We create <span class="codeInline">a StringBuilder </span>object <span class="codeInline">- strXML</span> (to store XML data) and <span class="codeInline">sumdata </span>to store sum of values from database.&nbsp; We also opened the root <span class="codeInline">map</span> element providing the map properties.</li>
+    </ul></td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">strXML.Append(&quot;&lt;map borderColor='FFFFFF' fillAlpha='80' showBevel='0' numberSuffix='% of total US population' legendBorderColor='F1f1f1' hoverColor='FFFFFF' legendPosition='bottom'&gt;&quot;)</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Next,&nbsp; we define color range for the main US Map. </li>
+    </ul></td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeComment">'Define our color range<br />
+    </span>strXML.Append(&quot;&lt;colorRange&gt;&quot;) <br />
+    <br />
+    strXML.Append(&quot;&lt;color minValue='0' maxValue='0.50' displayValue='0% to 0.50% of total' color='D64646' /&gt;&quot;) <br />
+    <br />
+    strXML.Append(&quot;&lt;color minValue='0.50' maxValue='1' displayValue='0.50% to 1% of total' color='F6BD0F' /&gt;&quot;) <br />
+    <br />
+    strXML.Append(&quot;&lt;color minValue='1' maxValue='3' displayValue='1% to 3% of total' color='8BBA00' /&gt;&quot;) <br />
+    <br />
+    strXML.Append(&quot;&lt;color minValue='3' maxValue='10' displayValue='3% or above of total' color='AFD8F8' /&gt;&quot;)<br />
+    <br /> 
+    strXML.Append(&quot;&lt;/colorRange&gt;&quot;)</td>
+  </tr>
+  <tr>
+    <td valign="top" class="textBold">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Providing data</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">To connect to database we have created a namespace <span class="codeInline"> <a href="#DataConn" class="codeInline">DataConnection</a></span> (file <span class="codeInline">DbHelper.vb</span> in <span class="codeInline">App_Code</span> folder). This contains a class <span class="codeInline">DbConn</span>, which we will be using  to connect to database in this example and subsequent example(s). </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>We had included <span class="codeInline"><a href="#DataConn" class="codeInline">DataConnection</a></span> namespace in the header of the code page. <a href="#DataConn" class="codeInline">DataConnection</a> contains the connection parameters to   connect to database.</li>
+    </ul></td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+      <li>Here comes the database mining part where we start fetching data. </li>
+      <ul>
+        <li>First we initialize <span class="codeInline">sumdata</span> to store sum total of all data found in the table - <span class="codeInline">fcmap_distribution</span>. That represents the total US population (fictitious of-course). We did this using SQL Query : <span class="codeInline">&quot;select sum(data) as datap from fcmap_distribution&quot;</span>. </li>
+        <li>Next, we fetch<span class="codeInline"> internal ID</span> of each entity/state of US map and get the percentage of population of each entity/state against total US population. This is stored in data reader <span class="codeInline">aReader1</span> using the SQL query - &quot;<span class="codeInline">select  Internal_Id, (sum(data) / &quot; &amp; sumdata &amp; &quot;)*100  as datap from fcmap_distribution group by Internal_Id&quot;</span>'. We again used <span class="codeInline">fcmap_distribution </span>table here. </li>
+        <li>We get total population of each state and divide it by sum total US population and multiply it with 100 to get the percentage value. </li>
+      </ul>
+	  <li>Now we iterate through each record in the data reader and create <span class="codeInline">entity </span>element for each state. </li>
+    </ul>    </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p> <span class="codeComment">' store the sql query</span><br />
+      strQuery = &quot;select sum(data) as datap from fcmap_distribution&quot;<br />
+      <span class="codeComment">' Create datareader object</span><br />
+      Dim Rs As New DbConn(strQuery)</p>
+      <p> <span class="codeComment">' Initialize sum container</span><br />
+        sumdata = 0<br />
+        <span class="codeComment"><br />
+        ' Check if we've records to show</span><br />
+        If Rs.ReadData.HasRows = True Then<br />
+        <span class="codeComment">&nbsp;&nbsp; ' Read first record</span><br />
+       &nbsp;&nbsp; Rs.ReadData.Read()<br />
+        <span class="codeComment">&nbsp;&nbsp; ' Store sum </span><br />
+       &nbsp;&nbsp; sumdata = Convert.ToDouble(Rs.ReadData(&quot;datap&quot;))<br />
+        End If<br />
+        <span class="codeComment"><br />
+        ' Close the reader </span><br />
+        Rs.ReadData.Close()<br />
+        <br />
+        <span class="codeComment">' Fetch all Internal id and data sum</span> <br />
+      strQuery = &quot;select  Internal_Id, (sum(data) / &quot; &amp; sumdata &amp; &quot;)*100  as datap from fcmap_distribution group by Internal_Id&quot;</p>
+      <p> Dim Rs1 As New DbConn(strQuery)      </p>
+      <p> <span class="codeComment">' Add map data element</span><br />
+      strXML.Append(&quot;&lt;data&gt;&quot;)</p>
+      <p> <span class="codeComment">' Check if we've records to show</span><br />
+      If Rs1.ReadData.HasRows = True Then</p>
+      <p> <span class="codeComment">&nbsp;&nbsp; ' Iterate through the database</span><br />
+       &nbsp;&nbsp; While Rs1.ReadData.Read()<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Create query string </span><br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; strQuery = &quot;select map_swf from fcmap_master where Internal_Id='&quot; + Rs1.ReadData(&quot;Internal_Id&quot;).ToString() + &quot;'&quot;<br />
+        <span class="codeComment">&nbsp;&nbsp; <br />
+      &nbsp;&nbsp;&nbsp; &nbsp; 'Open fcmap_master table to get map SWF names</span><br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dim Rs2 As New DbConn(strQuery)<br />
+        <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Read first record</span><br />
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs2.ReadData.Read()</p>
+      <p> <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' The link will in format StateDetails.aspx?Internal_Id=Int_Id&amp;map=map_swf.swf </span><br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dim LinkURL As String<br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkURL = &quot;StateDetails.aspx?Internal_Id=&quot; &amp; Rs1.ReadData(&quot;Internal_Id&quot;).ToString() &amp; &quot;&amp;map=&quot; &amp; Rs2.ReadData(&quot;map_swf&quot;).ToString()<br />
+       <br />
+       <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; ' Generate &lt;entity id=&quot;..&quot; value=&quot;..&quot;   /&gt; and also add link to it </span><br />
+       &nbsp;&nbsp; &nbsp;&nbsp; strXML.Append(&quot;&lt;entity   id='&quot; &amp; Rs1.ReadData(&quot;Internal_Id&quot;) &amp; &quot;' value='&quot; &amp;   Math.Round(Convert.ToDouble(Rs1.ReadData(&quot;datap&quot;)), 2) &amp; &quot;' link='&quot; &amp;   LinkURL &amp; &quot;' /&gt;&quot;)<br />
+       &nbsp;&nbsp;&nbsp;&nbsp; <br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs2.ReadData.Close()<br />
+       <br />
+       &nbsp;&nbsp;   End While<br />
+       <br />
+        End If<br />
+       &nbsp;&nbsp;&nbsp; <br />
+       <span class="codeComment">' Close   reader </span><br />
+      Rs1.ReadData.Close()</p>
+      <p><span class="codeComment">' Finally, close &lt;map&gt; element and   add</span><br />
+      strXML.Append(&quot;&lt;/data&gt;&quot;)
+      </p>    </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>Here we extract internalID from <span class="codeInline">Rs1.ReadData(&quot;Internal_Id&quot;)</span> and set  to <span class="codeInline">id</span> attribute.</li>
+        <li>We get percentage of population of the state against total US population from <span class="codeInline">Math.Round(Convert.ToDouble(Rs1.ReadData(&quot;datap&quot;))</span> and set to <span class="codeInline">value </span>attribute. We set the decimal limit of the value to 2 places using ASP.NET function <span class="codeInline">Math.Round(). </span></li>
+        </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Setting up the Links</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>We also set up drill-down link to each entity. Each entity on click will drill down to another asp file. This we did in the entity entry itself as shown above using <span class="codeInline">link </span>attribute. Let's see the how the link is structured.<br />
+      <br />
+        <span class="codeInline">...LinkURL = &quot;StateDetails.aspx?Internal_Id=&quot; &amp; Rs1.ReadData(&quot;Internal_Id&quot;).ToString() &amp; &quot;&amp;map=&quot; &amp; Rs2.ReadData(&quot;map_swf&quot;).ToString()...</span></p>
+      <ul>
+        <li>All states/entities will drill-down to <span class="codeInline">StateDetails.aspx</span> page. </li>
+        <li>Each entity will pass a query string variable - <span class="codeInline">Internal_Id</span> whose value will be the internal id of that state. This is extracted out from the&quot;<span class="codeInline">Internal_id</span>&quot; field of the iterated record.</li>
+        <li>Each entity will also pass the map file name to <span class="codeInline">StateDetails.aspx</span> page using querystring variable -<span class="codeInline">map</span>. Note that another data reader <span class="codeInline">Rs2</span> is created for each iteration which stores the map file name of the related Internal_Id in &quot;<span class="codeInline">map_swf</span>&quot;&nbsp; field. Data reader <span class="codeInline">Rs2</span> is created from table <span class="codeInline">fcmap_master</span> using SQL query -<span class="codeInline"> &quot;select map_swf from fcmap_master where Internal_Id='&quot; + Rs1.ReadData(&quot;Internal_Id&quot;).ToString() + &quot;'&quot;. </span></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Thus all entities are created.</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text"><ul>
+              <li>Next we add styles like <span class="codeInline">XScale, YScale, alpha</span> &amp; <span class="codeInline">shadow</span> styles to the map using <span class="codeInline">&lt;styles&gt;</span> element. </li>
+          <li>Finally we return the XML as Data URL to <span class="codeInline">RenderChart()</span> function in <span class="codeInline">Default.aspx.vb</span><span class="codeInline"></span>. </li>
+      </ul></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p> <span class="codeComment">' Set Proper output content-type</span><br />
+      Response.ContentType = &quot;text/xml&quot;</p>
+      <p> <span class="codeComment">' Just write out the XML data</span><br />
+      Response.Write(strXML.ToString())<br />
+    </p></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">The above mentioned <span class="codeInline">RenderChart()</span> function (in <span class="codeInline">Default.aspx.vb</span>)  renders the map retrieving the XML and set it to literal control USMap. </td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"> Dim mapHTML As String = <strong>FusionCharts.RenderChart(&quot;../Maps/FCMap_USA.swf&quot;, DataURL, &quot;&quot;, &quot;mapid&quot;, &quot;600&quot;, &quot;400&quot;, False, False)</strong><br />
+      <br />
+       USMap.Text = mapHTML</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Here is the screenshot of the US map that we just created extracting data from database. </td>
+  </tr>
+   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><img src="../../Images/CodeASPDB1.jpg" width="737" height="518" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table cellspacing="0" cellpadding="0" class="text">
+      <tr>
+        <td valign="top" class="header"><a name="DataConn" class="header" id="DataConn"></a>Inside DataConnection Namespace </td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">We have used <span class="codeInline">DataConnection</span> Namespace in the above   code and in all subsequent Database example(s). Using this class we establish   connection to the MS Access database with ADO.NET component. You can always change your connection to any other database server. Let's go through   the lines of code inside this class: </td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeBlock code_container"><p>Imports Microsoft.VisualBasic<br />
+          Imports System.Data.Odbc<br />
+          Imports   System.Data<br />
+          Imports System.Web<br />
+          Imports System.Configuration</p>
+            <p>Namespace DataConnection</p>
+          <p><span class="codeComment">&nbsp;&nbsp; ''' &lt;summary&gt;<br />
+&nbsp;&nbsp; ''' DataBase Connection   Class.<br />
+&nbsp;&nbsp; ''' &lt;/summary&gt;<br />
+            </span>&nbsp;&nbsp; Public Class DbConn<br />
+            &nbsp;&nbsp; &nbsp;&nbsp;   Public connection As OdbcConnection<br />
+            &nbsp;&nbsp; &nbsp;&nbsp; Public ReadData As   OdbcDataReader<br />
+            &nbsp;&nbsp; &nbsp;&nbsp; Public aCommand As OdbcCommand</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; ''' &lt;summary&gt;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; ''' Data   Connection and get Data Reader<br />
+&nbsp;&nbsp; &nbsp;&nbsp; ''' &lt;/summary&gt;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; '''   &lt;param name=&quot;strQuery&quot;&gt;SQL Query&lt;/param&gt;<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; Public Sub   New(ByVal strQuery As String)<br />
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Dim ConnectionString As String,   connectionName As String</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' MS Access DataBase Connection - Defined in   Web.Config<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; connectionName = &quot;MSAccessConnection&quot;</p>
+          <p class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; '' SQL Server DataBase Connection - Defined   in Web.Config<br />
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; '' connectionName = &quot;SQLServerConnection&quot;;</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' Creating Connection string using   web.config connection string<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ConnectionString =   ConfigurationManager.ConnectionStrings(connectionName).ConnectionString<br />
+            &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; Try</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' Creating OdbcConnection   Object<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; connection = New OdbcConnection()</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' Setting Connection String<br />
+            </span>&nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; connection.ConnectionString = ConnectionString</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' Open Connection<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   connection.Open()</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' get reader<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   GetReader(strQuery)</p>
+          <p>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Catch ex As Exception<br />
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   HttpContext.Current.Response.Write(ex.Message)<br />
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; End Try</p>
+          <p>&nbsp;&nbsp; &nbsp;&nbsp; End Sub<br />
+                <br />
+                <span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; ''' &lt;summary&gt;<br />
+&nbsp;&nbsp;   &nbsp;&nbsp; ''' Create an instance dataReader<br />
+&nbsp;&nbsp; &nbsp;&nbsp; ''' &lt;/summary&gt;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; '''   &lt;param name=&quot;strQuery&quot;&gt;SQL Query&lt;/param&gt;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; '''   &lt;remarks&gt;Return type object of OdbcDataReader&lt;/remarks&gt;<br />
+                </span>&nbsp;&nbsp;   &nbsp;&nbsp; Public Sub GetReader(ByVal strQuery As String)</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' Create a Command object<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   aCommand = New OdbcCommand(strQuery, connection)</p>
+          <p><span class="codeComment">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ' Create data reader object using strQuery   string<br />
+            </span>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ReadData =   aCommand.ExecuteReader(CommandBehavior.CloseConnection)</p>
+          <p>&nbsp;&nbsp; &nbsp;&nbsp;End Sub<br />
+            &nbsp;&nbsp; End Class<br />
+            End Namespace</p></td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">What it does:<br /><br />
+            <ul>
+              <li>Set up Connection as per the connection string defined in <span class="codeInline">web.config</span> file.<br />
+                  <br />
+                  <span class="codeInline">&lt;connectionStrings&gt;<br />
+                    &nbsp;&nbsp;&nbsp; &lt;add   name=&quot;MSAccessConnection&quot; providerName=&quot;System.Data.Odbc&quot;   connectionString=&quot;Driver={Microsoft Access Driver (*.mdb)};Dbq=|DataDirectory|\FactoryDB.mdb&quot;/&gt;<br />
+                    &lt;/connectionStrings&gt;
+                  </span><br />
+                  <br />
+                To   change your connection to any other database server, you only need to setup <span class="codeInline">web.config</span> file. 
+                <br />
+                <br />
+              </li>
+              <li>The class <span class="codeInline">DBConn</span> accepts SQL Query, executes it and returns the result as ASP.NET <span class="codeInline">DataReader</span> object -<span class="codeInline">ReadData</span>. </li>
+            </ul></td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top">Example:</td>
+      </tr>
+	   <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+      <tr>
+        <td valign="top" class="codeBlock code_container"><p><strong>Imports DataConnection</strong></p>
+          <p>...</p>
+          <p>&nbsp;&nbsp; <span class="codeComment">'store the sql query</span><br />
+            &nbsp;&nbsp; Dim strQuery&nbsp; As String = &quot;select colName1, colName2 from   yourTable&quot;<br />
+            <span class="codeComment">&nbsp;&nbsp; ' Create datareader   object<br />
+            </span>&nbsp;&nbsp;<strong> Dim Rs As New DbConn(strQuery)</strong></p>
+          <p><span class="codeComment">&nbsp;&nbsp; ' Create a sample accumulator<br />
+          </span>            <span class="codeInline">&nbsp;&nbsp; Dim accumulator as Integer=0<br />
+            <br />
+</span><span class="codeComment">&nbsp;&nbsp; ' Check if we've records to show<br />
+            </span>&nbsp;&nbsp; If   <strong>Rs.ReadData.HasRows = True</strong> Then<br />
+            <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' Iterate through table<br />
+              </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; While <strong>Rs1.ReadData.Read()</strong><br />
+              <span class="codeComment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' do something using the columns <br />
+              </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumdata +=   Convert.ToInt32(<strong>Rs.ReadData(&quot;colName1&quot;)</strong>)+Convert.ToInt32(<strong>Rs.ReadData(&quot;colName2&quot;)</strong>)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Wend <br />
+&nbsp;&nbsp; End If<br />
+            <br />
+            <span class="codeComment">&nbsp;&nbsp; ' Close the reader <br />
+            </span>&nbsp;&nbsp;   <strong>Rs.ReadData.Close()</strong><br />
+          </p>          </td>
+      </tr>
+      
+    </table></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Data to be plotted|CodeASPVBDB_Plot.html","Drill-down Map|CodeASPVBDB_DrillMap.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

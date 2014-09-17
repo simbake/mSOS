@@ -1,0 +1,41 @@
+﻿@charset "utf-8";
+#content-area-inner-main {
+	width: 950px !important;
+}
+
+#mapdiv {
+	display:inline-block;
+	width: 550px;
+	height: 500px;
+	vertical-align:top;
+    *display: inline !important;
+    *zoom: 1 !important;
+}
+
+#chartdiv {
+	display:inline-block;
+	position:relative;
+	vertical-align:middle;
+	width: 340px;
+	height: 350px;
+	margin-top:150px;
+    *display: inline !important;
+    *zoom: 1 !important;
+}
+
+.redcolor {
+	color: #ff0000 !important;	
+}
+
+
+.popupinfo {
+	position: absolute;
+	bottom: 9px;
+	right: 5px;
+	height: 19px;
+	left: 5px;
+	border: 1px solid #666;
+	font: 11px/19px normal normal Verdana, Geneva, sans-serif;
+	text-align:right;
+	padding-right:5px;
+}

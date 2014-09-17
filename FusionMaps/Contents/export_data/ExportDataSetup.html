@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Exporting map data - Using Context Menu</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Exporting map data", "Using context menu"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Context Menu</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>FusionMaps XT allows you to export data from your maps in CSV format. The export of data can be triggered in two ways:</p>
+      <ul>
+        <li>For Flash maps, using the context menu of map. In  this method, the generated CSV data is copied to clipboard. This is not supported in JavaScript maps.</li>
+        <li>Using <a href="ExportDataJS.html">JavaScript API (getDataAsCSV)</a> for data export. In  this method, the CSV data is returned as string in your JavaScript code.</li>
+      </ul>
+    <p>Let's study both of them one by one. </p></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="header">Setting up the map to export data from context menu </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>To allow export of data using context menu, you need to specify the following in XML: </p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="prettyprint code_container">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9' <strong>showExportDataMenuItem</strong>='1'&gt;
+&nbsp;&nbsp; &lt;data&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity id='NA' value='515' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity id='SA' value='373' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity id='AS' value='3875' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity id='EU' value='727' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity id='AF' value='885' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;entity id='AU' value='32' /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/data&gt;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+       <p>As soon as <span class="codeInline">showExportDataMenuItem='1'</span> is set in the map, a new item is added to the map's context menu, as shown below: </p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="../Images/ExportDataClip1.gif" width="484" height="379" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>The label of this menu item can be customized by setting:</p>
+      <p class="codeInline">&lt;map ... exportDataMenuItemLabel='Copy the data of this map' ...&gt;</p>
+      <p class="text">When you select this item, the data of this map will be copied to your clipboard. If you open any text editor and paste the content of the clipboard, you'll get something as under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><pre class="prettyprint code_container">&quot;Id&quot;,&quot;Short Name&quot;,&quot;Long Name&quot;,&quot;Value&quot;
+&quot;NA&quot;,&quot;NA&quot;,&quot;North America&quot;,&quot;515&quot;
+&quot;SA&quot;,&quot;SA&quot;,&quot;South America&quot;,&quot;373&quot;
+&quot;EU&quot;,&quot;EU&quot;,&quot;Europe&quot;,&quot;727&quot;
+&quot;AS&quot;,&quot;AS&quot;,&quot;Asia&quot;,&quot;3875&quot;
+&quot;AF&quot;,&quot;AF&quot;,&quot;Africa&quot;,&quot;885&quot;
+&quot;AU&quot;,&quot;AU&quot;,&quot;Australia&quot;,&quot;32&quot;</pre></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="text">This is basically the CSV representation of your map's data. Let us next see how to format the output CSV data using various export related XML attributes that FusionMaps XT exposes. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Customizing the output CSV format </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><p>You can customize the following aspects of the output CSV data:</p>
+      <ul>
+        <li>The separator character to be used for data. By default this is CSV.</li>
+        <li>The qualifier character to be used. By default this is double quotes.</li>
+        <li>Whether to output formatted data values (as shown on map) in CSV, or raw values.   </li>
+      </ul>
+    <p>The following attributes help in configuring this: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><table width="100%" border="1" cellpadding="2" cellspacing="0" bordercolor="f1f1f1" class="table">
+      <tr>
+        <td width="15%" valign="top" class="header">Attribute</td>
+        <td width="60%" class="header">Description</td>
+        <td width="25%" class="header">Example</td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top" class="codeInline">exportDataSeparator</td>
+        <td width="60%" class="text">Lets you set the separator for CSV data. For ease of use, this attribute accepts the following pseudo codes for characters:<br /><br />
+          <ul>
+            <li>{tab} - To specify tab character</li>
+            <li>{quot} - To specify double quotes</li>
+            <li>{apos} - To specify single quotes   </li>
+            </ul>
+          <p>You can also specify any other character apart from these pseudo codes. </p></td>
+        <td width="25%" valign="top" class="codeInline">exportDataSeparator='{tab}'</td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top" class="codeInline">exportDataQualifier</td>
+        <td width="60%" class="text">Lets you set the qualifier character for CSV data. For ease of use, this attribute accepts the following pseudo codes for characters:<br /><br />
+          <ul>
+            <li>{tab} - To specify tab character</li>
+            <li>{quot} - To specify double quotes</li>
+            <li>{apos} - To specify single quotes </li>
+          </ul>
+          <p>You can also specify any other character apart from these pseudo codes. </p></td>
+        <td width="25%" valign="top" class="codeInline">exportDataQualifier='{quot}'</td>
+      </tr>
+      <tr>
+        <td width="15%" valign="top" class="codeInline">exportDataFormattedVal</td>
+        <td width="60%" class="text">Boolean value indicating whether to output formatted data values (as shown on map) in the output CSV file. </td>
+        <td width="25%" valign="top" class="codeInline">exportDataFormattedVal='1'</td>
+      </tr>
+    </table></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text"><p>In the next section, we'll see how to access this data using <a href="ExportDataJS.html">JavaScript API</a>. </p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Exporting as Image/PDF - Troubleshooting|../ExportingImage/ECTroubleshooting.html", "Using JavaScript API|ExportDataJS.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

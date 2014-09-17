@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" href="../assets/ui/css/style.css" type="text/css" />
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js" ></script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+-->
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+
+
+<title>Using XML data embedded in  HTML page</title>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Creating your first map|first_chart.html",  "Using XML embedded in HTML page" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using XML data embedded in  HTML page</td>
+
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+       <p>In our <a href="first_chart.html">previous examples</a>, we had created maps by providing map data through an external XML file. Here, we will show you how to embed the XML directly into an HTML page.</p>
+       <p class="highlightBlock">In our previous examples, we had used the JavaScript function <span class="codeInline">setXMLUrl()</span> to provide the URL of the XML file to the map. Hence, the term <strong><a href="../how_fm_work/DataURL.html">Data URL method</a></strong> is used for referring to the technique used earlier. <br />
+         <br />
+       Here, we'll use the <span class="codeInline">setXMLData()</span>function which takes XML  embedded as string from the JavaScript. We call it the <strong><a href="../how_fm_work/DataXMLExp.html">Data String method</a></strong>. <br />
+       <br />
+       </p>    
+    </td>
+  </tr>
+  
+  
+  <tr> 
+    <td valign="top" class="text"> Create a copy of <span class="codeInline">FirstMap.html</span> 
+         and save it as <span class="codeInline">FirstMap-xml-embed.html</span>. Next, modify the code as shown below:
+       <p class="highlightBlock">Code examples discussed in this section are present in <span class="codeInline">Download Package &gt; Code &gt; MyFirstMap</span> folder.</p>
+    </td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text">
+       <pre class="code_container prettyprint lang-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First map using FusionMaps XT  - 
+          using XML data embedded in the page&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;mapContainer&quot;&gt;FusionMaps XT will load here&lt;/div&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;&lt;!--
+
+      var myMap = new FusionCharts(&quot;Maps/FCMap_World.swf&quot;, 
+            &quot;myMapId&quot;, &quot;750&quot;, &quot;400&quot;, &quot;0&quot;);
+
+      myMap.<strong>setXMLData(&quot;&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix='M' includeValueInLabels='1' labelSepChar=':' &quot;+ &quot; baseFontSize='9'&gt; &quot;+
+    &quot; &lt;data&gt; &quot;+
+    &quot; &lt;entity id='NA' value='515' /&gt; &quot;+
+    &quot; &lt;entity id='SA' value='373'/&gt; &quot;+
+    &quot; &lt;entity id='AS' value='3875' /&gt; &quot;+
+    &quot; &lt;entity id='EU' value='727' /&gt; &quot;+
+    &quot; &lt;entity id='AF' value='885' /&gt; &quot;+
+    &quot; &lt;entity id='AU' value='32' /&gt; &quot;+
+    &quot; &lt;/data&gt; &quot;+
+&quot; &lt;/map&gt;&quot;);</strong>
+
+      myMap.render(&quot;mapContainer&quot;);
+
+    // --&gt;
+    &lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+       <p class="highlightBlock"><strong>Existing users:</strong> You might be wondering what happened to the functions like <span class="codeInline">setDataURL()</span> and <span class="codeInline">setDataXML()</span> which you have already been using in your application. Yes - although deprecated, these will continue to work without any problem.
+          </p>
+       <p>See it <a href="../../Code/MyFirstMap/MyFirstMapDataStr.html" target="_blank">live</a>!</p>
+    
+       <p>In the above code, we have provided the entire XML data as a string inside the code itself and passed it to the map using the <span class="codeInline">setXMLData()</span> method. </p>
+        <p>There are certain pointers to be kept in mind when using Data String method: </p>
+     <ul>
+       <li>Depending on your coding practice, you'd be enclosing the entire XML string using either  single quotation marks (') or double quotation marks (&quot;). So, if you are enclosing the entire XML in double quotes, then the XML attributes must be encapsulated in single quotes or vice-versa. Using single quotes for encapsulation of the entire XML string and also for individual attributes, or vice-versa, will lead to a conflict. Conflict arising due to improper use of quotes is most likely to cause a JavaScript error and the map will not  render. </li>
+       <li>If an XML attribute has single quotation mark (') or double quotation marks (&quot;) as part of its value, you need to encode them as XML entities.  The encoded form of single quotation mark (') is <span class="codeInline">&amp;apos;</span> and the encoded form of double quotation marks (&quot;) is <span class="codeInline">&amp;quot;</span>.</li>
+       <li>If you have special characters like <span class="codeInline">&amp;</span>,  <span class="codeInline">&lt;</span> and <span class="codeInline">&gt;</span> in your XML, you must  encode them as <span class="codeInline">&amp;amp;</span>, <span class="codeInline">&amp;lt;</span> and <span class="codeInline">&amp;gt;</span> (respectively) in your XML String. </li>
+       </ul>
+     <p class="highlightBlock"><strong>Existing Users: </strong>Prior to FusionMaps XT, while using this method, you need to encode various characters. Since FusionMaps XT, except for a few characters listed in <a href="../advanced/special_chars/SpCharAll.html">Using Currency Symbols</a> and <a href="../advanced/special_chars/SpPunctuation.html">Using Special Punctuation</a> pages (from <span class="codeInline">Advanced Topics &gt; Using Special Characters</span> section),&nbsp;no character is required to be encoded while using this process. The new FusionCharts JavaScript Class takes care of everything.</p>
+     </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using JSON as data source|JSON_data.html","Changing map dimensions|change_size.html");
+</script>
+<!-- footer links ends -->
+
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using with PHP - Using Data String Method</title>
+<link rel="stylesheet" type="text/css" href="../../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|introduction/overview.html", "Guide for web developers", "Using with PHP", "Using Data String method" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Data String Method </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+        <p>FusionMaps  XT can effectively be used with PHP to plot data over geographic locations.  In this section and the following, we'll show  examples on how to plot data on FusionMaps  XT using various methods in PHP. 
+   </p>
+<p>Even when used with PHP, FusionMaps XT internally uses JavaScript and XML/JSON to render the maps. The PHP Class code actually helps you output this JavaScript and XML/JSON. To aid your understanding of this section, we will recommend you to go through the following sections of documentation (if you have not already read them): </p>
+      <ul>
+        <li><a href="../../FirstMap/first_chart.html">Creating your first map </a></li>
+        <li>Changing map <a href="../../FirstMap/change_size.html">dimensions</a></li>
+        <li>Configuring <a href="../../advanced/number_format/Basics.html">number formatting</a></li>
+        <li>Using <a href="../../DataFormats/XMLOverview.html">XML</a> or <a href="../../DataFormats/JSONOverview.html">JSON</a> as data source</li>
+        <li>Using <a href="../../javascript/js_overview.html">JavaScript API</a> of FusionMaps  XT</li>
+        <li>Creating <a href="../../FirstMap/drill_down.html">drill-down maps </a> and <a href="../../FirstMap/LinkedCharts.html">LinkedCharts</a></li>
+        <li>Exporting maps as <a href="../../ExportingImage/ECOverview.html">images</a> or <a href="../../export_data/ExportDataSetup.html">CSV</a></li>
+        <li><a href="../../how_fm_work/HowFCWorks.html">How FusionMaps XT works?</a> </li>
+      </ul>
+	</td>
+  </tr>
+  
+  
+  <tr>
+    <td valign="top" class="text"><p>In this section, we will show a few basic examples to help you get started.</p>
+	<p>We'll cover  following examples here:</p>
+      <ul>
+        <li>Rendering map from array using <span class="codeInline">Data String</span> Method. </li>
+        <li>Rendering map from array using <span class="codeInline">Data URL</span> Method. </li>
+        <li>Rendering map using Form based data and </li>
+        <li>Rendering drill-down maps pulling data from database.</li>
+    </ul></td>
+  </tr>
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+      <td valign="top" class="header">Sample: Using Data String method </td>
+  </tr>
+  
+  <tr>
+      <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><ul>
+        <li>Here we will first declare an array and store data in it. </li>
+      <li>Then we will build the map XML by fetching data from the array. </li>
+      <li>Finally, we will relay the data in XML format to the FusionMaps  XT to render the map. </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="highlightBlock">The code discussed here is present in <span class="codeInline">Download Package &gt; Code &gt; PHP &gt; BasicExample</span> folder. </td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">We will be displaying the population of the continents using FusionMaps XT in this example. Here is the PHP code that has been used in the example. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header">Creating World Population Map from the data stored in an array </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">
+        <p><span class="codeInline">BasicMapsArray.php</span> contains the following code:    </p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><p>&lt;HTML&gt;<br />
+      &lt;HEAD&gt;<br />
+&lt;TITLE&gt;FusionMaps  XT- PHP Sample - Basic Example from array - Using Data String&lt;/TITLE&gt;<br />
+&lt;?php<br />
+<span class="codeComment">/*<br />
+We've included ../Includes/FusionCharts.js, which contains functions<br />
+to help us easily embed the Maps.<br />
+*/</span><br />
+include(&quot;../Includes/FusionCharts.php&quot;);<br />
+<br />
+<span class="codeComment">// We've included FusionCharts.js, which helps in <br />
+// easy map rendering.</span><br />
+?&gt;<br />
+&lt;script language=&quot;javascript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;<br />
+&lt;/HEAD&gt;<br /><br />
+&lt;BODY&gt;<br />
+&lt;CENTER&gt;<br />
+&lt;h2&gt;&lt;a href=&quot;http://www.fusioncharts.com&quot; target=&quot;_blank&quot;&gt;FusionMaps XT&lt;/a&gt; Examples&lt;/h2&gt;<br />
+&lt;h4&gt; Using Data String method&amp;nbsp;&lt;br&gt;<br />
+Retrieving data stored in an Array  &lt;/h4&gt;<br />
+&lt;?php<br />
+<span class="codeComment">/*<br />
+</span><span class="codeComment"> Declare array to store world population<br />
+          we use wolrd map with 8 entities/continents<br />
+          this 2 dimensional array will store 8 rows of data for each continent of the map<br />
+          first column of each row will store the Internal Id of each entity on the map<br />
+          second column will store population data of each entity<br />
+          */</span><br />
+        <br />
+        <span class="codeComment">// Store population data<br />
+        // Declare array entity<br />
+        // array data assign <br />
+        <br />
+        // Internal IDs of continents &amp; respective population </span><br />
+        $dataArray[0][1]=&quot;01&quot;; <span class="codeComment">// Asia</span><br />
+        $dataArray[0][2]=&quot;3779000000&quot;; <span class="codeComment">// Population</span> <br />
+        $dataArray[1][1]=&quot;02&quot;; <span class="codeComment">// Europe</span><br />
+        $dataArray[1][2]=&quot;727000000&quot;;<span class="codeComment">// Population</span><br />
+        $dataArray[2][1]=&quot;03&quot;; <span class="codeComment">// Africa</span><br />
+        $dataArray[2][2]=&quot;877500000&quot;;<span class="codeComment">// Population</span><br />
+        $dataArray[3][1]=&quot;04&quot;; <span class="codeComment">// North America</span><br />
+        $dataArray[3][2]=&quot;421500000&quot;;<span class="codeComment">// Population</span><br />
+        $dataArray[4][1]=&quot;05&quot;; <span class="codeComment">// South America</span><br />
+        $dataArray[4][2]=&quot;379500000&quot;;<span class="codeComment">// Population</span><br />
+        $dataArray[5][1]=&quot;06&quot;; <span class="codeComment">// Central America</span><br />
+        $dataArray[5][2]=&quot;80200000&quot;;<span class="codeComment">// Population</span><br />
+        $dataArray[6][1]=&quot;07&quot;; <span class="codeComment">// Oceania</span><br />
+        $dataArray[6][2]=&quot;32000000&quot;;<span class="codeComment">// Population</span><br />
+        $dataArray[7][1]=&quot;08&quot;; <span class="codeComment">// Middle East</span><br />
+        $dataArray[7][2]=&quot;179000000&quot;;<span class="codeComment">// Population</span><br />
+        <br />
+        <span class="codeComment">// Declare $strXML to store Data String of the map </span><br />
+        $strXML=&quot;&quot;;<br />
+        <br />
+        <span class="codeComment">// Opening MAP element</span><br />
+        $strXML = &quot;&lt;map showLabels='1' includeNameInLabels='1' borderColor='FFFFFF' fillAlpha='80' showBevel='0' legendPosition='Bottom' &gt;&quot;;<br />
+        <br />
+        <span class="codeComment">// Setting Color ranges : 4 color ranges for population ranges</span><br />
+        $strXML .= &quot;&lt;colorRange&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='1' maxValue='100000000' displayValue='Population : Below 100 M' color='CC0001' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='100000000' maxValue='500000000' displayValue='Population :100 - 500 M' color='FFD33A' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='500000000' maxValue='1000000000' displayValue='Population :500 - 1000 M' color='069F06' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;color minValue='1000000000' maxValue='5000000000' displayValue='Population : Above 1000 M' color='ABF456' /&gt;&quot;;<br />
+        $strXML .= &quot;&lt;/colorRange&gt;&lt;data&gt;&quot;;<br />
+        <br />
+        <span class="codeComment">// Opening data element that will store map data<br />
+        // Using Data from array for each entity </span><br />
+        for($i=0;$i&lt;=7;$i++){<br />
+        $strXML .= &quot;&lt;entity id='&quot; . $dataArray[$i][1] . &quot;' value='&quot; . $dataArray[$i][2] . &quot;' /&gt;&quot;;<br />
+        }<br />
+        <span class="codeComment">// closing  data element </span><br />
+        $strXML .= &quot;&lt;/data&gt;&quot;;<br />
+        <br />
+        <span class="codeComment">// closing map element</span><br />
+        $strXML  .= &quot;&lt;/map&gt;&quot;;<br />
+        <br />
+        <span class="codeComment">// Finally Rendering the World8 Maps with renderChart() php function present in FusionCharts.php (that we have inlcuded already) <br />
+        // Since we're using Data String method, we provide a &quot;&quot; value for Data URL here<br />
+        </span><br />
+        print renderChart(&quot;../../Maps/FCMap_World8.swf&quot;,&quot;&quot;,$strXML,&quot;firstMap&quot;, 750, 460,0,0);<br />
+        <br />
+        ?&gt;<br />
+
+&lt;/CENTER&gt;<br />
+&lt;/BODY&gt;<br />
+&lt;/HTML&gt;</p>    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="header1">Steps involved in this code</td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="text">First, we included two files:
+      <ul>
+          <li class="codeInline">FusionCharts.php</li>
+          <li class="codeInline">FusionCharts.js</li>
+      </ul></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr> 
+  <tr>
+    <td valign="top" class="codeBlock code_container">&lt;?php <br />
+      ...<br />
+      include(&quot;../Includes/FusionCharts.php&quot;);<br />
+      <br />      ?&gt;<br />
+&lt;script language=&quot;javascript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;<br />
+...</td>
+  </tr>
+   <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="text">These two files contain functions to  embed the map easily. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Then we declared an  array $<span class="codeInline">dataArray</span> to store the  population data for 8 continents. This is a 2-dimensional array, where the first column stores the Internal ID for all the continents and the second column stores respective population data.</td>
+  </tr>
+   <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="highlightBlock">Internal ID is a field which helps to identify each part of a map uniquely. Please go through the Map Specification Sheet to know the Internal IDs for each map used in FusionMaps XT.</td>
+  </tr>
+   <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeComment"><br />
+// Internal IDs of continents &amp; respective population </span><br />
+$dataArray[0][1]=&quot;01&quot;; <span class="codeComment">// Asia</span><br />
+$dataArray[0][2]=&quot;3779000000&quot;; <span class="codeComment">// Population</span> <br />
+$dataArray[1][1]=&quot;02&quot;; <span class="codeComment">// Europe</span><br />
+$dataArray[1][2]=&quot;727000000&quot;;<span class="codeComment">// Population</span><br />
+$dataArray[2][1]=&quot;03&quot;; <span class="codeComment">// Africa</span><br />
+$dataArray[2][2]=&quot;877500000&quot;;<span class="codeComment">// Population</span><br />
+$dataArray[3][1]=&quot;04&quot;; <span class="codeComment">// North America</span><br />
+$dataArray[3][2]=&quot;421500000&quot;;<span class="codeComment">// Population</span><br />
+$dataArray[4][1]=&quot;05&quot;; <span class="codeComment">// South America</span><br />
+$dataArray[4][2]=&quot;379500000&quot;;<span class="codeComment">// Population</span><br />
+$dataArray[5][1]=&quot;06&quot;; <span class="codeComment">// Central America</span><br />
+$dataArray[5][2]=&quot;80200000&quot;;<span class="codeComment">// Population</span><br />
+$dataArray[6][1]=&quot;07&quot;; <span class="codeComment">// Oceania</span><br />
+$dataArray[6][2]=&quot;32000000&quot;;<span class="codeComment">// Population</span><br />
+$dataArray[7][1]=&quot;08&quot;; <span class="codeComment">// Middle East</span><br />
+$dataArray[7][2]=&quot;179000000&quot;;<span class="codeComment">// Population</span><br /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">We defined a variable $<span class="codeInline">strXML</span> to store the entire   XML data.</td>
+  </tr>
+   <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">$strXML=&quot;&quot;;<br />
+      <br />
+      <span class="codeComment">// Opening MAP element</span><br />
+$strXML = &quot;&lt;map showLabels='1' includeNameInLabels='1' borderColor='FFFFFF' fillAlpha='80' showBevel='0' legendPosition='Bottom' &gt;&quot;;</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">The following code is used to define  the color range for the map entities. Different colors show different range of population. The first range is for the regions where population ranges from 0 to 100000000 and it is shown in Red. The second range is for the regions where population ranges from 100000000 to 500000000 and it is shown in Yellow. The third range is from 500000000 to 1000000000 in dark green and the fourth range is 1000000000 and above in light green color. </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeComment">// Setting Color ranges : 4 color ranges for population ranges</span><br />
+$strXML .= &quot;&lt;colorRange&gt;&quot;;<br />
+$strXML .= &quot;&lt;color minValue='1' maxValue='100000000' displayValue='Population : Below 100 M' color='CC0001' /&gt;&quot;;<br />
+$strXML .= &quot;&lt;color minValue='100000000' maxValue='500000000' displayValue='Population :100 - 500 M' color='FFD33A' /&gt;&quot;;<br />
+$strXML .= &quot;&lt;color minValue='500000000' maxValue='1000000000' displayValue='Population :500 - 1000 M' color='069F06' /&gt;&quot;;<br />
+$strXML .= &quot;&lt;color minValue='1000000000' maxValue='5000000000' displayValue='Population : Above 1000 M' color='ABF456' /&gt;&quot;;<br />
+$strXML .= &quot;&lt;/colorRange&gt;&lt;data&gt;&quot;;</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Next we added the map data in <span class="codeInline">&lt;entity&gt; </span>elements iterating through the array elements. We use <span class="codeInline">for</span> loop for this. </td>
+  </tr>
+   <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container"><span class="codeComment">// Opening data element that will store map data<br />
+// Using Data from array for each entity </span><br />
+for($i=0;$i&lt;=7;$i++){<br />
+$strXML .= &quot;&lt;entity id='&quot; . $dataArray[$i][1] . &quot;' value='&quot; . $dataArray[$i][2] . &quot;' /&gt;&quot;;<br />
+}<br />
+<span class="codeComment">// closing  data element </span><br />
+$strXML .= &quot;&lt;/data&gt;&quot;;<br />
+<br />
+<span class="codeComment">// closing map element</span><br />
+$strXML  .= &quot;&lt;/map&gt;&quot;;</td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Finally, we called <span class="codeInline">renderChart()</span> function and pass <span class="codeInline">$strXML</span> as Data String to render the map. </td>
+  </tr>
+   <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" class="codeBlock code_container">print renderChart(&quot;../../Maps/FCMap_World8.swf&quot;,&quot;&quot;,$strXML,&quot;firstMap&quot;, 750, 460,0,0);</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><span class="codeInline">FusionCharts.php</span> contains the function <span class="codeInline">renderChart()</span>. This helps us  create the map simply by passing few parameters in a predefined sequence. The <span class="codeInline">renderChart()</span> function accepts following parameters in the same order as they are presented below: </td>
+  </tr>
+   <tr>
+  <td height="20"></td></tr>
+  <tr>
+    <td valign="top" align="left"><table width="95%" border="0" align="center" cellpadding="0" cellspacing="1" bordercolor="#999999" class="table">
+      <tr class="tableAlternateHeader">
+        <td width="19%" valign="top" class="header1"><a name="renderchartparams"></a>Parameter</td>
+        <td width="81%" valign="top" class="header1">Description</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">mapSWF</td>
+        <td valign="top" class="text">SWF File Name (and Path) of the map which we want to plot. Here, we are plotting a World (having  8 continent segments) Map. So, we've specified it as <span class="codeInline">../../Maps/FCMap_World8.swf</span></td>
+      </tr>
+      <tr class="tableAlternateDark">
+        <td valign="top" class="codeInline">strURL</td>
+        <td valign="top" class="text">If we  use <span class="codeInline">Data URL </span>method to plot data over maps, we have to pass the URL as this parameter. Else, set it to &quot;&quot; (in case we use  <span class="codeInline">Data String </span>method). In this case, we're using data XML method, hence we kept it blank. </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">strXML</td>
+        <td valign="top" class="text">If we use <span class="codeInline">Data String </span>method to plot data over maps, we have to pass the XML data as this parameter. Else, set it to &quot;&quot; (in case we are using of <span class="codeInline">Data URL</span> method). In this case, we're using <span class="codeInline">Data String</span> method, hence we passed <span class="codeInline">strXML</span> through this field. </td>
+      </tr>
+      <tr class="tableAlternateDark">
+        <td valign="top" class="codeInline">mapId</td>
+        <td valign="top" class="text">The ID for the map by which it will be recognized in the HTML page. If we use multiple maps on the same page, then all the maps should have unique <span class="codeInline">mapId</span>.
+		 <p class="highlightBlock">To provide cross-browser compatibility, we recommend you not to start the ID with a numerical value, nor use space as part of the ID. </p>
+		 </td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">mapWidth</td>
+        <td valign="top" class="text">Intended width for the map (in pixels)</td>
+      </tr>
+      <tr class='tableAlternateDark'>
+        <td valign="top" class="codeInline">mapHeight</td>
+        <td valign="top" class="text">Intended height for the map (in pixels)</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeInline">debugMode</td>
+        <td valign="top" class="text">Whether to start the map in debug mode. Please see Debugging your Maps section for more details on Debug   Mode. </td>
+      </tr>
+      <tr class="tableAlternateDark">
+        <td valign="top" class="codeInline">registerWithJS</td>
+        <td valign="top" class="text">Whether to register the map with JavaScript. </td>
+      </tr>
+    </table>
+       <div class="highlightBlock"> <span><strong><a name="methods" id="methods"></a>Advanced note :</strong> Apart from <span class="codeInline">renderChart()</span>function, <span class="codeInline">FusionCharts.php</span> provides a number of functions (listed below) to ease your implementation.</span> <span class="msg_handler_open_slider"><a>Click here to collapse and expand</a> &laquo; <br/>
+          <br/>
+          </span>
+          <div class="msg_body_open" style="overflow:auto;margin-left:10px;">
+             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table" bgcolor="#fdfdfd">
+                <tr>
+                   <td width="200" class="header">Function</td>
+                   <td width="200" class="header">Parameter</td>
+                   <td  class="header">What it does? </td>
+                </tr>
+                <tr>
+                   <td class="codeInline">renderChart()</td>
+                   <td><a href="#renderchartparams">see above</a></td>
+                   <td>Returns a string containing HTML+JavaScript that renders a map.</td>
+                </tr>
+                <tr>
+                   <td class="codeInline">renderChartHTML()</td>
+                   <td><a href="#renderchartparams">see above</a></td>
+                   <td>Returns a string containing HTML that renders a map. This function is deprecated. </td>
+                </tr>
+                <tr>
+                   <td class="codeInline">FC_SetDataFormat()</td>
+                   <td>&quot;xml&quot; or &quot;json&quot; </td>
+                   <td>Sets the data format for the data-source of the map. The data-source is set through <span class="codeInline">dataStr</span> or <span class="codeInline">dataUrl </span>parameter of <span class="codeInline">renderChart</span> or <span class="codeInline">renderChartHTML</span>. <br />
+                      <br />
+                      Default value is <span class="codeInline">xml</span>. When you set the value to <span class="codeInline">json</span> you need to pass JSON URL or JSON String through <span class="codeInline">dataUrl </span>or <span class="codeInline">dataStr </span>parameter. <br />
+                      <br />
+                      You need to call this function each time before you call <span class="codeInline">renderChart </span>or <span class="codeInline">renderChartHTML</span> function. </td>
+                </tr>
+                <tr>
+                   <td class="codeInline">FC_SetRenderer()</td>
+                   <td>&quot;flash&quot; or &quot;javascript&quot; </td>
+                   <td>Sets the renderer-engine of FusionCharts. It can be <span class="codeInline">flash</span> (default value). When you set the value to <span class="codeInline">javascript</span>, you can force-set  javascript renderer.<br />
+                      <br />
+                      You need to call this function each time before you call <span class="codeInline">renderChart </span>function. <br />
+                      <br />
+                      This setting is not applicable while using <span class="codeInline">renderChartHTML</span> function. </td>
+                </tr>
+                <tr>
+                   <td class="codeInline">FC_EnablePrintManager()</td>
+                   <td>&nbsp;</td>
+                   <td>This function helps you enable the <a href="../../javascript/js_print_manager.html">managed print</a> feature of FusionCharts for Mozilla- browsers. It returns a <span class="codeInline">&lt;script&gt; </span>tag . You need to write the string in your page.You need to call this only once in a page. </td>
+                </tr>
+                <tr>
+                   <td class="codeInline">FC_SetWindowMode()</td>
+                   <td>&quot;window&quot; or &quot;transparent&quot; or &quot;opaque&quot; </td>
+                   <td>Sets window mode of a map. By default, map renders in &quot;opaque&quot; mode. You can set to it &quot;window&quot; if you required. <br />
+                      <br />
+                      You need to call this function each time before you call the <span class="codeInline">renderChart </span>or <span class="codeInline">renderChartHTML</span> function. </td>
+                </tr>
+             </table>
+          </div>
+       </div>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" class="text">Below is the screenshot of  the map used for this example. </td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text">
+       <p><img src="../../Images/CodeASPDXML1.jpg" width="723" height="447" class="imageBorder" /></p>
+       <p class="highlightBlock"><strong>Existing users</strong>: Use&nbsp;of <span class="codeInline">FusionMaps.php</span> is deprecated. Use <span class="codeInline">FusionCharts.php</span> instead. However, after upgrading to FusionMaps XT, your existing implementations using <span class="codeInline">FusionMaps.php</span> will continue to work without any problem.</p>
+    </td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Using with ASP - Drill-down Map|CodeASPDB_DrillMap.html","Using Data URL Method|CodePHPDURL.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

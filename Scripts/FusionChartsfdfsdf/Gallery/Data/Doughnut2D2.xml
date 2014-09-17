@@ -1,0 +1,7 @@
+<chart palette='2' caption='Facilities with Stock Outs as of'>
+            <set label='Enough stock' value='19'/>
+
+            <set label='Stock outs' value='15' color='FF654F'/>
+
+</chart>
+

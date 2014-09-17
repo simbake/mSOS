@@ -1,0 +1,113 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<indexdata>
+<key name="export" >
+  <key name="Batch export - Over-riding export parameters" >
+    <topic name="Exporting Maps as PDF or Images - Batch export - Over-riding export parameters" url="../../../ExportingImage/Batch/ECBatchOverride.html" />
+  </key>
+  <key name="Batch export - Overview" >
+    <topic name="Exporting Maps as PDF or Images - Batch export - Overview" url="../../../ExportingImage/Batch/ECBatchOverview.html" />
+  </key>
+  <key name="Batch export - Setting it up" >
+    <topic name="Exporting Maps as PDF or Images - Batch export - Setting it up" url="../../../ExportingImage/Batch/ECBatchSetup.html" />
+  </key>
+  <key name="Batch export - Setting JavaScript callback" >
+    <topic name="Exporting Charts as PDF or Images - Batch export - Setting JavaScript callback" url="../../../ExportingImage/Batch/ECBatchCallback.html" />
+  </key>
+  <key name="Client-side export - Component UI" >
+    <topic name="Exporting Maps as PDF or Images - Client-side export - Component UI" url="../../../ExportingImage/Client/ECComponentUI.html" />
+  </key>
+  <key name="Client-side export - Configuring export dialog cosmetics" >
+    <topic name="Exporting maps as PDF/Images - Client-side export - Configuring export dialog cosmetics" url="../../../ExportingImage/Client/ECExportDialog.html" />
+  </key>
+  <key name="Client-side export - Configuring output formats and context menu" >
+    <topic name="Exporting maps as PDF/Images - Client-side export - Configuring output formats and context menu" url="../../../ExportingImage/Client/ECServerFormats.html" />
+  </key>
+  <key name="Client-side export - Exporting multiple maps" >
+    <topic name="Exporting Maps as PDF or Images - Client-side export - Exporting multiple maps" url="../../../ExportingImage/Client/ECClientMultiple.html" />
+  </key>
+  <key name="Client-side export - Overview" >
+    <topic name="Exporting Maps as PDF or Images - Client-side export - Overview" url="../../../ExportingImage/Client/ECClientOverview.html" />
+  </key>
+  <key name="Client-side export - Setting JavaScript callback" >
+    <topic name="Exporting Maps as PDF or Images - Client-side export - Setting JavaScript callback" url="../../../ExportingImage/Client/ECClientCallback.html" />
+  </key>
+  <key name="Client-side export - Simple Example" >
+    <topic name="Exporting Maps as PDF or Images - Client-side export - Simple Example" url="../../../ExportingImage/Client/ECClientSimple.html" />
+  </key>
+  <key name="Exporting Charts as PDF or Images - Troubleshooting" >
+    <topic name="Exporting Charts as PDF or Images - Troubleshooting" url="../../../ExportingImage/ECTroubleshooting.html" />
+  </key>
+  <key name="Exporting map data - Using Context Menu" >
+    <topic name="Exporting map data - Using Context Menu" url="../../../export_data/ExportDataSetup.html" />
+  </key>
+  <key name="Exporting map data - Using JavaScript API" >
+    <topic name="Exporting map data - Using JavaScript API" url="../../../export_data/ExportDataJS.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - Debug Mode" >
+    <topic name="Exporting Maps as PDF or Images - Debug Mode" url="../../../ExportingImage/ECReferenceDebugJS.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - How it works?" >
+    <topic name="Exporting Maps as PDF or Images - How it works?" url="../../../ExportingImage/ECProcess.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - JavaScript API" >
+    <topic name="Exporting Maps as PDF or Images - JavaScript API" url="../../../ExportingImage/JavaScriptRef/ECReferenceJS.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - JavaScript Reference - Component Attributes" >
+    <topic name="Exporting Maps as PDF or Images - JavaScript Reference - Component Attributes" url="../../../ExportingImage/JavaScriptRef/ECReferenceComponent.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - JavaScript Reference - Export Attributes" >
+    <topic name="Exporting Maps as PDF or Images - JavaScript Reference - Export Attributes" url="../../../ExportingImage/JavaScriptRef/ECReferenceExport.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - JavaScript Reference - Initiating from JavaScript" >
+    <topic name="Exporting Maps as PDF or Images - JavaScript Reference - Initiating from JavaScript" url="../../../ExportingImage/ECJavaScript.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - Overview" >
+    <topic name="Exporting Maps as PDF or Images - Overview" url="../../../ExportingImage/ECOverview.html" />
+  </key>
+  <key name="Exporting Maps as PDF or Images - Terminologies" >
+    <topic name="Exporting Maps as PDF or Images - Terminologies" url="../../../ExportingImage/ECTerminology.html" />
+  </key>
+  <key name="Exporting maps as PDF/Images - XML Attributes" >
+    <topic name="Exporting maps as PDF/Images - XML Attributes" url="../../../ExportingImage/ECXML.html" />
+  </key>
+  <key name="Exporting Pure JavaScript Maps" >
+    <topic name="Exporting Pure JavaScript Maps" url="../../../ExportingImage/ECPureJS.html" />
+  </key>
+  <key name="Server-side export - Configuring export dialog cosmetics" >
+    <topic name="Exporting maps as PDF/Images - Server-side export - Configuring export dialog cosmetics" url="../../../ExportingImage/Server/ECExportDialog.html" />
+  </key>
+  <key name="Server-side export - Configuring output formats and context menu" >
+    <topic name="Exporting maps as PDF/Images - Server-side export - Configuring output formats and context menu" url="../../../ExportingImage/Server/ECServerFormats.html" />
+  </key>
+  <key name="Server-side export - Overview" >
+    <topic name="Exporting Maps as PDF or Images - Server-side export - Overview" url="../../../ExportingImage/Server/ECServerOverview.html" />
+  </key>
+  <key name="Server-side export - Returning the exported output as download" >
+    <topic name="Exporting Maps as PDF or Images - Server-side export - Returning the exported output as download" url="../../../ExportingImage/Server/ECServerDownload.html" />
+  </key>
+  <key name="Server-side export - Saving exported output on server disk" >
+    <topic name="Exporting Maps as PDF or Images - Server-side export - Saving exported output on server disk" url="../../../ExportingImage/Server/ECServerSave.html" />
+  </key>
+</key>
+<key name="FAQ" >
+  <key name="Frequently Asked Questions" >
+    <topic name="Frequently Asked Questions" url="FAQ.html" />
+  </key>
+
+</key>
+
+<key name="gradients" >
+  <key name="Gradient legend" >
+    <topic name="Gradient legend" url="../../../how_to_use/gradientlegend.html" />
+  </key>
+  <key name="Using Gradient fill mixture" >
+    <topic name="Using Gradient fill mixture" url="../../../advanced/UsingGradients.html" />
+  </key>
+</key>
+<key name="HTTPS (SSL)" >
+  <key name="Using FusionMaps over HTTPS (SSL)" >
+    <topic name="Using FusionMaps over HTTPS (SSL)" url="../../../advanced/HTTPS.html" />
+  </key>
+</key>
+
+</indexdata>

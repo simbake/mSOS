@@ -1,0 +1,1 @@
+Source code is not available in this license. Only Enterprise license and Enteprise Plus license contain full source code of FusionMaps XT.

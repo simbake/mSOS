@@ -1,0 +1,10 @@
+<map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'>
+	<data>
+		<entity id='NA' value='515' link='DemoLinkPages/DemoLink1.html'/>
+		<entity id='SA' value='373' link='DemoLinkPages/DemoLink2.html'/>
+		<entity id='AS' value='3875' link='DemoLinkPages/DemoLink3.html'/>
+		<entity id='EU' value='727' link='DemoLinkPages/DemoLink4.html'/>
+		<entity id='AF' value='885' link='DemoLinkPages/DemoLink5.html'/>
+		<entity id='AU' value='32' link='DemoLinkPages/DemoLink6.html'/>
+	</data>	
+</map>

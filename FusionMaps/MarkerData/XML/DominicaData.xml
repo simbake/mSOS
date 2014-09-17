@@ -1,0 +1,26 @@
+<map> 
+	<markers>
+	   <shapes>
+	       <shape id='myCustomShape' type='circle' fillColor='FFFFFF,333333' fillPattern='radial' showBorder='0' radius='4'/>
+		   <shape id='newCustomShape' type='circle' fillColor='FFFFFF,000099' fillPattern='radial' showBorder='0' radius='3'/>
+		</shapes>      
+		<definition>
+			<marker id='RO' x='56.89' y='208.27' label='Roseau' labelpos='left'  />
+			<marker id='01' x='13.95' y='39.72' label='Portsmouth' labelPos='right'  />
+			<marker id='02' x='109.5' y='65.48' label='Marigot'  />
+			<marker id='03' x='36.5' y='151.37' label='Saint Joseph'  />
+			<marker id='04' x='135.27' y='190.02' label='La Plaine' labelPos='left' />
+			<marker id='05' x='98.76' y='241.55' label='Berekua'  />
+
+		</definition>
+		<application>
+			<marker id='RO' shapeId='myCustomShape'  />
+			<marker id='01' shapeId='newCustomShape'  />
+			<marker id='02' shapeId='newCustomShape'  />
+			<marker id='03' shapeId='newCustomShape'  />
+			<marker id='04' shapeId='newCustomShape'  />
+			<marker id='05' shapeId='newCustomShape'  />
+
+		</application>
+	</markers>
+</map>

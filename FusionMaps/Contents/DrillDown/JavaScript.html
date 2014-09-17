@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Drill down - Using JavaScript functions as links</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Drill-Down maps|Simple.html", "JavaScript functions as links"] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using JavaScript functions as links</td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text">
+      <p>Instead of using simple links, you can also 
+        set JavaScript links using FusionMaps XT i.e., you can invoke a JavaScript 
+        function present in the same page (in which the map is present) when 
+        the end viewer clicks a map entity, marker or connector. To attain this, all 
+        you need to do is place the name of JavaScript function instead of the 
+        link URL, as under:</p>
+      <p class="codeInline">&lt;entity id='NA' value='515' link=&quot;JavaScript:myJS('NA, 515');&quot;/&gt;</p>
+      <p>In the above code, <span class="codeInline">myJS</span> refers to a custom 
+        JavaScript function present in the HTML page that embeds this map. You 
+        can also specify any number of parameters for this function.  However, you <strong>cannot use a semi-colon</strong> within the declaration. </p>
+      <p>Since FusionMaps v3.1, we have also introduced the following new syntax:</p>
+      <p class="codeInline">&lt;entity id='NA' value='515' value='235' link=&quot;<strong>j-</strong>myJS-NA,515&quot;/&gt; </p>
+      <p class="highlightBlock">The classical function-call notation of JavaScript has been replaced by following expression <br />
+          <br />
+          <strong>j-</strong>{<strong>user function name</strong>}-{<strong>parameter</strong>}<br />
+          <br />
+        The {user function name} is a user-defined function. It will receive the parameters as a <strong>single</strong> de-limiter separated string. <br />
+        The {parameters} is a de-limiter separated value field. The parameter field <em>should not be enclosed within quotes</em>.  Using this method, you can just pass one parameter from map to your  JavaScript. So, when you need to pass multiple parameters, combine them  using a delimiter in XML, and then in your JavaScript method split it  again. <br />
+  <br />
+      The classical notation will be evaluated  faster since no String decomposition takes place. However, the new  syntax removes all the problems with nested quotation marks.</p>
+      <p>When you 
+        now click the map element, <span class="codeInline">myJS </span>function will be invoked and 'NA, 
+        515' will be passed to the function as the function parameter. Here, 
+        we've passed the entity label and value just for demonstration purposes. 
+        In actual apps, you can pass identifier numbers or strings to each data. 
+        When the user clicks on the link, these identifiers can be sent back to 
+        your JavaScript functions for further actions (like loading detailed data 
+        for that identifier using AJAX or anything - the possibilities are endless).</p>
+      <p>Let's quickly put up an example for this kind of links. We'll create 
+        a simple World Population Map. 
+        Each continent when clicked, will pass its label and value to our custom 
+        JavaScript function <span class="codeInline">myJS</span>, which (for the 
+        sake of demonstration) will just write it out in an alert box. </p>
+      <p>We create <span class="codeInline">JSExample.html</span> for this example 
+        in <span class="codeInline">DrillDown</span> folder. It contains the following 
+        HTML code:</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" ><pre class="code_container prettyprint">&lt;html&gt;
+      &lt;head&gt;
+      &nbsp;&nbsp;&nbsp;&lt;title&gt;Drill Down Example&lt;/title&gt;
+      &nbsp;&nbsp;&nbsp;&lt;script language=&quot;JavaScript&quot; src=&quot;../../Maps/FusionCharts.js&quot;&gt;&lt;/script&gt;
+      &nbsp;&nbsp;<strong>&nbsp;&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function myJS(myVar){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.alert(myVar);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//--&gt;
+&nbsp;&nbsp;&nbsp;&lt;/SCRIPT&gt;</strong>
+  &lt;/head&gt;
+      &lt;body&gt;
+      &nbsp;&nbsp;&nbsp;&lt;div id=&quot;mapdiv&quot; align=&quot;center&quot;&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FusionMaps XT.
+  &nbsp;&nbsp;&nbsp;&lt;/div&gt;
+  &nbsp;&nbsp;&nbsp;&lt;script type=&quot;text/javascript&quot;&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var map = new FusionCharts(&quot;../../Maps/FCMap_World.swf&quot;, &quot;Map1Id&quot;, &quot;500&quot;, &quot;300&quot;, &quot;0&quot;, &quot;0&quot;);
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.setXMLUrl(&quot;JSExample.xml&quot;);
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.render(&quot;mapdiv&quot;);
+  &nbsp;&nbsp;&nbsp;&lt;/script&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;</pre>
+      </td>
+  </tr>
+  <tr> 
+    <td valign="top" class="text"><p>Here, we've a defined a function <span class="codeInline">myJS</span> 
+        which will respond to the clicks generated from the map.</p>
+      <p>And now<span class="codeInline"> JSExample.xml</span> looks as under:</p></td>
+  </tr>
+  <tr> 
+    <td valign="top"><pre class="code_container prettyprint">&lt;map borderColor='005879' fillColor='D7F4FF' numberSuffix=' Mill.' includeValueInLabels='1' labelSepChar=': ' baseFontSize='9'&gt;
+&nbsp;&nbsp;&nbsp;&lt;data&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='NA' value='515' <strong>link=&quot;JavaScript:myJS('NA, 515');&quot;</strong>/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='SA' value='373' <strong>link=&quot;JavaScript:myJS('SA, 373');&quot;</strong>/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AS' value='3875' <strong>link=&quot;JavaScript:myJS('AS, 3875');&quot;</strong>/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='EU' value='727' <strong>link=&quot;JavaScript:myJS('EU, 727');&quot;</strong>/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AF' value='885' <strong>link=&quot;JavaScript:myJS('AF, 885');&quot;</strong>/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;entity id='AU' value='32' <strong>link=&quot;JavaScript:myJS('AU, 32');&quot;</strong>/&gt;
+&nbsp;&nbsp;&nbsp;&lt;/data&gt;
+&lt;/map&gt;</pre></td>
+  </tr>
+  <tr>
+  <td height="20"></td></tr>
+  <tr> 
+    <td valign="top" class="text">As you can see above, for each data item, we've 
+      defined a JavaScript link, that points to the custom function <span class="codeInline">myJS</span>. 
+      To this function, we're passing the name and value of the entity. 
+      <p>When you view the map and click on a continent, you'll see something like 
+        under: </p></td>
+  </tr>
+  <tr>
+    <td valign="top" class="text"><img src="Images/JS.jpg" width="508" height="318" /></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Full Map as a hotspot|ClickURL.html","FusionCharts Link format|LinkFormat.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>
+	FusionMaps Server-side Export Sample Using JavaScript
+	</title>
+	<script language="JavaScript" src="../../../Maps/FusionCharts.js"></script>
+	<script type="text/javascript">
+	function startExport(){
+		//Get reference to map.
+		var map = getMapFromId("myMapId");
+		//Now, we proceed with exporting only if map has finished rendering.
+		if (map.hasRendered()==true){
+			map.exportMap();
+		}else{
+			alert("Please wait for the map to finish rendering, before you can invoke exporting");
+		}
+	}
+	</script>
+</head>
+
+<body bgcolor="#ffffff">
+
+<div id="mapdiv" align="center">The map will appear within this DIV. This text will be replaced by the map.</div>
+   <script type="text/javascript">
+   	//Create the map.
+	var myMap = new FusionCharts("../../../Maps/FCMap_World.swf", "myMapId", "500", "266", "0", "1");
+	myMap.setXMLUrl("ServerSideSimple.xml");
+	myMap.render("mapdiv");
+   </script>
+
+<br/>
+<center><input type='button' value='Begin Map Export' onClick="javascript:startExport();" />
+
+</center></body>
+</html>

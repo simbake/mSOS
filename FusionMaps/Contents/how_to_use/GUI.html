@@ -1,0 +1,263 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Using Visual Map Builder to create maps</title>
+<link rel="stylesheet" type="text/css" href="../assets/ui/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/prettify/prettify.css" />
+<script type="text/javascript" src="../assets/ui/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/prettify/prettify.js"></script>
+
+<style type="text/css">
+
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+
+a.whtbtnhide, a.whtbtnshow, a.whtbtnhidenav , a.whtbtnshownav { border-bottom:none !important; }
+
+</style>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whmsg.js"></script>
+<script type="text/javascript" language="javascript" src="../assets/ui/js/whver.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whproxy.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whutils.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whlang.js"></script>
+<script type="text/javascript" language="javascript1.2" src="../assets/ui/js/whtopic.js"></script>
+<script type="text/javascript" src="../assets/ui/js/lib.js"></script>
+</head>
+
+<body>
+<!-- breadcrumb starts here -->
+<div id="breadcrumb"></div>
+<script type="text/javascript">
+	document.write( addFCBreadcrumb( [ "Home|../introduction/overview.html", "Quick Map Configuration|BasicUsage.html", "Using Visual Map Builder" ] ) );
+</script>
+<!-- breadcrumb ends here -->
+<table width="98%" border="0" cellspacing="0" cellpadding="3" align="center">
+  <tr> 
+    <td class="pageHeader">Using Visual Map Builder to create maps</td>
+  </tr>
+  <tr> 
+    <td>
+       <p class="text">FusionMaps  XT comes with a<a href="../../Tools/GUI/FusionMapsGUI.html" target="_blank"> Visual Map Builder</a>, which helps you visually configure map properties and provide data to it without getting into any form of scripting or programming. Thus, even if you're a non-technical user but want to create data-driven maps for your websites, you can easily do so. </p>
+      <p class="text">Getting back to our previous example, we'll now use the Visual Map Builder to create a World Population Map. Our motive is to display the following 
+      data visually on a map. </p>    
+	  <p><strong>Population in Millions</strong></p></td>
+  </tr>
+  <tr> 
+    <td><table border="1" cellpadding="3" cellspacing="0" bordercolor="f1f1f1" class="table">
+        <tr> 
+           <td width="295" valign="top" class="header"><strong>Continent</strong></td>
+           <td width="295" valign="top" class="header"><strong>Population (in 
+              Millions)</strong></td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">North America </td>
+           <td width="295" valign="top" class="text">515</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">South America </td>
+           <td width="295" valign="top" class="text">373</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">Asia </td>
+           <td width="295" valign="top" class="text">3875</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">Europe </td>
+           <td width="295" valign="top" class="text">727</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">Africa </td>
+           <td width="295" valign="top" class="text">885</td>
+        </tr>
+        <tr> 
+           <td width="295" valign="top" class="text">Australia </td>
+           <td width="295" valign="top" class="text">32</td>
+        </tr>
+      </table></td>
+  </tr>
+  
+  <tr>
+    <td>
+    <p class="text">Though it will not serve a great scientific purpose to show this data on a map (instead of a table), it will serve our purpose of a demo. As we proceed, you'll later see how maps can make data interpretation 
+    way easier than simple data tables.</p>
+    <p class="text">Now, before you launch the magical interface to create the maps, you first need to assemble a few basic things required to build the map. </p></td>
+  </tr>
+  
+  <tr> 
+    <td class="header">Assembling the required elements </td>
+  </tr>
+  <tr> 
+    <td><p class="text">To create the map using Visual Map Builder, you need to make sure that you've the 
+        following things ready with you:</p>
+      <ol start="1" type="1">
+        <li><strong class="text">The SWF and JavaScript files of the map</strong> &ndash; For our world map, it's called<span class="codeInline"> FCMap_World.swf</span> and <span class="codeInline">FusionCharts.HC.world.js</span>. 
+          These are present in the <span class="codeInline">Download Package &gt; 
+          Maps</span> folder. </li>
+        <li><strong>FusionCharts JavaScript Class </strong>- This JavaScript class helps you render maps in your web pages. It comprises of the following files:
+           <ul>
+              <li><span class="codeInline">FusionCharts.js</span></li>
+              <li><span class="codeInline">FusionCharts.HC.js</span></li>
+              <li><span class="codeInline">FusionCharts.HC.Maps.js </span>and</li>
+              <li><span class="codeInline">jquery.min.js</span>.</li>
+           </ul>
+           These files for this class are present in <span class="codeInline">Download Package &gt; Maps </span> folder.</li>
+      </ol>
+      <p class="text">Let's create a new folder for this example. We name the folder as <span class="codeInline">HowToUseGUI</span>. </p>
+      <p class="text">Copy <span class="codeInline">FCMap_World.swf</span> file in this folder along with <span class="codeInline">FusionCharts.js</span>. That completes our initial setup for the map. </p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="header">Starting the GUI  </td>
+  </tr>
+  <tr> 
+    <td><p class="text">Now that the basic elements are in place, it's time to put the GUI into action. So, run <span class="codeInline"><a href="../../Tools/GUI/FusionMapsGUI.html" target="_blank">FusionMapsGUI.html</a></span> from <span class="codeInline">Download Package &gt; Tools &gt; GUI</span> folder. You'll get a screen like the one below, asking you to select a map from the drop down list.</p></td>
+  </tr>
+  <tr>
+    <td><img src="Images/GUIStart.gif" width="702" height="396" class="imageBorder" /></td>
+  </tr>
+  
+  <tr>
+    <td><p class="highlightBlock">If you do not see the drop-down populated with list of maps, you need to make sure that JavaScript is enabled for your browser. The <strong>Visual Map Builder</strong> relies completely on JavaScript to help you build and configure the maps. Please refer to your browser documentation on how to enable JavaScript.</p> 
+	<p>Now, since we want to build a data-driven World Map, select &quot;World Map&quot; from the drop-down list. That will load the World Map in the GUI, as shown below:</p> </td>
+  </tr>
+  <tr>
+    <td class="text"><img src="Images/GUIStart2.gif" width="600" height="471" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td class="text"><p>As you can see above, the World Map has loaded in the GUI, along with a lot of tabs that help you configure different aspects of the map. </p>
+    <p class="highlightBlock">If the World Map or the tabs do not load, or you get a JavaScript error, you need to make sure that  Flash Player permissions have been properly set to enable JavaScript to access the map. To know how to configure the Flash Player Global Security Settings, please read <a href="../../Tools/FlashPlayerSecuritySetup/index.html" target="_blank">this</a>.</p>
+    <p class="text">Let's briefly discuss each of the tabs first, before we start feeding  data for the map. We start with <em>Configuration</em> Tab. </p></td>
+  </tr>
+ 
+  <tr>
+    <td class="header">Configuration Tab </td>
+  </tr>
+   <tr>
+    <td class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="text">The <em>Configuration</em> Tab helps you configure the functional and cosmetic properties of the map. It looks as under: </td>
+  </tr>
+   <tr>
+    <td class="text">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="text"><img src="Images/GUIConfigTab.gif" width="600" height="265" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td class="text"><p>As you can see above, you can configure a lot of map properties using the options given here. </p>
+    <p class="highlightBlock">However, do note that this is the not the complete list of configurable attributes. FusionMaps  XT allows you to configure a lot more properties than what have been given in the GUI. You'll, however, need to change those in the XML data document directly. </p></td>
+  </tr>
+  
+  <tr>
+    <td class="header">Data Tab </td>
+  </tr>
+  <tr>
+    <td class="text"><p>In the data tab, you can enter the data, tool tips, links etc. for your map entities. The GUI automatically lists all the entities for the map currently loaded. You can then provide the value, display label, tool tips, links and colors for each entity.</p>
+      <p class="highlightBlock">An entity for a map is the smallest item that we're dealing 
+        with on the map. For example, in a World Map showing continents, each 
+        continent is an entity. In a continent map showing countries, each country 
+        is referred to as an entity. Similarly, if a country map is showing states, 
+    each state is referred to as an entity.</p>      
+    <p>The <em>Data</em> tab for the World Map looks as under:</p>
+	<p><img src="Images/GUIDataTab.gif" width="600" height="266" class="imageBorder" /></p></td>
+  </tr>
+  
+  <tr>
+    <td class="header">Marker Tab </td>
+  </tr>
+  <tr>
+    <td class="text"><p>The Marker tab lets you define custom markers for your maps. Markers are user defined points on the map that help you pin-point cities, junctions, houses, malls, locations etc. In this tab, you can visually create and customize the markers for the map currently loaded.</p>    </td>
+  </tr>
+  
+  <tr>
+    <td class="header">XML Output &amp; HTML Output Tabs </td>
+  </tr>
+   
+  <tr> 
+    <td class="text"><p>Once you're done with configuring the map properties and data, you can just switch to these tabs to automatically generate the XML and HTML code for the map.</p> </td>
+  </tr>
+  
+  <tr>
+    <td class="header">Preview Tab </td>
+  </tr>
+  
+  <tr> 
+    <td valign="top" class="text"><p>The Preview tab lets you preview the updated map, once you've changed any information in any of the other tabs.</p> </td>
+  </tr>
+  
+  <tr>
+    <td class="header">Back to our Example (World Population Map) </td>
+  </tr>
+   
+  <tr>
+    <td class="text"><p>Let's now get back to our example and create the world population map. Since we already have the data ready, we just need to fill the same in the Data Tab. So switch to <em>Data</em> tab and fill in the data as shown below:</p> </td>
+  </tr>
+   
+  <tr>
+    <td><img src="Images/GUIMapData.gif" width="327" height="227" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td class="text"><p>Also, if you want to change any of the display labels, tool tips, colors etc., you can do so here. </p>
+    <p>Now, we need to configure the map properties like colors, number suffixes etc. So, switch to configuration tab and enter the details as shown below: </p></td>
+  </tr>
+  <tr>
+    <td><img src="Images/GUIMapConfig.gif" width="600" height="224" class="imageBorder" /></td>
+  </tr>
+   
+  <tr> 
+    <td class="text"><p>That sets our stage for the World Population Map. To see our efforts fructify, just switch to Preview tab and you'll see that the map has been updated to reflect the one shown below:</p></td>
+  </tr>
+   
+  <tr>
+    <td><img src="Images/GUIWorldPreview.gif" width="600" height="317" class="imageBorder" /></td>
+  </tr>
+  
+  <tr>
+    <td class="text"><p>Exactly what we wanted, with the least of effort - isn't it? Let's now see how to get the underlying code behind this map so that you can use it in your web pages.</p> </td>
+  </tr>
+  
+  <tr> 
+    <td class="header">Getting the XML data for Map</td>
+  </tr>
+  <tr> 
+    <td>
+       <p class="text">Visual Map Builder automatically generates the XML data for your maps. To fetch the XML data for the map, just switch to <em>XML Output</em> tab. There you'll see four different types of XML data. You just need to copy the data from first text-area (i.e., full XML data document for the map). </p>      </td>
+  </tr>
+  
+  
+  <tr> 
+    <td><img src="Images/GUIXMLData.gif" width="600" height="269" class="imageBorder" /></td>
+  </tr>
+  <tr>
+    <td><p class="text">Copy this data, paste it in a text file and save it as <span class="codeInline">Data.xml</span> in our <span class="codeInline">HowToUseGUI</span> folder. </p>
+      <p class="text">If you're hand coding the XML for your map, you can use the XML data generated in other text fields in this tab. </p></td>
+  </tr>
+  
+  <tr> 
+    <td class="header">Getting the HTML Code</td>
+  </tr>
+  <tr> 
+    <td><p class="text">The GUI also automatically creates the HTML code for the map. To get the same, switch to <em>HTML Output</em> tab and copy-paste the HTML code into a file, say Map<span class="codeInline">.html</span> in the same folder. </p>
+      <p class="text">That completes the entire process of our World Population Map creation.  When you now run the HTML page, you'll see the map inside it. </p></td>
+  </tr>
+</table>
+<!-- footer links starts-->
+<div id="fcfooter"></div>
+<script type="text/javascript">
+	document.getElementById("fcfooter").innerHTML =  addFCFooter("Quick Map Configuration - Overview|overview.html","Custom Labels & Tool-tips|CustomLabels.html");
+</script>
+<!-- footer links ends -->
+<script type="text/javascript" language="javascript1.2">//<![CDATA[
+<!--
+
+	highlightSearch();
+
+//-->
+</script>
+</body>
+</html>

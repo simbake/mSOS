@@ -1,0 +1,167 @@
+﻿@charset "utf-8";
+#content-area-inner-main {
+	text-align:center;
+	margin:0 auto;
+	width: 680px;
+}
+.small {
+	font-size: 10px !important;	
+}
+#EmploymentMap {
+	border-left: 1px dashed #ccc;	
+	border-right: 1px dashed #ccc;	
+}
+#gen-map-render {
+	text-align: center;	
+	margin:5px 50px;
+}
+#mapdiv {
+	width: 100%;
+	height: 350px;
+	vertical-align:top;
+}
+
+.redcolor {
+	color: #ff0000 !important;	
+}
+
+
+.popupinfo {
+	position: absolute;
+	bottom: 9px;
+	right: 5px;
+	height: 19px;
+	left: 5px;
+	border: 1px solid #666;
+	font: 11px/19px normal normal Verdana, Geneva, sans-serif;
+	text-align:right;
+	padding-right:5px;
+}
+
+#demoheader {
+	width: 664px;
+	height: 60px;
+	position: relative;
+}
+
+#demoheader, #demofooter {
+	margin:0;
+	text-align:center;
+}
+
+#demoheader div {
+	padding: 0;
+	margin: 0;
+	height: 56px;
+	position: absolute;
+	top:0;
+}
+
+#demoheader .leftcurve, 
+#demoheader .rightcurve {
+	width: 17px;	
+}
+#demoheader .leftcurve {
+	left: 0;
+	background: url(../img/dark-curve-left.png) right center no-repeat;
+	
+}
+#demoheader .rightcurve {
+	right: 0;
+	background:url(../img/dark-curve-right.png) left center no-repeat;
+}
+
+#demoheader .middle {
+	left: 17px;
+	width: 630px;
+	background-color: #99C2D6;
+	color: #FFF;
+	line-height:28px;
+}
+
+
+#demofooter {
+	width: 680px;
+	margin:0;
+	text-align:center;
+
+}
+
+#demofooter .left,
+#demofooter .right {
+	height: 49px;
+	display: inline-block;
+	*zoom:1;
+	*display: inline;
+}
+#demofooter .left {
+	position:relative;
+	width: 278px;
+	float:left;
+}
+#demofooter .right {
+	width: 400px;
+	float:right;
+}
+
+#demofooter div {
+	margin:0;
+	padding:0;
+}
+#demofooter .left div {
+	position:absolute;
+	top:0;
+	height: 48px;
+}
+
+#demofooter .left .leftcurve, 
+#demofooter .left .rightcurve {
+	width: 9px;	
+}
+#demofooter .left .leftcurve {
+	left:0;
+	background: url(../img/dark-curve-left-small.png) right center no-repeat;
+	
+}
+#demofooter .left .rightcurve {
+	right:0;
+	background:url(../img/dark-curve-right-small.png) left center no-repeat;
+}
+
+#demofooter .left .middle {
+	left: 9px;
+	width: 260px;
+	background-color: #99C2D6;
+	line-height: 48px;
+	color:#FFF;
+	font-size:20px;
+}
+
+#demofooter .right{
+	width: 400px;
+	background: url(../img/footer-details-bg.png) no-repeat right center;
+	position: relative;	
+	height: 49px;
+}
+#demofooter .right div{
+	position: absolute;
+	top:0;
+	height: 49px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #999;
+	text-align:center;
+	line-height: 24px;
+}
+#demofooter .right #ServiceHTML {
+	right: 250px;
+	width: 80px;
+}
+#demofooter .right #ManufacturingHTML{
+	right: 120px;
+	width: 130px;
+}
+#demofooter .right #ProfessionalHTML{
+	right: 5px;
+	width: 120px;
+}
