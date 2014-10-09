@@ -262,13 +262,13 @@ border-color: #e7e7e7;
           </button>
          
           <a style="margin-top: auto;" href="<?php if(isset($ebola_admin)){echo base_url().'Ebola_controller';}else{echo base_url().'home_controller';}?>">
-          	<img style="display:inline-block; margin-top:-20%" src="<?php echo base_url()?>Images/logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
+          	<img style="display:inline-block; width:auto%; width: 100px; height: 16%;margin-top:-10%" src="<?php echo base_url()?>Images/msos_logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
           	</a>
 				<div id="logo_text" style="display:inline-block; margin-top: 0%">
-					<span style="font-size: 1.20em;font-weight: bold; ">Division of Disease Survillance and Response Unit</span><br />
+					<span style="font-size: 1.20em;font-weight: bold; ">Disease Surveillance and Response Unit - Ministry of Health</span><br />
 					<span style="font-size: 0.95em;font-weight: bold;">Mobile SMS Based Disease Outbreak ALert System</span><br/>
 					<span style="font-size: 0.95em;">SATREPS Project</span><br />	
-					<span style="font-size: 0.95em; font-weight: bold;">Powered By:</span><br />
+					<span style="font-size: 0.95em; font-weight: bold;">Developed By:</span><br />
 					<span>
 					
 					<a style="" href="http://www.strathmore.edu" target="about_blank"><img src="<?php echo base_url() ?>Images/strath_logo.png" alt="" class="img-thumbnail img-responsive"></a>

@@ -55,7 +55,7 @@ window.setInterval(function () {
 	<img style="max-width: 6em; float: left; margin-right: 2px;" src="<?php echo base_url();?>Images/logo.png" class="img-responsive " alt="Responsive image">
 
 				<div id="logo_text" style="margin-top: 0%">
-					<span style="font-size: 1.20em;font-weight: bold; ">Division of Disease Survillance and Response</span><br />
+					<span style="font-size: 1.20em;font-weight: bold; ">Disease Survillance and Response - Ministry of Health</span><br />
 					<span style="font-size: 0.95em;font-weight: bold;">SMS Alert System</span><br/>
 					<span style="font-size: 0.95em;">SATREPS Project</span>	
 				</div>
