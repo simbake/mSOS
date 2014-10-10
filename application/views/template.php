@@ -311,7 +311,7 @@ border-color: #e7e7e7;
        <?php if(!isset($ebola_admin)){ ?><li><a href="<?php echo site_url().'sms/index ';?>" class=" ">Send SMS</a> </li> 
        <li><a href="<?php echo site_url().'c_disease/disease_list';?>" class=" ">Disease List</a> </li> <?php } ?>
        <?php if($user_is_administrator && !isset($ebola_admin)){  ?>
-       	<li><a href="<?php echo site_url().'dashboard/';?>" class=" ">Dashboard</a> </li>
+       	<li><a href="<?php echo site_url(); ?>redirect/leave_view/server_monitor" class=" ">Server Monitor</a> </li>
        	<?php } ?>
        <!--<li><a href="" class=" ">User </a></li> -->  
 	 
