@@ -55,21 +55,21 @@
 							<tbody>
 								<?php
 						foreach($all as $row):
-						foreach($row->incident as $facil):
+						foreach($row->facility_info as $facil):
 						foreach($row->disease_name as $dizez_name):
-						foreach($row->logs as $log):
+						foreach($row->logs_ebola as $log):
 						?>
 						<tr>
 							<td><?php echo $row -> Type; ?></td>
 							<td><?php echo $facil -> phone_number; ?></td>
 							<td><?php echo $dizez_name -> Full_Name; ?></td>
-							<td><?php $a = $row->Time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
-							<td><?php $b = $row->Time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
+							<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
+							<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
 							<td><?php echo $row -> Sex; ?></td>
 							<td><?php echo $row -> Age; ?></td>
 							<td><?php echo $row -> Mfl_Code; ?></td>
 							<td><?php echo $facil -> Facility_name; ?></td>
-							<td><?php echo $row -> p_id; ?></td>
+							<td><?php echo $row -> incidence_code; ?></td>
 							<td><?php
 							if ($row -> Status == 'D') {
 								echo 'Dead';
@@ -99,7 +99,7 @@
 							
 							<td>
 							<?php
-							$incident_id=$row->p_id;
+							$incident_id=$row->incidence_code;
 						$fetch_kemri = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM kemri_response WHERE incident_id='$incident_id'");
 							if($fetch_kemri){
 							foreach($fetch_kemri as $rows){

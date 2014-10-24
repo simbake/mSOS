@@ -1,7 +1,7 @@
 <?php 
-               $incidentz= Incidence::get_incidence_ebola_count();
+               $incidentz= incidence_ebola::get_incidence_ebola_count();
 				//$diseasez= Incidence::get_disease_count();
-				$confirmz= Incidence::confirm_ebola();?>
+				$confirmz= incidence_ebola::confirm_ebola();?>
 <div class="col-md-3">
 		
 	<?php if($this->session->userdata("user_indicator")!='KEMRI'){ ?> <div class="row">			
@@ -156,7 +156,7 @@
       </div>
       <div class="panel-body" style="overflow-y: auto">
         <div style="/*border: 1px solid #036;*/ ;" id="container">
-        	<?php echo $map['html']; ?>
+        	<?php //echo $map['html']; ?>
         </div>
       </div>
     </div></div>

@@ -45,21 +45,21 @@
 				<tbody>
 				<?php
 				foreach($all as $row):
-				foreach($row->incident as $d):
-				foreach($row->disease_name as $faci):
+				foreach($row->facility_info as $d):
+				foreach($row->disease_name as $ebola_info):
 
 				?>
 				<tr>
 				<td><?php echo $row -> Type; ?></td>
 				<td><?php echo $d -> phone_number; ?></td>
-				<td><?php echo $faci -> Full_Name; ?></td>
-				<td><?php $a = $row->Time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
-				<td><?php $b = $row->Time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
+				<td><?php echo $ebola_info -> Full_Name; ?></td>
+				<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
+				<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
 				<td><?php echo $row -> Sex; ?></td>
 				<td><?php echo $row -> Age; ?></td>
 				<td><?php echo $row -> Mfl_Code; ?></td>
 				<td><?php echo $d -> Facility_name; ?></td>
-				<td><?php echo $row -> p_id; ?></td>
+				<td><?php echo $row -> incidence_code; ?></td>
 				<td><?php
 				if ($row -> Status == 'D') {
 					echo 'Dead';
@@ -71,10 +71,10 @@
 
 				<td>
 				<?php
-			         		$incident_id=$row -> p_id;
+			         		$incident_id=$row -> incidence_code;
 							$access_types=$this->session->userdata('user_indicator');
 							
-							$fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM incidence i, incident_log l WHERE i.p_id =  '$incident_id' AND i.id = l.incident_id");
+							$fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM incidence_ebola i, incident_log_ebola l WHERE i.incidence_code =  '$incident_id' AND i.incidence_code = l.incident_id");
                            // print_r($fetch_incidence);
 						   if($fetch_incidence){
 						  // print_r($fetch_incidence);

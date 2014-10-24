@@ -47,13 +47,14 @@
 				<th>Time</th>
 				<th>Sex</th>
 				<th>Age</th>
+				<th>Status</th>
 				<th>Old Age</th>
 				<th>Old Sex</th>
 				<th>Old Status</th>
 				
 				<th>HF Name</th>
 				<th>Incidence Id</th>
-				<th>Status</th>
+				
 				<th>Portal</th>
 				
 				</tr>
@@ -62,23 +63,31 @@
 				<tbody>
 				<?php
 				foreach($all as $row):
-				foreach($row->incident as $d):
+				if($this->uri->segment(1)=="ebola_Reports"){
+						$facility=$row->facility_info;
+					$incidence_id=$row->incidence_code;
+					}
+					else{
+						$facility=$row->incident;
+						$incidence_id=$row->p_id;
+					}
+				foreach($facility as $d):
 				foreach($row->disease_name as $faci):
 
 				?>
 				<tr>
 				<td><?php echo $faci -> Full_Name; ?></td>
+				<?php
+				if($this->uri->segment(1)=="ebola_Reports"){ ?>
+				<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
+				<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
+				<?php } else{ ?>
+					
 				<td><?php $a = $row->Time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
 				<td><?php $b = $row->Time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
+				<?php } ?>
 				<td><?php echo $row -> Sex; ?></td>
 				<td><?php echo $row -> Age; ?></td>
-				<td><?php echo $row -> New_Age; ?></td>
-				<td><?php echo $row -> New_Sex; ?></td>
-				
-				<td><?php echo $row -> New_Status; ?></td>
-				
-				<td><?php echo $d -> Facility_name; ?></td>
-				<td><?php echo $row -> p_id; ?></td>
 				<td><?php
 				if ($row -> Status == 'D') {
 					echo 'Dead';
@@ -86,10 +95,17 @@
 					echo 'Alive';
 				}
 				?></td>
+				<td><?php echo $row -> New_Age; ?></td>
+				<td><?php echo $row -> New_Sex; ?></td>
+				
+				<td><?php echo $row -> New_Status; ?></td>
+				
+				<td><?php echo $d -> Facility_name; ?></td>
+				<td><?php echo $incidence_id ?></td>
 				<td>
 				<?php
                     //echo $row -> p_id;
-                $dat = portal_db::get_supply_plan($row -> p_id);
+                $dat = portal_db::get_supply_plan($incidence_id);
                        // print_r($dat);				
 				
 				//echo $rows->id;

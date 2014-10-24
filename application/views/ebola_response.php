@@ -1,7 +1,7 @@
 <?php 
-               $incidentz= Incidence::get_incidence_ebola_count();
+               $incidentz= incidence_ebola::get_incidence_ebola_count();
 				//$diseasez= Incidence::get_disease_count();
-				$confirmz= Incidence::confirm_ebola();?>
+				$confirmz= incidence_ebola::confirm_ebola();?>
 <div class="col-md-3">
 		
 	<div class="row">			
@@ -155,7 +155,7 @@ if (isset($all)) {
 
 	$age = $all -> Age;
 	$disease = $all -> Disease_id;
-	$incidents = $all -> p_id;
+	$incidents = $all -> incidence_code;
 	$sex = $all -> Sex;
 	$status = $all -> Status;
 	$id = $all -> id;
@@ -192,7 +192,7 @@ if (isset($all)) {
 			     		Reported Incident <span class="glyphicon glyphicon-info-sign"></span>
 			     	</div>
 			     	<div class="panel-body" style="overflow-y: auto">
-			     		<form  style="width: 100%" role="form" method="post" action="<?php echo base_url().'c_incidents/confirm_response/ebola'?>" enctype="multipart/form-data">
+			     		<form  style="width: 100%" role="form" method="post" action="<?php echo base_url().'ebola_reports/confirm_response'?>" enctype="multipart/form-data">
 			     			<input type="hidden" name="id" id="id" value="<?php echo $this->uri->segment(3); ?>" />
 			     			<div class="row">
 			     			<div class="col-lg-6">

@@ -39,8 +39,8 @@ class Ebola_controller extends MY_Controller {
 
 				//status per disease
 
-				$perconfirm = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT count( i.id ) AS total, i.Disease_id, i.confirmation,d.full_name as Full_Name,d.acronym FROM incidence i, diseases d  
-      WHERE i.Disease_id=d.id AND d.id='16'  GROUP BY i.Disease_id, i.confirmation ORDER BY i.Disease_id");
+				$perconfirm = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT count( i.id ) AS total, i.Disease_id, i.lab_results,d.full_name as Full_Name,d.acronym FROM incidence_ebola i, diseases d  
+      WHERE i.Disease_id=d.id AND d.acronym='EBL'  GROUP BY i.Disease_id, i.lab_results ORDER BY i.Disease_id");
 
 				$category = array();
 				for ($t = 0; $t < count($perconfirm); $t++) {
@@ -58,21 +58,21 @@ class Ebola_controller extends MY_Controller {
 				
 				for ($t = 0; $t < count($perconfirm); $t++) {
 					//echo $perconfirm[$t]['Disease'].'<br>';
-					if ($perconfirm[$t]['confirmation'] == 'Suspected') {
+					if ($perconfirm[$t]['lab_results'] == 'Suspected') {
 						$cases_sus[$perconfirm[$t]['acronym']] = array('Suspected' => intval($perconfirm[$t]['total']));
 
-					} else if ($perconfirm[$t]['confirmation'] == 'Negative') {
+					} else if ($perconfirm[$t]['lab_results'] == 'Negative') {
 						$cases_neg[$perconfirm[$t]['acronym']] = array('Negative' => intval($perconfirm[$t]['total']));
 
-					} else if ($perconfirm[$t]['confirmation'] == 'Positive') {
+					} else if ($perconfirm[$t]['lab_results'] == 'Positive') {
 						$cases_conf[$perconfirm[$t]['acronym']] = array('Positive' => intval($perconfirm[$t]['total']));
 
 					}
-					else if ($perconfirm[$t]['confirmation'] == 'Indeterminate') {
+					else if ($perconfirm[$t]['lab_results'] == 'Indeterminate') {
 						$cases_Inde[$perconfirm[$t]['acronym']] = array('Indeterminate' => intval($perconfirm[$t]['total']));
 
 					}
-					else if ($perconfirm[$t]['confirmation'] == 'Not_Done') {
+					else if ($perconfirm[$t]['lab_results'] == 'Not_Done') {
 						$cases_Not[$perconfirm[$t]['acronym']] = array('Not_Done' => intval($perconfirm[$t]['total']));
 
 					}
@@ -156,8 +156,8 @@ class Ebola_controller extends MY_Controller {
 				$y = DATE('Y');
 				$m = DATE('m');
 				$mo = DATE('M');
-				$monthly = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT count( i.id ) AS total, i.Disease_id, i.confirmation,d.full_name as Full_Name,d.acronym FROM incidence i, diseases d  
-      WHERE i.Disease_id=d.id AND YEAR(i.time)='$y' AND MONTH(i.time)='$m' GROUP BY i.Disease_id, i.confirmation ORDER BY i.Disease_id ");
+				$monthly = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT count( i.id ) AS total, i.Disease_id, i.lab_results,d.full_name as Full_Name,d.acronym FROM incidence_ebola i, diseases d  
+      WHERE i.Disease_id=d.id AND YEAR(i.incidence_time)='$y' AND MONTH(i.incidence_time)='$m' GROUP BY i.Disease_id, i.lab_results ORDER BY i.Disease_id ");
 				$disease_n = array();
 				for ($t = 0; $t < count($monthly); $t++) {
 					//echo $perconfirm[$t]['Disease'].'<br>';
@@ -172,17 +172,17 @@ class Ebola_controller extends MY_Controller {
 				$cases_Indeterm = array();
 				for ($t = 0; $t < count($monthly); $t++) {
 					//echo $perconfirm[$t]['Disease'].'<br>';
-					if ($monthly[$t]['confirmation'] == 'Suspected') {
+					if ($monthly[$t]['lab_results'] == 'Suspected') {
 						$cases_susmon[$monthly[$t]['acronym']] = array('Suspected' => intval($monthly[$t]['total']));
 
-					} else if ($monthly[$t]['confirmation'] == 'Negative') {
+					} else if ($monthly[$t]['lab_results'] == 'Negative') {
 						$cases_negmon[$monthly[$t]['acronym']] = array('Negative' => intval($monthly[$t]['total']));
 
-					} else if ($monthly[$t]['confirmation'] == 'Positive') {
+					} else if ($monthly[$t]['lab_results'] == 'Positive') {
 						$cases_confmon[$monthly[$t]['acronym']] = array('Positive' => intval($monthly[$t]['total']));
 
 					}
-					else if ($monthly[$t]['confirmation'] == 'Indeterminate') {
+					else if ($monthly[$t]['lab_results'] == 'Indeterminate') {
 						$cases_Indeterm[$monthly[$t]['acronym']] = array('Indeterminate' => intval($monthly[$t]['total']));
 
 					}
@@ -249,8 +249,8 @@ class Ebola_controller extends MY_Controller {
 				$data['strXML_e1'] = $strXML_e1;
 
 				//daily alert analysis
-				$daily = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT count( i.id ) AS total, i.Disease_id, i.confirmation,d.full_name as Full_Name,d.acronym, 
-			DATE(i.time) as dater FROM incidence i, diseases d  WHERE i.Disease_id=1 AND YEAR(i.time)='$y' AND MONTH(i.time)='$m' AND i.Disease_id=d.id GROUP BY DATE(i.time),i.confirmation");
+				$daily = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT count( i.id ) AS total, i.Disease_id, i.lab_results,d.full_name as Full_Name,d.acronym, 
+			DATE(i.incidence_time) as dater FROM incidence_ebola i, diseases d  WHERE i.Disease_id=1 AND YEAR(i.incidence_time)='$y' AND MONTH(i.incidence_time)='$m' AND i.Disease_id=d.id GROUP BY DATE(i.incidence_time),i.lab_results");
 
 				$disease_d = array();
 				for ($t = 0; $t < count($daily); $t++) {
@@ -267,16 +267,16 @@ class Ebola_controller extends MY_Controller {
 				$cases_indedai = array();
 				for ($t = 0; $t < count($daily); $t++) {
 					//echo $perconfirm[$t]['Disease'].'<br>';
-					if ($daily[$t]['confirmation'] == 'Suspected') {
+					if ($daily[$t]['lab_results'] == 'Suspected') {
 						$cases_susdai[$daily[$t]['acronym']] = array('Suspected' => intval($daily[$t]['total']));
 
-					} else if ($daily[$t]['confirmation'] == 'Negative') {
+					} else if ($daily[$t]['lab_results'] == 'Negative') {
 						$cases_negdai[$daily[$t]['acronym']] = array('Negative' => intval($daily[$t]['total']));
 
-					} else if ($daily[$t]['confirmation'] == 'Positive') {
+					} else if ($daily[$t]['lab_results'] == 'Positive') {
 						$cases_confdai[$daily[$t]['acronym']] = array('Positive' => intval($daily[$t]['total']));
 					}
-					else if ($daily[$t]['confirmation'] == 'Indeterminate') {
+					else if ($daily[$t]['lab_results'] == 'Indeterminate') {
 						$cases_indedai[$daily[$t]['acronym']] = array('Indeterminate' => intval($daily[$t]['total']));
 					}
 					//close if statement
@@ -345,11 +345,11 @@ class Ebola_controller extends MY_Controller {
 				$filter_disease=$this->uri->segment(3);
 				
 			    
-				$coodinates = Incidence::get_ebola_count();
+				$coodinates = incidence_ebola::get_ebola_count();
               
               
 				//echo count($coodinates);
-				$this -> load -> library('googlemaps');
+			/*	$this -> load -> library('googlemaps');
 				$config['cluster'] = FALSE;
 				$config['center'] = '-0.023559,37.90619';
 				$config['zoom'] = '6';
@@ -371,7 +371,7 @@ class Ebola_controller extends MY_Controller {
 					}
 				}
 
-				$data['map'] = $this -> googlemaps -> create_map();
+				$data['map'] = $this -> googlemaps -> create_map();*/
 
 			/*} else if ($access_level == "District Administrator") {
 				redirect("district/index");
@@ -392,7 +392,7 @@ class Ebola_controller extends MY_Controller {
 			}
   
 $data['title'] = "Ebola Information";
-$all_diseases=Diseases::getAll();
+$all_diseases=Diseases::get_ebola();
 $data['all_diseases']=$all_diseases;
 $data['ebola_admin']='true';
 

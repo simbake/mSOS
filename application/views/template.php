@@ -89,8 +89,8 @@ include ("Scripts/FusionCharts/FusionCharts.php");
 
 $id=$this -> session -> userdata('user_id');
 $level=$this -> session -> userdata('user_level');
- if(isset($map['js'])){
- 	echo $map['js'];} 
+ /*if(isset($map['js'])){
+ 	echo $map['js'];} */
 $access_level = $this -> session -> userdata('user_indicator');
 $user_is_administrator = false;
 $user_is_moh = false;
@@ -112,9 +112,11 @@ if ($access_level == "Administrator") {
 }
 
 if($access_level=="Administrator" || $access_level=="MOH" ){
+	
 	            $incidentz= Incidence::get_incidence_count();
 				$diseasez= Incidence::get_disease_count();
 				$confirmz= Incidence::confirm();
+	 
 }
 else if($access_level=="District Administrator"){
 	$district = $this -> session -> userdata('district');

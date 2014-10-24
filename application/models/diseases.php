@@ -23,5 +23,11 @@ class Diseases extends Doctrine_Record {
 		$categories = $query -> execute();
 		return $categories;
 	}
+	
+	public function get_ebola(){
+		$query = Doctrine_Query::create() -> select("*") -> from("Diseases")->where("acronym ='EBL'")->OrderBy("Full_Name asc");
+		$categories = $query -> execute();
+		return $categories;
+	}
 
 }

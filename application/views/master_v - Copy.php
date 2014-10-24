@@ -66,7 +66,13 @@
 				<tbody>
 				<?php
 				foreach($all as $row):
-				foreach($row->incident as $d):
+					if($this->uri->segment(1)=="ebola_Reports"){
+						$facility=$row->facility_info;
+					}
+					else{
+						$facility=$row->incident;
+					}
+				foreach($facility as $d):
 				foreach($row->disease_name as $faci):
 
 				?>
