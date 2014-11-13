@@ -551,7 +551,7 @@ border-color: #e7e7e7;
                             <table class="table">
                                 <tr>
                                     <td>
-                                       <a href="<?php echo base_url().'logs/' ?>">Access Traffic</a>
+                                       <a href="<?php echo base_url().'login_Logs/' ?>">Access Traffic</a>
                                     </td>
                                 </tr>
                                 <tr>
