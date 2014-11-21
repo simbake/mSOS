@@ -50,6 +50,10 @@ class incidence_ebola extends Doctrine_Record {
 		$user = $query -> execute();
 		return $user[0];
 	}
-	
+	public function get_disease_count() {
+		$query = Doctrine_query::create() -> select("*") -> from("incidence_ebola") -> groupby("Disease_id");
+		$disease = $query -> count();
+		return $disease;
+	}
 
 }

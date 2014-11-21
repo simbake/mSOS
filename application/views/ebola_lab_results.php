@@ -47,18 +47,18 @@
 							<tbody>
 								<?php
 						foreach($all as $row):
-						foreach($row->incident as $d):
+						foreach($row->facility_info as $d):
 						foreach($row->disease_name as $faci):
 						
 						?>
 						<tr>
 							<td><?php echo $row -> Type; ?></td>
 							<td><?php echo $faci -> Full_Name; ?></td>
-							<td><?php $a = $row->Time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
-							<td><?php $b = $row->Time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
+							<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
+							<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
 							<td><?php echo $row -> Mfl_Code; ?></td>
 							<td><?php echo $d -> Facility_name; ?></td>
-							<td><?php echo $row -> p_id; ?></td>
+							<td><?php echo $row -> incidence_code; ?></td>
 							<td><?php
 							if ($row -> Status == 'D') {
 								echo 'Dead';
@@ -66,9 +66,9 @@
 								echo 'Alive';
 							}
 							?></td>
-							<td><?php if($row->confirmation=='Suspected'){
-							$incident_id=$row -> p_id;
-							$fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT incident_id FROM kemri_response WHERE incident_id='$incident_id'");
+							<td><?php if($row->lab_results=='Suspected'){
+							$incident_id=$row -> incidence_code;
+							$fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT incident_id FROM kemri_response_ebola WHERE incident_id='$incident_id'");
 							//if($fetch_incidence){incident_id
 							//echo $fetch_incidence;
 							?>

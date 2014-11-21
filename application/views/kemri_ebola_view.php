@@ -64,14 +64,14 @@ if(!$this->session->userdata("user_id")){
 							?></td>
 							<?php
 							$incident_id=$row['incident_id'];
-						   $fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT confirmation,lab_time FROM incidence WHERE p_id='$incident_id'");
+						   $fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT lab_results,lab_time FROM incidence_ebola WHERE incidence_code='$incident_id'");
 							
 							foreach($fetch_incidence as $rows):
                               
 							?>
 							<!--<td><?php  $a=$rows['lab_time']; $dtz = new DateTime($a);?></td>-->
 							
-							<td><?php echo "<strong>Results: </strong>".$rows['confirmation'].".<br/><strong>Comments:</strong> ".$row['comments']."<br/><strong>Released : </strong><strong>".$dtz->format('j F, Y g:i A')."</strong";?></td>
+							<td><?php echo "<strong>Results: </strong>".$rows['lab_results'].".<br/><strong>Comments:</strong> ".$row['comments']."<br/><strong>Released : </strong><strong>".$dtz->format('j F, Y g:i A')."</strong";?></td>
 							
 						</tr>
 						<?php //endforeach;?>

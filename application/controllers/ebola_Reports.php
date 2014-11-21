@@ -332,7 +332,7 @@ else{
 		$data['content_view'] = "ebola_lab_results";
 		$data['banner_text'] = "Ebola Lab Results";
 		$data['link'] = "ebola_lab_results";
-		$data['all'] = Incidence::get_all_ebola();
+		$data['all'] = incidence_ebola::getAll();
 		$data['quick_link'] = "ebola_lab_results";
 		$data['ebola_admin']='true';
 		$this -> load -> view("template", $data);
@@ -344,14 +344,15 @@ else{
 		$data['banner_text'] = "Specimen Results";
 		$data['link'] = "specimen_results";
 		//$data['all'] = Incidence::get_suspected();
-		$data['all'] = Incidence::get_confirmation($id_incident);
+		$data['all'] = incidence_ebola::get_confirmation($id_incident);
 		//$data['id_incident']=$id_incident;
 		$data['quick_link'] = "specimen_results";
 		
-		$data['incident'] = Incidence::get_incidence_count();
-		$data['disease'] = Incidence::get_disease_count();
-		$data['confirm'] = Incidence::confirm();
+		$data['incident'] = incidence_ebola::get_incidence_ebola_count();
+		$data['disease'] = incidence_ebola::get_disease_count();
+		$data['confirm'] = incidence_ebola::confirm_ebola();
 		$data['ebola_admin']='true';
+		$data['ebola']=true;
 		
 		$this -> load -> view("template", $data);
 
@@ -362,10 +363,62 @@ public function kemri_table_view(){
 		$data['content_view'] = "kemri_ebola_view";
 		$data['banner_text'] = "Kemri Ebola Results View";
 		$data['link'] = "kemri_view";
-		$data['all'] = kemri_response_ebola::ebola_results_view();
+		$data['all'] = kemri_response_ebola::kemri_results_view();
 		$data['quick_link'] = "kemri_ebola_view";
 		$data['ebola_admin']='true';
 		$this -> load -> view("template", $data);
+
+}
+public function specimen_results_submit(){
+// getting form data
+  $incident_id=$this->input->post('Incidence_id',TRUE);
+  $date_received=$this -> input -> post('date_received');
+  $date_1=new datetime($date_received);
+ // $date_begun=$this->input->post('date_test_begun',TRUE);
+  //$date_1=new datetime($date_begun);
+  $date_released=date("Y-m-d G:i:s", time());
+  $specimen_type=$this->input->post('specimen_type',TRUE);
+  $type_other=$this->input->post('specimen_comments',TRUE);
+  $condition=$this->input->post('condition',TRUE);
+  $other_cond=$this->input->post('specimen_condition',TRUE);
+  $results=$this->input->post('sample_results',TRUE);
+  $comments=$_POST['comments'];
+  $id_table_incident=$this->input->post('id_1',TRUE);
+ //echo $incident_id;
+ 
+//save to kemri_response table.
+                $kemri=new kemri_response_ebola();
+				$kemri->incident_id=$incident_id;
+				$kemri->specimen_received=$date_1->format('Y-m-d');
+				$kemri->specimen_type=$specimen_type;
+				if($specimen_type=="Other"){
+				$kemri->other_specimen=$type_other;
+				}
+				else{
+				$type_other="";
+				$kemri->other_specimen=$type_other;
+				}
+				$kemri->conditions=$condition;
+				if($condition=="Other"){
+				$kemri->other_condition=$other_cond;
+				}
+				else{
+				$other_cond="";
+				$kemri->other_condition=$other_cond;
+				}
+				$kemri->comments=$comments;
+				$kemri->save();
+
+
+		
+	//update incidence table
+	$data=array('lab_results'=>$results, 'lab_time'=>$date_released);
+	$this -> db -> where('incidence_code', $incident_id);
+	$this -> db -> update('incidence_ebola', $data);	
+    //$this->confirm();
+ 
+    redirect('ebola_reports/kemri_lab_results');	
+    
 
 }
     

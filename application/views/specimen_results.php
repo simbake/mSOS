@@ -29,8 +29,15 @@ if ($access_level == "Administrator") {
 $user_id=$this -> session -> userdata('user_id');
 $level=$this -> session -> userdata('user_level');
 if (isset($all)) {
-
-	$incidentz = $all -> p_id;
+    
+	if(isset($ebola)){
+		if($ebola==true){
+	$incidentz = $all -> incidence_code;
+		}
+	}
+	else{
+		$incidentz = $all -> p_id;
+	}
 	$id = $all -> id;
 }
  
@@ -105,7 +112,7 @@ $('#conditions').hide()
         <div style="/*border: 1px solid #036;*/ ;" id="container">
 
 	 <!-- <legend>Contact Form</legend>-->
-         <form class="form-horizontal" method="post" action="<?php echo base_url().'a_management/specimen_results_submit' ?>" role="form">
+         <form class="form-horizontal" method="post" action="<?php if(isset($ebola)){if($ebola==true){echo base_url().'ebola_Reports/specimen_results_submit';}}else{echo base_url().'a_management/specimen_results_submit';} ?>" role="form">
          	<input type="hidden" id="id_1" readonly="readonly" name="id_1" value="<?php echo $this -> uri -> segment(3); ?>"/>
          	<div class="form-group">
     <label for="Incidence_id" class="col-sm-2 control-label">Incident ID: </label>
