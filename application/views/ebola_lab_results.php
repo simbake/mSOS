@@ -32,13 +32,14 @@
 					<tr>
 						
 						<th>Type</th>	
-						<th>Diseases</th>
+						<th>Location</th>
 						<th>Date</th>
 						<th>Time</th>
-						<th>MFL</th>
-						<th>HF Name</th>
-						<th>Incidence Id</th>
-						<th>Status</th>
+						<th>Sex</th>
+						<th>Age</th>
+						<th>Serial</th>
+						<th>ID</th>
+						<th>Login</th>
 						<th></th>
 										    
 					</tr>
@@ -47,28 +48,41 @@
 							<tbody>
 								<?php
 						foreach($all as $row):
-						foreach($row->facility_info as $d):
-						foreach($row->disease_name as $faci):
+						//foreach($row->facility_info as $d):
+						//foreach($row->disease_name as $faci):
 						
 						?>
 						<tr>
 							<td><?php echo $row -> Type; ?></td>
-							<td><?php echo $faci -> Full_Name; ?></td>
+							<td><?php echo $row -> incidence_location; ?></td>
 							<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
 							<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
-							<td><?php echo $row -> Mfl_Code; ?></td>
-							<td><?php echo $d -> Facility_name; ?></td>
-							<td><?php echo $row -> incidence_code; ?></td>
-							<td><?php
-							if ($row -> Status == 'D') {
-								echo 'Dead';
-							} else {
-								echo 'Alive';
-							}
-							?></td>
+							<td><?php echo $row -> Sex; ?></td>
+							<td><?php echo $row -> Age; ?></td>
+							<td><?php echo $row -> case_number; ?></td>
+						    <td><?php echo $row -> msos_code; ?></td>
+						    <td>
+				<?php
+                    //echo $row -> p_id;
+                    $incidence_id=$row->msos_code;
+                $dat = portal_db::get_supply_plan($incidence_id);
+                       // print_r($dat);				
+				
+				//echo $rows->id;
+				if($dat){
+				echo "Web portal";
+				}
+				else {
+				
+				echo "SMS Portal";
+				}
+				//break;
+				
+				
+				?></td>
 							<td><?php if($row->lab_results=='Suspected'){
-							$incident_id=$row -> incidence_code;
-							$fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT incident_id FROM kemri_response_ebola WHERE incident_id='$incident_id'");
+							//$incident_id=$row -> incidence_code;
+							$fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT incident_id FROM kemri_response_ebola WHERE incident_id='$incidence_id'");
 							//if($fetch_incidence){incident_id
 							//echo $fetch_incidence;
 							?>
@@ -94,8 +108,8 @@
 							
 							
 						</tr>
-						<?php endforeach; ?>
-						<?php endforeach; ?>
+						<?php //endforeach; ?>
+						<?php //endforeach; ?>
 						<?php endforeach; ?>
 						
 						</tbody>

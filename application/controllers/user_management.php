@@ -90,7 +90,7 @@ public function session_timeout(){
 		if ($myvalue == 1) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Administrator");
 		} else if ($myvalue == 2) {
-			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "MOH");
+			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "MOH",'ebola_login' => $ebola_login);
 		} else if ($myvalue == 5) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "KEMRI", 'ebola_login' => $ebola_login);
 		} else if ($myvalue == 4) {

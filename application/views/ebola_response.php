@@ -155,7 +155,7 @@ if (isset($all)) {
 
 	$age = $all -> Age;
 	$disease = $all -> Disease_id;
-	$incidents = $all -> incidence_code;
+	$incidents = $all -> msos_code;
 	$sex = $all -> Sex;
 	$status = $all -> Status;
 	$id = $all -> id;

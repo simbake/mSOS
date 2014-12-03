@@ -32,7 +32,7 @@ if (isset($all)) {
     
 	if(isset($ebola)){
 		if($ebola==true){
-	$incidentz = $all -> incidence_code;
+	$incidentz = $all -> msos_code;
 		}
 	}
 	else{

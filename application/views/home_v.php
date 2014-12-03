@@ -45,7 +45,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <span class="glyphicon glyphicon-sort-by-attributes">
-                            </span> <a data-toggle="collapse" data-parent="#accordion" href="#disease_collapse">Content</a>
+                            </span> <a data-toggle="collapse" data-parent="#accordion" href="#disease_collapse">Map Filter</a>
                         </h4>
                     </div>
                     <div id="disease_collapse" class="panel-collapse collapse">

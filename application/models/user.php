@@ -9,6 +9,7 @@ class User extends Doctrine_Record {
 		$this->hasColumn('password', 'string', 255);
 		$this->hasColumn('usertype_id', 'integer', 11);
 		$this->hasColumn('telephone', 'varchar', 255);
+		$this->hasColumn('sms', 'int', 2);
 		$this->hasColumn('county', 'varchar', 255);
 		$this->hasColumn('district', 'varchar', 255);
 		$this->hasColumn('facility', 'varchar', 255);
@@ -98,6 +99,12 @@ class User extends Doctrine_Record {
 	}
 	public function get_usertype($user_id){
 	    $query = Doctrine_Query::create() -> select("*") -> from("access_level")->where("id=$user_id");
+		$user_type= $query -> execute();
+		return $user_type;
+	}
+	public function ebola_Kemri_receivers(){
+		$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("telephone='254729928476' AND status=1");
+		//$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("(sms=2 OR sms=1) AND status=1");
 		$user_type= $query -> execute();
 		return $user_type;
 	}

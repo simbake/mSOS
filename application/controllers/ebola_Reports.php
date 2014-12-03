@@ -76,7 +76,7 @@ header("location: javascript://history.go(-1)");
 		/*$ncount = Incident_Log_ebola::national_get_count($id);
 		$ccount = Incident_Log_ebola::county_get_count($id);
 		$dcount = Incident_Log_ebola::district_get_count($id);*/
-       $fetch_log = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM Incident_Log_ebola l WHERE incident_id='$id'");
+       $fetch_log = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM Incident_Log_ebola WHERE incident_id='$id'");
 		if ($user == 1 || $user==2) {
 			   if($fetch_log){
 			   
@@ -140,45 +140,47 @@ else{
 		
 		$data = '<table  border="0" class="table table-responsive table-striped table-bordered" width="100%">';
 
-		$data .= '<tr><td style="font-weight: bold; text-align:left;">DDSR Data Analysis</td></tr><tr><td style="text-align:right;">Generated on: '.$doc_generated_time.'<td></tr>';
-		$data .= '<td><table style="margin-left: 0;" border=1 width="80%">
+		$data .= '  <tr>
+		            <td style="font-weight: bold; text-align:left;">
+		            DDSR Data Analysis</td></tr><tr><td style="text-align:right;">Generated on: '.$doc_generated_time.'
+		            <td>
+		            </tr>';
+		$data .= '  <td>
+		            
+		            <table style="margin-left: 0;" border=1 width="80%">
 					<thead>
 					<tr>
 					
 						<th style="text-align:left;">Type</th>
 						<th style="text-align:left;">Phone Number</th>
-						<th style="text-align:left;">Diseases</th>
+						<th style="text-align:left;">Location</th>
 						<th style="text-align:left;">Date</th>
+						<th style="text-align:left;">Time</th>
 						<th style="text-align:left;">Sex</th>
 						<th style="text-align:left;">Age</th>
-						<th style="text-align:left;">MFL</th>
-						<th style="text-align:left;">HF Name</th>
-						<th style="text-align:left;">Incidence Id</th>
 						<th style="text-align:left;">Status</th>
-						<th style="text-align:left;">Login</th>
-						<th style="text-align:left;">Admin And MOH Response</th>
-						<th style="text-align:left;">Kemri Response</th>
+						<th style="text-align:left;">Serial</th>
+						<th style="text-align:left;">ID</th>
+						<th style="text-align:left;">National Response</th>
+						<th style="text-align:left;">Kemri response</th>
 										    
 					</tr>
 					</thead>';
-		foreach($all as $row):
-						foreach($row->facility_info as $d):
-						foreach($row->disease_name as $faci):
+					
+		                foreach($all as $row):
 						foreach($row->logs_ebola as $log):
-						$a = $row->incidence_time ;
-						$dates = new DateTime($a);
+						$a = $row->incidence_time; $dt = new DateTime($a);
                          
 						$data .= '
+						<tbody>
 						<tr>
 							<td style="text-align:left;">' . $row -> Type .'</td>
-							<td style="text-align:left;">' . $d -> phone_number .'</td>
-							<td style="text-align:left;">' . $faci -> Full_Name .'</td>
-							<td style="text-align:left;">' .$dates->format('jS F Y g:i A').'</td>
-							<td style="text-align:left;">' . $row -> Sex .'</td>
+							<td style="text-align:left;">' . $row -> reported_by .'</td>
+							<td style="text-align:left;">' . $row -> incidence_location .'</td>
+							<td style="text-align:left;">' . $dt->format('j F, Y').'</td>
+							<td style="text-align:left;">' . $dt->format('g:i A') .'</td>
+							<td style="text-align:left;">' .$row -> Sex .'</td>
 							<td style="text-align:left;">' .$row -> Age .'</td>
-							<td style="text-align:left;">' .$row -> Mfl_Code .'</td>
-							<td style="text-align:left;">' . $d -> Facility_name .'</td>
-							<td style="text-align:left;">' . $row -> incidence_code .'</td>
 							<td>';
 							if ($row -> Status == 'D') {
 								$status='Dead';
@@ -186,7 +188,8 @@ else{
 								$status= 'Alive';
 							}
 							$data.=$status.'</td>
-							<td style="text-align:left;">Facility</td>
+							<td style="text-align:left;">' . $row -> case_number .'</td>
+							<td style="text-align:left;">' . $row -> msos_code .'</td>
 							<td style="text-align:left;">';
 							
 							$c = $log -> national_incident;
@@ -200,15 +203,14 @@ else{
 							$taken = $c[4];
 							$dtt = new DateTime($time);
 							$nat= "<strong>Action :</strong>" . $action . "<br>" . "<strong>Notes :</strong>" . $notes . "<br>" . "<strong>Findings :</strong>" . $findings . "<br><strong>Time :</strong>" . $dtt -> format('j F, Y g:i A');
-							}else{
+							}
+							else{
 								$nat= "No Response.";
 							}
 								
-								$data.=$nat.'</td>
-							';
+								$data.=$nat.'</td>';
 							
-						
-							$incident_id=$row->incidence_code;
+							$incident_id=$row->msos_code;
 						$fetch_kemri = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM kemri_response WHERE incident_id='$incident_id'");
 							if($fetch_kemri){
 							foreach($fetch_kemri as $rows){
@@ -221,9 +223,7 @@ else{
 							
 						$data.=$dis.'</td></tr>';
 						 endforeach;
-						 endforeach; 
-						 endforeach; 
-						 endforeach; 
+						 endforeach;  
 						
 
 		$data .= '</tbody></table></td>';
@@ -237,7 +237,7 @@ else{
 	}
 	public function master_db(){
 	    $data['title'] = "Ebola Master Database";
-		$data['content_view'] = "master_v";
+		$data['content_view'] = "master_v_ebl";
 		$data['banner_text'] = "Ebola Master_database";
 		$data['link'] = "master_v";
 		$data['all'] = Incidence_ebola::getAll();
@@ -265,42 +265,40 @@ else{
 		$data .= '<td><table border="1" style="margin-left: 0;" width="80%">
 					<thead>
 					<tr>
-						<th style="text-align:left;"><b>Disease</b></th>
-						<th style="text-align:left;"><b>Date</b></th>
-						<th style="text-align:left;"><b>Sex</b></th>
-						<th style="text-align:left;"><b>Age</b></th>
-						<th style="text-align:left;"><b>Status</b></th>
-                        <th style="text-align:left;">Old Age</th>
-				        <th style="text-align:left;">Old Sex</th>
-				        <th style="text-align:left;">Old Status</th>						
-						<th style="text-align:left;"><b>Facility</b></th>
-						<th style="text-align:left;"><b>Incident ID</b></th>
-							
-							
-                        <th style="text-align:left;"><b>Portal</b></th>							
+			    <th style="text-align:left;">Phone</th>
+				<th style="text-align:left;">Location</th>
+				<th style="text-align:left;">Date</th>
+				<th style="text-align:left;">Time</th>
+				<th style="text-align:left;">Sex</th>
+				<th style="text-align:left;">Age</th>
+				<th style="text-align:left;">Status</th>
+				<th style="text-align:left;">Old Age</th>
+				<th style="text-align:left;">Old Sex</th>
+				<th style="text-align:left;">Old Status</th>
+				<th style="text-align:left;">Serial</th>
+				<th style="text-align:left;">ID</th>
+                <th style="text-align:left;"><b>Portal</b></th>							
 					</tr>
 					</thead>';
-		foreach ($all as $row) :
-			foreach ($row->facility_info as $d) :
-				foreach ($row->disease_name as $faci) :
-				$a = $row->incidence_time; $dt = new DateTime($a);
-				 
+		foreach($all as $row):
+				//$a = $row->incidence_time; $dt = new DateTime($a);
+				 $a = $row->incidence_time; $dt = new DateTime($a);
 					$data .= '
 						<tr>
-							<td style="text-align:left;">' . $faci -> Full_Name . '</td>
-							<td style="text-align:left;">' . $dt->format('jS F Y g:i A') . '</td>
-							<td style="text-align:left;">' . $row -> Sex . '</td>
-							<td style="text-align:left;">' . $row -> Age . '</td>
-							<td style="text-align:left;"> ' . $row -> Status . '</td>
-							<td style="text-align:left;">'.$row -> New_Age.'</td>
-							<td style="text-align:left;">'. $row -> New_Sex .'</td>				            
-				            <td style="text-align:left;">'.$row -> New_Status.' </td>
-							<td style="text-align:left;"> ' . $d -> Facility_name . '</td>
-							<td style="text-align:left;"> ' . $row -> incidence_code . '</td>
-							
-							
+							<td style="text-align:left;">' . $row -> reported_by . '</td>
+							<td style="text-align:left;">' . $row -> incidence_location . '</td>
+							<td style="text-align:left;">' . $dt->format('j F, Y') . '</td>
+							<td style="text-align:left;">' . $dt->format('g:i A') . '</td>
+							<td style="text-align:left;"> ' . $row -> Sex. '</td>
+							<td style="text-align:left;">'.$row -> Age.'</td>
+							<td style="text-align:left;">'. $row -> Status .'</td>				            
+				            <td style="text-align:left;">'.$row -> New_Age.' </td>
+							<td style="text-align:left;"> ' . $row -> New_Sex . '</td>
+							<td style="text-align:left;"> ' . $row -> New_Status . '</td>
+							<td style="text-align:left;"> ' . $row -> case_number . '</td>
+							<td style="text-align:left;"> ' . $row->msos_code . '</td>
 							';
-							 $dat = portal_db::get_supply_plan($row -> incidence_code);
+							 $dat = portal_db::get_supply_plan($row -> msos_code);
                        // print_r($dat);				
 				$portal="";
 				//echo $rows->id;
@@ -314,9 +312,6 @@ else{
 				$data .= '<td style="text-align:left;">'.$portal.'</td>
 						</tr>';
 				endforeach;
-			endforeach;
-		endforeach;
-
 		$data .= '</tbody></table></td>';
 
 		$data .= '</table>';
@@ -357,7 +352,7 @@ else{
 		$this -> load -> view("template", $data);
 
 }
-public function kemri_table_view(){
+    public function kemri_table_view(){
 
         $data['title'] = "Kemri Ebola Results View";
 		$data['content_view'] = "kemri_ebola_view";
@@ -369,7 +364,7 @@ public function kemri_table_view(){
 		$this -> load -> view("template", $data);
 
 }
-public function specimen_results_submit(){
+    public function specimen_results_submit(){
 // getting form data
   $incident_id=$this->input->post('Incidence_id',TRUE);
   $date_received=$this -> input -> post('date_received');
@@ -413,17 +408,91 @@ public function specimen_results_submit(){
 		
 	//update incidence table
 	$data=array('lab_results'=>$results, 'lab_time'=>$date_released);
-	$this -> db -> where('incidence_code', $incident_id);
+	$this -> db -> where('msos_code', $incident_id);
+	
 	$this -> db -> update('incidence_ebola', $data);	
     //$this->confirm();
+    /*$ebola_receivers=User::ebola_Kemri_receivers();
+	$messo="Kemri Lab Results: Ebola incident ID: ".$incident_id." found as: ".$results.". Lab time:  ".$date_released;
+    $message= rawurlencode($messo);
+	do{
+	$send_to=$ebola_receivers->telephone;
+	$syncmumrecord = file_get_contents("http://sms.sourcecode.co.ke:8080/api/send?username=ddsr_msos&password=9dd4441ee182db1231b40e3b8c86750f&source=DDSR_mSOS&destination=$send_to&text=$messo");
+	}
+	while($ebola_receivers);*/
  
     redirect('ebola_reports/kemri_lab_results');	
     
 
 }
     
-    
-   
+    public function kemri_report_download(){
+    	$document_generated_time=date('Y-m-d G:i:s',time());
+		$all=kemri_response_ebola::kemri_results_view();
+		$data = '<table border="0" style="margin-left: 0;" width="90%">';
+		
+		$data .= '<tr><td style="font-weight: bold; text-align:left;">DDSR Data Analysis</td></tr><tr><td style="text-align:right;">Generated on: '.$document_generated_time.'<td></tr>';
+		
+		$data .= '<td><table border="1" style="margin-left: 0;" width="80%">
+					<thead>
+					<tr>
+				        <th style="text-align:left;">mSOS Id</th>
+						<th style="text-align:left;">Date received</th>
+						<th style="text-align:left;">Specimen type</th>
+						<th style="text-align:left;">Specimen condition</th>
+						<th style="text-align:left;">Results|Comments</th>							
+					</tr>
+					</thead>';
+		       foreach($all as $row):
+		            $a = $row['specimen_received']; $dt = new DateTime($a);
+					$data .= '
+						<tr>
+							<td style="text-align:left;">' . $row['incident_id'] . '</td>
+							<td style="text-align:left;">' . $dt->format('j F, Y') . '</td>
+							<td style="text-align:left;">'; 
+							 if($row['specimen_type']=="Other"){
+							 $data .='<strong>'.$row->specimen_type.': </strong>'.$row->other_specimen;
+							 }
+							 else{
+							 $data .= $row['specimen_type'];
+							 }
+							 
+				            $data .= '</td>';
+							$data .='<td>'; 
+							if($row['conditions']=="Other"){
+							 $data .= "<strong>".$row->specimen_type." : </strong>".$row->other_condition;
+							 }
+							 else{
+							 $data .= $row['conditions'];
+							 }							
+							
+				            $data .='</td>';
+							$incident_id=$row['incident_id'];
+						    $fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT lab_results,lab_time FROM incidence_ebola WHERE msos_code='$incident_id'");
+							foreach($fetch_incidence as $rows):
+								$a=$rows['lab_time']; $dtz = new DateTime($a);
+							$data .='<td><strong>Results: </strong>'.$rows['lab_results'].'<br/><strong>Comments:</strong>'.$row['comments'].'<br/><strong>Released : </strong><strong>'.$dtz->format('j F, Y g:i A').'</strong></td>';
+				
+						$data .='</tr>';
+				endforeach;
+				endforeach;
+		$data .= '</tbody></table></td>';
+
+		$data .= '</table>';
+		$time = date("Y-m-d G:i:s", time());
+		$filename = "Kemri_Report";
+		header("Content-type: application/x-msdownload");
+		header("Content-Disposition: attachment; filename=$filename.xls");
+		echo "$data";
+ 	
+    }   
+   function raise_alert(){
+   	    $access = $this -> session -> userdata('user_indicator');
+		$data['title'] = "Report New Ebola Incident";
+		$data['content_view'] = "new_ebola";
+		$data['banner_text'] = "Report New Ebola Incident";
+		$this -> load -> view("template", $data);
+   }
 
 	
 	

@@ -19,7 +19,7 @@ class kemri_response_ebola extends Doctrine_Record{
 		
 		$this->setTableName('kemri_response_ebola');
 		//$this->actAs('Timestampable');
-		$this -> hasOne('Incidence_ebola as incidence_load', array('local' => 'incident_id', 'foreign' => 'incidence_code'));
+		$this -> hasOne('Incidence_ebola as incidence_load', array('local' => 'incident_id', 'foreign' => 'msos_code'));
 		
 	}
 	

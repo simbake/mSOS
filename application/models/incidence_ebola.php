@@ -3,7 +3,9 @@ class incidence_ebola extends Doctrine_Record {
 	public function setTableDefinition() {
 		$this -> hasColumn('id', 'int', 11);
 		$this -> hasColumn('Type', 'varchar', 11);
-		$this -> hasColumn('Mfl_Code', 'int');
+		$this -> hasColumn('incidence_location', 'text');
+		$this -> hasColumn('location_reported_by', 'varchar',255);
+		$this -> hasColumn('location_report_date', 'datetime');
 		$this -> hasColumn('Disease_id', 'varchar', '255');
 		$this -> hasColumn('Age', 'int', 11);
 		$this -> hasColumn('Sex', 'varchar', 5);
@@ -11,7 +13,8 @@ class incidence_ebola extends Doctrine_Record {
 		$this -> hasColumn('New_Age', 'int', 11);
 		$this -> hasColumn('New_Sex', 'varchar', 255);
 		$this -> hasColumn('New_Status', 'varchar', 255);
-		$this -> hasColumn('incidence_code', 'text');
+		$this -> hasColumn('msos_code', 'text');
+		$this -> hasColumn('case_number', 'text');
 		$this -> hasColumn('reported_by', 'int', '11');
 		$this -> hasColumn('incidence_time', 'datetime');
 		$this -> hasColumn('lab_results', 'varchar', '255');
@@ -20,9 +23,9 @@ class incidence_ebola extends Doctrine_Record {
 
 	public function setUp() {
 		$this -> setTableName('incidence_ebola');
-		$this -> hasMany('Facility as facility_info', array('local' => 'Mfl_Code', 'foreign' => 'Facility_code'));
+		$this -> hasMany('User as ebl_numbers', array('local' => 'reported_by', 'foreign' => 'telephone'));
 		$this -> hasMany('diseases as disease_name', array('local' => 'Disease_id', 'foreign' => 'id'));
-		$this -> hasMany('incident_log_ebola as logs_ebola', array('local' => 'incidence_code', 'foreign' => 'incident_id'));
+		$this -> hasMany('incident_log_ebola as logs_ebola', array('local' => 'msos_code', 'foreign' => 'incident_id'));
 	}
 
 	public static function getAll() {
@@ -31,7 +34,7 @@ class incidence_ebola extends Doctrine_Record {
 		return $categories;
 	}
 	public function get_ebola_count() {
-		$query = Doctrine_query::create() -> select("COUNT(id) as total,id,mfl_code,disease_id,incidence_code") -> from("incidence_ebola")-> groupby("mfl_code");
+		$query = Doctrine_query::create() -> select("COUNT(id) as total,id,disease_id,msos_code") -> from("incidence_ebola")-> groupby("incidence_time");
 		$incident = $query -> execute();
 		return $incident;
 	}

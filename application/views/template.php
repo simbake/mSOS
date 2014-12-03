@@ -299,7 +299,7 @@ border-color: #e7e7e7;
           	<div class="col-md-12">
           	<ul class="nav navbar-nav navbar-right">
      
-      <?php if($user_is_kemri==true && isset($ebola_admin)){ ?>
+      <?php if($this->session->userdata("ebola_login")==1){ ?>
        
       <?php } else{ ?>
       <li class=""><a href="<?php echo site_url().'home_controller';?>" class="">HOME</a> </li>

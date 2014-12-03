@@ -14,6 +14,9 @@ class Home_Controller extends MY_Controller {
 
 	
 	public function home() {
+		if($this->session->userdata("ebola_login")==1){
+	redirect("Ebola_controller");
+}
 		
 		$access_level = $this -> session -> userdata('user_indicator');		
 		

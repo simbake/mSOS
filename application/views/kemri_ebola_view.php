@@ -19,13 +19,16 @@ if(!$this->session->userdata("user_id")){
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Kemri Response View.
+					<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="MOH" ){ ?>
+						
+                 <div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/kemri_report_download');?>">Download</a></div>
+					<?php } ?>
 				</div>
 			<div class="panel-body">
         <table class="table table-responsive table-bordered table-hover table-striped" id="example" width="100%" >
 					<thead>
 					<tr>
-						<th>Incident Id</th>
-						
+						<th>mSOS Id</th>
 						<th>Date received</th>
 						<!--<th>Date tested</th>-->
 						<th>Specimen type</th>
@@ -43,7 +46,7 @@ if(!$this->session->userdata("user_id")){
 						?>
 						<tr>
 							<td><?php echo $row['incident_id'];?></td>
-							<td><?php $a = $row['specimen_received']; $dt = new DateTime($a); echo $dt->format('j F, Y g:i A')?></td>
+							<td><?php $a = $row['specimen_received']; $dt = new DateTime($a); echo $dt->format('j F, Y')?></td>
 							<!--<td><?php //$b = $row->lab_test_begun; $dts = new DateTime($b); echo $dt->format('j F, Y g:i A') ?></td>-->
 							<td><?php 
 							 if($row['specimen_type']=="Other"){
@@ -64,7 +67,7 @@ if(!$this->session->userdata("user_id")){
 							?></td>
 							<?php
 							$incident_id=$row['incident_id'];
-						   $fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT lab_results,lab_time FROM incidence_ebola WHERE incidence_code='$incident_id'");
+						   $fetch_incidence = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT lab_results,lab_time FROM incidence_ebola WHERE msos_code='$incident_id'");
 							
 							foreach($fetch_incidence as $rows):
                               

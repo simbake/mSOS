@@ -35,17 +35,16 @@
 				
 					<thead>
 					<tr>
-						<th>Type</th>
+						<th></th>
 						<th>Phone Number</th>
-						<th>Diseases</th>
+						<th>Location</th>
 						<th>Date</th>
 						<th>Time</th>
 						<th>Sex</th>
 						<th>Age</th>
-						<th>MFL</th>
-						<th>HF Name</th>
-						<th>Incidence Id</th>
 						<th>Status</th>
+						<th>Serial</th>
+						<th>ID</th>
 						<th>National Response</th>
 						<th>Kemri response</th>
 										    
@@ -55,21 +54,17 @@
 							<tbody>
 								<?php
 						foreach($all as $row):
-						foreach($row->facility_info as $facil):
-						foreach($row->disease_name as $dizez_name):
+						//foreach($row->ebl_numbers as $ebl_user):
 						foreach($row->logs_ebola as $log):
 						?>
 						<tr>
 							<td><?php echo $row -> Type; ?></td>
-							<td><?php echo $facil -> phone_number; ?></td>
-							<td><?php echo $dizez_name -> Full_Name; ?></td>
+							<td><?php echo $row -> reported_by; ?></td>
+							<td><?php echo $row -> incidence_location; ?></td>
 							<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
 							<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
 							<td><?php echo $row -> Sex; ?></td>
 							<td><?php echo $row -> Age; ?></td>
-							<td><?php echo $row -> Mfl_Code; ?></td>
-							<td><?php echo $facil -> Facility_name; ?></td>
-							<td><?php echo $row -> incidence_code; ?></td>
 							<td><?php
 							if ($row -> Status == 'D') {
 								echo 'Dead';
@@ -77,8 +72,8 @@
 								echo 'Alive';
 							}
 							?></td>
-							
-							
+							<td><?php echo $row -> case_number; ?></td>
+							<td><?php echo $row -> msos_code; ?></td>
 							
 							<td><?php
 							$c = $log -> national_incident;
@@ -99,13 +94,13 @@
 							
 							<td>
 							<?php
-							$incident_id=$row->incidence_code;
-						$fetch_kemri = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM kemri_response WHERE incident_id='$incident_id'");
+							$incident_id=$row->msos_code;
+						$fetch_kemri = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM kemri_response_ebola WHERE incident_id='$incident_id'");
 							if($fetch_kemri){
 							foreach($fetch_kemri as $rows){
 							$comments=$rows['comments'];
 							$a=$row->lab_time; $dtz=new datetime($a);
-							echo "<strong>Results: </strong>".$row->confirmation.".<br/><strong>Comments:</strong> ".$comments."<br/><strong>Released: </strong><strong>".$dtz->format('j F, Y g:i A')."</strong>";
+							echo "<strong>Results: </strong>".$row->lab_results.".<br/><strong>Comments:</strong> ".$comments."<br/><strong>Released: </strong><strong>".$dtz->format('j F, Y g:i A')."</strong>";
 							}
 							}
 							else{echo "No response.";}
@@ -114,8 +109,8 @@
 							</td>
 						</tr>
 						<?php endforeach; ?>
-						<?php endforeach; ?>
-						<?php endforeach; ?>
+						<?php //endforeach; ?>
+						<?php //endforeach; ?>
 						<?php endforeach; ?>
 						</tbody>
 						
