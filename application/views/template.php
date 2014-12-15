@@ -268,7 +268,7 @@ border-color: #e7e7e7;
           	</a>
 				<div id="logo_text" style="display:inline-block; margin-top: 0%">
 					<span style="font-size: 1.20em;font-weight: bold; ">Disease Surveillance and Response Unit - Ministry of Health</span><br />
-					<span style="font-size: 0.95em;font-weight: bold;">Mobile SMS Based Disease Outbreak ALert System</span><br/>
+					<span style="font-size: 0.95em;font-weight: bold;">Mobile SMS Based Disease Outbreak Alert System</span><br/>
 					<span style="font-size: 0.95em;">SATREPS Project</span><br />	
 					<span style="font-size: 0.95em; font-weight: bold;">Developed By:</span><br />
 					<span>

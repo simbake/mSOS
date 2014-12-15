@@ -98,6 +98,9 @@ public function session_timeout(){
 		}else if ($myvalue == 3) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "County Administrator", 'county' => $county);
 		}
+		else if ($myvalue == 7) {
+			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Ebola Response", 'ebola_login' => $ebola_login);
+		}
          if($session_data=="" || $session_data==null){
 		 //header('Location: ' . $_SERVER['HTTP_REFERER']);
 		// echo "Wrong Username or/and Password";

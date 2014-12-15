@@ -49,12 +49,8 @@
 				<th>Sex</th>
 				<th>Age</th>
 				<th>Status</th>
-				<th>Old Age</th>
-				<th>Old Sex</th>
-				<th>Old Status</th>
 				<th>Serial</th>
 				<th>ID</th>
-				
 				<th>Portal</th>
 				
 				</tr>
@@ -80,11 +76,6 @@
 					echo 'Alive';
 				}
 				?></td>
-				<td><?php echo $row -> New_Age; ?></td>
-				<td><?php echo $row -> New_Sex; ?></td>
-				
-				<td><?php echo $row -> New_Status; ?></td>
-				
 				<td><?php echo $row -> case_number; ?></td>
 				<td><?php echo $row->msos_code ?></td>
 				<td>

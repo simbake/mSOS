@@ -18,7 +18,7 @@ if(!$this->session->userdata("user_id")){
 		
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Kemri Response View.
+					KEMRI Response View.
 				</div>
 			<div class="panel-body">
         <table class="table table-responsive table-bordered table-hover table-striped" id="example" width="100%" >

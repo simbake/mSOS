@@ -420,6 +420,14 @@ else{
 	$syncmumrecord = file_get_contents("http://sms.sourcecode.co.ke:8080/api/send?username=ddsr_msos&password=9dd4441ee182db1231b40e3b8c86750f&source=DDSR_mSOS&destination=$send_to&text=$messo");
 	}
 	while($ebola_receivers);*/
+	$all= User::ebola_Kemri_receivers();
+	$message="Kemri Lab Results: Ebola incident ID: ".$incident_id." found as: ".$results.". Comments: ".$comments." Lab time:  ".$date_released;
+        foreach($all as $row){        
+        $error_r = rawurlencode($message);
+		$sender_telephone=$row->telephone;
+        //echo "Sent to: ".$sender_telephone."<br/>";
+        $syncmumrecord = file_get_contents("http://sms.sourcecode.co.ke:8080/api/send?username=ddsr_msos&password=9dd4441ee182db1231b40e3b8c86750f&source=DDSR_mSOS&destination=$sender_telephone&text=$error_r");
+        }
  
     redirect('ebola_reports/kemri_lab_results');	
     

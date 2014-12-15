@@ -103,8 +103,8 @@ class User extends Doctrine_Record {
 		return $user_type;
 	}
 	public function ebola_Kemri_receivers(){
-		$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("telephone='254729928476' AND status=1");
-		//$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("(sms=2 OR sms=1) AND status=1");
+		//$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("telephone='254729928476' AND status=1");
+		$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("usertype_id=1 AND status=1");
 		$user_type= $query -> execute();
 		return $user_type;
 	}
