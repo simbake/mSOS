@@ -23,7 +23,7 @@
           <div class="col-lg-12">
 		 <div class="panel panel-default">
                         <div class="panel-heading">
-                            User Traffic View.
+                            User Access Log.
                             <div style="float: right;"><span class="glyphicon glyphicon-save"></span> <a href="<?php echo site_url('report_management/traffic');?>">Download</a></div>
                         </div>
                         <!-- /.panel-heading -->
@@ -50,11 +50,22 @@
 						<tr>
 							<td><?php echo $d -> fname; ?></td>
 							<td><?php echo $row -> status; ?></td>
-							<td><?php $a = $row->t_login; $dt = new DateTime($a); echo $dt->format('Y/m/d g:i A') ?></td>
+							<td><?php $a = $row->t_login; $dt = new DateTime($a); echo $dt->format('j F, Y g:i A') ?></td>
 							<td><?php $b = $row->t_logout; if(!$b){$dts = new DateTime($b);//echo "Still Active";
-							}else{$dts = new DateTime($b); echo $dts->format('Y/m/d g:i A');} ?></td>
+							}else{$dts = new DateTime($b); echo $dts->format('j F, Y g:i A');} ?></td>
 							<td><?php $difference = $dt->diff( $dts );
-                                  echo $difference->format('%h hours %i minutes %s seconds');
+                                  $hours= $difference->format('%h hours');
+								  $minutes= $difference->format('%i minutes');
+								  $seconds= $difference->format('%s seconds');
+								  if($hours>0){
+								  	echo $hours." ";
+								  }
+								  if($minutes>0){
+								  	echo $minutes." ";
+								  }
+								  if($seconds){
+								  	echo $seconds;
+								  }
                                              											 
 						?></td>
 							

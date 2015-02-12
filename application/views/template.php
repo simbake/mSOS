@@ -149,9 +149,9 @@ else{
     <meta name="author" content="">
     <link rel="icon" href="<?php echo base_url().'assets/img/coat_of_arms.png'?>" type="image/x-icon" />
     <link href="<?php echo base_url().'assets/css/style.css'?>" type="text/css" rel="stylesheet"/>
-	<link href="<?php echo base_url().'assets/css/normalize.css'?>" type="text/css" rel="stylesheet"/>
-	<link href="<?php echo base_url().'assets/css/dashboard.css'?>" type="text/css" rel="stylesheet"/>
-	<link href="<?php echo base_url().'assets/css/jquery-ui-1.10.4.custom.min.css'?>" type="text/css" rel="stylesheet"/>
+	<!--<link href="<?php echo base_url().'assets/css/normalize.css'?>" type="text/css" rel="stylesheet"/>-->
+	<!--<link href="<?php echo base_url().'assets/css/dashboard.css'?>" type="text/css" rel="stylesheet"/>-->
+	<!--<link href="<?php echo base_url().'assets/css/jquery-ui-1.10.4.custom.min.css'?>" type="text/css" rel="stylesheet"/>-->
 	<link href="<?php echo base_url().'assets/boot-strap3/css/bootstrap.css'?>" type="text/css" rel="stylesheet"/>
 	<link href="<?php echo base_url().'assets/boot-strap3/css/bootstrap-responsive.css'?>" type="text/css" rel="stylesheet"/>
 	<link href="<?php echo base_url().'assets/css/font-awesome.min.css'?>" type="text/css" rel="stylesheet"/>
@@ -191,7 +191,7 @@ border-color: #e7e7e7;
 </style>
 
 <script>
-  			$(function() {
+  		/*	$(function() {
   	
   	   $( "#month" ).combobox({
         	selected: function(event, ui) {
@@ -201,9 +201,8 @@ border-color: #e7e7e7;
            //var name =encodeURI($("#desc option:selected").text());
           
           
-        var url = "<?php echo base_url().'report_management/monthly' ?>
-			"
-			$.ajax({
+        var url = "<?php //echo base_url().'report_management/monthly' ?>";*/
+			/*$.ajax({
 			type: "POST",
 			data: "year="+data+"&month="+month,
 			url: url,
@@ -228,10 +227,8 @@ border-color: #e7e7e7;
 			var dise=$("#disease").val();
 			var names =encodeURI($("#disease option:selected").text());
 
-			var url = "
-<?php echo base_url().'report_management/daily' ?>
-	"
-	$.ajax({
+			var url = "<?php //echo base_url().'report_management/daily' ?>";*/
+	/*$.ajax({
 	type: "POST",
 	data: "year="+dyear+"&month="+dmonth+"&disease="+dise+"&name="+names,
 	url: url,
@@ -248,8 +245,8 @@ border-color: #e7e7e7;
 	}
 	});
 
-	});
-  </script>
+	});*/
+</script>
   </head>  
   <body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">
     <!-- Fixed navbar -->
@@ -684,6 +681,7 @@ border-color: #e7e7e7;
         
       </div>
     </div>
+    
     <script type="text/javascript">
     /*
  * Auto logout

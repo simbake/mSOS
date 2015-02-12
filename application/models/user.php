@@ -108,4 +108,9 @@ class User extends Doctrine_Record {
 		$user_type= $query -> execute();
 		return $user_type;
 	}
+	public function get_userbyEmail($email){
+		$query = Doctrine_Query::create() -> select("fname") -> from("user")->where("email='$email'");
+		$user_type= $query -> execute();
+		return $user_type;
+	}
 }

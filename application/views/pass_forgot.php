@@ -101,34 +101,24 @@ unset($popup);
   		<div class="col-md-6"> 
   			<div class="">
   <div id="contain_login" class="">
-  	<h2><span style="margin-right: 0.5em;" class="glyphicon glyphicon-lock"></span>Login</h2>	
+  	<h2><span style="margin-right: 0.5em;" class="glyphicon glyphicon-lock"></span>Forgot Password?</h2>	
   	<?php 
     
-	 echo form_open('user_management/login_user'); ?>
+	 echo form_open('user_management/forgot_pass_submit'); ?>
 <div id="login" >
 
 		
   <div class="form-group" style="margin-top: 2.3em;">
-    <label for="exampleInputEmail1"> Username</label>
+    <!--<label for="exampleInputEmail1"> Username</label>-->
     <div class='input-group date'>
     	<span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-user"></span>
       </span>
-    <input type="text" class="form-control input-lg" name="username" id="username" placeholder="Enter username" required="required">
+    <input type="email" class="form-control input-lg" name="email_address" id="email_address" placeholder="Please Enter Your Email" required="required">
       
       </div>
   </div>
-  <div class="form-group" style="margin-bottom: 2em;">
-    <label for="exampleInputPassword1">Password</label>
-    <div class='input-group date'>
-    	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
-      </span>
-    <input type="password" class="form-control input-lg" name="password" id="password" placeholder="Password" required="required">
-      
-      </div>
-  </div>
-  
-   <button type="submit" class="btn btn-primary " name="register" id="register" style="margin-bottom: 3%;"><span class="glyphicon glyphicon-log-in"></span> Login</button>
-   <a href="<?php echo base_url().'user_management/forgot_password' ?>" style="padding-left: 5%">Forgot Password?</a>
+   <button type="submit" class="btn btn-primary " name="register" id="register" style="margin-bottom: 3%;"><span class="glyphicon glyphicon-log-in"></span> Submit</button>
+   
    
  <!-- <a class="" style="margin-left: 2%;" href="<?php echo base_url().'user/forgot_password'?>" id="modalbox">Can't access your account ?</a>-->
 		

@@ -18,6 +18,11 @@ class Logi extends Doctrine_Record {
 		$level = $query -> execute();
 		return $level;
 	}
+	public static function getAccessLogs(){
+		$query = Doctrine_Query::create() -> select("*") -> from("logi")->where("status='Inactive' AND t_logout!='NULL'")->orderBy('id desc');
+		$level = $query -> execute();
+		return $level;
+	}
 	
 	
 

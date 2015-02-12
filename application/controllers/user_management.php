@@ -417,4 +417,28 @@ public function session_timeout(){
 		$data['quick_link'] = "changefcpass";
 		$this -> load -> view("template", $data);
 	}
+	public function forgot_password(){
+		$data = array();
+		$data['title'] = "Forgot Password";
+		$this -> load -> view("pass_forgot", $data);
+	}
+public function forgot_pass_submit(){
+	$user_email=$this->input->post("email_address");
+	$user_search=User::get_userbyEmail($user_email);
+	  
+	  $checker=0;
+	 foreach($user_search as $fname){
+		if($fname->fname){
+			$checker=1;
+			echo "User with email address: $user_email, found. Names:$fname->fname.<br/>";
+		}
+		else{
+			echo "User with email address, $user_email, was not found. Please try again!";
+			break;
+		}
+	}
+	 if($checker==0){
+	 	echo "User with email address, $user_email, was not found. Please try again!";
+	 }
+}
 }
