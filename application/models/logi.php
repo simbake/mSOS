@@ -23,6 +23,13 @@ class Logi extends Doctrine_Record {
 		$level = $query -> execute();
 		return $level;
 	}
+      
+	  public static function online_users(){
+		$query = Doctrine_Query::create() -> select("*") -> from("logi")->where("status='active'")->orderBy('id desc');
+		$level = $query -> execute();
+		return $level;
+	}
+	
 	
 	
 

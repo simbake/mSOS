@@ -441,4 +441,10 @@ public function forgot_pass_submit(){
 	 	echo "User with email address, $user_email, was not found. Please try again!";
 	 }
 }
+public function users_online(){
+	$data["online_users"]=Logi::online_users();
+	$data["banner_text"]="Online Users";
+	$data["content_view"]="users_online";
+	$this->load->view("template",$data);
+}
 }

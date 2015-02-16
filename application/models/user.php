@@ -13,6 +13,7 @@ class User extends Doctrine_Record {
 		$this->hasColumn('county', 'varchar', 255);
 		$this->hasColumn('district', 'varchar', 255);
 		$this->hasColumn('facility', 'varchar', 255);
+		$this->hasColumn('created_at', 'varchar', 255);
 		$this->hasColumn('status', 'int', 1);
 		$this->hasColumn('ebola_login', 'int', 1);
 		
