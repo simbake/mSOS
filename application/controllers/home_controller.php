@@ -352,7 +352,7 @@ class Home_Controller extends MY_Controller {
               }
               
 				//echo count($coodinates);
-			/*	$this -> load -> library('googlemaps');
+				$this -> load -> library('googlemaps');
 				$config['cluster'] = FALSE;
 				$config['center'] = '-0.023559,37.90619';
 				$config['zoom'] = '6';
@@ -374,7 +374,7 @@ class Home_Controller extends MY_Controller {
 					}
 				}
 
-				$data['map'] = $this -> googlemaps -> create_map();*/
+				$data['map'] = $this -> googlemaps -> create_map();
 
 			/*} else if ($access_level == "District Administrator") {
 				redirect("district/index");
@@ -693,7 +693,7 @@ $perconfirm = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetch
 				$strXML_e2 .= "</chart>";
 				$data['strXML_e2'] = $strXML_e2;
 		//maps
-	/*	$coodinates = Incidence::get_district($district);
+		$coodinates = Incidence::get_district($district);
 		//echo count($coodinates);
 		$this -> load -> library('googlemaps');
 		$config['cluster'] = TRUE;
@@ -716,7 +716,7 @@ $perconfirm = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetch
 			}
 		}
 
-		$data['map'] = $this -> googlemaps -> create_map();*/
+		$data['map'] = $this -> googlemaps -> create_map();
 		$data['banner_text'] = "District View";
 		$data['link'] = "home";
 	
@@ -972,7 +972,7 @@ else if($access_level=="County Administrator"){
 		$data['strXML_e2'] = $strXML_e2;
 
 		//maps
-	/*	$coodinates = Incidence::get_county($county);
+		$coodinates = Incidence::get_county($county);
 		//echo count($coodinates);
 		$this -> load -> library('googlemaps');
 		$config['cluster'] = TRUE;
@@ -995,7 +995,7 @@ else if($access_level=="County Administrator"){
 			}
 		}
         
-		$data['map'] = $this -> googlemaps -> create_map();*/
+		$data['map'] = $this -> googlemaps -> create_map();
 		$data['banner_text'] = "County View";
 		$data['link'] = "home";
 		
@@ -1317,7 +1317,7 @@ else if($access_level=="County Administrator"){
 				$data['strXML_e2'] = $strXML_e2;
 
 		//maps
-	/*	$coodinates = Incidence::get_all();
+		$coodinates = Incidence::get_all();
 		//echo count($coodinates);
 		$this -> load -> library('googlemaps');
 		$config['cluster'] = TRUE;
@@ -1340,7 +1340,7 @@ else if($access_level=="County Administrator"){
 			}
 		}
 
-		$data['map'] = $this -> googlemaps -> create_map();*/
+		$data['map'] = $this -> googlemaps -> create_map();
 		
 		$data['banner_text'] = "Public Domain";
 		$data['link'] = "home";

@@ -2070,7 +2070,7 @@ class Googlemaps {
 		}
 		//
 		
-		$this->output_html .= '<div id="'.$this->map_div_id.'" style="width:'.$this->map_width.'; height:'.$this->map_height.';"></div>';
+		$this->output_html .= '<div id="'.$this->map_div_id.'" style="display: block; width:'.$this->map_width.'; height:'.$this->map_height.';"></div>';
 
 		return array('js'=>$this->output_js, 'html'=>$this->output_html, 'markers'=>$this->markersInfo);
 	

@@ -114,4 +114,14 @@ class User extends Doctrine_Record {
 		$user_type= $query -> execute();
 		return $user_type;
 	}
+	public function Ebola_RRT_users(){
+	$query = Doctrine_Query::create() -> select("fname,email,username") -> from("user")->where("sms='2' AND status='1' AND ebola_login='1'");
+		$user_type= $query -> execute();
+		return $user_type;	
+	}
+	public function getByUsername($username){
+	    $query = Doctrine_Query::create() -> select("fname") -> from("user")->where("username='$username'");
+		$user_type= $query -> execute();
+		return $user_type;	
+	}
 }

@@ -49,7 +49,7 @@ public function session_timeout(){
 		$id = $this -> session -> userdata('user_id');
 		$time = date("Y-m-d G:i:s", time());
 		$status = "Inactive";
-		if($this->session->userdata("user_id")){
+		if($this->session->userdata("user_id")>0){
 		$q = Doctrine_Query::create() -> update('logi') -> set('status', '?', "$status")->set('t_logout', '?', "$time") -> where("user_id='$id' AND status='Active'");
 		$q -> execute();
 		$data = array();
@@ -182,44 +182,44 @@ public function session_timeout(){
 		 $this->index();
 		 return;
 		 }*/
-
+		$username = trim($this -> input -> post('username'));// strip ay whitespaces
+		$username_check=$this->check_username($username);
+      
+ 
 		$email = $this -> input -> post('email');
 		$name1 = $this -> input -> post('fname');
 		$name2 = $this -> input -> post('lname');
 		//$password="msos123";
 		$password = $this -> input -> post('password');
-		$username = $this -> input -> post('username');
-		$id = $this -> input -> post('facility');
-		$province = $this -> input -> post('province');
-		$district = $this -> input -> post('district');
-		if ($province == '-- Select District --') {
-			$province = 'NULL';
+		//$id = $this -> input -> post('facility');
+		$province = $this -> input -> post('county');
+		$district = $this -> input -> post('subcounty');
+		$user_access=$this -> input -> post('type');
+		
+		if($user_access==1 || $user_access==2 || $user_access==5){
+		$province = "Null";
+		$district = "Null";
 		}
-		if ($district == '-- Select District --') {
-			$district = 'NULL';
+		else if($user_access==3){
+			$district = "Null";
 		}
-
+		else if($user_access==4){
+			$province = "Null";
+		}
 		$u = new User();
 		$u -> fname = $this -> input -> post('fname');
 		$u -> email = $this -> input -> post('email');
 		$u -> username = $this -> input -> post('username');
 		$u -> password = $this -> input -> post('password');
-		$u -> usertype_id = $this -> input -> post('type');
+		$u -> usertype_id = $user_access;
 		$u -> telephone = $this -> input -> post('tell');
 		$u -> county = $province;
 		$u -> district = $district;
 		$u -> facility = $this -> input -> post('facility');
 		$u -> save();
         
-		 $data['title'] = "Administrators";
-		$data['content_view'] = "add_moh_view";
-		$data['banner_text'] = "Add Administrator";
-		$data['link'] = "add_moh_view";
-		$data['level_l'] = Access_level::getAll();
-		$data['province'] = Facility::county();
-		$data['district'] = Facility::district();
-		$data['quick_link'] = "add_moh_view";
-		$this -> load -> view("template", $data);
+		 redirect("user_management/moh");
+		 
 	}
 
 	private function _submit_validate1() {
@@ -283,8 +283,8 @@ public function session_timeout(){
 		$data['banner_text'] = "Add Administrator";
 		$data['link'] = "add_moh_view";
 		$data['level_l'] = Access_level::getAll();
-		$data['province'] = Facility::county();
-		$data['district'] = Facility::district();
+		$data['counties'] = Facility::county();
+		$data['sub_counties'] = Facility::district();
 		$data['quick_link'] = "add_moh_view";
 		$data['left_content']="true";
 		
@@ -321,13 +321,13 @@ public function session_timeout(){
 		$state=Doctrine::getTable('user')->findOneById($id);
 		$state->status=$status;
 		$state->save();
-		
+		redirect("user_management/users_facility");
 
-		$data['title'] = "View Users";
+		/*$data['title'] = "View Users";
 		$data['content_view'] = "users_facility_v";
 		$data['banner_text'] = "Facility Users";
 		$data['result'] = User::getAll();
-		$this -> load -> view("template", $data);
+		$this -> load -> view("template", $data);*/
 	}
 	public function user_reset(){
 		$id=$this->uri->segment(3);
@@ -404,7 +404,7 @@ public function session_timeout(){
 		//echo $pass->password
 		$pass->status=0;
 		$pass->save();
-		$this->users_facility();
+		redirect("user_management/users_facility");
 	}
 	
 	public function Change_pass() {
@@ -415,6 +415,7 @@ public function session_timeout(){
 		$data['link'] = "changefcpass";
 		//$data['all'] = Incidence::get_confirmation($id);
 		$data['quick_link'] = "changefcpass";
+		//redirect("home_controller");
 		$this -> load -> view("template", $data);
 	}
 	public function forgot_password(){
@@ -447,4 +448,57 @@ public function users_online(){
 	$data["content_view"]="users_online";
 	$this->load->view("template",$data);
 }
+
+public function check_username($username){
+  $username=trim($username);
+  $response = array();
+  $usedetail=User::getByUsername($username);
+  $username_check=false;
+  foreach($usedetail as $details){
+  	$username_check=true;
+  }
+  // if the username is blank
+  if (!$username) {
+    $response = array(
+      'ok' => false, 
+      'msg' => "Please specify a username");
+      
+  // if the username does not match a-z or '.', '-', '_' then it's not valid
+  } else if (!preg_match('/^[a-z0-9.-_]+$/', $username)) {
+    $response = array(
+      'ok' => false, 
+      'msg' => "Your username can only contain alphanumerics and period, dash and underscore (.-_)");
+      
+  // this would live in an external library just to check if the username is taken
+  } else if ($username_check) {
+    $response = array(
+      'ok' => false, 
+      'msg' => "The selected username is not available");
+      
+  // it's all good
+  } else {
+    $response = array(
+      'ok' => true, 
+      'msg' => "This username is free");
+  }
+
+  //return $response;
+  return $response;
 }
+function json_response($username,$action){
+  	//if (@$_REQUEST['action'] == 'check_username' && isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+  		if(!isset($username) || $username==''){
+  			$response = array(
+      'ok' => false, 
+      'msg' => "Please specify a username");
+      echo json_encode($response);
+    exit; // only print out the json version of the response
+  		}
+  		if($action=="check_username"){
+    echo json_encode($this->check_username($username));
+    exit; // only print out the json version of the response
+		}
+    
+  }
+
+}// End of class

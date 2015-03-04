@@ -58,28 +58,9 @@ if (!isset($quick_link)) {
 	$quick_link = null;
 }
 
-
-$access_level = $this -> session -> userdata('user_indicator');
-$user_is_administrator = false;
-$user_is_moh = false;
-$user_is_kemri = false;
-$user_is_district = false;
-$user_is_county = false;
-$user_is_moh= false;
-
-if ($access_level == "Administrator") {
-	$user_is_administrator = true;
-} else if ($access_level == "MOH") {
-	$user_is_moh = true;
-} else if ($access_level == "KEMRI") {
-	$user_is_kemri = true;
-} else if ($access_level == "District Administrator") {
-	$user_is_district = true;
-}else if ($access_level == "County Administrator") {
-	$user_is_county = true;
-}
 if (isset($scripts)) {
 	foreach ($scripts as $script) {
+
 		echo "<script src=\"" . base_url() . "Scripts/" . $script . "\" type=\"text/javascript\"></script>";
 	}
 }
@@ -174,8 +155,8 @@ else{
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-    </script>
+    <?php  if(isset($map['js'])){
+ 	echo $map['js'];}?>
     <style>
 .panel-success>.panel-heading {
 color: white;
@@ -189,64 +170,6 @@ background-color: white;
 border-color: #e7e7e7;
 }
 </style>
-
-<script>
-  		/*	$(function() {
-  	
-  	   $( "#month" ).combobox({
-        	selected: function(event, ui) {
-        		
-           var data =$("#year").val();
-           var month =$("#month").val();
-           //var name =encodeURI($("#desc option:selected").text());
-          
-          
-        var url = "<?php //echo base_url().'report_management/monthly' ?>";*/
-			/*$.ajax({
-			type: "POST",
-			data: "year="+data+"&month="+month,
-			url: url,
-			beforeSend: function() {
-			$("#contentlyf").html("");
-			},
-			success: function(msg) {
-			$("#contentlyf").html(msg);
-
-			}
-			});
-			return false;
-
-			}
-			});
-
-			$("#disease").combobox({
-			selected: function(event, ui) {
-
-			var dyear =$("#dyear").val();
-			var dmonth =$("#dmonth").val();
-			var dise=$("#disease").val();
-			var names =encodeURI($("#disease option:selected").text());
-
-			var url = "<?php //echo base_url().'report_management/daily' ?>";*/
-	/*$.ajax({
-	type: "POST",
-	data: "year="+dyear+"&month="+dmonth+"&disease="+dise+"&name="+names,
-	url: url,
-	beforeSend: function() {
-	$("#contently").html("");
-	},
-	success: function(msg) {
-	$("#contently").html(msg);
-
-	}
-	});
-	return false;
-
-	}
-	});
-
-	});*/
-</script>
   </head>  
   <body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">
     <!-- Fixed navbar -->
@@ -261,10 +184,11 @@ border-color: #e7e7e7;
           </button>
          
           <a style="margin-top: auto;" href="<?php if(isset($ebola_admin)){echo base_url().'Ebola_controller';}else{echo base_url().'home_controller';}?>">
-          	<img style="display:inline-block; width:auto%; width: 100px; height: 16%;margin-top:-10%" src="<?php echo base_url()?>Images/msos_logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
+          	<img style="display:inline-block; width:auto%; width: 100px;margin-top:-20%" src="<?php echo base_url()?>Images/msos_logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
           	</a>
 				<div id="logo_text" style="display:inline-block; margin-top: 0%">
-					<span style="font-size: 1.20em;font-weight: bold; ">Disease Surveillance and Response Unit - Ministry of Health</span><br />
+					<span style="font-size: 1.20em;font-weight: bold; ">Disease Surveillance and Response Unit</span><br />
+					<span style="font-size: 0.95em;font-weight: bold;">Ministry of Health</span><br/>
 					<span style="font-size: 0.95em;font-weight: bold;">Mobile SMS Based Disease Outbreak Alert System</span><br/>
 					<span style="font-size: 0.95em;">SATREPS Project</span><br />	
 					<span style="font-size: 0.95em; font-weight: bold;">Developed By:</span><br />
@@ -360,7 +284,7 @@ border-color: #e7e7e7;
 
     <div class="container-fluid" style="" id="main-content">
 <!----------- MSOS top buttons--------->
-<div class="container" style="width: 96%; margin-top:5%;">
+<div class="container" style="width: 96%; margin-top:7%;">
 	<div class="row">
 		
 		<!--<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> Primary</button>-->
@@ -409,17 +333,17 @@ border-color: #e7e7e7;
 		<div class="col-md-3">
 		
 	<div class="row">			
-			<div class="col-md-12">				
+			<div class="col-md-12">	
+							
 			<div class="panel panel-primary">
       		<div class="panel-heading">
         		<h3 class="panel-title">Actions <span class="glyphicon glyphicon-list-alt"></span></h3>
-      </div>
-      <div class="panel-body">
-    <div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
+            </div>
+        
+      <div class="panel-body" style="overflow-y: auto">
+            
             <div class="panel-group" id="accordion">
-            	
+       
                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -581,13 +505,9 @@ border-color: #e7e7e7;
                     </div>
                 </div><?php } ?>
             </div>
-        </div>
-        
-    </div>
+ 
 </div>
 
-       
-      </div>
         </div>      
 
       </div>    
@@ -617,17 +537,7 @@ border-color: #e7e7e7;
 			</p>
 		</div>
 		 <?php endif; ?>
-		 
-		 <?php /*if($facility_dashboard_notifications['facility_donations']>0): ?>
-      	 <div style="height:auto; margin-bottom: 2px" class="warning message ">      	
-        <h5>Inter Facility Donation</h5> 
-        	<p>
-			<a class="link" href="<?php echo base_url('issues/confirm_external_issue') ?>"><span class="badge"><?php 
-				echo $facility_dashboard_notifications['facility_donations'];?></span> Items have been donated</a> 
-			</p>
-			 </div>
-		  <?php endif; */// Potential Expiries?>
-		 
+	 
       </div>    
     </div>
 	</div>
@@ -673,14 +583,15 @@ border-color: #e7e7e7;
     </div>
    </div>
     
-    </div> <!-- /container -->
+    </div> 
+    <!-- / END OF CONTAINER -->
+    
    <div id="footer">
       <div class="container">
-        <p class="text-muted"> Government of Kenya &copy <?php echo date('Y');?>. All Rights Reserved
-</p>
-        
+        <p class="text-muted"> Government of Kenya &copy <?php echo date('Y');?>. All Rights Reserved</p>
       </div>
     </div>
+    
     
     <script type="text/javascript">
     /*
@@ -764,4 +675,5 @@ return i;
   <script src="<?php echo base_url().'assets/datatable/dataTables.bootstrapPagination.js'?>" type="text/javascript"></script>
   <!-- validation ===================== -->
   <script src="<?php echo base_url().'assets/scripts/jquery.validate.min.js'?>" type="text/javascript"></script>
+</body>
 </html>

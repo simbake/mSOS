@@ -22,6 +22,7 @@ class ebola_Reports extends CI_Controller{
 		$data['content_view'] = "ebola_response";
 		$data['banner_text'] = "Respond to Ebola Incidents";
 		$data['link'] = "ebola_response";
+		$data['ebola_admin']='true';
 		$data['all'] = incidence_ebola::get_confirmation($id);
 		$data['quick_link'] = "ebola_response";
 		//$data['left_content']="true";
@@ -421,7 +422,7 @@ else{
 	}
 	while($ebola_receivers);*/
 	$all= User::ebola_Kemri_receivers();
-	$message="Kemri Lab Results: Ebola incident ID: ".$incident_id." found as: ".$results.". Comments: ".$comments." Lab time:  ".$date_released;
+	$message="KEMRI Lab Results For The Suspected Ebola incident ID: ".$incident_id." found as: ".$results.". Comments: ".$comments.". Lab time:  ".$date_released;
         foreach($all as $row){        
         $error_r = rawurlencode($message);
 		$sender_telephone=$row->telephone;
