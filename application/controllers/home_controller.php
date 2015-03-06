@@ -346,6 +346,8 @@ class Home_Controller extends MY_Controller {
 				
 					
 				$coodinates = Incidence::get_facility_count_by_disease($filter_disease);
+	            			
+			
 				}
          else{
 				$coodinates = Incidence::get_facility_count();
@@ -363,7 +365,7 @@ class Home_Controller extends MY_Controller {
 					foreach ($coordinate->incident as $vals) {
 
 						foreach ($coordinate->disease_name as $disease1) {
-
+                            $data['map_diseaseName']=$disease1->Full_Name;
 							$marker = array();
 							$marker['position'] = $vals -> latitude . ',' . $vals -> longitude;
 							$marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|9999FF|000000';

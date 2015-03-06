@@ -85,6 +85,18 @@ $(document).ready(function () {
   });
 });
   </script>
+  <style>
+  	input:focus:invalid,
+textarea:focus:invalid{
+    border:solid 2px #F5192F;
+}
+
+input:focus:valid,
+textarea:focus:valid{
+    border:solid 2px #18E109;
+    background-color:#fff;
+}
+  </style>
 
 	
 	<div class="col-md-7" style="padding-left: 1.5%;">
@@ -111,14 +123,14 @@ $(document).ready(function () {
   <div class="form-group">
     <label for="tell" class="col-sm-2 control-label" >Telephone: </label>
     <div class="col-sm-10">
-   <input type="text" name="tell" id="tell" class="form-control" placeholder="e.g 254720123456" onkeypress='validate(event)' required="required"/>   
+   <input type="text" name="tell" id="tell" class="form-control" maxlength="12" placeholder="e.g 254720123456" onkeypress='validate(event)' required="required"/>   
     </div>
   </div>
   
   <div class="form-group">
     <label for="email" class="col-sm-2 control-label">Email: </label>
     <div class="col-sm-10">
-      <input type="email" name="email" id="Email" placeholder="e.g ddsrmsos@gmail.com" class="form-control" required="required"/>
+      <input type="email" name="email" id="Email" title="Please check that you have entered the email address correctly" placeholder="e.g ddsrmsos@gmail.com" class="form-control" required="required"/>
     </div>
   </div>
   

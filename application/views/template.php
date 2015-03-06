@@ -143,6 +143,14 @@ else{
    
 	<link href="<?php echo base_url().'assets/datatable/TableTools.css'?>" type="text/css" rel="stylesheet"/>
 	<link href="<?php echo base_url().'assets/datatable/dataTables.bootstrap.css'?>" type="text/css" rel="stylesheet"/>
+	
+	<!--Boot-select-->
+	<link href="<?php echo base_url().'assets/bootstrap-select/css/bootstrap-select.min.css'?>" type="text/css" rel="stylesheet"/>
+	
+	<link href="<?php echo base_url().'assets/buttons/css/buttons.css'?>" type="text/css" rel="stylesheet"/>
+	
+	<link href="<?php echo base_url().'assets/fuelux/css/fuelux.min.css'?>" type="text/css" rel="stylesheet"/>
+	
 
   <!--clock items-->
   <!--<link href="<?php echo base_url().'assets/css/clock.css'?>" type="text/css" rel="stylesheet"/>
@@ -171,7 +179,8 @@ border-color: #e7e7e7;
 }
 </style>
   </head>  
-  <body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">
+  <body class="fuelux">
+  <!--<body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">-->
     <!-- Fixed navbar -->
    <div class="navbar navbar-default navbar-fixed-top" id="">
    <div class="container" style="width: 100%;">
@@ -291,35 +300,35 @@ border-color: #e7e7e7;
 		<?php $current = $id=$this->uri->segment(2); //echo $current;
 		 if($user_is_administrator && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>user_management/moh"><button type="button" class="btn btn-primary <?php if($current=="moh") echo "active"  ?>"><span class="glyphicon glyphicon-user" > Register Users</span></button></a>
+		<a href="<?php echo base_url(); ?>user_management/moh"><button type="button" class="button <?php if($current=='moh'){ echo 'active';} else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-user" > Register Users</span></button></a>
 		
 		<?php } if($user_is_administrator && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url() ?>user_management/users_facility"><button type="button" class="btn btn-primary <?php if($current=="users_facility") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Manage Users</span></button></a>
+		<a href="<?php echo base_url() ?>user_management/users_facility"><button type="button" class="button <?php if($current=="users_facility"){ echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Manage Users</span></button></a>
 		
 		<?php } if($user_is_administrator && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>a_management/sendSMS"><button type="button" class="btn btn-primary <?php if($current=="sendSMS") echo "active"  ?>"><span class="glyphicon glyphicon-envelope" > Send Bulk SMS</span></button></a>
+		<a href="<?php echo base_url(); ?>a_management/sendSMS"><button type="button" class="button <?php if($current=="sendSMS") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-envelope" > Send Bulk SMS</span></button></a>
 		
 		<?php } if($user_is_kemri && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>a_management/confirm"><button type="button" class="btn btn-primary <?php if($current=="confirm") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Confirm Alert</span></button></a>
+		<a href="<?php echo base_url(); ?>a_management/confirm"><button type="button" class="button  <?php if($current=="confirm") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Confirm Alert</span></button></a>
 		
 		<?php } if($user_is_kemri && isset($ebola_admin)){  ?>
 		
-		<a href="<?php echo base_url(); ?>ebola_reports/kemri_lab_results"><button type="button" class="btn btn-primary <?php if($current=="kemri_lab_results") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results</span></button></a>
+		<a href="<?php echo base_url(); ?>ebola_reports/kemri_lab_results"><button type="button" class="Button  <?php if($current=="kemri_lab_results") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results</span></button></a>
 
 		<?php } if($user_is_kemri && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>a_management/kemri_table_view"><button type="button" class="btn btn-primary <?php if($current=="kemri_table_view") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Confrim View</span></button></a>
+		<a href="<?php echo base_url(); ?>a_management/kemri_table_view"><button type="button" class="button  <?php if($current=="kemri_table_view") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Confrim View</span></button></a>
 	    
 	    <?php } if($user_is_kemri && isset($ebola_admin)){ ?>
-	  <a href="<?php echo base_url(); ?>ebola_Reports/kemri_table_view"><button type="button" class="btn btn-primary <?php if($current=="kemri_table_view") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results View</span></button></a>
+	  <a href="<?php echo base_url(); ?>ebola_Reports/kemri_table_view"><button type="button" class="button  <?php if($current=="kemri_table_view") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results View</span></button></a>
 
 	    <?php } ?>
 	    <?php  if($user_is_district || $user_is_county){ ?>
 		
-		<a href="<?php echo base_url(); ?>c_incidents/all_diseases"><button type="button" class="btn btn-primary <?php if($current=="all_diseases") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Incidents</span></button></a>
+		<a href="<?php echo base_url(); ?>c_incidents/all_diseases"><button type="button" class="button  <?php if($current=="all_diseases") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Incidents</span></button></a>
 	    
 	    <?php } ?>
 		
@@ -654,9 +663,10 @@ if (i<10)
 return i;
 }  
 	$(document).ready(function() {
-					$('.alert-success').fadeOut(10000, function() {
+   $('.alert-success').fadeOut(10000, function() {
     // Animation complete.
 });
+$('.selectpicker').selectpicker();
 });
 </script>
    <script src="<?php echo base_url().'assets/boot-strap3/js/bootstrap.min.js'?>" type="text/javascript"></script>
@@ -675,5 +685,11 @@ return i;
   <script src="<?php echo base_url().'assets/datatable/dataTables.bootstrapPagination.js'?>" type="text/javascript"></script>
   <!-- validation ===================== -->
   <script src="<?php echo base_url().'assets/scripts/jquery.validate.min.js'?>" type="text/javascript"></script>
+  
+  <script src="<?php echo base_url().'assets/bootstrap-select/js/bootstrap-select.min.js'?>" type="text/javascript"></script>
+  <script src="<?php echo base_url().'assets/bootbox/bootbox.min.js'?>" type="text/javascript"></script>
+  
+  <script src="<?php echo base_url().'assets/buttons/js/buttons.js'?>" type="text/javascript"></script>
+  <script src="<?php echo base_url().'assets/fuelux/js/fuelux.min.js'?>" type="text/javascript"></script>
 </body>
 </html>
