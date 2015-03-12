@@ -124,4 +124,9 @@ class User extends Doctrine_Record {
 		$user_type= $query -> execute();
 		return $user_type;	
 	}
+	public function count_users(){
+		$query = Doctrine_Query::create() -> select("count(id) as total") -> from("user")->where("status='1'");
+		$user_type= $query -> execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
+		return $user_type;	
+	}
 }

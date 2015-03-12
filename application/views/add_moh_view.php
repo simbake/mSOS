@@ -154,7 +154,7 @@ textarea:focus:valid{
 			<option value="<?php echo $type;?>"><?php echo $level;?></option>
 		<?php }
 		?>
-			</select>
+		</select>
     </div>
   </div>
   
@@ -182,7 +182,7 @@ textarea:focus:valid{
 			<option value="<?php echo $subcounties->district;?>"><?php echo $subcounties->district;?></option>
 		<?php }
 		?>
-			</select>
+	 </select>
     </div>
   </div>
  

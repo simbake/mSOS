@@ -163,8 +163,6 @@ else{
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <?php  if(isset($map['js'])){
- 	echo $map['js'];}?>
     <style>
 .panel-success>.panel-heading {
 color: white;
@@ -179,10 +177,11 @@ border-color: #e7e7e7;
 }
 </style>
   </head>  
-  <body class="fuelux">
+  <body class="">
   <!--<body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">-->
     <!-- Fixed navbar -->
-   <div class="navbar navbar-default navbar-fixed-top" id="">
+	<div id="content_nav">
+   <div class="navbar navbar-default navbar-fixed-top">
    <div class="container" style="width: 100%;">
         <div class="navbar-header " > 
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -193,7 +192,7 @@ border-color: #e7e7e7;
           </button>
          
           <a style="margin-top: auto;" href="<?php if(isset($ebola_admin)){echo base_url().'Ebola_controller';}else{echo base_url().'home_controller';}?>">
-          	<img style="display:inline-block; width:auto%; width: 100px;margin-top:-20%" src="<?php echo base_url()?>Images/msos_logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
+          	<img style="display:inline-block;width: 100px;margin-top:-20%;" src="<?php echo base_url()?>Images/msos_logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
           	</a>
 				<div id="logo_text" style="display:inline-block; margin-top: 0%">
 					<span style="font-size: 1.20em;font-weight: bold; ">Disease Surveillance and Response Unit</span><br />
@@ -225,9 +224,9 @@ border-color: #e7e7e7;
             
           	</div>
           	
-          <div class="row">
+          <div class="row" id="top-menu">
           	<div class="col-md-12">
-          	<ul class="nav navbar-nav navbar-right">
+          	<ul class="nav navbar-nav navbar-right" >
      
       <?php if($this->session->userdata("ebola_login")==1){ ?>
        
@@ -243,7 +242,7 @@ border-color: #e7e7e7;
        <?php if(!isset($ebola_admin)){ ?><li><a href="<?php echo site_url().'sms/index ';?>" class=" ">Send SMS</a> </li> 
        <li><a href="<?php echo site_url().'c_disease/disease_list';?>" class=" ">Disease List</a> </li> <?php } ?>
        <?php if($user_is_administrator && !isset($ebola_admin)){  ?>
-       	<li><a href="<?php echo site_url(); ?>redirect/leave_view/server_monitor" class=" ">Server Monitor</a> </li>
+       	<li><a href="<?php echo site_url(); ?>Dashboard" class=" ">Dashboard</a> </li>
        	<?php } ?>
        <!--<li><a href="" class=" ">User </a></li> -->  
 	 
@@ -290,10 +289,12 @@ border-color: #e7e7e7;
       	</div>      	
       </div>	
       </div>
-
-    <div class="container-fluid" style="" id="main-content">
+	  </div>
+	  
+  <div id="main-content">
+    <div class="container-fluid" style="">
 <!----------- MSOS top buttons--------->
-<div class="container" style="width: 96%; margin-top:7%;">
+<div class="container" style="width: 96%;">
 	<div class="row">
 		
 		<!--<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> Primary</button>-->
@@ -592,7 +593,7 @@ border-color: #e7e7e7;
     </div>
    </div>
     
-    </div> 
+    </div></div> 
     <!-- / END OF CONTAINER -->
     
    <div id="footer">

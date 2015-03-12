@@ -3,6 +3,8 @@ class Logi extends Doctrine_Record {
 	public function setTableDefinition() {
 		$this -> hasColumn('id', 'int',15);
 		$this -> hasColumn('user_id', 'int',15);
+		$this -> hasColumn('ip_address', 'text');
+		$this -> hasColumn('user_agent', 'text');
 		$this -> hasColumn('status', 'varchar',255);
 		$this -> hasColumn('t_login', 'datetime');
 		$this -> hasColumn('t_logout', 'datetime');			
