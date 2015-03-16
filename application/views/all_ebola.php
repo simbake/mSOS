@@ -105,7 +105,7 @@
 						   
 						   else{
 						   ?>
-						   <a href="<?php echo site_url('ebola_Reports/respond/'.$row->id)?>"
+						   <a href="<?php echo site_url('ebola_Reports/respond/'.$row->msos_code)?>"
 				 class='label label-primary'><span class="glyphicon glyphicon-comment"></span> Respond</a>
 						   <?php 
 						   }

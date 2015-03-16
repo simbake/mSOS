@@ -38,7 +38,7 @@ class User_Management extends MY_Controller {
 
 		if ($this -> session -> userdata("user_id")) {
 			redirect("home_controller");
-			exit;
+			exit ;
 		}
 		$data = array();
 		$data['title'] = "System Login";
@@ -56,7 +56,7 @@ class User_Management extends MY_Controller {
 			$this -> session -> sess_destroy("mSOS_session");
 		}
 		redirect("home_controller");
-		exit;
+		exit ;
 	}
 
 	public function login_user() {
@@ -127,11 +127,11 @@ class User_Management extends MY_Controller {
 			if ($ebola_login == 1) {
 
 				redirect("ebola_controller");
-				exit;
+				exit ;
 
 			} else {
 				redirect("home_controller");
-				exit;
+				exit ;
 			}
 
 		}
@@ -421,21 +421,97 @@ class User_Management extends MY_Controller {
 	}
 
 	public function forgot_pass_submit() {
-		$user_email = $this -> input -> post("email_address");
-		$user_search = User::get_userbyEmail($user_email);
+		$this -> load -> helper('email');
+		$this -> load -> library('encrypt');
+		$user_email = $this -> input -> post('email');
+		$encrypt_string = $user_email . date(time());
+		$reset_token = $this -> encrypt -> encode($encrypt_string);
+		$reset_token_url=urlencode($reset_token);
+		if ($user_email != '') {
+			//$key='ekdosslsir';
+			//$encrypted_string = $this -> encrypt -> decode($user_email, $key);
+			//echo $encrypted_string;exit;
+			if (valid_email($user_email)) {
+				$user_search = User::get_userbyEmail($user_email);
 
-		$checker = 0;
-		foreach ($user_search as $fname) {
-			if ($fname -> fname) {
-				$checker = 1;
-				echo "User with email address: $user_email, found. Names:$fname->fname.<br/>";
+				$checker = 0;
+				foreach ($user_search as $fname) {
+					if ($fname -> fname) {
+						$checker = 1;
+						$data['fname'] = $fname -> fname;
+						$data['username'] = $fname -> username;
+						$data['email'] = $user_email;
+						$data['message'] = "<strong>Dear $fname->fname,</strong><br/>
+                               A password reset request was initialized for mSOS. Please use the link below to reset your password:<br />
+							   <br/>
+							   <a target='_blank' href'http://www.ddsr.or.ke/mSOS/user_management/reset_password_email/".$reset_token_url."'>Reset Link</a>
+							    <br />
+							   <br/>
+						
+						
+							   Please note that this link will be active for only 5 minutes.
+							   Contact administrator for additional issues through the email address.
+						
+                                                <br />
+                                                <br />
+												<strong>Kind Regards,<br />
+											   The mSOS Team.</strong>";
+						$message = $this -> load -> view("email_template", $data, true);
+						//echo "Under Maintainace. Please try again later.";
+
+						$config['protocol'] = 'smtp';
+						$config['smtp_host'] = 'ssl://smtp.gmail.com';
+						$config['smtp_port'] = '465';
+						$config['smtp_timeout'] = '7';
+						$config['smtp_user'] = 'ddsrmsos@gmail.com';
+						$config['smtp_pass'] = 'Y1MR3Wq3pn';
+						$config['charset'] = 'utf-8';
+						$config['newline'] = "\r\n";
+						$config['mailtype'] = 'html';
+						// or html
+						$config['validation'] = TRUE;
+						// bool whether to validate email or not
+
+						$this -> load -> library('email', $config);
+						$this -> email -> initialize($config);
+
+						$this -> email -> set_newline("\r\n");
+						$this -> email -> from('ddsrmsos@gmail.com');
+						// change it to yours
+						$this -> email -> to($user_email);
+						// change it to yours
+						$this -> email -> bcc('');
+						$this -> email -> subject('Message From : mSOS Password Reset');
+						$this -> email -> message($message);
+
+						if ($this -> email -> send()) {
+							$generated_time =date("Y-m-d G:i:s", time());
+							$q = Doctrine_Query::create() -> update('User') -> set('reset_token', "$reset_token", 'token_generated', "$generated_time") -> where("email='$user_email'");
+							$q -> execute();
+							echo json_encode("A reset link has been sent to your email.");
+						} else {
+							$error = show_error($this -> email -> print_debugger());
+							header('Content-Type: application/json');
+							echo json_encode("Error occurred :-( " . $error);
+						}
+						break;
+					} else {
+						header('Content-Type: application/json');
+						echo json_encode("User with email address, $user_email, was not found. Please try again!");
+						break;
+					}
+				}
+				if ($checker == 0) {
+					header('Content-Type: application/json');
+					echo json_encode("User with email address, $user_email, was not found. Please try again!");
+				}
 			} else {
-				echo "User with email address, $user_email, was not found. Please try again!";
-				break;
+				header('Content-Type: application/json');
+				echo json_encode("Please Enter a valid email address!");
 			}
-		}
-		if ($checker == 0) {
-			echo "User with email address, $user_email, was not found. Please try again!";
+		} else {
+			header('Content-Type: application/json');
+			echo json_encode("Please submit an email to continue!");
 		}
 	}
 

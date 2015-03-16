@@ -222,5 +222,11 @@ public function get_incidence_ebola_count() {
 		$all = $query -> execute();
 		return $all;
 	}
+	public function report_rate($year,$county){
+		$query = Doctrine_query::create() -> select("monthname(Time) as Month, 
+  year(Time) as Year, count(id) as total") -> from("incidence") -> where("year(Time)='$year' AND county='$county'")->groupby("monthname(Time), year(Time)");
+		$all = $query -> execute();
+		return $all->toArray();
+	}
 
 }

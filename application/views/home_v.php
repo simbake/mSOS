@@ -73,7 +73,7 @@
       <div class="panel-body" style="overflow-y: auto">
       	<?php if($this->session->userdata("user_indicator")=="Administrator"){ ?>
       		
-      	<select onchange="showFields(this.value)" style="width: auto;" data-live-search="true" title='Please Select Disease To Filter' data-size="5" data-width="auto" class="selectpicker" multiple data-max-options="1" >
+      	<select onchange="showFields(this.value)" style="width: auto;" data-live-search="true" title='Please Select Disease To Filter' data-size="5" data-width="auto" class="selectpicker" data-max-options="1" >
       	 <!--<option disabled="disabled">----Please select disease to filter map-----</option>-->
       	 <option value='0'>All Disease</option>
       	<?php foreach($all_diseases as $diseases_all){  ?>

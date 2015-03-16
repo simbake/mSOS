@@ -23,14 +23,22 @@ class incidence_ebola extends Doctrine_Record {
 
 	public function setUp() {
 		$this -> setTableName('incidence_ebola');
-		$this -> hasMany('User as ebl_numbers', array('local' => 'reported_by', 'foreign' => 'telephone'));
 		$this -> hasMany('diseases as disease_name', array('local' => 'Disease_id', 'foreign' => 'id'));
+		$this -> hasMany('User as ebl_numbers', array('local' => 'reported_by', 'foreign' => 'telephone'));
+		$this -> hasMany('User as location_user', array('local' => 'location_reported_by', 'foreign' => 'telephone'));
 		$this -> hasMany('incident_log_ebola as logs_ebola', array('local' => 'msos_code', 'foreign' => 'incident_id'));
+		$this -> hasMany('kemri_response_ebola as kemri_response', array('local' => 'msos_code', 'foreign' => 'incident_id'));
+	}
+	
+	public function getAll(){
+		$query = Doctrine_query::create() -> select("*") -> from("incidence_ebola");
+		$incident = $query -> execute();
+		return $incident;
 	}
 
-	public static function getAll() {
-		$query = Doctrine_Query::create() -> select("*") -> from("incidence_ebola");
-		$categories = $query -> execute();
+	public static function get_Response() {
+		$query = Doctrine_Query::create() -> select("*") -> from("incidence_ebola i")->leftjoin("i.kemri_response k")->leftjoin("i.logs_ebola l")->orderBy("i.msos_code");
+		$categories = $query -> execute(array(), Doctrine::HYDRATE_RECORD);
 		return $categories;
 	}
 	public function get_ebola_count() {
@@ -48,8 +56,8 @@ class incidence_ebola extends Doctrine_Record {
 		$confirm = $query -> count();
 		return $confirm;
 	}
-    public function get_confirmation($id) {
-		$query = Doctrine_Query::create() -> select("*") -> from("incidence_ebola") -> where("id = '$id'");
+    public function get_confirmation($msos_code) {
+		$query = Doctrine_Query::create() -> select("*") -> from("incidence_ebola") -> where("msos_code = '$msos_code'");
 		$user = $query -> execute();
 		return $user[0];
 	}

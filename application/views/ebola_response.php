@@ -148,7 +148,7 @@
     
 	</div>
 
-<div class="col-md-9" style="padding-left: 1%;">
+<div class="col-md-9" style="padding-left: 0%;">
 	 	<?php
 
 if (isset($all)) {
@@ -192,6 +192,7 @@ if (isset($all)) {
 			     		Reported Incident <span class="glyphicon glyphicon-info-sign"></span>
 			     	</div>
 			     	<div class="panel-body" style="overflow-y: auto">
+			     		<?php echo validation_errors(); ?>
 			     		<form  style="width: 100%" role="form" method="post" action="<?php echo base_url().'ebola_reports/confirm_response'?>" enctype="multipart/form-data">
 			     			<input type="hidden" name="id" id="id" value="<?php echo $this->uri->segment(3); ?>" />
 			     			<div class="row">

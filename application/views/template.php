@@ -117,7 +117,15 @@ else{
 				$diseasez= Incidence::get_disease_count();
 				$confirmz= Incidence::confirm();
 }
-
+$user_ip = $this -> input -> ip_address();
+			$ips = System_Visits::check_ip($user_ip);
+			if ($ips) {
+				//echo 'ip check: '.$ips;
+			} else {
+				$ipz = new System_Visits();
+				$ipz -> ip_address = $user_ip;
+				$ipz->save();
+			}
 ?>
 <!DOCTYPE html>
 <html lang="en">

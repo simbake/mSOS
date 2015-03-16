@@ -16,6 +16,8 @@ class User extends Doctrine_Record {
 		$this->hasColumn('created_at', 'varchar', 255);
 		$this->hasColumn('status', 'int', 1);
 		$this->hasColumn('ebola_login', 'int', 1);
+		$this->hasColumn('reset_token', 'Text');
+		$this->hasColumn('token_generated', 'datetime');
 		
 	}
 	
@@ -110,7 +112,7 @@ class User extends Doctrine_Record {
 		return $user_type;
 	}
 	public function get_userbyEmail($email){
-		$query = Doctrine_Query::create() -> select("fname") -> from("user")->where("email='$email'");
+		$query = Doctrine_Query::create() -> select("fname,username") -> from("user")->where("email='$email'");
 		$user_type= $query -> execute();
 		return $user_type;
 	}
