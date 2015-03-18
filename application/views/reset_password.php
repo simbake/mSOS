@@ -30,6 +30,35 @@
 				font-size: 1.6em;
 			}
 		</style>
+		<script>
+			var Timer;
+var TotalSeconds=10;
+
+
+function CreateTimer() {
+	var TimerID=$('#timer');
+	var Time=10;
+Timer = $(TimerID);
+TotalSeconds = Time;
+
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+
+function Tick() {
+	TotalSeconds -= 1;
+	if(TotalSeconds==-1){
+		window.location.href = "<?php echo base_url().'home_controller' ?>";
+	}else{
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+}
+
+function UpdateTimer() {
+Timer.html("<strong>"+TotalSeconds+"<strong/>");
+}
+		</script>
 
 	</head>
 	<body data-spy="scroll" data-target=".subnav" data-offset="50" screen_capture_injected="true" style="padding: 0;">
@@ -76,7 +105,9 @@
  
 					<div class="alert alert-danger alert-dismissable" style="text-align:center;">
 						<?php echo $error_message ?>  You will be redirected in <p id='timer'><strong>10</strong></p>seconds.
-						
+						<script>
+							CreateTimer()
+						</script>
 					</div>
 				</div>
 				<div class="col-md-4" style="">
@@ -144,37 +175,8 @@
 		<script>
 			$(document).ready(function() {
 					
-				if($('#timer')){		
-				CreateTimer('#timer',10);
-				}
-				
-				
 			});
-var Timer;
-var TotalSeconds=10;
 
-
-function CreateTimer(TimerID, Time) {
-Timer = $(TimerID);
-TotalSeconds = Time;
-
-UpdateTimer()
-window.setTimeout("Tick()", 1000);
-}
-
-function Tick() {
-	TotalSeconds -= 1;
-	if(TotalSeconds==-1){
-		window.location.href = "<?php echo base_url().'home_controller' ?>";
-	}else{
-UpdateTimer()
-window.setTimeout("Tick()", 1000);
-}
-}
-
-function UpdateTimer() {
-Timer.html("<strong>"+TotalSeconds+"<strong/>");
-}
             
 			function enable_confim() {
 				var password_length = $('#pass').val();
