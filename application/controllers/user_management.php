@@ -141,7 +141,7 @@ class User_Management extends MY_Controller {
 	public function change_pass_login() {
 		$data = array();
 		$data['title'] = "Change Password";
-		$data['banner_text'] = "Dashboards";
+		$data['banner_text'] = "Change Password";
 		$this -> load -> view("change_pass_view", $data);
 	}
 
@@ -420,101 +420,6 @@ class User_Management extends MY_Controller {
 		$this -> load -> view("pass_forgot", $data);
 	}
 
-	public function forgot_pass_submit() {
-		$this -> load -> helper('email');
-		$this -> load -> library('encrypt');
-		$user_email = $this -> input -> post('email');
-		$encrypt_string = $user_email . date(time());
-		$reset_token = $this -> encrypt -> encode($encrypt_string);
-		$reset_token_url=urlencode($reset_token);
-		if ($user_email != '') {
-			//$key='ekdosslsir';
-			//$encrypted_string = $this -> encrypt -> decode($user_email, $key);
-			//echo $encrypted_string;exit;
-			if (valid_email($user_email)) {
-				$user_search = User::get_userbyEmail($user_email);
-
-				$checker = 0;
-				foreach ($user_search as $fname) {
-					if ($fname -> fname) {
-						$checker = 1;
-						$data['fname'] = $fname -> fname;
-						$data['username'] = $fname -> username;
-						$data['email'] = $user_email;
-						$data['message'] = "<strong>Dear $fname->fname,</strong><br/>
-                               A password reset request was initialized for mSOS. Please use the link below to reset your password:<br />
-							   <br/>
-							   <a target='_blank' href'http://www.ddsr.or.ke/mSOS/user_management/reset_password_email/".$reset_token_url."'>Reset Link</a>
-							    <br />
-							   <br/>
-						
-						
-							   Please note that this link will be active for only 5 minutes.
-							   Contact administrator for additional issues through the email address.
-						
-                                                <br />
-                                                <br />
-												<strong>Kind Regards,<br />
-											   The mSOS Team.</strong>";
-						$message = $this -> load -> view("email_template", $data, true);
-						//echo "Under Maintainace. Please try again later.";
-
-						$config['protocol'] = 'smtp';
-						$config['smtp_host'] = 'ssl://smtp.gmail.com';
-						$config['smtp_port'] = '465';
-						$config['smtp_timeout'] = '7';
-						$config['smtp_user'] = 'ddsrmsos@gmail.com';
-						$config['smtp_pass'] = 'Y1MR3Wq3pn';
-						$config['charset'] = 'utf-8';
-						$config['newline'] = "\r\n";
-						$config['mailtype'] = 'html';
-						// or html
-						$config['validation'] = TRUE;
-						// bool whether to validate email or not
-
-						$this -> load -> library('email', $config);
-						$this -> email -> initialize($config);
-
-						$this -> email -> set_newline("\r\n");
-						$this -> email -> from('ddsrmsos@gmail.com');
-						// change it to yours
-						$this -> email -> to($user_email);
-						// change it to yours
-						$this -> email -> bcc('');
-						$this -> email -> subject('Message From : mSOS Password Reset');
-						$this -> email -> message($message);
-
-						if ($this -> email -> send()) {
-							$generated_time =date("Y-m-d G:i:s", time());
-							$q = Doctrine_Query::create() -> update('User') -> set('reset_token', "$reset_token", 'token_generated', "$generated_time") -> where("email='$user_email'");
-							$q -> execute();
-							echo json_encode("A reset link has been sent to your email.");
-						} else {
-							$error = show_error($this -> email -> print_debugger());
-							header('Content-Type: application/json');
-							echo json_encode("Error occurred :-( " . $error);
-						}
-						break;
-					} else {
-						header('Content-Type: application/json');
-						echo json_encode("User with email address, $user_email, was not found. Please try again!");
-						break;
-					}
-				}
-				if ($checker == 0) {
-					header('Content-Type: application/json');
-					echo json_encode("User with email address, $user_email, was not found. Please try again!");
-				}
-			} else {
-				header('Content-Type: application/json');
-				echo json_encode("Please Enter a valid email address!");
-			}
-		} else {
-			header('Content-Type: application/json');
-			echo json_encode("Please submit an email to continue!");
-		}
-	}
-
 	public function users_online() {
 		$data["online_users"] = Logi::online_users();
 		$data["banner_text"] = "Online Users";
@@ -565,6 +470,148 @@ class User_Management extends MY_Controller {
 			// only print out the json version of the response
 		}
 
+	}
+
+	public function forgot_pass_submit() {
+
+		$this -> load -> library('encrypt');
+		$user_email = $this -> input -> post('email');
+		$token_time = date('Y-m-d G:i:s', time());
+		$encrypt_string = $user_email . $token_time;
+		$reset_token = $this -> encrypt -> sha1($encrypt_string);
+		$reset_token_url = urlencode($reset_token);
+		if ($user_email != '') {
+
+			if (valid_email($user_email)) {
+
+				$user_search = User::get_userbyEmail($user_email);
+
+				if ($user_search['user_fname']) {
+					$message = "<strong>Dear " . $user_search['user_fname'] . ",</strong><br/>
+                               A password reset request was initialized for mSOS. Please use the link below to reset your password:<br />
+							   <br/>
+							   <a target='_blank' href='" . base_url() . "user_management/reset_password_email/" . $reset_token_url . "'>Reset Link</a>
+							    <br />
+							   <br/>
+						Please note that this link will be active for only 5 minutes.
+							   Contact administrator for additional issues through the email address.
+						
+                                                <br />
+                                                <br />
+												<strong>Kind Regards,<br />
+											   The mSOS Team.</strong>";
+					$sql_email = mysql_real_escape_string($user_email);
+					$q = Doctrine_Query::create() -> update('User') -> set('reset_token', '?', $reset_token) -> set('token_generated', '?', $token_time) -> where("email = '$sql_email'");
+					$q -> execute();
+					$email_response = $this -> send_email($user_search['user_fname'], $user_email, $message);
+					if ($email_response['ok'] == true) {
+
+						header('Content-Type: application/json');
+						echo json_encode("Reset link was sent to the email address.");
+					} else {
+
+						header('Content-Type: application/json');
+						echo json_encode("An error was encountered. Please try again later.");
+					}
+				} else {
+					header('Content-Type: application/json');
+					echo json_encode("User with email address, $user_email, was not found. Please try again!");
+				}
+			} else {
+				header('Content-Type: application/json');
+				echo json_encode("Please Enter a valid email address!");
+			}
+		} else {
+			header('Content-Type: application/json');
+			echo json_encode("Please submit an email to continue!");
+		}
+	}
+
+	public function send_email($fname, $email, $message) {
+		$email_response = array();
+
+		if (valid_email($email)) {// validate email. Returns false if email is not valid
+			$data['fname'] = $fname;
+			$data['email'] = $email;
+			$data['message'] = $message;
+			$message = $this -> load -> view("email_template", $data, true);
+
+			$config['protocol'] = 'smtp';
+			$config['smtp_host'] = 'ssl://smtp.gmail.com';
+			$config['smtp_port'] = '465';
+			$config['smtp_timeout'] = '7';
+			$config['smtp_user'] = 'ddsrmsos@gmail.com';
+			$config['smtp_pass'] = 'Y1MR3Wq3pn';
+			$config['charset'] = 'utf-8';
+			$config['newline'] = "\r\n";
+			$config['mailtype'] = 'html';
+			// or html
+			$config['validation'] = TRUE;
+			// bool whether to validate email or not
+
+			$this -> load -> library('email', $config);
+			$this -> email -> initialize($config);
+
+			$this -> email -> set_newline("\r\n");
+			$this -> email -> from('ddsrmsos@gmail.com');
+			// change it to yours
+			$this -> email -> to($email);
+			// change it to yours
+			$this -> email -> bcc('');
+			$this -> email -> subject('mSOS Password Reset');
+			$this -> email -> message($message);
+
+			if ($this -> email -> send()) {
+				return $email_response = array("ok" => true, "email_message" => "Message sent successfull");
+			} else {
+				return $email_response = array("ok" => false, "email_message" => show_error($this -> email -> print_debugger()));
+			}
+		} else {
+
+			return $email_response = array("ok" => false, "email_message" => "Invalid email");
+		}
+	}
+
+	public function reset_password_email($token_key) {
+		$user_reset = User::get_userBy_token($token_key);
+		if ($user_reset) {
+
+			$date_now = date("Y-m-d G:i:s");
+			$date_now = new datetime($date_now);
+			$user_reset = new datetime($user_reset);
+			$difference_date = $date_now -> diff($user_reset);
+			if ($difference_date -> format('%y') > 0 || $difference_date -> format('%m') > 0 || $difference_date -> format('%d') > 0 || $difference_date -> format('%h') > 0 || $difference_date -> format('%i') > 5) {
+				/*$u=$q = Doctrine_Query::create() -> update('User') -> set('reset_token', '?', '') -> set('token_generated', '?', '0000-00-00 00:00:00') -> where("reset_token = '$token_key'");
+				 $u->execute();*/
+				$data['token_control'] = "Invalid";
+				$data['error_message'] = 'The reset token has expired. Please note that tokens are valid for 5 minutes only.';
+				$this -> load -> view("reset_password", $data);
+			} else {
+				$data['token_control'] = "Valid";
+				$this -> load -> view("reset_password", $data);
+			}
+
+		} else {
+			$data['token_control'] = "Invalid";
+			$data['error_message'] = 'The token key in invalid.';
+			$this -> load -> view("reset_password", $data);
+		}
+	}
+
+	public function reset_password_submit() {
+		$new_pass = $this -> input -> post('new_pass');
+		$pass = $this -> input -> post('pass');
+		$user_token = $this -> input -> post('token_key');
+		if (($new_pass != '' || $pass != '') && ($new_pass == $pass)) {
+			$salt = '#*seCrEt!@-*%';
+			$old_pass = ( md5($salt . $pass));
+            
+			$q = Doctrine_Query::create() -> update('User') ->set('password','?',$old_pass)-> set('reset_token', '?', '') -> set('token_generated', '?', '') -> where("reset_token = '$user_token'");
+			$q -> execute();
+			header('Content-Type: application/json'); 
+			echo json_encode("success");
+
+		}
 	}
 
 }// End of class

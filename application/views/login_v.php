@@ -113,7 +113,7 @@
 							<?php
 
 							echo form_open('user_management/login_user');
- ?>
+							?>
 							<div id="login" >
 
 								<div class="form-group" style="margin-top: 2.3em;">
@@ -165,73 +165,74 @@
 
 		================================================== -->
 		<script>
-			$(document).ready(function() {
+						$(document).ready(function() {
 
-});
-function load_bootbox(){
-var Example = (function() {
-"use strict";
+			});
+			function load_bootbox(){
+			var Example = (function() {
+			"use strict";
 
-var elem=$("#forgot_alert");
-var  hideHandler,
-that = {};
+			var elem=$("#forgot_alert");
+			var  hideHandler,
+			that = {};
 
-that.init = function(options) {
-elem = $(options.selector);
-};
+			that.init = function(options) {
+			elem = $(options.selector);
+			};
 
-that.show = function(text) {
-clearTimeout(hideHandler);
+			that.show = function(text) {
+			clearTimeout(hideHandler);
 
-elem.find("span").html(text);
-elem.delay(200).fadeIn().delay(4000).fadeOut();
-};
+			elem.find("span").html(text);
+			elem.delay(200).fadeIn().delay(4000).fadeOut();
+			};
 
-return that;
-}());
-var base_url="<?php echo base_url() ?>";
-var action_url="<?php echo base_url().'user_management/forgot_pass_submit/' ?>
-	";
-	bootbox.dialog({
-	title: "Reset Password Form",
-	message: '<div class="row">  ' +
-	'<div class="col-md-12"> ' +
-	'<form class="form-horizontal">'+
-	'<div class="form-group"> ' +
-	'<label class="col-md-4 control-label" for="email">Email: </label> ' +
-	'<div class="col-md-5"> ' +
-	'<input id="email" name="email" required type="email" placeholder="Enter email to reset" class="form-control input-md"> ' +
-	'<span class="help-block">A reset link will be sent to the email</span> </div> ' +
-	'</div> ' +
-	'</form> </div>  </div>',
-	buttons: {
-	success: {
-	label: "Submit",
-	className: "btn-success",
-	callback: function () {
-	//alert(email.ciphertext);
-	//$("#forgot_alert").css("");
-	$("#forgot_alert").show();
-	$("#forgot_alert").html("<span id='forgot_alert_text'>Loading.Please wait....<img src="+base_url+"Images/ajax-loader.gif></span>");
-	//$("#forgot_alert").html();
-	$.ajax({
-	url: action_url,
-	data: 'email='+ $('#email').val(),
-	dataType: 'json',
-	type: 'post',
-	success: function (j) {
-		//alert(j)
-      Example.show(j);
-	}
-	});
-	//Example.show("Hello. You've chosen <b>" + email + "</b>");
-	}
-	}
-	}
-	}
-	);
-	}
+			return that;
+			}());
+			    var base_url="<?php echo base_url() ?>";
+				var action_url="<?php echo base_url().'user_management/forgot_pass_submit/' ?>";
+				bootbox.dialog({
+				title: "Reset Password Form",
+				message: '<div class="row">  ' +
+				'<div class="col-md-12"> ' +
+				'<form class="form-horizontal">'+
+				'<div class="form-group"> ' +
+				'<label class="col-md-4 control-label" for="email">Email: </label> ' +
+				'<div class="col-md-5"> ' +
+				'<input id="email" name="email" required type="email" placeholder="Enter email to reset" class="form-control input-md"> ' +
+				'<span class="help-block">A reset link will be sent to the email</span> </div> ' +
+				'</div> ' +
+				'</form> </div>  </div>',
+				buttons: {
+				success: {
+				label: "Submit",
+				className: "btn-success",
+				callback: function () {
 
+				$("#forgot_alert").show();
+				$("#forgot_alert").html("<span id='forgot_alert_text'>Loading.Please wait....<img src="+base_url+"Images/ajax-loader.gif></span>");
+
+				$.ajax({
+				url: action_url,
+				data: 'email='+ $('#email').val(),
+				dataType: 'json',
+				type: 'post',
+				success: function (j) {
+				//alert(j)
+				Example.show(j);
+				},
+				error: function (j){
+					
+					Example.show("An Error was encontered :-(")
+					}
+				});
+
+				}
+				}
+				}
+				}
+				);
+				}
 		</script>
 
 	</body>

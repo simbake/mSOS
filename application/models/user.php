@@ -112,8 +112,8 @@ class User extends Doctrine_Record {
 		return $user_type;
 	}
 	public function get_userbyEmail($email){
-		$query = Doctrine_Query::create() -> select("fname,username") -> from("user")->where("email='$email'");
-		$user_type= $query -> execute();
+		$query = Doctrine_Query::create() -> select("fname") -> from("user")->where("email='$email'");
+		$user_type= $query -> fetchOne(array(), Doctrine::HYDRATE_SCALAR);
 		return $user_type;
 	}
 	public function Ebola_RRT_users(){
@@ -130,5 +130,10 @@ class User extends Doctrine_Record {
 		$query = Doctrine_Query::create() -> select("count(id) as total") -> from("user")->where("status='1'");
 		$user_type= $query -> execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
 		return $user_type;	
+	}
+	public function get_userBy_token($token){
+		$query = Doctrine_Query::create() -> select("token_generated") -> from("user")->where("reset_token='$token'");
+		$user_type= $query -> execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
+		return $user_type;
 	}
 }
