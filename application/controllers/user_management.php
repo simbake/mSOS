@@ -68,7 +68,7 @@ class User_Management extends MY_Controller {
 
 		//Check db for validity of the credentials
 		$reply = User::login($username, $password);
-		$n = $reply -> toArray();
+		$n = $reply->toArray();
 		$myvalue = $n['usertype_id'];
 		$namer = $n['fname'];
 		$user_id = $n['id'];
@@ -77,12 +77,11 @@ class User_Management extends MY_Controller {
 		$status = $n['status'];
 		$ebola_login = $n['ebola_login'];
 		$password = $n['password'];
-
+		$token_key = $n['reset_token'];
 		if ($status == 0) {
 			$myvalue = null;
 		}
 
-		$session_data = "";
 		if ($myvalue == 1) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Administrator");
 		} else if ($myvalue == 2) {
@@ -96,14 +95,18 @@ class User_Management extends MY_Controller {
 		} else if ($myvalue == 7) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Ebola Response", 'ebola_login' => $ebola_login);
 		}
-		if ($session_data == "" || $session_data == null) {
-
-			$this -> session -> set_flashdata("login_check", 1);
-			redirect("user_management/login");
-			exit ;
+		if (($session_data == "" || $session_data == null)) {
+			
+				$this -> session -> set_flashdata("login_check", 1);
+				redirect("user_management/login");
+				exit ;
 
 		} else {
-
+       if ($token_key != "" || $token_key != null) {
+				$this -> session -> set_flashdata("token_check", 1);
+				redirect("user_management/login");
+				exit ;
+			}
 			$this -> session -> set_userdata($session_data);
 			$lg = new logi();
 			$lg -> user_id = $user_id;
@@ -374,18 +377,8 @@ class User_Management extends MY_Controller {
 			}
 		}
 
-		//$this->session->sess_destroy();
-		/*$session_data=array('pass_check'=>'Password change succesful');
-		 $this -> session -> set_userdata($session_data);*/
-		//session_start();
-		//$_SESSION['pass_check']="Password change succesful";
-		// Take causion of being hijacked while you redirect with the below code.
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		redirect("home_controller");
 
-		//$data = array();
-		//$data['title'] = "System Login";
-
-		//$this -> load -> view("template", $data);
 	}
 
 	public function deactive() {
@@ -593,7 +586,7 @@ class User_Management extends MY_Controller {
 
 		} else {
 			$data['token_control'] = "Invalid";
-			$data['error_message'] = 'The token key in invalid.';
+			$data['error_message'] = 'The token key is invalid.';
 			$this -> load -> view("reset_password", $data);
 		}
 	}
@@ -605,16 +598,25 @@ class User_Management extends MY_Controller {
 		if ((!empty($new_pass) || !empty($pass)) && ($new_pass == $pass)) {
 			$salt = '#*seCrEt!@-*%';
 			$old_pass = ( md5($salt . $pass));
-            
-			$q = Doctrine_Query::create() -> update('User') ->set('password','?',$old_pass)-> set('reset_token', '?', '') -> set('token_generated', '?', '') -> where("reset_token = '$user_token'");
-			$q -> execute();
-			header('Content-Type: application/json'); 
-			echo json_encode("success");
-		}
-else{
-	header('Content-Type: application/json'); 
+			$token_time = "0000-00-00 00:00:00";
+			$user_token = mysql_real_escape_string($user_token);
+			$q = Doctrine_Query::create() -> update('User') -> set('password', '?', $old_pass) -> set('reset_token', '?', '') -> set('token_generated', '?', $token_time) -> where("reset_token = '$user_token'");
+			/*$u=Doctrine::getTable('user') -> where("reset_token = '$user_token'");
+			 $u->password=$old_pass;
+			 $u->reset_token="";
+			 $u->token_generated="0000-00-00 00:00:00";
+			 $u->save();*/
+			$result = $q -> execute();
+			header('Content-Type: application/json');
+			if ($result == 0) {
+				echo json_encode("Not fine - > $pass : $old_pass");
+			} else {
+				echo json_encode("Not fine - > $pass : $old_pass");
+			}
+		} else {
+			header('Content-Type: application/json');
 			echo json_encode("Empty values");
-}
+		}
 	}
 
 }// End of class

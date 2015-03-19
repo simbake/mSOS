@@ -37,21 +37,11 @@ class User extends Doctrine_Record {
 	}
 	
 	public function login($username, $password) {
-		
-		$salt = '#*seCrEt!@-*%';
-		$value=( md5($salt . $password));
-		$query = Doctrine_Query::create() -> select("*") -> from("User") -> where("username = '" . $username . "' and password='". $value ."'");
-
-		$x = $query -> execute();
-		//echo $x['username'];
-		/*if($x['username']!="" || $x['username']==null){
-		echo "<script>alert('Wrong Username or/and Password');</script>";
-		
-		}
-		else{*/
-		return $x[0];
-		//}
-		//
+        $salt = '#*seCrEt!@-*%';
+		$password = ( md5($salt . $password));
+		$query = Doctrine_Query::create() -> select("*") -> from("User") -> where("username = '" . $username . "' and password='". $password ."'");
+		$results = $query -> execute();
+		return $results[0];
 	}
 	public static function getsome($id) {
 		$query = Doctrine_Query::create() -> select("fname") -> from("user")->where("id='$id' ");
