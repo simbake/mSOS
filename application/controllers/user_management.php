@@ -602,7 +602,7 @@ class User_Management extends MY_Controller {
 		$new_pass = $this -> input -> post('new_pass');
 		$pass = $this -> input -> post('pass');
 		$user_token = $this -> input -> post('token_key');
-		if (($new_pass != '' || $pass != '') && ($new_pass == $pass)) {
+		if ((!empty($new_pass) || !empty($pass)) && ($new_pass == $pass)) {
 			$salt = '#*seCrEt!@-*%';
 			$old_pass = ( md5($salt . $pass));
             
@@ -610,8 +610,11 @@ class User_Management extends MY_Controller {
 			$q -> execute();
 			header('Content-Type: application/json'); 
 			echo json_encode("success");
-
 		}
+else{
+	header('Content-Type: application/json'); 
+			echo json_encode("Empty values");
+}
 	}
 
 }// End of class

@@ -195,7 +195,7 @@
 				title: "Reset Password Form",
 				message: '<div class="row">  ' +
 				'<div class="col-md-12"> ' +
-				'<form class="form-horizontal">'+
+				'<form method="post" class="form-horizontal">'+
 				'<div class="form-group"> ' +
 				'<label class="col-md-4 control-label" for="email">Email: </label> ' +
 				'<div class="col-md-5"> ' +
@@ -205,7 +205,7 @@
 				'</form> </div>  </div>',
 				buttons: {
 				success: {
-				label: "Submit",
+				label: "Reset Email",
 				className: "btn-success",
 				callback: function () {
 
@@ -226,12 +226,8 @@
 					Example.show("An Error was encontered :-(")
 					}
 				});
-
-				}
-				}
-				}
-				}
-				);
+				}}
+				}});
 				}
 		</script>
 

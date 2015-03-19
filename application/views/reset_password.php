@@ -174,14 +174,32 @@ Timer.html("<strong>"+TotalSeconds+"<strong/>");
 		================================================== -->
 		<script>
 			$(document).ready(function() {
-					
+				//Disabling spaces in password
+			$("#pass").on({
+  keydown: function(e) {
+    if (e.which === 32)
+      return false;
+  },
+  change: function() {
+    this.value = this.value.replace(/\s/g, "");
+  }
+});	
+$("#newpass").on({
+  keydown: function(e) {
+    if (e.which === 32)
+      return false;
+  },
+  change: function() {
+    this.value = this.value.replace(/\s/g, "");
+  }
+});		
 			});
 
             
 			function enable_confim() {
 				var password_length = $('#pass').val();
 				var confirm_pass = $('#newpass').val();
-				if (password_length == confirm_pass) {
+				if ((password_length == confirm_pass) &&(password_length!='' || confirm_pass!='' ) ) {
 
 					document.getElementById("submit").disabled = false;
 					document.getElementById("checker").setAttribute('class', 'glyphicon glyphicon-ok');
@@ -216,6 +234,7 @@ Timer.html("<strong>"+TotalSeconds+"<strong/>");
 					}
 				});	
 			}
+			
 
 		</script>
 
