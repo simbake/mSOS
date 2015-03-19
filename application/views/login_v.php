@@ -94,6 +94,15 @@
 	}
 	unset($popup);
 					?>
+					<?php  $popups = $this -> session -> flashdata("token_check");
+	if ($popups == '1') {
+
+		echo '<div class="alert alert-danger alert-dismissable" style="text-align:center;"> A password reset request is active. Please check your email for instructions. If you had not made the request please contact the Admin.
+<button type="button" class=" close" data-dismiss="alert" aria-hidden="true">×</button>
+', '</div>';
+	}
+	unset($popups);
+					?>
 				</div>
 				<div class="col-md-4" style="">
 
