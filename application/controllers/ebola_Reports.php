@@ -66,45 +66,37 @@ class ebola_Reports extends CI_Controller {
 		$d = $action . "|" . $notes . "|" . $findings . "|" . $time . "|" . $taken . "|" . $u_id . "|" . $others;
 
 		$fetch_log = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM Incident_Log_ebola WHERE incident_id='$id'");
-		if ($user == 1 || $user == 2) {
+		
 			if ($fetch_log) {
-
-				$data = array('reported' => $u_id, 'national_incident' => $d);
+              if ($user == 1) {
+				$data = array('reported' => $u_id, 'Admin_Response' => $d);
 				$this -> db -> where('incident_id', $id);
 				$this -> db -> update('Incident_Log_ebola', $data);
-			} else {
+			}else if ($user == 6) {
+				$data = array('reported' => $u_id, 'RRT_Response' => $d);
+				$this -> db -> where('incident_id', $id);
+				$this -> db -> update('Incident_Log_ebola', $data);
+				
+			}
+			  
+			  } else {
+			  	if($user == 1){
 				$u = new Incident_Log_ebola();
 				$u -> incident_id = $id;
 				$u -> reported = $u_id;
-				$u -> national_incident = $d;
+				$u -> Admin_Response = $d;
 				$u -> save();
+				}else if($user == 6){
+				$u = new Incident_Log_ebola();
+				$u -> incident_id = $id;
+				$u -> reported = $u_id;
+				$u -> RRT_Response = $d;
+				$u -> save();	
+				}
 			}
 			// echo "1 and 2";
-
-		} else if ($user == 4) {//district response
-
-			if ($fetch_log) {
-
-				$data = array('reported' => $u_id, 'district_incident' => $d);
-				$this -> db -> where('incident_id', $id);
-				$this -> db -> update('Incident_Log_ebola', $data);
-			} else {
-				$u = new Incident_Log_ebola();
-				$u -> incident_id = $id;
-				$u -> reported = $u_id;
-				$u -> district_incident = $d;
-				$u -> save();
-			}
-
-			//echo "4";
-		} else {
-			exit('no user level found');
 		}
-
 		redirect("ebola_reports/all_ebola/");
-		}else{
-		redirect("ebola_reports/respond/$id");	
-		}
 
 	}
 
@@ -135,7 +127,8 @@ class ebola_Reports extends CI_Controller {
 						<th style="text-align:left;">Status</th>
 						<th style="text-align:left;">Serial</th>
 						<th style="text-align:left;">ID</th>
-						<th style="text-align:left;">National Response</th>
+						<th style="text-align:left;">Admin Response</th>
+						<th style="text-align:left;">RRT Response</th>
 						<th style="text-align:left;">KEMRI response</th>
 										    
 					</tr>
@@ -165,8 +158,29 @@ class ebola_Reports extends CI_Controller {
 							<td style="text-align:left;">' . $row -> msos_code .'</td>
 							<td style="text-align:left;">';
 							$admin_log = $row -> logs_ebola -> toArray();
-							if (isset($admin_log['0']['national_incident'])) {
-							$c = $admin_log['0']['national_incident'];
+							if (isset($admin_log['0']['Admin_Response'])) {
+							$c = $admin_log['0']['Admin_Response'];
+							$c = explode('|', $c);
+							$no1=count($c);
+							if($no1>=5){
+							$action = $c[0];
+							$notes = $c[1];
+							$findings = $c[2];
+							$time = $c[3];
+							$taken = $c[4];
+							$dtt = new DateTime($time);
+							$nat= "<strong>Action :</strong>" . $action . "<br>" . "<strong>Notes :</strong>" . $notes . "<br>" . "<strong>Findings :</strong>" . $findings . "<br><strong>Time :</strong>" . $dtt -> format('j F, Y g:i A');
+							}
+							}
+							else{
+								$nat= "<strong>No Response.</strong>";
+							}
+								
+								$data.=$nat.'</td>';
+								$data.='<td style="text-align:left;">';
+							$admin_log = $row -> logs_ebola -> toArray();
+							if (isset($admin_log['0']['RRT_Response'])) {
+							$c = $admin_log['0']['RRT_Response'];
 							$c = explode('|', $c);
 							$no1=count($c);
 							if($no1>=5){
@@ -248,9 +262,6 @@ class ebola_Reports extends CI_Controller {
 				<th style="text-align:left;">Sex</th>
 				<th style="text-align:left;">Age</th>
 				<th style="text-align:left;">Status</th>
-				<th style="text-align:left;">Old Age</th>
-				<th style="text-align:left;">Old Sex</th>
-				<th style="text-align:left;">Old Status</th>
 				<th style="text-align:left;">Serial</th>
 				<th style="text-align:left;">ID</th>
                 <th style="text-align:left;"><b>Portal</b></th>							
@@ -269,9 +280,6 @@ class ebola_Reports extends CI_Controller {
 							<td style="text-align:left;"> ' . $row -> Sex . '</td>
 							<td style="text-align:left;">' . $row -> Age . '</td>
 							<td style="text-align:left;">' . $row -> Status . '</td>				            
-				            <td style="text-align:left;">' . $row -> New_Age . ' </td>
-							<td style="text-align:left;"> ' . $row -> New_Sex . '</td>
-							<td style="text-align:left;"> ' . $row -> New_Status . '</td>
 							<td style="text-align:left;"> ' . $row -> case_number . '</td>
 							<td style="text-align:left;"> ' . $row -> msos_code . '</td>
 							';
