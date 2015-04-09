@@ -1,14 +1,14 @@
 
 <?php $current_year = date('Y');
-			$earliest_year = $current_year - 10;
+	$earliest_year = $current_year - 10;
 		?>
 		<script type="text/javascript" charset="utf-8">
 			/* Define two custom functions (asc and desc) for string sorting */
-			
+
 			$(document).ready(function() {
 				/* Build the DataTable with third column using our custom sort functions */
 				$('#example').dataTable({
-					
+
 				});
 			});
 
@@ -24,9 +24,9 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Responses View
-				<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="MOH" ){ ?>
+				<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="Rapid Response" ){ ?>
 						
-                 <div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/ebola_response_download');?>">Download</a></div>
+                 <div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/ebola_response_download'); ?>">Download</a></div>
 					<?php } ?>
 			
 					</div>
@@ -45,7 +45,8 @@
 						<th>Status</th>
 						<th>Serial</th>
 						<th>ID</th>
-						<th>National Response</th>
+						<th>Admin Response</th>
+						<th>RRT Response</th>
 						<th>Kemri response</th>
 										    
 					</tr>
@@ -53,9 +54,7 @@
 					
 							<tbody>
 								<?php
-						foreach($all as $row):
-						//foreach($row->ebl_numbers as $ebl_user):
-						foreach($row->logs_ebola as $log):
+						foreach($all as $row):	
 						?>
 						<tr>
 							<td><?php echo $row -> Type; ?></td>
@@ -76,41 +75,57 @@
 							<td><?php echo $row -> msos_code; ?></td>
 							
 							<td><?php
-							$c = $log -> national_incident;
-							$c = explode('|', $c);
-							$no1=count($c);
-							if($no1>=5){
-							$action = $c[0];
-							$notes = $c[1];
-							$findings = $c[2];
-							$time = $c[3];
-							$taken = $c[4];
-							$dtt = new DateTime($time);
-							echo '<strong>Action :</strong>' . $action . '<br>' . '<strong>Notes :</strong>' . $notes . '<br>' . '<strong>Findings :</strong>' . $findings . '<br><strong>Time :</strong</>' . $dtt -> format('j F, Y g:i A');
-							}else{
-								echo "No Response.";
+							$admin_log = $row -> logs_ebola -> toArray();
+							if (isset($admin_log['0']['Admin_Response'])) {
+								$c = $admin_log['0']['Admin_Response'];
+								$c = explode('|', $c);
+								$no1 = count($c);
+
+								$action = $c[0];
+								$notes = $c[1];
+								$findings = $c[2];
+								$time = $c[3];
+								$taken = $c[4];
+								$dtt = new DateTime($time);
+								echo '<strong>Action :</strong>' . $action . '<br>' . '<strong>Notes :</strong>' . $notes . '<br>' . '<strong>Findings :</strong>' . $findings . '<br><strong>Time :</strong</>' . $dtt -> format('j F, Y g:i A');
+							} else {
+								echo "<strong>No Response.</strong>";
+							}
+								?></td>
+							
+							<td><?php
+							$admin_log = $row -> logs_ebola -> toArray();
+							if (isset($admin_log['0']['RRT_Response'])) {
+								$c = $admin_log['0']['RRT_Response'];
+								$c = explode('|', $c);
+								$no1 = count($c);
+
+								$action = $c[0];
+								$notes = $c[1];
+								$findings = $c[2];
+								$time = $c[3];
+								$taken = $c[4];
+								$dtt = new DateTime($time);
+								echo '<strong>Action :</strong>' . $action . '<br>' . '<strong>Notes :</strong>' . $notes . '<br>' . '<strong>Findings :</strong>' . $findings . '<br><strong>Time :</strong</>' . $dtt -> format('j F, Y g:i A');
+							} else {
+								echo "<strong>No Response.</strong>";
 							}
 								?></td>
 							
 							<td>
 							<?php
-							$incident_id=$row->msos_code;
-						$fetch_kemri = Doctrine_Manager::getInstance() -> getCurrentConnection() -> fetchAll("SELECT * FROM kemri_response_ebola WHERE incident_id='$incident_id'");
-							if($fetch_kemri){
-							foreach($fetch_kemri as $rows){
-							$comments=$rows['comments'];
-							$a=$row->lab_time; $dtz=new datetime($a);
-							echo "<strong>Results: </strong>".$row->lab_results.".<br/><strong>Comments:</strong> ".$comments."<br/><strong>Released: </strong><strong>".$dtz->format('j F, Y g:i A')."</strong>";
+							if ($row -> lab_results != 'Suspected') {
+								$kemri_response = $row -> kemri_response -> toArray();
+								$results_release = new DateTime($row -> lab_time);
+
+								echo "<strong>Results: </strong>" . $row -> lab_results . ".<br/><strong>Comments:</strong> " . $kemri_response['0']['comments'] . "<br/><strong>Released: </strong><strong>" . $results_release -> format('j F, Y g:i A') . "</strong>";
+							} else {
+								echo "<strong>No response.</strong>";
 							}
-							}
-							else{echo "No response.";}
-							
+							//else{echo "No response.";}
 							?>
 							</td>
 						</tr>
-						<?php endforeach; ?>
-						<?php //endforeach; ?>
-						<?php //endforeach; ?>
 						<?php endforeach; ?>
 						</tbody>
 						

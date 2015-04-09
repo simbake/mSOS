@@ -1,4 +1,5 @@
 <?php
+include ("Scripts/FusionCharts/FusionCharts.php");
 //session timeout check
  $check=$this->session->userdata('user_id');
 //check if the user is logged in
@@ -58,34 +59,12 @@ if (!isset($quick_link)) {
 	$quick_link = null;
 }
 
-
-$access_level = $this -> session -> userdata('user_indicator');
-$user_is_administrator = false;
-$user_is_moh = false;
-$user_is_kemri = false;
-$user_is_district = false;
-$user_is_county = false;
-$user_is_moh= false;
-
-if ($access_level == "Administrator") {
-	$user_is_administrator = true;
-} else if ($access_level == "MOH") {
-	$user_is_moh = true;
-} else if ($access_level == "KEMRI") {
-	$user_is_kemri = true;
-} else if ($access_level == "District Administrator") {
-	$user_is_district = true;
-}else if ($access_level == "County Administrator") {
-	$user_is_county = true;
-}
 if (isset($scripts)) {
 	foreach ($scripts as $script) {
+
 		echo "<script src=\"" . base_url() . "Scripts/" . $script . "\" type=\"text/javascript\"></script>";
 	}
 }
-
-
-include ("Scripts/FusionCharts/FusionCharts.php");
 
 $id=$this -> session -> userdata('user_id');
 $level=$this -> session -> userdata('user_level');
@@ -98,6 +77,7 @@ $user_is_kemri = false;
 $user_is_district = false;
 $user_is_county = false;
 $user_is_moh= false;
+$user_is_rrt=false;
 
 if ($access_level == "Administrator") {
 	$user_is_administrator = true;
@@ -109,6 +89,9 @@ if ($access_level == "Administrator") {
 	$user_is_district = true;
 }else if ($access_level == "County Administrator") {
 	$user_is_county = true;
+}
+else if($access_level=="Rapid Response"){
+	$user_is_rrt=true;
 }
 
 if($access_level=="Administrator" || $access_level=="MOH" ){
@@ -136,7 +119,15 @@ else{
 				$diseasez= Incidence::get_disease_count();
 				$confirmz= Incidence::confirm();
 }
-
+$user_ip = $this -> input -> ip_address();
+			$ips = System_Visits::check_ip($user_ip);
+			if ($ips) {
+				//echo 'ip check: '.$ips;
+			} else {
+				$ipz = new System_Visits();
+				$ipz -> ip_address = $user_ip;
+				$ipz->save();
+			}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -162,6 +153,14 @@ else{
    
 	<link href="<?php echo base_url().'assets/datatable/TableTools.css'?>" type="text/css" rel="stylesheet"/>
 	<link href="<?php echo base_url().'assets/datatable/dataTables.bootstrap.css'?>" type="text/css" rel="stylesheet"/>
+	
+	<!--Boot-select-->
+	<link href="<?php echo base_url().'assets/bootstrap-select/css/bootstrap-select.min.css'?>" type="text/css" rel="stylesheet"/>
+	
+	<link href="<?php echo base_url().'assets/buttons/css/buttons.css'?>" type="text/css" rel="stylesheet"/>
+	
+	<link href="<?php echo base_url().'assets/fuelux/css/fuelux.min.css'?>" type="text/css" rel="stylesheet"/>
+	
 
   <!--clock items-->
   <!--<link href="<?php echo base_url().'assets/css/clock.css'?>" type="text/css" rel="stylesheet"/>
@@ -174,8 +173,6 @@ else{
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-    </script>
     <style>
 .panel-success>.panel-heading {
 color: white;
@@ -189,68 +186,12 @@ background-color: white;
 border-color: #e7e7e7;
 }
 </style>
-
-<script>
-  		/*	$(function() {
-  	
-  	   $( "#month" ).combobox({
-        	selected: function(event, ui) {
-        		
-           var data =$("#year").val();
-           var month =$("#month").val();
-           //var name =encodeURI($("#desc option:selected").text());
-          
-          
-        var url = "<?php //echo base_url().'report_management/monthly' ?>";*/
-			/*$.ajax({
-			type: "POST",
-			data: "year="+data+"&month="+month,
-			url: url,
-			beforeSend: function() {
-			$("#contentlyf").html("");
-			},
-			success: function(msg) {
-			$("#contentlyf").html(msg);
-
-			}
-			});
-			return false;
-
-			}
-			});
-
-			$("#disease").combobox({
-			selected: function(event, ui) {
-
-			var dyear =$("#dyear").val();
-			var dmonth =$("#dmonth").val();
-			var dise=$("#disease").val();
-			var names =encodeURI($("#disease option:selected").text());
-
-			var url = "<?php //echo base_url().'report_management/daily' ?>";*/
-	/*$.ajax({
-	type: "POST",
-	data: "year="+dyear+"&month="+dmonth+"&disease="+dise+"&name="+names,
-	url: url,
-	beforeSend: function() {
-	$("#contently").html("");
-	},
-	success: function(msg) {
-	$("#contently").html(msg);
-
-	}
-	});
-	return false;
-
-	}
-	});
-
-	});*/
-</script>
   </head>  
-  <body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">
+  <body class="">
+  <!--<body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">-->
     <!-- Fixed navbar -->
-   <div class="navbar navbar-default navbar-fixed-top" id="">
+	<div id="content_nav">
+   <div class="navbar navbar-default navbar-fixed-top">
    <div class="container" style="width: 100%;">
         <div class="navbar-header " > 
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -261,10 +202,11 @@ border-color: #e7e7e7;
           </button>
          
           <a style="margin-top: auto;" href="<?php if(isset($ebola_admin)){echo base_url().'Ebola_controller';}else{echo base_url().'home_controller';}?>">
-          	<img style="display:inline-block; width:auto%; width: 100px; height: 16%;margin-top:-10%" src="<?php echo base_url()?>Images/msos_logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
+          	<img style="display:inline-block;width: 100px;margin-top:-20%;" src="<?php echo base_url()?>Images/msos_logo.png" class="img-rounded img-responsive " alt="Responsive image" id="logo" >
           	</a>
 				<div id="logo_text" style="display:inline-block; margin-top: 0%">
-					<span style="font-size: 1.20em;font-weight: bold; ">Disease Surveillance and Response Unit - Ministry of Health</span><br />
+					<span style="font-size: 1.20em;font-weight: bold; ">Disease Surveillance and Response Unit</span><br />
+					<span style="font-size: 0.95em;font-weight: bold;">Ministry of Health</span><br/>
 					<span style="font-size: 0.95em;font-weight: bold;">Mobile SMS Based Disease Outbreak Alert System</span><br/>
 					<span style="font-size: 0.95em;">SATREPS Project</span><br />	
 					<span style="font-size: 0.95em; font-weight: bold;">Developed By:</span><br />
@@ -292,17 +234,17 @@ border-color: #e7e7e7;
             
           	</div>
           	
-          <div class="row">
+          <div class="row" id="top-menu">
           	<div class="col-md-12">
-          	<ul class="nav navbar-nav navbar-right">
+          	<ul class="nav navbar-nav navbar-right" >
      
       <?php if($this->session->userdata("ebola_login")==1){ ?>
        
       <?php } else{ ?>
       <li class=""><a href="<?php echo site_url().'home_controller';?>" class="">HOME</a> </li>
       <?php } ?>
-       <?php  if($user_is_administrator || $user_is_moh || $user_is_kemri){  ?>
-       	 <li class=""><a style="background-color: red;" href="<?php echo site_url().'Ebola_controller';?>" class="">Ebola Information</a> </li> 
+       <?php  if($user_is_administrator || $user_is_rrt || $user_is_kemri){  ?>
+       	 <li class=""><a style="background-color: red;" href="<?php echo site_url().'Ebola_controller';?>" class="">Rapid Response</a> </li> 
        	<?php } ?>
        <?php  if(($user_is_administrator || $user_is_district || $user_is_county || $user_is_moh) && !isset($ebola_admin)){  ?>
        <li><a href="<?php echo site_url().'facility_c/all_facilities';?>" class=" ">Facility List</a> </li> 
@@ -310,7 +252,7 @@ border-color: #e7e7e7;
        <?php if(!isset($ebola_admin)){ ?><li><a href="<?php echo site_url().'sms/index ';?>" class=" ">Send SMS</a> </li> 
        <li><a href="<?php echo site_url().'c_disease/disease_list';?>" class=" ">Disease List</a> </li> <?php } ?>
        <?php if($user_is_administrator && !isset($ebola_admin)){  ?>
-       	<li><a href="<?php echo site_url(); ?>redirect/leave_view/server_monitor" class=" ">Server Monitor</a> </li>
+       	<li><a href="<?php echo site_url(); ?>Dashboard" class=" ">Dashboard</a> </li>
        	<?php } ?>
        <!--<li><a href="" class=" ">User </a></li> -->  
 	 
@@ -357,45 +299,47 @@ border-color: #e7e7e7;
       	</div>      	
       </div>	
       </div>
-
-    <div class="container-fluid" style="" id="main-content">
+	  </div>
+	  
+  <div id="main-content">
+    <div class="container-fluid" style="">
 <!----------- MSOS top buttons--------->
-<div class="container" style="width: 96%; margin-top:5%;">
+<div class="container" style="width: 96%;">
 	<div class="row">
 		
 		<!--<button type="button" class="btn btn-primary btn-lg btn3d"><span class="glyphicon glyphicon-cloud"></span> Primary</button>-->
 		<?php $current = $id=$this->uri->segment(2); //echo $current;
 		 if($user_is_administrator && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>user_management/moh"><button type="button" class="btn btn-primary <?php if($current=="moh") echo "active"  ?>"><span class="glyphicon glyphicon-user" > Register Users</span></button></a>
+		<a href="<?php echo base_url(); ?>user_management/moh"><button type="button" class="button <?php if($current=='moh'){ echo 'active';} else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-user" > Register Users</span></button></a>
 		
 		<?php } if($user_is_administrator && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url() ?>user_management/users_facility"><button type="button" class="btn btn-primary <?php if($current=="users_facility") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Manage Users</span></button></a>
+		<a href="<?php echo base_url() ?>user_management/users_facility"><button type="button" class="button <?php if($current=="users_facility"){ echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Manage Users</span></button></a>
 		
 		<?php } if($user_is_administrator && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>a_management/sendSMS"><button type="button" class="btn btn-primary <?php if($current=="sendSMS") echo "active"  ?>"><span class="glyphicon glyphicon-envelope" > Send Bulk SMS</span></button></a>
+		<a href="<?php echo base_url(); ?>a_management/sendSMS"><button type="button" class="button <?php if($current=="sendSMS") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-envelope" > Send Bulk SMS</span></button></a>
 		
 		<?php } if($user_is_kemri && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>a_management/confirm"><button type="button" class="btn btn-primary <?php if($current=="confirm") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Confirm Alert</span></button></a>
+		<a href="<?php echo base_url(); ?>a_management/confirm"><button type="button" class="button  <?php if($current=="confirm") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Confirm Alert</span></button></a>
 		
 		<?php } if($user_is_kemri && isset($ebola_admin)){  ?>
 		
-		<a href="<?php echo base_url(); ?>ebola_reports/kemri_lab_results"><button type="button" class="btn btn-primary <?php if($current=="kemri_lab_results") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results</span></button></a>
+		<a href="<?php echo base_url(); ?>ebola_reports/kemri_lab_results"><button type="button" class="Button  <?php if($current=="kemri_lab_results") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results</span></button></a>
 
 		<?php } if($user_is_kemri && !isset($ebola_admin)){ ?>
 		
-		<a href="<?php echo base_url(); ?>a_management/kemri_table_view"><button type="button" class="btn btn-primary <?php if($current=="kemri_table_view") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Confrim View</span></button></a>
+		<a href="<?php echo base_url(); ?>a_management/kemri_table_view"><button type="button" class="button  <?php if($current=="kemri_table_view") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Confrim View</span></button></a>
 	    
 	    <?php } if($user_is_kemri && isset($ebola_admin)){ ?>
-	  <a href="<?php echo base_url(); ?>ebola_Reports/kemri_table_view"><button type="button" class="btn btn-primary <?php if($current=="kemri_table_view") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results View</span></button></a>
+	  <a href="<?php echo base_url(); ?>ebola_Reports/kemri_table_view"><button type="button" class="button  <?php if($current=="kemri_table_view") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Lab Results View</span></button></a>
 
 	    <?php } ?>
 	    <?php  if($user_is_district || $user_is_county){ ?>
 		
-		<a href="<?php echo base_url(); ?>c_incidents/all_diseases"><button type="button" class="btn btn-primary <?php if($current=="all_diseases") echo "active"  ?>"><span class="glyphicon glyphicon-list-alt" > Incidents</span></button></a>
+		<a href="<?php echo base_url(); ?>c_incidents/all_diseases"><button type="button" class="button  <?php if($current=="all_diseases") {echo "active";}else{ echo 'button-royal';}  ?>"><span class="glyphicon glyphicon-list-alt" > Incidents</span></button></a>
 	    
 	    <?php } ?>
 		
@@ -409,17 +353,17 @@ border-color: #e7e7e7;
 		<div class="col-md-3">
 		
 	<div class="row">			
-			<div class="col-md-12">				
+			<div class="col-md-12">	
+							
 			<div class="panel panel-primary">
       		<div class="panel-heading">
         		<h3 class="panel-title">Actions <span class="glyphicon glyphicon-list-alt"></span></h3>
-      </div>
-      <div class="panel-body">
-    <div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
+            </div>
+        
+      <div class="panel-body" style="overflow-y: auto">
+            
             <div class="panel-group" id="accordion">
-            	
+       
                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -581,13 +525,9 @@ border-color: #e7e7e7;
                     </div>
                 </div><?php } ?>
             </div>
-        </div>
-        
-    </div>
+ 
 </div>
 
-       
-      </div>
         </div>      
 
       </div>    
@@ -617,17 +557,7 @@ border-color: #e7e7e7;
 			</p>
 		</div>
 		 <?php endif; ?>
-		 
-		 <?php /*if($facility_dashboard_notifications['facility_donations']>0): ?>
-      	 <div style="height:auto; margin-bottom: 2px" class="warning message ">      	
-        <h5>Inter Facility Donation</h5> 
-        	<p>
-			<a class="link" href="<?php echo base_url('issues/confirm_external_issue') ?>"><span class="badge"><?php 
-				echo $facility_dashboard_notifications['facility_donations'];?></span> Items have been donated</a> 
-			</p>
-			 </div>
-		  <?php endif; */// Potential Expiries?>
-		 
+	 
       </div>    
     </div>
 	</div>
@@ -673,14 +603,15 @@ border-color: #e7e7e7;
     </div>
    </div>
     
-    </div> <!-- /container -->
+    </div></div> 
+    <!-- / END OF CONTAINER -->
+    
    <div id="footer">
       <div class="container">
-        <p class="text-muted"> Government of Kenya &copy <?php echo date('Y');?>. All Rights Reserved
-</p>
-        
+        <p class="text-muted"> Government of Kenya &copy <?php echo date('Y');?>. All Rights Reserved</p>
       </div>
     </div>
+    
     
     <script type="text/javascript">
     /*
@@ -743,9 +674,10 @@ if (i<10)
 return i;
 }  
 	$(document).ready(function() {
-					$('.alert-success').fadeOut(10000, function() {
+   $('.alert-success').fadeOut(10000, function() {
     // Animation complete.
 });
+$('.selectpicker').selectpicker();
 });
 </script>
    <script src="<?php echo base_url().'assets/boot-strap3/js/bootstrap.min.js'?>" type="text/javascript"></script>
@@ -764,4 +696,11 @@ return i;
   <script src="<?php echo base_url().'assets/datatable/dataTables.bootstrapPagination.js'?>" type="text/javascript"></script>
   <!-- validation ===================== -->
   <script src="<?php echo base_url().'assets/scripts/jquery.validate.min.js'?>" type="text/javascript"></script>
+  
+  <script src="<?php echo base_url().'assets/bootstrap-select/js/bootstrap-select.min.js'?>" type="text/javascript"></script>
+  <script src="<?php echo base_url().'assets/bootbox/bootbox.min.js'?>" type="text/javascript"></script>
+  
+  <script src="<?php echo base_url().'assets/buttons/js/buttons.js'?>" type="text/javascript"></script>
+  <script src="<?php echo base_url().'assets/fuelux/js/fuelux.min.js'?>" type="text/javascript"></script>
+</body>
 </html>

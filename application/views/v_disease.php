@@ -36,10 +36,10 @@
 							<td><?php echo $row -> Full_Name; ?></td>
 							<td>
 							
-							<label class='label label-primary'><span class='glyphicon glyphicon-eye-open'></span><a style="color: white" id = '<?php echo $row -> id; ?>' class="filter_maps"> View Disease Case Definition</a></label>
+							<button class='label label-primary' onclick="show_Bootbox(this.value)" value="<?php echo $row->definition;?>"><span class='glyphicon glyphicon-eye-open'></span>View Disease Case Definition</button>
 							</td>
 							<td>
-						<label class='label label-primary'><span class='glyphicon glyphicon-eye-open'></span><a style="color: white;" id = '<?php echo $row -> id; ?>' class="filter_maps1"> View Disease Case Definition</a></label>
+						<Button class='label label-primary' onclick="show_Bootbox(this.value)" value="<?php echo $row->sample;?>"><span class='glyphicon glyphicon-eye-open'></span>View Sample Definition</Button>
 
 							</td>
 						</tr>
@@ -52,7 +52,12 @@
     </div>
     </div>
   
-  </div> 
+  </div>
+  <script>
+  	function show_Bootbox(definition){
+  		bootbox.alert(definition);
+  	}
+  </script> 
   
 	
 	

@@ -30,8 +30,8 @@ class Incidence extends Doctrine_Record {
 	}
 
 	public function get_incidence_count() {
-		$query = Doctrine_query::create() -> select("*") -> from("incidence") -> where('confirmation="Suspected"');
-		$incident = $query -> count();
+		$query = Doctrine_query::create() -> select("count(id) as total") -> from("incidence") -> where('confirmation="Suspected"');
+		$incident = $query -> execute(array(), Doctrine::HYDRATE_SINGLE_SCALAR);
 		return $incident;
 	}
 public function get_incidence_ebola_count() {
@@ -70,7 +70,8 @@ public function get_incidence_ebola_count() {
 	public function get_facility_count_by_disease($diseases) {
 		$query = Doctrine_query::create() -> select("COUNT(id) as total,id,mfl_code,disease_id,p_id") -> from("incidence")->where("disease_id='$diseases'")-> groupby("mfl_code");
 		$incident = $query -> execute();
-		return $incident;
+		//$incident = $query -> execute();
+		return $incident->toArray();
 	}
 	public function get_ebola_count() {
 		$query = Doctrine_query::create() -> select("COUNT(id) as total,id,mfl_code,disease_id,p_id") -> from("incidence")->Where(" disease_id='16'")-> groupby("mfl_code");
@@ -220,6 +221,12 @@ public function get_incidence_ebola_count() {
 		$query = Doctrine_query::create() -> select("*") -> from("incidence") -> where("district='$district'");
 		$all = $query -> execute();
 		return $all;
+	}
+	public function report_rate($year,$county){
+		$query = Doctrine_query::create() -> select("monthname(Time) as Month, 
+  year(Time) as Year, count(id) as total") -> from("incidence") -> where("year(Time)='$year' AND county='$county'")->groupby("monthname(Time), year(Time)");
+		$all = $query -> execute();
+		return $all->toArray();
 	}
 
 }

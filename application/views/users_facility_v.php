@@ -31,26 +31,33 @@ if(!$this->session->userdata("user_id") || $this->session->userdata("user_indica
 				<th>Email</th>
 				<th>Phone No</th>
 				<th>Access Domain</th>
-				<th>Action</th>	
+				<th>Ebola SMS</th>
+				<th>Action</th>
+					
 			</thead>
 			<tbody>
-			<?php foreach( $result as $row):?>
-				<?php if($row->status==1){ echo '
-			<tr>
-				<td>'?><?php echo $row->fname;?><?php echo ' </td>
-				<td>'?><?php echo $row->username?><?php echo ' </td> 
-				<td>'?><?php if ($row->status==1){
+				
+				
+			<?php foreach( $result as $row): ?>
+	            <tr style="<?php if($row->status==0){ echo 'background-color:#D3D3D3';}?>">
+                  
+                  
+				<td><?php echo $row->fname;?></td>
+				<td><?php echo $row->username?></td> 
+				<td>
+					<?php if ($row->status==1){
 					echo 'Active';
 				}else{
 					echo 'In Active';
-				}?><?php 
+				} 
 				/*$da['user']=User::get_usertype($row->usertype_id);
 				foreach($da as $rows){$user_domain=$rows->level; break;}*/
 				
-				echo'
-				<td>'.$row->email.'</td>
-				<td>'.$row->telephone.'</td>
-				<td>';
+			?></td>
+				<td><?php echo $row->email ?></td>
+				<td><?php echo $row->telephone ?></td>
+				<td>
+				<?php
 				$usertype=$row->usertype_id;
 				//echo $row->usertype_id;
 				if($usertype==1){echo "Administrator";}
@@ -58,58 +65,40 @@ if(!$this->session->userdata("user_id") || $this->session->userdata("user_indica
 				else if($usertype==3){echo "County Administrator";}
 				else if($usertype==4){echo "District Administrator";}
 				else if($usertype==5){echo "KEMRI";}
-				else{echo "Test";}
-				echo '</td>
+				else if($usertype==6){echo "RRT";}
+				else{echo "Error";}
+				?>
 				</td>
-				<td>'?>
-					<a href="<?php echo site_url('user_management/user_reset/'.$row->id)?>"
-				 class='label label-primary'><span class="glyphicon glyphicon-refresh"></span> Reset Password</a>
-					<?php echo'
-				
-				' ?><?php if ($row->status==1){
-					
-					echo "<a href='".site_url('user_management/deactive/'.$row->id)."' class='label label-danger'><span class='glyphicon glyphicon-off'></span> Deactivate</a>";
-				}else{
-					echo "<a href='".site_url('user_management/active/'.$row->id)."' class='label label-info'><span class='glyphicon glyphicon-off'></span> Activate</a>";
-					
-				}?><?php echo '</td>
-				
-			</tr>';
-			}else{
-				echo '<tr style="background-color:#D3D3D3">
-				<td>'?><?php echo $row->fname;?><?php echo '</td>
-				<td>'?><?php echo $row->username?><?php echo '</td> 
-				<td>'?><?php if ($row->status==1){
-					echo 'Active';
-				}else{
-					echo 'In Active';
-				}?><?php 
-				
-				echo'
-				<td>'.$row->email.'</td>
-				<td>'.$row->telephone.'</td>
-				<td>';
-				$usertype=$row->usertype_id;
-				//echo $row->usertype_id;
-				if($usertype==1){echo "Administrator";}
-				else if($usertype==2){echo "MOH";}
-				else if($usertype==3){echo "County Administrator";}
-				else if($usertype==4){echo "District Administrator";}
-				else if($usertype==5){echo "KEMRI";}
-				else{echo "Test";}
-				echo '</td>
+				<td>
+				<?php
+				$nmg=$row->rrt_sms;
+				if($nmg=='0'){
+				echo "No access";
+				}
+				else if($nmg=='1'){
+				echo "Receiver";
+				}
+				else if($nmg=='2'){
+				echo "Sender/Receiver";
+				}
+				else if($nmg=='3'){
+				echo "Sender";
+				}
+				?>
 				</td>
-				<td>'?>
-					<a href="<?php echo site_url('user_management/user_reset/'.$row->id)?>"
-				 class='label label-primary'><span class="glyphicon glyphicon-refresh"></span> Reset Password</a>
+				<td>
+					<a href="<?php echo site_url('user_management/user_reset/'.$row->id)?>" class="label label-primary"><span class="glyphicon glyphicon-refresh"></span> Reset Password</a>
 					<?php if ($row->status==1){
+					
 					echo "<a href='".site_url('user_management/deactive/'.$row->id)."' class='label label-danger'><span class='glyphicon glyphicon-off'></span> Deactivate</a>";
 				}else{
 					echo "<a href='".site_url('user_management/active/'.$row->id)."' class='label label-info'><span class='glyphicon glyphicon-off'></span> Activate</a>";
-				}?><?php echo '</td>
+					
+				}?>
+				</td>
 				
-			</tr>';
-			}?>
+			</tr>
+			
 		<?php
  endforeach;
 	?>

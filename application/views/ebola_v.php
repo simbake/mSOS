@@ -195,7 +195,7 @@
       </div>
       <div class="panel-body" style="overflow-y: auto">
         <div style="/*border: 1px solid #036;*/ ;" id="container">
-        <?php echo renderChart("" . base_url() . "Scripts/FusionCharts/StackedColumn2D.swf", "", $strXML_e5, "e_6", '', 400, false, true); ?>
+        <?php echo renderChart(base_url() . "Scripts/FusionCharts/StackedColumn2D.swf", "", $strXML_e5, "e_6", '', 400, false, true); ?>
         </div>
       </div>
     </div>

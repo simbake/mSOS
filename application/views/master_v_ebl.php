@@ -29,7 +29,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Master Database View
-						<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="MOH" ){ ?>
+						<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="Rapid Response" ){ ?>
 						<?php if(isset($ebola_admin)){ ?>
 				<div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/master_db_download');?>"> Download</a></div>
 	

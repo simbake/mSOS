@@ -84,8 +84,22 @@
 						  foreach($fetch_incidence as $fetch){
 						  
 						  //Administrator or MOH response check
-						  if($access_types=='Administrator' || $access_types=='MOH' ){
-						  $check=$fetch['national_incident'];
+						  if($access_types=='Administrator'){
+						  $check=$fetch['Admin_Response'];
+						  if($check){
+						  echo "<label class='label label-default'><span class='glyphicon glyphicon-ok'></span> Done.</label>";
+						  }
+						  else{
+						  ?>
+						  <a href="<?php echo site_url('ebola_Reports/respond/'.$row->id)?>"
+				 class='label label-primary'><span class="glyphicon glyphicon-comment"></span> Respond</a>
+						  
+						  <?php
+						  // echo "county";
+						  }
+						  
+						  }else if($access_types=='Rapid Response'){
+						  $check=$fetch['RRT_Response'];
 						  if($check){
 						  echo "<label class='label label-default'><span class='glyphicon glyphicon-ok'></span> Done.</label>";
 						  }
@@ -105,7 +119,7 @@
 						   
 						   else{
 						   ?>
-						   <a href="<?php echo site_url('ebola_Reports/respond/'.$row->id)?>"
+						   <a href="<?php echo site_url('ebola_Reports/respond/'.$row->msos_code)?>"
 				 class='label label-primary'><span class="glyphicon glyphicon-comment"></span> Respond</a>
 						   <?php 
 						   }

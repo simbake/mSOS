@@ -382,13 +382,26 @@ class Report_Management extends MY_Controller {
 						$dates = new DateTime($a);$dates->format('j F, Y g:i A');
 						$dates_1 = new DateTime($b);$dates_1->format('j F, Y g:i A');
 						$difference = $dates->diff( $dates_1 );
+						          $hours= $difference->format('%h hours');
+								  $minutes= $difference->format('%i minutes');
+								  $seconds= $difference->format('%s seconds');
+								  $diff="";
+								  if($hours>0){
+								  	$diff.= $hours." ";
+								  }
+								  if($minutes>0){
+								  	$diff.= $minutes." ";
+								  }
+								  if($seconds){
+								  	$diff.= $seconds;
+								  }
 				$data .= '
 						<tr>
 							<td style="text-align:left;">' . $d -> fname . '</td>
 							<td style="text-align:left;">' . $dates->format('jS F Y g:i A') . '</td>
 							<td style="text-align:left;">' . $dates_1->format('jS F Y g:i A') . '</td>
 							<td style="text-align:left;">' . $row -> status . '</td>
-                            <td style="text-align:left;">' . $difference->format('%h hours %i minutes %s seconds'). '</td>
+                            <td style="text-align:left;">' . $diff. '</td>
 										
 						</tr>';
 			endforeach;
