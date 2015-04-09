@@ -29,23 +29,35 @@ $('#div_county').hide();
 $('#div_subCounty').hide();
 })
 function showFields(){
-	var value=document.getElementById('level').value;
+	var value=document.getElementById('level').value; 
 	/*alert(value);*/
 	if(value==1 || value==2 || value==5){
 	$('#div_county').hide();
-    $('#div_subCounty').hide();	
+    $('#div_subCounty').hide();
+    $('#rrt_notify_fields').show();
+    if(value==2){
+    $('#rrt_notify_fields').hide();	
+    }	
 	}
 	else if(value==3){	
 	$('#div_county').show();
 	$('#div_subCounty').hide();
+	$('#rrt_notify_fields').hide();
 	}
 	else if(value==4){
 	$('#div_subCounty').show();
-	$('#div_county').hide();	
+	$('#div_county').hide();
+	$('#rrt_notify_fields').hide();	
+	}
+	else if(value==6){
+	$('#rrt_notify_fields').show();
+	$('#div_county').hide();
+    $('#div_subCounty').hide();
 	}
 	else{
 	$('#div_county').hide();
-    $('#div_subCounty').hide();		
+    $('#div_subCounty').hide();
+    $('#rrt_notify_fields').hide();		
 	}
 	
 }
@@ -185,11 +197,23 @@ textarea:focus:valid{
 	 </select>
     </div>
   </div>
+  
+  <div class="form-group" id='rrt_notify_fields'>
+    <label for="rrt_notify" class="col-sm-2 control-label" >RRT Notification: </label>
+    <div class="col-sm-10">
+      <select name="rrt_notify" id="rrt_notify" class="form-control">
+		<option value='0'>No access</option>
+		<option value='1'>Receiver</option>
+		<option value='2'>Receiver and Sender</option>
+		<option value='3'>Sender</option>
+	 </select>
+    </div>
+  </div>
  
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default" disabled="disabled" id="submit"><span class="glyphicon glyphicon-send"></span> Report Case</button>
+      <button type="submit" class="btn btn-default" disabled="disabled" id="submit"><span class="glyphicon glyphicon-send"></span> Register User</button>
     </div>
   </div>
 </form>

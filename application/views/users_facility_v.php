@@ -31,7 +31,6 @@ if(!$this->session->userdata("user_id") || $this->session->userdata("user_indica
 				<th>Email</th>
 				<th>Phone No</th>
 				<th>Access Domain</th>
-				<th>Ebola Login</th>
 				<th>Ebola SMS</th>
 				<th>Action</th>
 					
@@ -66,23 +65,13 @@ if(!$this->session->userdata("user_id") || $this->session->userdata("user_indica
 				else if($usertype==3){echo "County Administrator";}
 				else if($usertype==4){echo "District Administrator";}
 				else if($usertype==5){echo "KEMRI";}
-				else{echo "Test";}
+				else if($usertype==6){echo "RRT";}
+				else{echo "Error";}
 				?>
 				</td>
-		        <td>
-		        	<?php
-		        	if($row->ebola_login=='1'){
-		        	
-					echo "Yes";	
-		        	}
-		        	else if($row->ebola_login=='0'){
-		        		echo "No";
-		        	}
-		        	?>
-		        </td>
 				<td>
 				<?php
-				$nmg=$row->sms;
+				$nmg=$row->rrt_sms;
 				if($nmg=='0'){
 				echo "No access";
 				}

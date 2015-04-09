@@ -75,7 +75,8 @@ class User_Management extends MY_Controller {
 		$district = $n['district'];
 		$county = $n['county'];
 		$status = $n['status'];
-		$ebola_login = $n['ebola_login'];
+		$rrt_sms=$n['rrt_sms'];
+		$ebola_login =0;
 		$password = $n['password'];
 		$token_key = $n['reset_token'];
 		if ($status == 0) {
@@ -85,15 +86,22 @@ class User_Management extends MY_Controller {
 		if ($myvalue == 1) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Administrator");
 		} else if ($myvalue == 2) {
-			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "MOH", 'ebola_login' => $ebola_login);
+			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "MOH");
 		} else if ($myvalue == 5) {
+			if($rrt_sms>0){
+			$ebola_login='1';	
+			}
+			else{
+			$ebola_login='0';	
+			}
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "KEMRI", 'ebola_login' => $ebola_login);
 		} else if ($myvalue == 4) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "District Administrator", 'district' => $district);
 		} else if ($myvalue == 3) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "County Administrator", 'county' => $county);
-		} else if ($myvalue == 7) {
-			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Ebola Response", 'ebola_login' => $ebola_login);
+		} else if ($myvalue == 6) {
+			$ebola_login=1;
+			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Rapid Response", 'ebola_login' => $ebola_login);
 		}
 		if (($session_data == "" || $session_data == null)) {
 			
@@ -184,10 +192,7 @@ class User_Management extends MY_Controller {
 	}
 
 	public function admin_submit() {
-		/*if ($this->_submit_validate() === FALSE) {
-		 $this->index();
-		 return;
-		 }*/
+		
 		$username = trim($this -> input -> post('username'));
 		// strip ay whitespaces
 		$username_check = $this -> check_username($username);
@@ -196,13 +201,19 @@ class User_Management extends MY_Controller {
 		$name1 = $this -> input -> post('fname');
 		$name2 = $this -> input -> post('lname');
 		//$password="msos123";
-		$password = $this -> input -> post('password');
+		$password = "msos123";
 		//$id = $this -> input -> post('facility');
 		$province = $this -> input -> post('county');
 		$district = $this -> input -> post('subcounty');
 		$user_access = $this -> input -> post('type');
+        $rrt_notify=0;
+		if($user_access==1 || $user_access==5 || $user_access==6){
+			
+		$rrt_notify=$this->input->post('rrt_notify');
+		
+		}
 
-		if ($user_access == 1 || $user_access == 2 || $user_access == 5) {
+		if ($user_access == 1 || $user_access == 2 || $user_access == 5 || $user_access==6) {
 			$province = "Null";
 			$district = "Null";
 		} else if ($user_access == 3) {
@@ -211,15 +222,16 @@ class User_Management extends MY_Controller {
 			$province = "Null";
 		}
 		$u = new User();
-		$u -> fname = $this -> input -> post('fname');
-		$u -> email = $this -> input -> post('email');
-		$u -> username = $this -> input -> post('username');
-		$u -> password = $this -> input -> post('password');
+		$u -> fname = $name1;
+		$u -> email = $email;
+		$u -> username = $username;
+		$u -> password = $password;
 		$u -> usertype_id = $user_access;
 		$u -> telephone = $this -> input -> post('tell');
 		$u -> county = $province;
 		$u -> district = $district;
 		$u -> facility = $this -> input -> post('facility');
+		$u->rrt_sms=$rrt_notify;
 		$u -> save();
 
 		redirect("user_management/moh");

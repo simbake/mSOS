@@ -4,9 +4,8 @@ class incident_Log_ebola extends Doctrine_Record {
 		$this -> hasColumn('id', 'int', 11);
 		$this -> hasColumn('incident_id', 'varchar', 255,array('unique' => 'true'));
 		$this -> hasColumn('reported', 'int', 11);
-		$this -> hasColumn('national_incident', 'text');
-		$this -> hasColumn('county_incident', 'text');
-		$this -> hasColumn('district_incident', 'text');
+		$this -> hasColumn('Admin_Response', 'text');
+		$this -> hasColumn('RRT_Response', 'text');
 
 	}
 
@@ -25,25 +24,17 @@ class incident_Log_ebola extends Doctrine_Record {
 
 	public function national_get_count($id) {
 		
-		$query = Doctrine_query::create() -> select("*") -> from("Incident_Log_ebola") -> where("incident_id=$id and national_incident IS NULL");
+		$query = Doctrine_query::create() -> select("*") -> from("Incident_Log_ebola") -> where("incident_id=$id and Admin_Response IS NULL");
 		$count = $query -> count();
 		return $count;
 		
+	}
+	
+	public function get_rrt_response($id){
+		$query = Doctrine_query::create() -> select("*") -> from("Incident_Log_ebola") -> where("incident_id=$id and RRT_Response IS NULL");
+		$count = $query -> count();
+		return $count;
 	}
 
-	public function county_get_count($id) {
-		$query = Doctrine_query::create() -> select("*") -> from("Incident_Log_ebola") -> where("incident_id=$id and county_incident IS NULL");
-		$count = $query -> count();
-		return $count;
-		
-	}
-
-	public function district_get_count($id) {
-		
-		$query = Doctrine_query::create() -> select("*") -> from("Incident_Log_ebola") -> where("incident_id=$id and district_incident IS NULL");
-		$count = $query -> count();
-		return $count;
-		
-	}
 
 }

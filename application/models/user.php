@@ -4,18 +4,17 @@ class User extends Doctrine_Record {
 	public function setTableDefinition() {
 		$this->hasColumn('id', 'int', 11);
 		$this->hasColumn('fname', 'varchar', 255);
-		$this->hasColumn('email', 'string', 255, array('unique' => 'true'));
-		$this->hasColumn('username', 'string', 255, array('unique' => 'true'));
-		$this->hasColumn('password', 'string', 255);
+		$this->hasColumn('email', 'Text', 255, array('unique' => 'true'));
+		$this->hasColumn('username', 'Text', 255, array('unique' => 'true'));
+		$this->hasColumn('password', 'Text', 255);
 		$this->hasColumn('usertype_id', 'integer', 11);
 		$this->hasColumn('telephone', 'varchar', 255);
-		$this->hasColumn('sms', 'int', 2);
+		$this->hasColumn('rrt_sms', 'int', 2);
 		$this->hasColumn('county', 'varchar', 255);
 		$this->hasColumn('district', 'varchar', 255);
 		$this->hasColumn('facility', 'varchar', 255);
 		$this->hasColumn('created_at', 'varchar', 255);
 		$this->hasColumn('status', 'int', 1);
-		$this->hasColumn('ebola_login', 'int', 1);
 		$this->hasColumn('reset_token', 'Text');
 		$this->hasColumn('token_generated', 'datetime');
 		
@@ -97,7 +96,7 @@ class User extends Doctrine_Record {
 	}
 	public function ebola_Kemri_receivers(){
 		//$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("telephone='254729928476' AND status=1");
-		$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("usertype_id=1 AND status=1");
+		$query = Doctrine_Query::create() -> select("telephone") -> from("user")->where("(sms='1' OR sms='2') AND status='1'");
 		$user_type= $query -> execute();
 		return $user_type;
 	}

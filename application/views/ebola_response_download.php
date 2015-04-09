@@ -24,7 +24,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Responses View
-				<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="MOH" ){ ?>
+				<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="Rapid Response" ){ ?>
 						
                  <div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/ebola_response_download'); ?>">Download</a></div>
 					<?php } ?>
@@ -45,7 +45,8 @@
 						<th>Status</th>
 						<th>Serial</th>
 						<th>ID</th>
-						<th>National Response</th>
+						<th>Admin Response</th>
+						<th>RRT Response</th>
 						<th>Kemri response</th>
 										    
 					</tr>
@@ -75,8 +76,8 @@
 							
 							<td><?php
 							$admin_log = $row -> logs_ebola -> toArray();
-							if (isset($admin_log['0']['national_incident'])) {
-								$c = $admin_log['0']['national_incident'];
+							if (isset($admin_log['0']['Admin_Response'])) {
+								$c = $admin_log['0']['Admin_Response'];
 								$c = explode('|', $c);
 								$no1 = count($c);
 
@@ -88,7 +89,26 @@
 								$dtt = new DateTime($time);
 								echo '<strong>Action :</strong>' . $action . '<br>' . '<strong>Notes :</strong>' . $notes . '<br>' . '<strong>Findings :</strong>' . $findings . '<br><strong>Time :</strong</>' . $dtt -> format('j F, Y g:i A');
 							} else {
-								echo "No Response.";
+								echo "<strong>No Response.</strong>";
+							}
+								?></td>
+							
+							<td><?php
+							$admin_log = $row -> logs_ebola -> toArray();
+							if (isset($admin_log['0']['RRT_Response'])) {
+								$c = $admin_log['0']['RRT_Response'];
+								$c = explode('|', $c);
+								$no1 = count($c);
+
+								$action = $c[0];
+								$notes = $c[1];
+								$findings = $c[2];
+								$time = $c[3];
+								$taken = $c[4];
+								$dtt = new DateTime($time);
+								echo '<strong>Action :</strong>' . $action . '<br>' . '<strong>Notes :</strong>' . $notes . '<br>' . '<strong>Findings :</strong>' . $findings . '<br><strong>Time :</strong</>' . $dtt -> format('j F, Y g:i A');
+							} else {
+								echo "<strong>No Response.</strong>";
 							}
 								?></td>
 							

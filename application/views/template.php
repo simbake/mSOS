@@ -1,4 +1,5 @@
 <?php
+include ("Scripts/FusionCharts/FusionCharts.php");
 //session timeout check
  $check=$this->session->userdata('user_id');
 //check if the user is logged in
@@ -65,9 +66,6 @@ if (isset($scripts)) {
 	}
 }
 
-
-include ("Scripts/FusionCharts/FusionCharts.php");
-
 $id=$this -> session -> userdata('user_id');
 $level=$this -> session -> userdata('user_level');
  /*if(isset($map['js'])){
@@ -79,6 +77,7 @@ $user_is_kemri = false;
 $user_is_district = false;
 $user_is_county = false;
 $user_is_moh= false;
+$user_is_rrt=false;
 
 if ($access_level == "Administrator") {
 	$user_is_administrator = true;
@@ -90,6 +89,9 @@ if ($access_level == "Administrator") {
 	$user_is_district = true;
 }else if ($access_level == "County Administrator") {
 	$user_is_county = true;
+}
+else if($access_level=="Rapid Response"){
+	$user_is_rrt=true;
 }
 
 if($access_level=="Administrator" || $access_level=="MOH" ){
@@ -241,8 +243,8 @@ border-color: #e7e7e7;
       <?php } else{ ?>
       <li class=""><a href="<?php echo site_url().'home_controller';?>" class="">HOME</a> </li>
       <?php } ?>
-       <?php  if($user_is_administrator || $user_is_moh || $user_is_kemri){  ?>
-       	 <li class=""><a style="background-color: red;" href="<?php echo site_url().'Ebola_controller';?>" class="">Ebola Information</a> </li> 
+       <?php  if($user_is_administrator || $user_is_rrt || $user_is_kemri){  ?>
+       	 <li class=""><a style="background-color: red;" href="<?php echo site_url().'Ebola_controller';?>" class="">Rapid Response</a> </li> 
        	<?php } ?>
        <?php  if(($user_is_administrator || $user_is_district || $user_is_county || $user_is_moh) && !isset($ebola_admin)){  ?>
        <li><a href="<?php echo site_url().'facility_c/all_facilities';?>" class=" ">Facility List</a> </li> 

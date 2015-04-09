@@ -20,6 +20,8 @@
 		<script src="<?php echo base_url().'assets/scripts/jquery-1.8.0.js'?>" type="text/javascript"></script>
 		<script src="<?php echo base_url().'assets/boot-strap3/js/bootstrap.min.js'?>" type="text/javascript"></script>
 		<script src="<?php echo base_url().'assets/bootbox/bootbox.min.js'?>" type="text/javascript"></script>
+		<link href="<?php echo base_url().'assets/nprogress/nprogress.css'?>" rel="stylesheet" />
+		<script src="<?php echo base_url().'assets/nprogress/nprogress.js'?>"></script>
 		<!--<script src="<?php echo base_url().'assets/scripts/alert.js'?>" type="text/javascript"></script>
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -46,6 +48,9 @@
 					window.location.hash = storedHash;
 				}
 			}, 50);
+			$(document).ready(function() {
+            NProgress.start();
+			});
 		</script>
 		<style>
 			.bb-alert {
@@ -208,7 +213,7 @@
 				'<div class="form-group"> ' +
 				'<label class="col-md-4 control-label" for="email">Email: </label> ' +
 				'<div class="col-md-5"> ' +
-				'<input id="email" name="email" required type="email" placeholder="Enter email to reset" class="form-control input-md"> ' +
+				'<input id="email" name="email" onkeydown="disable_enter()" autocomplete="off" onactivate="disable_enter()" onchange="disable_enter()"  required type="email" placeholder="Enter email to reset" class="form-control input-md"> ' +
 				'<span class="help-block">A reset link will be sent to the email</span> </div> ' +
 				'</div> ' +
 				'</form> </div>  </div>',
@@ -218,9 +223,7 @@
 				className: "btn-success",
 				callback: function () {
 
-				$("#forgot_alert").show();
-				$("#forgot_alert").html("<span id='forgot_alert_text'>Loading.Please wait....<img src="+base_url+"Images/ajax-loader.gif></span>");
-
+				NProgress.inc();
 				$.ajax({
 				url: action_url,
 				data: 'email='+ $('#email').val(),
@@ -228,16 +231,28 @@
 				type: 'post',
 				success: function (j) {
 				//alert(j)
+				NProgress.done();
 				Example.show(j);
 				},
 				error: function (j){
-					
-					Example.show("An Error was encontered :-(")
+					NProgress.done();
+					Example.show(":-( An Error was encontered. Please try again.")
 					}
 				});
 				}}
 				}});
 				}
+function disable_enter(){
+	$("#email").on({
+  keydown: function(e) {
+    if (e.which === 13)
+      return false;
+  },
+  change: function() {
+    this.value = this.value.replace(/\s/g, "");
+  }
+});	
+}
 		</script>
 
 	</body>

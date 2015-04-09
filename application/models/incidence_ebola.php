@@ -10,9 +10,6 @@ class incidence_ebola extends Doctrine_Record {
 		$this -> hasColumn('Age', 'int', 11);
 		$this -> hasColumn('Sex', 'varchar', 5);
 		$this -> hasColumn('Status', 'varchar', '5');
-		$this -> hasColumn('New_Age', 'int', 11);
-		$this -> hasColumn('New_Sex', 'varchar', 255);
-		$this -> hasColumn('New_Status', 'varchar', 255);
 		$this -> hasColumn('msos_code', 'text');
 		$this -> hasColumn('case_number', 'text');
 		$this -> hasColumn('reported_by', 'int', '11');
@@ -23,7 +20,7 @@ class incidence_ebola extends Doctrine_Record {
 
 	public function setUp() {
 		$this -> setTableName('incidence_ebola');
-		$this -> hasMany('diseases as disease_name', array('local' => 'Disease_id', 'foreign' => 'id'));
+		$this -> hasMany('rrt_diseases as disease_name', array('local' => 'Disease_id', 'foreign' => 'id'));
 		$this -> hasMany('User as ebl_numbers', array('local' => 'reported_by', 'foreign' => 'telephone'));
 		$this -> hasMany('User as location_user', array('local' => 'location_reported_by', 'foreign' => 'telephone'));
 		$this -> hasMany('incident_log_ebola as logs_ebola', array('local' => 'msos_code', 'foreign' => 'incident_id'));
