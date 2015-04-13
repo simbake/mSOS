@@ -26,7 +26,7 @@
 						Responses View
 				<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="Rapid Response" ){ ?>
 						
-                 <div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/ebola_response_download'); ?>">Download</a></div>
+                 <div style="float:right;"><span class="glyphicon glyphicon-save"></span>  <a href="<?php echo site_url('ebola_reports/ebola_response_download'); ?>">Download</a></div>
 					<?php } ?>
 			
 					</div>
@@ -37,6 +37,7 @@
 					<tr>
 						<th></th>
 						<th>Phone Number</th>
+						<th>Event Name</th>
 						<th>Location</th>
 						<th>Date</th>
 						<th>Time</th>
@@ -54,10 +55,12 @@
 					
 							<tbody>
 								<?php
-						foreach($all as $row):	
+						foreach($all as $row):
+							foreach($row->disease_name as $event):	
 						?>
 						<tr>
 							<td><?php echo $row -> Type; ?></td>
+							<td><?php echo $event -> disease_name; ?></td>
 							<td><?php echo $row -> reported_by; ?></td>
 							<td><?php echo $row -> incidence_location; ?></td>
 							<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
@@ -126,6 +129,7 @@
 							?>
 							</td>
 						</tr>
+						<?php endforeach; ?>
 						<?php endforeach; ?>
 						</tbody>
 						

@@ -28,6 +28,7 @@
 				<th></th>
 				<th>Serial</th>
 				<th>ID</th>
+				<th>Event Name</th>
 				<th>Phone</th>
 				<th>Name</th>
 				<th>Location</th>
@@ -53,6 +54,11 @@
 				<td><?php echo $row -> Type; ?></td>
 				<td><?php echo $row -> case_number; ?></td>
 				<td><?php echo $row -> msos_code; ?></td>
+				<?php foreach($row->disease_name as $event): ?>
+				
+				<td><?php echo $event->disease_name; ?></td>
+					
+					<?php endforeach; ?>
 				<td><?php echo $row -> reported_by; ?></td>
 				<td><?php echo $ebola_users -> fname; ?></td>
 				<td><?php echo $row -> incidence_location; ?></td>

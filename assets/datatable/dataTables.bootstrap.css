@@ -24,7 +24,7 @@ div.dataTables_info {
 div.dataTables_paginate {
 	float: right;
 	margin: 0;
-	margin-top: -25px;
+	margin-top: 0px;
 }
 
 div.dataTables_paginate ul.pagination {

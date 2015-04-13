@@ -118,6 +118,7 @@ class ebola_Reports extends CI_Controller {
 					<tr>
 					
 						<th style="text-align:left;">Type</th>
+						<th style="text-align:left;">Event Name</th>
 						<th style="text-align:left;">Phone Number</th>
 						<th style="text-align:left;">Location</th>
 						<th style="text-align:left;">Date</th>
@@ -135,12 +136,14 @@ class ebola_Reports extends CI_Controller {
 					</thead>';
 					
 		                foreach($all as $row):
+							foreach($row->disease_name as $event):
 						$a = $row->incidence_time; $dt = new DateTime($a);
                          
 						$data .= '
 						<tbody>
 						<tr>
 							<td style="text-align:left;">' . $row -> Type .'</td>
+							<td style="text-align:left;">' . $event -> disease_name .'</td>
 							<td style="text-align:left;">' . $row -> reported_by .'</td>
 							<td style="text-align:left;">' . $row -> incidence_location .'</td>
 							<td style="text-align:left;">' . $dt->format('j F, Y').'</td>
@@ -208,6 +211,7 @@ class ebola_Reports extends CI_Controller {
 							
 						$data.=$dis.'</td></tr>';
 						 endforeach;
+						 endforeach;
 						  
 						
 
@@ -256,6 +260,7 @@ class ebola_Reports extends CI_Controller {
 					<thead>
 					<tr>
 			    <th style="text-align:left;">Phone</th>
+			    <th style="text-align:left;">Event</th>
 				<th style="text-align:left;">Location</th>
 				<th style="text-align:left;">Date</th>
 				<th style="text-align:left;">Time</th>
@@ -268,12 +273,14 @@ class ebola_Reports extends CI_Controller {
 					</tr>
 					</thead>';
 		foreach ($all as $row) :
+			foreach($row->disease_name as $event):
 			//$a = $row->incidence_time; $dt = new DateTime($a);
 			$a = $row -> incidence_time;
 			$dt = new DateTime($a);
 			$data .= '
 						<tr>
 							<td style="text-align:left;">' . $row -> reported_by . '</td>
+							<td style="text-align:left;">' . $event -> disease_name . '</td>
 							<td style="text-align:left;">' . $row -> incidence_location . '</td>
 							<td style="text-align:left;">' . $dt -> format('j F, Y') . '</td>
 							<td style="text-align:left;">' . $dt -> format('g:i A') . '</td>
@@ -295,6 +302,7 @@ class ebola_Reports extends CI_Controller {
 			}
 			$data .= '<td style="text-align:left;">' . $portal . '</td>
 						</tr>';
+		endforeach;
 		endforeach;
 		$data .= '</tbody></table></td>';
 

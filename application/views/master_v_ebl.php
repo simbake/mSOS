@@ -31,7 +31,7 @@
 						Master Database View
 						<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="Rapid Response" ){ ?>
 						<?php if(isset($ebola_admin)){ ?>
-				<div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/master_db_download');?>"> Download</a></div>
+				<div style="float:right;"><span class="glyphicon glyphicon-save"></span>  <a href="<?php echo site_url('ebola_reports/master_db_download');?>">Download</a></div>
 	
 						<?php } else{ ?>
 						<div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('report_management/commodity_excel');?>"> Download</a></div>
@@ -43,6 +43,7 @@
 				<tr>
 
 				<th>Phone</th>
+				<th>Event</th>
 				<th>Location</th>
 				<th>Date</th>
 				<th>Time</th>
@@ -59,11 +60,12 @@
 				<tbody>
 				<?php
 				foreach($all as $row):
-				//foreach($row->disease_name as $faci):
+				foreach($row->disease_name as $event):
 
 				?>
 				<tr>
 				<td><?php echo $row -> reported_by; ?></td>
+				<td><?php echo $event->disease_name; ?></td>
 				<td><?php echo $row -> incidence_location; ?></td>
 				<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
 				<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>
@@ -101,7 +103,7 @@
 
 			</tr>
 			<?php endforeach; ?>
-			<?php //endforeach; ?>
+			<?php endforeach; ?>
 			<?php //endforeach; ?>
 
 			</tbody>
