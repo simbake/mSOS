@@ -170,20 +170,6 @@ class Ebola_controller extends MY_Controller {
 			 }
 
 			 $data['map'] = $this -> googlemaps -> create_map();
-
-			/*} else if ($access_level == "District Administrator") {
-			 redirect("district/index");
-			 } else if ($access_level == "County Administrator") {
-			 redirect("county/index");
-			 } else if ($access_level == "KEMRI") {
-			 redirect("kemri/index");
-			 }*/
-			//$this -> load -> view("template", $data);
-			/*$pass_check=$this->session->userdata('pass_check');
-			 if($pass_check){
-			 echo "<script>alert('Password change was sucessfull')</script>";
-			 $pass_check=null;
-			 }*/
 		}
 
 		$data['banner_text'] = "Rapid Response Home";
