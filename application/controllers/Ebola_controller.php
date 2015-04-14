@@ -148,8 +148,8 @@ class Ebola_controller extends MY_Controller {
 			$data['strXML_e5'] = $strXML_e5;
 
 
-			/*$coodinates = incidence_ebola::get_ebola_count();
-
+			$rrt_location = rrt_location::get_all();
+         
 			 //echo count($coodinates);
 			 $this -> load -> library('googlemaps');
 			 $config['cluster'] = FALSE;
@@ -157,23 +157,19 @@ class Ebola_controller extends MY_Controller {
 			 $config['zoom'] = '6';
 			 $this -> googlemaps -> initialize($config);
 
-			 foreach ($coodinates as $coordinate) {
-
-			 foreach ($coordinate->incident as $vals) {
-
-			 foreach ($coordinate->disease_name as $disease1) {
+			 foreach ($rrt_location as $coordinates) {
 
 			 $marker = array();
-			 $marker['position'] = $vals -> latitude . ',' . $vals -> longitude;
+			 $marker['position'] = $coordinates['lat'] . ',' . $coordinates['long'];
 			 $marker['icon'] = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|9999FF|000000';
 			 $marker['animation'] = 'DROP';
-			 $marker['infowindow_content'] = 'Facility :' . $vals -> Facility_name . '<br>' . 'Incidents Reported ' . $coordinate -> total . '<br>' . '<a href="' . site_url('report_management/facility_alerts/' . $coordinate -> Mfl_Code) . '" class="linkss">View Details</a>';
+			 $marker['infowindow_content'] = 'Location :' . $coordinates['location_name'] . '<br>' . 'Incidents Reported ' . $coordinates['total'];
 			 $this -> googlemaps -> add_marker($marker);
-			 }
-			 }
+			 
+			 
 			 }
 
-			 $data['map'] = $this -> googlemaps -> create_map();*/
+			 $data['map'] = $this -> googlemaps -> create_map();
 
 			/*} else if ($access_level == "District Administrator") {
 			 redirect("district/index");

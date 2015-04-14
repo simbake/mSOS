@@ -1,4 +1,4 @@
-<?php 
+<?php          echo $map['js'];
                $incidentz= incidence_ebola::get_incidence_ebola_count();
 				//$diseasez= Incidence::get_disease_count();
 				$confirmz= incidence_ebola::confirm_ebola();?>
@@ -183,7 +183,7 @@
       </div>
       <div class="panel-body" style="overflow-y: auto">
         <div style="/*border: 1px solid #036;*/ ;" id="container">
-        	<?php //echo $map['html']; ?>
+        	<?php echo $map['html']; ?>
         </div>
       </div>
     </div></div>
