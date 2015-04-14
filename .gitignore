@@ -164,6 +164,6 @@ pip-log.txt
 
 
 #############
-# Codeigniter #
+# Codeigniter
 #############
-application/config
+application/config/
