@@ -64,5 +64,15 @@ class incidence_ebola extends Doctrine_Record {
 		$disease = $query -> count();
 		return $disease;
 	}
+	public function get_null_locations(){
+		$query = Doctrine_query::create() -> select("reported_by,incidence_time,GROUP_CONCAT(mSOS_code) as mSOS_id") -> from("incidence_ebola i") ->where("i.incidence_location='Null'")->groupBy("reported_by");
+		$incidence = $query -> execute();
+		return $incidence;
+	}
+	public function getAll_null_locations(){
+		$query = Doctrine_query::create() -> select("reported_by,incidence_time") -> from("incidence_ebola i") ->where("i.incidence_location='Null'");
+		$incidence = $query -> execute();
+		return $incidence;
+	}
 
 }

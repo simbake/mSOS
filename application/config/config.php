@@ -14,8 +14,12 @@
 | path to your installation.
 |
 */
+//$config['base_url']	= 'http://'.$_SERVER['SERVER_NAME'].'/mSOS/';
+if(isset($_SERVER['SERVER_NAME'])){
 $config['base_url']	= 'http://'.$_SERVER['SERVER_NAME'].'/mSOS/';
-
+}else{
+$config['base_url']	= 'http://localhost/mSOS/';	
+}
 /*
 |--------------------------------------------------------------------------
 | Index File
