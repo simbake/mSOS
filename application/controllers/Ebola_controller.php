@@ -40,8 +40,9 @@ class Ebola_controller extends MY_Controller {
 			}
 			$category = array_unique($category);
 			rsort($category);
-			
+			//header('Content-Type: application/json');
 			//print_r($perconfirm);exit;
+			//echo json_encode($perconfirm, JSON_PRETTY_PRINT); exit;
 
 			$cases_sus = array();
 			$cases_conf = array();

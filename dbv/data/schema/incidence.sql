@@ -1,0 +1,21 @@
+CREATE TABLE `incidence` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL DEFAULT 'Alert',
+  `mfl_code` int(11) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `county` varchar(255) NOT NULL,
+  `disease_id` int(11) NOT NULL,
+  `age` varchar(255) NOT NULL,
+  `sex` varchar(5) NOT NULL,
+  `status` varchar(5) NOT NULL,
+  `new_age` varchar(255) DEFAULT 'Not Changed',
+  `new_sex` varchar(255) DEFAULT 'Not Changed',
+  `new_status` varchar(255) DEFAULT 'Not Changed',
+  `time_changed` datetime DEFAULT NULL,
+  `p_id` varchar(255) NOT NULL,
+  `time` datetime NOT NULL,
+  `confirmation` varchar(255) NOT NULL DEFAULT 'Suspected',
+  `lab_time` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `disease_id` (`disease_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1

@@ -1,0 +1,20 @@
+CREATE TABLE `incidence_ebola` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL DEFAULT 'Alert',
+  `incidence_location` varchar(255) NOT NULL DEFAULT 'Null',
+  `location_reported_by` varchar(255) NOT NULL,
+  `location_report_date` datetime NOT NULL,
+  `disease_id` int(11) NOT NULL,
+  `age` varchar(255) NOT NULL,
+  `sex` varchar(5) NOT NULL,
+  `status` varchar(5) NOT NULL,
+  `mSOS_code` varchar(255) NOT NULL,
+  `case_number` text NOT NULL,
+  `reported_by` varchar(255) NOT NULL,
+  `incidence_time` datetime NOT NULL,
+  `lab_results` varchar(255) NOT NULL DEFAULT 'Suspected',
+  `lab_time` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `incidence_code` (`mSOS_code`),
+  KEY `disease_id` (`disease_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1

@@ -65,7 +65,7 @@ if(!$this->session->userdata("user_id") || $this->session->userdata("user_indica
 				else if($usertype==3){echo "County Administrator";}
 				else if($usertype==4){echo "District Administrator";}
 				else if($usertype==5){echo "KEMRI";}
-				else if($usertype==6){echo "RRT";}
+				else if($usertype==7){echo "RRT";}
 				else{echo "Error";}
 				?>
 				</td>
