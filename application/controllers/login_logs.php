@@ -9,11 +9,10 @@ class login_Logs extends MY_Controller {
 		
 	}
 	public function index() {
-		$data['title'] = "Logs";
+		$data['title'] = "Login Logs";
 		$data['content_view'] = "trafficv";
 		$data['banner_text'] = "Access Traffic";
 		$data['link'] = "trafficv";
-		//$data['all'] = Logi::getAll();
 		$data['all'] = Logi::getAccessLogs();
 		$data['quick_link'] = "trafficv";
 		$this -> load -> view("template", $data);

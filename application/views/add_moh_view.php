@@ -49,7 +49,7 @@ function showFields(){
 	$('#div_county').hide();
 	$('#rrt_notify_fields').hide();	
 	}
-	else if(value==6){
+	else if(value==7){
 	$('#rrt_notify_fields').show();
 	$('#div_county').hide();
     $('#div_subCounty').hide();

@@ -11,7 +11,7 @@ class email_controller extends MY_Controller {
 	}
 	
 	public function ebola_user_notification(){
-		
+		exit("Not allowed");
 		//$messages=htmlspecialchars($messo);
 		//echo "Under Maintainace. Please try again later.";
 	
@@ -61,27 +61,7 @@ class email_controller extends MY_Controller {
  
 }
 		}
-	}
-function load_email_template(){
-$data['fname']="Oscar Simba";
-$data['username']='simba';
-$data['email']='simbake2009@yahoo.com';
-$data['message']="<strong>Dear Simba,</strong><br/>
-                               You are receiving this email because you were signed up for the mSOS Ebola. Please use this <a target='_blank' href='http://www.ddsr.or.ke/mSOS'>link</a> to access the system. The login credentials are below:<br />
-							   <br/>
-							   <strong>Username:</strong> simba<br />
-							   <br/>
-							   Please use the default password to login.<br/>
-							   
-							   Please note that you will be required to change the password for first time login.
-							   Contact administrator for additional issues through the email address.
-						
-                                                <br />
-                                                <br />
-												<strong>Kind Regards,<br />
-											   The mSOS Team.</strong>";
-$this->load->view("email_template",$data);	
-}	
+	}	
 		
 		
 }

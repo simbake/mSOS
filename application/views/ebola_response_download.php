@@ -60,8 +60,9 @@
 						?>
 						<tr>
 							<td><?php echo $row -> Type; ?></td>
-							<td><?php echo $event -> disease_name; ?></td>
+							
 							<td><?php echo $row -> reported_by; ?></td>
+							<td><?php echo $event -> disease_name; ?></td>
 							<td><?php echo $row -> incidence_location; ?></td>
 							<td><?php $a = $row->incidence_time; $dt = new DateTime($a); echo $dt->format('j F, Y') ?></td>
 							<td><?php $b = $row->incidence_time; $dts = new DateTime($b); echo $dts->format('g:i A') ?></td>

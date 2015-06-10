@@ -99,7 +99,7 @@ class User_Management extends MY_Controller {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "District Administrator", 'district' => $district);
 		} else if ($myvalue == 3) {
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "County Administrator", 'county' => $county);
-		} else if ($myvalue == 6) {
+		} else if ($myvalue == 7) {
 			$ebola_login=1;
 			$session_data = array('full_name' => $namer, 'user_level' => $myvalue, 'user_id' => $user_id, 'user_indicator' => "Rapid Response", 'ebola_login' => $ebola_login);
 		}
@@ -207,13 +207,13 @@ class User_Management extends MY_Controller {
 		$district = $this -> input -> post('subcounty');
 		$user_access = $this -> input -> post('type');
         $rrt_notify=0;
-		if($user_access==1 || $user_access==5 || $user_access==6){
+		if($user_access==1 || $user_access==5 || $user_access==7){
 			
 		$rrt_notify=$this->input->post('rrt_notify');
 		
 		}
 
-		if ($user_access == 1 || $user_access == 2 || $user_access == 5 || $user_access==6) {
+		if ($user_access == 1 || $user_access == 2 || $user_access == 5 || $user_access==7) {
 			$province = "Null";
 			$district = "Null";
 		} else if ($user_access == 3) {
@@ -234,7 +234,7 @@ class User_Management extends MY_Controller {
 		$u->rrt_sms=$rrt_notify;
 		$u -> save();
 
-		redirect("user_management/moh");
+		redirect("user_management/users_facility");
 
 	}
 

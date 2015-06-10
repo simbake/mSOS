@@ -473,7 +473,20 @@
                                         <tr>
                                             <td valign="top" class="bodyContent" mc:edit="body_content">
                                                 
-                                                <?php echo $message; ?>
+                                                <strong>Dear <?php echo $fname; ?>,</strong><br/>
+                               You are receiving this email because you were signed up for the mSOS Ebola. Please use this <a target="_blank" href="http://www.ddsr.or.ke/mSOS">link</a> to access the system. The login credentials are below:<br />
+							   <br/>
+							   <strong>Username:</strong> <?php echo $username; ?><br />
+							   <br/>
+							   Please use the default password to login.<br/>
+							   
+							   Please note that you will be required to change the password for first time login.
+							   Contact administrator for additional issues through the email address.
+						
+                                                <br />
+                                                <br />
+												<strong>Kind Regards,<br />
+											   The mSOS Team.</strong>
                                                 </td>
                                         </tr>
                                     </table>

@@ -24,6 +24,7 @@
 		<div class=styleNewsBody><?php echo nl2br($post)?></div>
 	</td>
   	</tr>
+	<?php if($this->session->userdata("user_id")>0){?>
   	<form method="post" action="<?php echo base_url().'blogs/post_comment'?>">
   		<input type="hidden" name="pcomments" value="<?php echo $id?>" />
   	<tr>
@@ -36,8 +37,9 @@
   		</td>
   	</tr>
   </form>
+  <?php } ?>
   
-</table>
+</table><br/><br/>
 				<div style="width: 100%; float: left">
 				
 					<fieldset>

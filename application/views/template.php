@@ -157,10 +157,7 @@ $user_ip = $this -> input -> ip_address();
 	<!--Boot-select-->
 	<link href="<?php echo base_url().'assets/bootstrap-select/css/bootstrap-select.min.css'?>" type="text/css" rel="stylesheet"/>
 	
-	<link href="<?php echo base_url().'assets/buttons/css/buttons.css'?>" type="text/css" rel="stylesheet"/>
-	
-	<link href="<?php echo base_url().'assets/fuelux/css/fuelux.min.css'?>" type="text/css" rel="stylesheet"/>
-	
+	<link href="<?php echo base_url().'assets/buttons/css/buttons.css'?>" type="text/css" rel="stylesheet"/>	
 
   <!--clock items-->
   <!--<link href="<?php echo base_url().'assets/css/clock.css'?>" type="text/css" rel="stylesheet"/>
@@ -187,8 +184,8 @@ border-color: #e7e7e7;
 }
 </style>
   </head>  
-  <body class="">
-  <!--<body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">-->
+  <!--<body class="">-->
+  <body style="" screen_capture_injected="true" onload="set_interval()" onmouseover="reset_interval()" onclick="reset_interval()">
     <!-- Fixed navbar -->
 	<div id="content_nav">
    <div class="navbar navbar-default navbar-fixed-top">
@@ -252,7 +249,7 @@ border-color: #e7e7e7;
        <?php if(!isset($ebola_admin)){ ?><li><a href="<?php echo site_url().'sms/index ';?>" class=" ">Send SMS</a> </li> 
        <li><a href="<?php echo site_url().'c_disease/disease_list';?>" class=" ">Disease List</a> </li> <?php } ?>
        <?php if($user_is_administrator && !isset($ebola_admin)){  ?>
-       	<li><a href="<?php echo site_url(); ?>Dashboard" class=" ">Dashboard</a> </li>
+       	<!--<li><a href="<?php echo site_url(); ?>Dashboard" class=" ">Dashboard</a> </li>-->
        	<?php } ?>
        <!--<li><a href="" class=" ">User </a></li> -->  
 	 
@@ -301,7 +298,7 @@ border-color: #e7e7e7;
       </div>
 	  </div>
 	  
-  <div id="main-content">
+  <div id="main-content" style="padding-top:7%">
     <div class="container-fluid" style="">
 <!----------- MSOS top buttons--------->
 <div class="container" style="width: 96%;">
@@ -698,9 +695,7 @@ $('.selectpicker').selectpicker();
   <script src="<?php echo base_url().'assets/scripts/jquery.validate.min.js'?>" type="text/javascript"></script>
   
   <script src="<?php echo base_url().'assets/bootstrap-select/js/bootstrap-select.min.js'?>" type="text/javascript"></script>
-  <script src="<?php echo base_url().'assets/bootbox/bootbox.min.js'?>" type="text/javascript"></script>
   
   <script src="<?php echo base_url().'assets/buttons/js/buttons.js'?>" type="text/javascript"></script>
-  <script src="<?php echo base_url().'assets/fuelux/js/fuelux.min.js'?>" type="text/javascript"></script>
 </body>
 </html>

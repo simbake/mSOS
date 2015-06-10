@@ -24,7 +24,7 @@
 		
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Kemri Incidence Confirm.
+					KEMRI Incidence Confirm.
 				</div>
       <div class="panel-body">
         <table class="table table-responsive table-hover table-striped" id="example" width="100%" >
@@ -89,7 +89,7 @@
 							
 							
 							<a href="<?php echo site_url('ebola_Reports/specimen_results/'.$row->id)?>"
-				 class='label label-primary'><span class="glyphicon glyphicon-comment"></span> Respond</a>
+				 class='label label-primary'><span class="glyphicon glyphicon-comment"></span> Confirm</a>
 							<?php 
 							//}
 						//	else{

@@ -2,7 +2,7 @@
 	 <div class="col-md-9" style="">
   	<div class="panel panel-success">
       <div class="panel-heading">
-      SMS Send <span class="glyphicon glyphicon-phone"></span>	
+      Sms Send <span class="glyphicon glyphicon-phone"></span>	
       </div>
       <div class="panel-body" style="overflow-y: auto">
         <form method="post" action="<?php echo base_url().'a_management/sendtext'?>">

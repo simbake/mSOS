@@ -10,6 +10,9 @@ class Contact extends MY_Controller {
 	}
 
 	public function index() {
+	    if($this->session->userdata("user_id")==null){
+		redirect("home_controller");
+		}
 
 		$data['title'] = "Contact Us";
 		$data['content_view'] = "contact";
@@ -22,7 +25,9 @@ class Contact extends MY_Controller {
 		$this -> load -> view("template", $data);
 	}
 	public function send(){
-		
+		if($this->session->userdata("user_id")==null){
+		redirect("home_controller");
+		}
 		$name=$_POST['names'];
 		$email=$_POST['email'];
 		$messo=$_POST['message'];
@@ -35,7 +40,7 @@ class Contact extends MY_Controller {
         $config['smtp_port']    = '465';
         $config['smtp_timeout'] = '7';
         $config['smtp_user']    = 'ddsrmsos@gmail.com';
-        $config['smtp_pass']    = 'y3ll0w@#1';
+        $config['smtp_pass']    = 'Y1MR3Wq3pn';
         $config['charset']    = 'utf-8';
         $config['newline']    = "\r\n";
         $config['mailtype'] = 'html'; // or html

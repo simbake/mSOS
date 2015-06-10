@@ -50,3 +50,23 @@
     </div></div>
     
   </div> 
+  
+
+	
+
+<script>
+
+	
+   $(document).ready(function() {
+       $('#order_hide').hide() 
+
+       $('#order_tab').click(function(event) {
+           /* Act on the event */
+           $('#order_hide').toggle('slow')
+       }); 
+
+	
+       <?php echo $facility_dashboard_notifications['faciliy_stock_graph'] ?>
+
+    });
+</script>

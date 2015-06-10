@@ -18,7 +18,7 @@ if(!$this->session->userdata("user_id")){
 		
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Kemri Response View.
+					KEMRI Response View.
 					<?php if($this->session->userdata("user_indicator")=="Administrator" || $this->session->userdata("user_indicator")=="MOH" ){ ?>
 						
                  <div style="float:right;"><span class="glyphicon glyphicon-save"></span><a href="<?php echo site_url('ebola_reports/kemri_report_download');?>">Download</a></div>
@@ -28,7 +28,8 @@ if(!$this->session->userdata("user_id")){
         <table class="table table-responsive table-bordered table-hover table-striped" id="example" width="100%" >
 					<thead>
 					<tr>
-						<th>mSOS Id</th>
+						<th>Incident Id</th>
+						
 						<th>Date received</th>
 						<!--<th>Date tested</th>-->
 						<th>Specimen type</th>

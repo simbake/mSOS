@@ -4,14 +4,9 @@ html {
 }
 body {
 	/* Move down content because we have a fixed navbar  */
-	/*padding-top: 110px;*/
+	padding-top: 110px;
 	/* Margin bottom by footer height */
-	/*margin-bottom: 60px !important;*/
-	position:relative;
-	z-index:0;
-}
-section, footer, header, aside{
-	display: block;
+	margin-bottom: 60px !important;
 }
 /* Make Header Sticky */
 #header_container {
@@ -263,7 +258,7 @@ option.big{  width: 150px !important; }
 }
 
 /*3d button CSS*/
-/*.btn3d:active {
+.btn3d:active {
     top:9px;
 }
 .btn-default {
@@ -289,29 +284,12 @@ option.big{  width: 150px !important; }
 .btn-danger {
     box-shadow:0 0 0 1px #c63702 inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #C24032, 0 8px 0 1px rgba(0,0,0,0.4), 0 8px 8px 1px rgba(0,0,0,0.5);
     background-color:#c63702;
-}*/
+}
 /*End of 3D button CSS*/
 
 /*top menu active*/
 .top_menu_active{
 	color: #555555;
   background-color: #e7e7e7;
-}
-
-#content_nav{
- position:relative;
-	z-index:-2;
-	/*padding: 120px 0 600px;*/
-	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-}
-#main-content{
-position:relative;
-	z-index:1;
-	background-color:white;
-	margin-top:15%;
-}
-#top-menu{
-	position:relative;
-	z-index:4;
 }
 /* End of top menu active */
